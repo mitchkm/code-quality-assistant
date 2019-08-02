@@ -3,3 +3,10 @@ Apple Cal Poly SURP project summer 2019
 
 ## Goal
 Create an interactive tool that allows developers to visually see metrics of a codebase, such as cyclomatic complexity, organized by file/methods’ size and nesting.
+
+## Full list of dependencies
+### Web UI (see web-ui/package.json)
+- Typescript
+- browserify
+- tsify
+- d3
