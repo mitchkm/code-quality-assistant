@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+      "removeComments": true,
+      "rootDir": "./src",
+      "outDir": "./build",
+      "typeRoots": [
+        "../node_modules/@types",
+        "types"
+      ]
+    },
+    "exclude": [
+      "**/*.spec.ts",
+      "**/*.ignore.ts",
+      "**/*.js"
+    ]
+  }

@@ -1,0 +1,24 @@
+{
+  "name": "cqa-web-ui",
+  "version": "0.0.1",
+  "description": "Web based UI to visualize code quality analysis metrics",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./bundler.js > ./dist/bundle.js",
+    "ts-build": "tsc -b",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "contributors": [
+    "Mitchell Miller <mitchkm21@gmail.com>",
+    "Jay <email.com>",
+    "Noah <email.com>"
+  ],
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^16.3.0",
+    "ts-loader": "^6.0.4",
+    "tsify": "^4.0.1",
+    "typescript": "^3.5.3"
+  }
+}
