@@ -10,4 +10,4 @@ document.body.onload = (event) => {
         const ctx = canvas.getContext("2d");
         r.draw(ctx);
     }
-}
+};
