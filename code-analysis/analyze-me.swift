@@ -7,7 +7,7 @@
 
 // FROM: https://github.com/soapyigu/Swift-30-Projects/blob/master/Project%2009%20-%20PhotoScroll/PhotoScroll/PhotoCommentViewController.swift
 
-// To run Lizard on this file:   python ~/apple-surp-2019/code-analysis/lizard lizard.py analyze-me.swift
+// To run Lizard on this file:   python ~/apple-surp-2019/code-analysis/lizard/lizard.py ~/apple-surp-2019/code-analysis/analyze-me.swift
 
 
 import UIKit
