@@ -3,7 +3,7 @@ import { exampleProcessedData } from "./example";
 
 
 // tslint:disable-next-line: whitespace
-const data: any = {"$replace_me":0};
+const data: any = "{$code_analysis_json}";
 
 // TODO process data:
 
