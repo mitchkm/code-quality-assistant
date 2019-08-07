@@ -1,6 +1,4 @@
-import d3 = require("d3");
-
-const data: any = {
+{
     "name": "Max",
     "value": 100,
     "children": [
@@ -25,20 +23,6 @@ const data: any = {
             "name" : "Mr X",
             "value": 75
         }
-
+    
     ]
-};
-
-const svg = d3.select("body").append("svg")
-    .attr("width", 500)
-    .attr("height", 500);
-svg.data(data);
-
-const treemap = d3.tree()
-    .size([500, 500]);
-let nodes = d3.hierarchy(data, function(d) {
-        return d.children;
-    });
-
-nodes = treemap(nodes);
-console.log(treemap);
+}
