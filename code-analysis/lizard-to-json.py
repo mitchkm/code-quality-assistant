@@ -25,10 +25,10 @@ SUPPORTEDLANGUAGES = ["c", "cpp", "cc", "mm", "cxx", "h", "hpp", "cs", "gd",
 def run():
     path = checkPathExists()
     filenameList = buildFilenameList(path)
-    clean(True, True)
+    #clean(True, True)
     lizOut = runLizard3(filenameList)
     printAllDicts(lizOut)
-    clean(True, False)
+    #clean(True, False)
 
 # print json for
 def printAllDicts(dictList):
