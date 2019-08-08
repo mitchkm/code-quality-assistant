@@ -4,98 +4,72 @@ export const exampleData = undefined;
 
 // This output should be the processed version of the python script output
 // Readable by d3
-export const exampleProcessedData = 
-{
-  "name":"Metrics",
-  "children":
-    [
-      {
-      "name":"file1",
-      "children":
-        [
-          {
-           "name": "CCN",
-           "value" : "2"
-          },
-          {
-           "name": "NLOC",
-           "value":"10"
-          },
-          {
-            "name" : "TOKEN",
-            "value" : "29"
-          },
-          {
-            "name" : "PARAM",
-            "value" : "2"
-          }
-        ]
-      },
-      {
-      "name":"file2",
-      "children":
-      [
+export const exampleProcessedData = {
+  name: "nloc",
+  children: [
+    {
+      name: "analyze-me.swift",
+      value: 68,
+      children: [
         {
-         "name": "CCN",
-         "value" : "1"
+          name: "viewDidLoad",
+          value: 22
         },
         {
-         "name": "NLOC",
-         "value":"6"
+          name: "deinit",
+          value: 3
         },
         {
-          "name" : "TOKEN",
-          "value" : "3"
+          name: "adjustInsetForKeyboard",
+          value: 9
         },
         {
-          "name" : "PARAM",
-          "value" : "1"
+          name: "dismissKeyboard",
+          value: 3
+        },
+        {
+          name: "keyboardWillShow",
+          value: 3
+        },
+        {
+          name: "keyboardWillHide",
+          value: 3
+        },
+        {
+          name: "openZoomingController",
+          value: 3
+        },
+        {
+          name: "prepare",
+          value: 8
         }
       ]
-      },
-      {
-        "name":"file3",
-        "children":
-          [
-            {
-             "name": "CCN",
-             "value" : "5"
-            },
-            {
-             "name": "NLOC",
-             "value":"30"
-            },
-            {
-              "name" : "TOKEN",
-              "value" : "50"
-            },
-            {
-              "name" : "PARAM",
-              "value" : "10"
-            }
-          ]
+    },
+    {
+      name: "analyze-me.swift",
+      value: 68,
+      children: [
+        {
+          name: "viewDidLoad",
+          value: 22
         },
         {
-          "name":"file4",
-          "children":
-            [
-              {
-               "name": "CCN",
-               "value" : "8"
-              },
-              {
-               "name": "NLOC",
-               "value":"50"
-              },
-              {
-                "name" : "TOKEN",
-                "value" : "60"
-              },
-              {
-                "name" : "PARAM",
-                "value" : "8"
-              }
-            ]
-          }
-    ]
-  }
+          name: "deinit",
+          value: 3
+        },
+        {
+          name: "adjustInsetForKeyboard",
+          value: 9
+        },
+        {
+          name: "dismissKeyboard",
+          value: 3
+        },
+        {
+          name: "keyboardWillShow",
+          value: 3
+        },
+      ]
+    }
+  ]
+};
