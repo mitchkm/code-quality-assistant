@@ -43,3 +43,21 @@ if err:
     exit()
 
 print("\tDone!")
+
+# Inject web-ui code
+print("Injecting web-ui code into python script...")
+proc = subprocess.Popen(["cp", CODE_ANALYSIS_DIR + "/lizard-to-json.py", DIST_DIR + "/lizard-to-json.py"], stderr=subprocess.PIPE)
+err = proc.stderr.read()
+if err: 
+    print("\tFailed to copy index.html!")
+    exit()
+print("\tNOT IMPLEMENTED!")
+# print("\tDone!")
+
+# Build standalone python script with injected web-ui code
+print("Building standalone executable...")
+proc = subprocess.Popen(["pyinstaller", "-F", "lizard-to-json.py"], cwd=DIST_DIR)
+if proc.wait(): 
+    print("\tFailed to build!")
+    exit()
+print("\tDone!")
