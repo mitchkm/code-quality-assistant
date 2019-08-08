@@ -4,27 +4,98 @@ export const exampleData = undefined;
 
 // This output should be the processed version of the python script output
 // Readable by d3
-export const exampleProcessedData = {
-  name: "Max",
-  value: 100,
-  children: [
-    {
-      name: "Sylvia",
-      value: 75,
-      children: [
-        { name: "Craig", value: 25 },
-        { name: "Robin", value: 25 },
-        { name: "Anna", value: 25 }
+export const exampleProcessedData = 
+{
+  "name":"Metrics",
+  "children":
+    [
+      {
+      "name":"file1",
+      "children":
+        [
+          {
+           "name": "CCN",
+           "value" : "2"
+          },
+          {
+           "name": "NLOC",
+           "value":"10"
+          },
+          {
+            "name" : "TOKEN",
+            "value" : "29"
+          },
+          {
+            "name" : "PARAM",
+            "value" : "2"
+          }
+        ]
+      },
+      {
+      "name":"file2",
+      "children":
+      [
+        {
+         "name": "CCN",
+         "value" : "1"
+        },
+        {
+         "name": "NLOC",
+         "value":"6"
+        },
+        {
+          "name" : "TOKEN",
+          "value" : "3"
+        },
+        {
+          "name" : "PARAM",
+          "value" : "1"
+        }
       ]
-    },
-    {
-      name: "David",
-      value: 75,
-      children: [{ name: "Jeff", value: 25 }, { name: "Buffy", value: 25 }]
-    },
-    {
-      name: "Mr X",
-      value: 75
-    }
-  ]
-};
+      },
+      {
+        "name":"file3",
+        "children":
+          [
+            {
+             "name": "CCN",
+             "value" : "5"
+            },
+            {
+             "name": "NLOC",
+             "value":"30"
+            },
+            {
+              "name" : "TOKEN",
+              "value" : "50"
+            },
+            {
+              "name" : "PARAM",
+              "value" : "10"
+            }
+          ]
+        },
+        {
+          "name":"file4",
+          "children":
+            [
+              {
+               "name": "CCN",
+               "value" : "8"
+              },
+              {
+               "name": "NLOC",
+               "value":"50"
+              },
+              {
+                "name" : "TOKEN",
+                "value" : "60"
+              },
+              {
+                "name" : "PARAM",
+                "value" : "8"
+              }
+            ]
+          }
+    ]
+  }
