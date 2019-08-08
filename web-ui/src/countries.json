@@ -1,0 +1,68 @@
+[
+    {
+      "key": "Afghanistan",
+      "region": "Asia",
+      "subregion": "Southern Asia",
+      "value": 25500100
+    },
+    {
+      "key": "Åland Islands",
+      "region": "Europe",
+      "subregion": "Northern Europe",
+      "value": 28502
+    },
+    {
+      "key": "Albania",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "value": 2821977
+    },
+    {
+      "key": "Algeria",
+      "region": "Africa",
+      "subregion": "Northern Africa",
+      "value": 37900000
+    },
+    {
+      "key": "American Samoa",
+      "region": "Oceania",
+      "subregion": "Polynesia",
+      "value": 55519
+    },
+    {
+      "key": "Andorra",
+      "region": "Europe",
+      "subregion": "Southern Europe",
+      "value": 76246
+    },
+    {
+      "key": "Angola",
+      "region": "Africa",
+      "subregion": "Middle Africa",
+      "value": 20609294
+    },
+    {
+      "key": "Anguilla",
+      "region": "Americas",
+      "subregion": "Caribbean",
+      "value": 13452
+    },
+    {
+      "key": "Antarctica",
+      "region": "",
+      "subregion": "",
+      "value": -1
+    },
+    {
+      "key": "Antigua and Barbuda",
+      "region": "Americas",
+      "subregion": "Caribbean",
+      "value": 86295
+    },
+    {
+      "key": "Argentina",
+      "region": "Americas",
+      "subregion": "South America",
+      "value": 40117096
+    }
+]
