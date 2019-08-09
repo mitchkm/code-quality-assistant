@@ -8,6 +8,7 @@ import lizard
 import glob
 import sys
 import os
+import pathlib
 
 
 #GLOBALS
@@ -25,7 +26,9 @@ def run():
     filenameList = buildFilenameList(path)
     print(filenameList)
     lizOut = runLizard(filenameList)
-    printAllDicts(lizOut)
+    asDict = fileListToDict(path, lizOut)
+    print(json.dumps(asDict, indent=4, sort_keys=False))
+    #printAllDicts(lizOut)
 
 
 # print json for
@@ -75,15 +78,28 @@ def getExtensionFromFilename(path):
     ext = ext[1:] # strip off the '.'
     return ext
 
-#def fileInfoToDict(fileInfo):
+def fileListToDict(path, fileList):
+    filesAsDicts = [fileInfoToDict(f) for f in fileList]
 
+    return { 'path'  : path,
+             'files' : {"file" + str(i) : filesAsDicts[i] for i in range(0, len(filesAsDicts))}}
+
+def fileInfoToDict(fileInfo):
+    filename = fileInfo.filename
+    funcs = []
+    for func in fileInfo.function_list:
+        funcs.append(funcInfoToDict(func))
+    funcsDict = {"function" + str(i) : funcs[i] for i in range(0, len(funcs))}
+    return {'filename'  : filename,
+            'functions' : funcsDict}
 
 def funcInfoToDict(funcInfo):
-    return { 'name' : funcInfo.name,
-             'nloc' : funcInfo.nloc,
-             'ccn'  : funcInfo.cyclomatic_complexity,
-             'tok'  : funcInfo.token_count,
-             'len'  : funcInfo.length}
+    return { 'name'   : funcInfo.name,
+             'nloc'   : funcInfo.nloc,
+             'ccn'    : funcInfo.cyclomatic_complexity,
+             'tokens' : funcInfo.token_count,
+             'params' : len(funcInfo.parameters),
+             'length' : funcInfo.length}
 
 
 run()
