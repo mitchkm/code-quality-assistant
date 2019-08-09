@@ -1,6 +1,6 @@
 # runs lizard on given file/directory and then outputs the .json formatted results to the command line
 # input : file or directory to run lizard analysis on
-# output: .json formatted results of lizard analysis to the command line
+# output: JSON formatted results of lizard analysis to the command line
 
 
 import json
@@ -12,9 +12,6 @@ import pathlib
 
 
 #GLOBALS
-XMLTEMPFILENAME = "__temp_xml_output__.xml"
-OUTPUTFILENAME  = "output.json"
-
 SUPPORTEDLANGUAGES = ["c", "cpp", "cc", "mm", "cxx", "h", "hpp", "cs", "gd",
                       "go", "java", "js", "lua", "m", "php", "py", "rb",
                       "scala", "swift", "tnsdl", "sdl", "ttcn", "ttcnpp"]
@@ -28,16 +25,9 @@ def run():
     lizOut = runLizard(filenameList)
     asDict = fileListToDict(path, lizOut)
     print(json.dumps(asDict, indent=4, sort_keys=False))
-    #printAllDicts(lizOut)
 
 
-# print json for
-def printAllDicts(dictList):
-    for d in dictList:
-        print(d)
-
-
-# Runs lizard on each individual file designated in the given filenameList. Currently the only working on this one.
+# Runs lizard on each individual file designated in the given filenameList.
 def runLizard(filenameList):
     outList = []
     for file in filenameList:
@@ -61,6 +51,7 @@ def checkPathExists():
         print(path)
     return path
 
+#goes through given path and identifies all files within that are supported by lizard, then puts those files in a list
 def buildFilenameList(path):
     files = []
     if(os.path.isfile(path)):
@@ -72,18 +63,20 @@ def buildFilenameList(path):
         files.extend(addUs)
     return files
 
-
+# returns just the extension from a file name
 def getExtensionFromFilename(path):
     ext = pathlib.Path(path).suffix
     ext = ext[1:] # strip off the '.'
     return ext
 
+# converts a list of FileInformation objects into a list of dictionaries
 def fileListToDict(path, fileList):
     filesAsDicts = [fileInfoToDict(f) for f in fileList]
 
     return { 'path'  : path,
              'files' : {str(i) : filesAsDicts[i] for i in range(0, len(filesAsDicts))}}
 
+# converts FileInformation object into a dictionary
 def fileInfoToDict(fileInfo):
     filename = fileInfo.filename
     funcs = []
@@ -93,6 +86,7 @@ def fileInfoToDict(fileInfo):
     return {'filename'  : filename,
             'functions' : funcsDict}
 
+# converts FunctionInformation object into dictionary
 def funcInfoToDict(funcInfo):
     return { 'name'   : funcInfo.name,
              'nloc'   : funcInfo.nloc,
