@@ -82,14 +82,14 @@ def fileListToDict(path, fileList):
     filesAsDicts = [fileInfoToDict(f) for f in fileList]
 
     return { 'path'  : path,
-             'files' : {"file" + str(i) : filesAsDicts[i] for i in range(0, len(filesAsDicts))}}
+             'files' : {str(i) : filesAsDicts[i] for i in range(0, len(filesAsDicts))}}
 
 def fileInfoToDict(fileInfo):
     filename = fileInfo.filename
     funcs = []
     for func in fileInfo.function_list:
         funcs.append(funcInfoToDict(func))
-    funcsDict = {"function" + str(i) : funcs[i] for i in range(0, len(funcs))}
+    funcsDict = {str(i) : funcs[i] for i in range(0, len(funcs))}
     return {'filename'  : filename,
             'functions' : funcsDict}
 
