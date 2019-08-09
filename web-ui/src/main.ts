@@ -9,72 +9,86 @@ const data: any = "{$code_analysis_json}";
 
 const processedData: any = exampleProcessedData;
 
-//declare margin width and height
-let margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 650 - margin.left - margin.right,
-    height = 650 - margin.top - margin.bottom;
+//declare width and height of treemap
+let width = 80;
+let height = 80;
 
-// general setting for treemap
+// x and y scale for size of boxes
+var x = d3.scaleLinear().domain([0, width]).range([0, width]);
+var y = d3.scaleLinear().domain([0, height]).range([0, height]);
+
 let color = d3.scaleOrdinal(d3.schemeSet2);
 
 let treemap = d3.treemap()
     .size([width, height])
     .tile(d3.treemapResquarify)
+    .round(false)
     .paddingTop(3)
     .paddingBottom(3)
     .paddingLeft(3)
     .paddingRight(3);
-
-let svg = d3.select("body").append("svg")
-    .attr("width", (width + margin.left + margin.right) + "px")
-    .attr("height", (height + margin.top + margin.bottom) + "px")
-    .append("g")
-    .attr("class", "node")
-    .attr('transform', function(d) {
-        return 'translate(' + margin.left + "," + 0 + ')'
-    });
-
 
 // create hierarchy of data
 const root = d3.hierarchy(processedData);
 
 const nodes = treemap(root
     .sum(d => d.value)
-    .sort((a, b) => a.value - b.value))
-    .leaves();
+    .sort((a, b) => a.value - b.value));
 
-svg
-    .selectAll("rect")
-    .data(nodes)
-    .enter()
-    .append("rect")
-    .attr("x", function(d) { return d.x0 + "px"; })
-    .attr("y", function(d) { return d.y0 + "px"; })
-    .attr("width", function (d) { return d.x1 - d.x0 + "px"; })
-    .attr("height", function (d) { return d.y1 - d.y0 + "px"; })
-    .style("stroke", "white")
-    .style("fill",  function (d) { return d.children ? null : color((d.parent.data as any).name);});
+// console.log(nodes);
 
-svg
-    .selectAll("text")
-    .data(nodes)
-    .enter()
-    .append("text")
-    .attr("x", function (d) { return d.x0 + 5; })
-    .attr("y", function (d) { return d.y0 + 10; })
-    .text(function (d) { return d.children ? undefined : (d.data as any).name; })
-    .attr("font-size", "11px")
-    .attr("font-family", "Arial" )
-    .attr("fill", "white");
+// Adding attributes and styles to charts
+var chart = d3.select("#chart");
 
-svg
-    .selectAll("vals")
-    .data(nodes)
+var cells = chart
+    .selectAll(".node")
+    .data(nodes.descendants())
     .enter()
-    .append("text")
-    .attr("x", function (d) { return d.x0 + 5; })
-    .attr("y", function (d) { return d.y0 + 20; })
-    .text(function (d) { return d.children ? undefined : (d.data as any).value; })
-    .attr("font-size", "9px")
-    .attr("font-family", "Arial")
-    .attr("fill", "white");
+    .append("div")
+    .attr("class", function(d) { return "node level-" + d.depth; })
+	.attr("title", function(d) { return (d.data as any).name ? (d.data as any).name : "null"; });
+
+cells
+    .style("left", function(d) { return x(d.x0) + "%"; })
+    .style("top", function(d) { return y(d.y0) + "%"; })
+    .style("width", function(d) { return x(d.x1) - x(d.x0) + "%"; })
+    .style("height", function(d) { return y(d.y1) - y(d.y0) + "%"; })
+    .style("background-color", function(d) { while (d.depth > 2) d = d.parent; return color((d.data as any).name); })
+    .on("click", zoom)
+    .append("p")
+    .attr("class", "label")
+    .text(function(d) { return (d.data as any).name ? (d.data as any).name : "---"; })
+    // .append("text")
+    // .text(function(d){ return (d.data as any).value ? "\n" + (d.data as any).value : "---"});
+
+// UP button to navigate to the parent cell easily
+var parent = d3.select(".up")
+    .datum(nodes)
+    .on("click", zoom);
+
+
+function zoom(d) {
+    var currentDepth = d.depth;
+    parent.datum(d.parent || nodes);
+    x.domain([d.x0, d.x1]);
+	y.domain([d.y0, d.y1]);
+	
+	var t = d3.transition()
+    	.duration(800)
+    	.ease(d3.easeCubicOut);
+	
+	cells
+		.transition(t)
+		.style("left", function(d) { return x(d.x0) + "%"; })
+		.style("top", function(d) { return y(d.y0) + "%"; })
+		.style("width", function(d) { return x(d.x1) - x(d.x0) + "%"; })
+		.style("height", function(d) { return y(d.y1) - y(d.y0) + "%"; });
+	
+	cells // hide this depth and above
+		.filter(function(d) { return d.depth <= currentDepth; })
+		.classed("hide", function(d) { return d.children ? true : false });
+	
+	cells // show this depth + 1 and below
+		.filter(function(d) { return d.depth > currentDepth; })
+		.classed("hide", false);	
+}
