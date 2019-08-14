@@ -77,7 +77,7 @@ export class MetricData {
               name: func.name,
               value: func[metricA],
               value2: func[metricB],
-              children: []
+              children: undefined
             };
             cValues.push(funcChild.value);
             cValue2s.push(funcChild.value2);

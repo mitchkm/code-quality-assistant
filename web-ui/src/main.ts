@@ -3,8 +3,6 @@ import { exampleData } from "./example";
 import Cells from "./cells";
 import { MetricData } from "./metricData";
 
-
-// tslint:disable-next-line: whitespace
 let data;
 try {
     data = JSON.parse(document.getElementById("rawData").textContent);
@@ -17,7 +15,6 @@ try {
 // TODO process data:
 const mD = new MetricData(data);
 const processedData: any = mD.toTreemapData("nloc", "ccn");
-
 
 // declare width and height of treemap
 const width = 100;

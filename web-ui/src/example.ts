@@ -79,216 +79,24 @@ export const exampleData = {
 // This output should be the processed version of the python script output
 // Readable by d3
 export const exampleProcessedData = {
-  name: "Metrics",
+  name: "nlocxccn",
+  value: 54,
+  value2: 13,
   children: [
     {
-      name: "analyze-me.swift",
-      value: 68, //if it's bigger than 15, it's bad like "Warning CCN > 15 in lizard"
+      name:
+        "/mnt/g/Projects/apple-surp-2019/code-analysis/examples-to-analyze/analyze-me.swift",
+      value: 54,
+      value2: 13,
       children: [
-        {
-          name: "nloc",
-          value: 53, //avg nloc
-          children: [
-            {
-              name: "viewDidLoad",
-              value: 22
-            },
-            {
-              name: "deinit",
-              value: 3
-            },
-            {
-              name: "adjustInsetForKeyboard",
-              value: 9
-            },
-            {
-              name: "dismissKeyboard",
-              value: 3
-            },
-            {
-              name: "keyboardWillShow",
-              value: 3
-            },
-            {
-              name: "keyboardWillHide",
-              value: 3
-            },
-            {
-              name: "openZoomingController",
-              value: 3
-            },
-            {
-              name: "prepare",
-              value: 8
-            }
-          ]
-        },
-        {
-          name: "cyclocomplexity",
-          value: 68, // avg cyclocomplexity
-          children: [
-            {
-              name: "viewDidLoad",
-              value: 22
-            },
-            {
-              name: "deinit",
-              value: 3
-            },
-            {
-              name: "adjustInsetForKeyboard",
-              value: 9
-            },
-            {
-              name: "dismissKeyboard",
-              value: 3
-            },
-            {
-              name: "keyboardWillShow",
-              value: 3
-            }
-          ]
-        }
-      ]
-    },
-    {
-      name: "analyze-you.swift",
-      value: 78,
-      children: [
-        {
-          name: "nloc",
-          value: 80, //avg nloc
-          children: [
-            {
-              name: "viewDidLoad",
-              value: 10
-            },
-            {
-              name: "deinit",
-              value: 2
-            },
-            {
-              name: "adjustInsetForKeyboard",
-              value: 9
-            },
-            {
-              name: "dismissKeyboard",
-              value: 3
-            },
-            {
-              name: "keyboardWillShow",
-              value: 3
-            },
-            {
-              name: "keyboardWillHide",
-              value: 3
-            },
-            {
-              name: "openZoomingController",
-              value: 3
-            },
-            {
-              name: "prepare",
-              value: 8
-            }
-          ]
-        },
-        {
-          name: "cyclocomplexity",
-          value: 68, // avg cyclocomplexity
-          children: [
-            {
-              name: "viewDidLoad",
-              value: 22
-            },
-            {
-              name: "deinit",
-              value: 3
-            },
-            {
-              name: "adjustInsetForKeyboard",
-              value: 9
-            },
-            {
-              name: "dismissKeyboard",
-              value: 3
-            },
-            {
-              name: "keyboardWillShow",
-              value: 3
-            }
-          ]
-        }
-      ]
-    },
-    {
-      name: "analyze-them.swift",
-      value: 68,
-      children: [
-        {
-          name: "nloc",
-          value: 53, //avg nloc
-          children: [
-            {
-              name: "viewDidLoad",
-              value: 22
-            },
-            {
-              name: "deinit",
-              value: 3
-            },
-            {
-              name: "adjustInsetForKeyboard",
-              value: 9
-            },
-            {
-              name: "dismissKeyboard",
-              value: 3
-            },
-            {
-              name: "keyboardWillShow",
-              value: 3
-            },
-            {
-              name: "keyboardWillHide",
-              value: 3
-            },
-            {
-              name: "openZoomingController",
-              value: 3
-            },
-            {
-              name: "prepare",
-              value: 8
-            }
-          ]
-        },
-        {
-          name: "cyclocomplexity",
-          value: 68, // avg cyclocomplexity
-          children: [
-            {
-              name: "viewDidLoad",
-              value: 22
-            },
-            {
-              name: "deinit",
-              value: 3
-            },
-            {
-              name: "adjustInsetForKeyboard",
-              value: 9
-            },
-            {
-              name: "dismissKeyboard",
-              value: 3
-            },
-            {
-              name: "keyboardWillShow",
-              value: 3
-            }
-          ]
-        }
+        { name: "viewDidLoad", value: 22, value2: 2, children: undefined },
+        { name: "deinit", value: 3, value2: 1, children: undefined },
+        { name: "adjustInsetForKeyboard", value: 9, value2: 2, children: undefined },
+        { name: "dismissKeyboard", value: 3, value2: 1, children: undefined },
+        { name: "keyboardWillShow", value: 3, value2: 1, children: undefined },
+        { name: "keyboardWillHide", value: 3, value2: 1, children: undefined },
+        { name: "openZoomingController", value: 3, value2: 1, children: undefined },
+        { name: "prepare", value: 8, value2: 4, children: undefined }
       ]
     }
   ]
