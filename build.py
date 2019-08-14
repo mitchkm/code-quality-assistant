@@ -24,11 +24,12 @@ print("\tDone!")
 
 print("Making new dist directory...")
 os.mkdir(DIST_DIR)
+os.mkdir(DIST_DIR + "/web-ui")
 print("\tDone!")
 
 # Create bundled web-ui javascript
 print("Bundling javascript visualizer...")
-bundle = open(DIST_DIR + "/bundle.js", "w")
+bundle = open(DIST_DIR + "/web-ui/bundle.js", "w")
 
 proc = subprocess.Popen(["node", "bundler.js"], cwd=WEB_UI_DIR, stdout=bundle, stderr=subprocess.PIPE)
 err = proc.stderr.read()
@@ -36,27 +37,36 @@ if err:
     print("\tFailed to bundle typescript code!")
     exit()
 
-proc = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/index.html", DIST_DIR + "/index.html"], stderr=subprocess.PIPE)
+proc = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/index.html", DIST_DIR + "/web-ui/index.html"], stderr=subprocess.PIPE)
+proc2 = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/style.css", DIST_DIR + "/web-ui/style.css"], stderr=subprocess.PIPE)
+# proc3 = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/index.html", DIST_DIR + "web-ui/index.html"], stderr=subprocess.PIPE)
 err = proc.stderr.read()
-if err: 
-    print("\tFailed to copy index.html!")
+err2 = proc2.stderr.read()
+# err3 = proc3.stderr.read()
+if err or err2: 
+    print("\tFailed to copy web files!")
     exit()
 
 print("\tDone!")
 
-# Inject web-ui code
-print("Injecting web-ui code into python script...")
+# Get python files
+print("Get python files...")
 proc = subprocess.Popen(["cp", CODE_ANALYSIS_DIR + "/lizard-to-json.py", DIST_DIR + "/lizard-to-json.py"], stderr=subprocess.PIPE)
 err = proc.stderr.read()
 if err: 
-    print("\tFailed to copy index.html!")
+    print("\tFailed to copy python files")
     exit()
-print("\tNOT IMPLEMENTED!")
-# print("\tDone!")
+print("\tDone!")
 
 # Build standalone python script with injected web-ui code
 print("Building standalone executable...")
-proc = subprocess.Popen(["pyinstaller", "-F", "lizard-to-json.py"], cwd=DIST_DIR)
+webFiles = os.listdir(DIST_DIR + "/web-ui")
+dataArgs = ["web-ui/" + f + ":web-ui/" + f for f in webFiles]
+pyinstall = ["pyinstaller", "-F", "--add-data"]
+pyinstall.extend(dataArgs)
+pyinstall.append("lizard-to-json.py")
+print(pyinstall)
+proc = subprocess.Popen(["pyinstaller", "-F", "--add-data", "web-ui/*:web-ui", "lizard-to-json.py"], cwd=DIST_DIR)
 if proc.wait(): 
     print("\tFailed to build!")
     exit()
