@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node ./bundler.js > ./dist/bundle.js",
+    "move-to-code-analysis": "cp ./dist/* ../code-analysis/web-ui",
     "ts-build": "tsc -b",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
