@@ -1,14 +1,22 @@
 import d3 = require("d3");
-import { exampleProcessedData } from "./example";
+import { exampleData } from "./example";
 import Cells from "./cells";
+import { MetricData } from "./metricData";
 
 
 // tslint:disable-next-line: whitespace
-const data: any = "{$code_analysis_json}";
+let data;
+try {
+    data = JSON.parse(document.getElementById("rawData").textContent);
+} catch(err) {
+    console.log("Could not parse injected rawData!" + err);
+    console.log("Displaying exampleData");
+    data = exampleData;
+}
 
 // TODO process data:
-
-const processedData: any = exampleProcessedData;
+const mD = new MetricData(data);
+const processedData: any = mD.toTreemapData("nloc", "ccn");
 
 
 // declare width and height of treemap
