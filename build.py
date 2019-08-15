@@ -5,14 +5,17 @@ import subprocess
 DIST_DIR = "dist"
 WEB_UI_DIR = "web-ui"
 CODE_ANALYSIS_DIR = "code-analysis"
+APP_NAME = "codequalityassist"
 
 '''
 Commands executed (if done via shell):
 rmdir -r ./dist
 mkdir ./dist
+mkdir ./dist/web-ui
 cd web-ui
 node ./bundler.js > ../dist/bundle.js
-cp ./dist/index.html ../dist/index.html
+cp ./dist/index.html ../dist/web-ui/index.html
+cp ./dist/bundle.js ../dist/web-ui/bundle.js
 cd ..
 
 '''
@@ -51,7 +54,7 @@ print("\tDone!")
 
 # Get python files
 print("Get python files...")
-proc = subprocess.Popen(["cp", CODE_ANALYSIS_DIR + "/lizard-to-json.py", DIST_DIR + "/lizard-to-json.py"], stderr=subprocess.PIPE)
+proc = subprocess.Popen(["cp", CODE_ANALYSIS_DIR + "/main.py", DIST_DIR + "/main.py"], stderr=subprocess.PIPE)
 err = proc.stderr.read()
 if err: 
     print("\tFailed to copy python files")
@@ -60,14 +63,28 @@ print("\tDone!")
 
 # Build standalone python script with injected web-ui code
 print("Building standalone executable...")
-webFiles = os.listdir(DIST_DIR + "/web-ui")
-dataArgs = ["web-ui/" + f + ":web-ui/" + f for f in webFiles]
-pyinstall = ["pyinstaller", "-F", "--add-data"]
-pyinstall.extend(dataArgs)
-pyinstall.append("lizard-to-json.py")
-print(pyinstall)
-proc = subprocess.Popen(["pyinstaller", "-F", "--add-data", "web-ui/*:web-ui", "lizard-to-json.py"], cwd=DIST_DIR)
+proc = subprocess.Popen(["pyinstaller", "-F", "--add-data", "web-ui/*:web-ui", "main.py"], cwd=DIST_DIR)
 if proc.wait(): 
     print("\tFailed to build!")
+    exit()
+print("\tDone!")
+
+# Clean up files
+print("Cleaning up...")
+proc = subprocess.Popen(["cp", DIST_DIR + "/dist/main", DIST_DIR + "/" + APP_NAME], stderr=subprocess.PIPE)
+if proc.wait(): 
+    print("\tFailed to copy!")
+    exit()
+files = list(os.listdir(DIST_DIR))
+files.remove(APP_NAME)
+try: 
+    for f in files:
+        path = DIST_DIR + "/" + f
+        if os.path.isfile(path):
+            os.remove(path)
+        else:
+            shutil.rmtree(path)
+except:
+    print("Failed to clean up!")
     exit()
 print("\tDone!")
