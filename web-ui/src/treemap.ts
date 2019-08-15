@@ -26,7 +26,7 @@ class Treemap {
     private createTreemap(paddingTop, paddingBottom, paddingLeft, paddingRight) {
         const treemap = d3.treemap()
                         .size([this.width, this.height])
-                        // .tile(d3.treemapResquarify)
+                        .tile(d3.treemapResquarify)
                         .round(false)
                         .paddingTop(paddingTop)
                         .paddingBottom(paddingBottom)

@@ -45,7 +45,6 @@ class Cells extends Treemap {
                         .append("div")
                         .attr("class", function(d) { return "node level-" + d.depth; })
                         .attr("id", function(d) { return d.children ? d.data.name : d.parent.data.name; });
-        console.log(nodes);
         return cells;
     }
 
@@ -107,7 +106,7 @@ class Cells extends Treemap {
             // show the functions when zoomed in
         cells
             .selectAll("p")
-            .style("opacity", function(d) { console.log(currentDepth); return d.depth >= currentDepth ? 1 : 0; });
+            .style("opacity", function(d) { return d.depth >= currentDepth ? 1 : 0; });
             // show only the file name when zoomed out
         if (currentDepth === 0) {
             cells
