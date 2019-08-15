@@ -71,8 +71,7 @@
   }
   .node.level-1 {
 	z-index: 3;
-	font-size: 8vmin;
-	display: none;
+	font-size: 3vmin;
   }
 
   .node.level-2 {

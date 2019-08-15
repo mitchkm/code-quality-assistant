@@ -45,7 +45,7 @@ class Cells extends Treemap {
                         .append("div")
                         .attr("class", function(d) { return "node level-" + d.depth; })
                         .attr("id", function(d) { return d.children ? d.data.name : d.parent.data.name; });
-
+        console.log(nodes);
         return cells;
     }
 
@@ -71,8 +71,11 @@ class Cells extends Treemap {
             .on("click", function(d) { zoom(d, cells, xScale, yScale, upButton, nodes); })
             .append("p")
             .attr("class", "label")
-            .text(function(d) { 
-                    return d.data.name ? d.data.name : "---";});
+            .text(function(d) { return d.data.name ? d.data.name : "---"; });
+
+        // hide the text when it's fully zoomed-out
+        cells.selectAll("p")
+            .style("opacity", function(d) { return d.depth > 1 ? 0 : 1; });
 
         upButton.on("click", function(d) { zoom(d, cells, xScale, yScale, upButton, nodes); });
 
@@ -88,6 +91,7 @@ class Cells extends Treemap {
         const t = d3.transition()
             .duration(800)
             .ease(d3.easeCubicOut);
+
         cells
             .transition(t)
             .style("left", function(d) { return xScale(d.x0) + "%"; })
@@ -100,6 +104,16 @@ class Cells extends Treemap {
         cells // show this depth + 1 and below
             .filter(function(d) { return d.depth > currentDepth; })
             .classed("hide", false);
+            // show the functions when zoomed in
+        cells
+            .selectAll("p")
+            .style("opacity", function(d) { console.log(currentDepth); return d.depth >= currentDepth ? 1 : 0; });
+            // show only the file name when zoomed out
+        if (currentDepth === 0) {
+            cells
+                .selectAll("p")
+                .style("opacity", function(d) { return d.depth > currentDepth + 1 ? 0 : 1; });
+        }
     }
 }
 
