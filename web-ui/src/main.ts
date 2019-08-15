@@ -6,7 +6,7 @@ import { MetricData } from "./metricData";
 let data;
 try {
     data = JSON.parse(document.getElementById("rawData").textContent);
-} catch(err) {
+} catch (err) {
     console.log("Could not parse injected rawData!" + err);
     console.log("Displaying exampleData");
     data = exampleData;
@@ -25,6 +25,8 @@ const color = d3.scaleLinear<string>()
                     .range(["green", "yellow", "orange", "red"])
                     .interpolate(d3.interpolateRgb.gamma(1.5));
 
-const cells = new Cells(width, height, processedData, "cyclocomplexity", "nloc", color);
+console.log(processedData);
+
+const cells = new Cells(width, height, processedData, color);
 
 cells.styleCells();

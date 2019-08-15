@@ -28,7 +28,6 @@ class Treemap {
                         .size([this.width, this.height])
                         // .tile(d3.treemapResquarify)
                         .round(false)
-                        .paddingInner(0)
                         .paddingTop(paddingTop)
                         .paddingBottom(paddingBottom)
                         .paddingLeft(paddingLeft)
@@ -37,9 +36,9 @@ class Treemap {
     }
 
     createNodes() {
-        const treemap = this.createTreemap(3, 3, 3, 3);
+        const treemap = this.createTreemap(0.3, 0.3, 0.3, 0.3);
         const nodes = treemap((this as any).root
-                                .sum(d => d.value)
+                                .sort(d => d.value)
                                 .sort((a, b) => a.value - b.value));
         return nodes;
     }

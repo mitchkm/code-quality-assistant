@@ -16,17 +16,13 @@ class Cells extends Treemap {
 
     colorOption: string;
 
-    constructor(width, height, data, sizeOption, colorOption, color) {
+    constructor(width, height, data, color) {
 
         super(width, height, data);
 
         if (!instance) {
             instance = this;
         }
-
-        this.sizeOption = sizeOption;
-
-        this.colorOption = colorOption;
 
         this.color = color;
 
@@ -42,22 +38,10 @@ class Cells extends Treemap {
     }
 
     private defineCells(nodes) {
-        const sizeOption = this.sizeOption;
         const cells = (this as any).chart
                         .selectAll(".node")
                         .data(nodes.descendants())
                         .enter()
-                        // filter cyclocomplexity
-                        // .filter(function(d) {
-                        //     console.log(d);
-                        //     if (d.parent !== null && (d.parent.data.name === sizeOption)) {
-                        //         return false;
-                        //     }
-                        //     else if (d.data.name === sizeOption) {
-                        //         return false;
-                        //     }
-                        //     return true;
-                        // })
                         .append("div")
                         .attr("class", function(d) { return "node level-" + d.depth; })
                         .attr("id", function(d) { return d.children ? d.data.name : d.parent.data.name; });
@@ -72,24 +56,23 @@ class Cells extends Treemap {
         const yScale = this.yScale;
         const zoom = this.zoomCells;
         const upButton = (this as any).upButton.datum(nodes);
-        const colorOption = this.colorOption;
         const color = this.color;
-
         cells
             .style("left", function(d) { return xScale(d.x0) + "%"; })
             .style("top", function(d) { return yScale(d.y0) + "%"; })
             .style("width", function(d) { return xScale(d.x1) - xScale(d.x0) + "%"; })
             .style("height", function(d) { return yScale(d.y1) - yScale(d.y0) + "%"; })
             .style("background-color", function(d) {
-                console.log(d);
-                if (d.children === undefined && d.parent.data.name === colorOption) {
-                    return color(d.data.value / d.parent.data.value);
+                if (d.depth === 1) {
+                    return "transparent";
                 }
+                return d.parent ? color(d.data.value2 / d.parent.data.value2) : "none";
             })
-        .on("click", function(d) { zoom(d, cells, xScale, yScale, upButton, nodes); })
-        .append("p")
-        .attr("class", "label")
-        .text(function(d) { return d.data.name ? d.data.name : "---"; });
+            .on("click", function(d) { zoom(d, cells, xScale, yScale, upButton, nodes); })
+            .append("p")
+            .attr("class", "label")
+            .text(function(d) { 
+                    return d.data.name ? d.data.name : "---";});
 
         upButton.on("click", function(d) { zoom(d, cells, xScale, yScale, upButton, nodes); });
 
