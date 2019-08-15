@@ -4,7 +4,7 @@ import Cells from "./cells";
 import { MetricData } from "./metricData";
 
 class Display {
-    static display() {
+    static display(sizeOption, colorOption) {
         let data;
         try {
             data = JSON.parse(document.getElementById("rawData").textContent);
@@ -16,7 +16,7 @@ class Display {
 
     // TODO process data:
     const mD = new MetricData(data);
-    const processedData: any = mD.toTreemapData("nloc", "ccn");
+    const processedData: any = mD.toTreemapData(sizeOption, colorOption);
 
     // declare width and height of treemap
     const width = 100;
