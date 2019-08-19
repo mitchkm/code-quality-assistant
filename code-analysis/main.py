@@ -52,17 +52,17 @@ def runLizard(filenameList):
 # returns the input string if no errors, signals error and quits else
 def checkPathExists():
     if(len(sys.argv) < 2):
-        print("lizard-to-json error: No path given.")
+        print("error: No path given.")
         sys.exit()
     path = sys.argv[1]
     if (path[-1] is not '/') and os.path.isdir(path):
         path += "/"
     if(os.path.exists(path) is not True):
-        print("lizard-to-json error: Path \'", path, "\' does not exist.")
+        print("error: Path \'", path, "\' does not exist.")
         sys.exit()
     if path[0] is not '/':
         path = os.getcwd() + "/" + path
-        print(path)
+        # print(path)
     return path
 
 # creates necessary web-ui files
