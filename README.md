@@ -8,7 +8,7 @@ Create an interactive tool that allows developers to visually see metrics of a c
 ### Project
 - Node/npm
 - Python 3.7
-- Pyinstaller
+- Pip
 ### Web UI (see web-ui/package.json)
 - Typescript
 - browserify
@@ -16,3 +16,5 @@ Create an interactive tool that allows developers to visually see metrics of a c
 - d3
 ### Code Analysis (see code-analysis/\<idk\>)
 - lizard
+### Build script dependencies
+- Pyinstaller
