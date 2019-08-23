@@ -1,11 +1,7 @@
 import d3 = require("d3");
 import TreemapLayout from "./treemapLayout";
-import FileSelector from "./fileSelector";
 
 class Treemap extends TreemapLayout {
-
-
-    processedData: any;
 
     color: ((x: number) => string);
 
@@ -17,15 +13,13 @@ class Treemap extends TreemapLayout {
 
     colorOption: string;
 
-    fileOption: string;
-
     chart: any;
 
     upButton: any;
 
-    private constructor(processedData: any, width: number, height: number, sizeOption: string, colorOption: string, color, fileOption = "all") {
+    private constructor(width: number, height: number, sizeOption: string, colorOption: string, color) {
 
-        super(processedData, width, height, sizeOption, colorOption, fileOption);
+        super(width, height, sizeOption, colorOption);
 
         this.color = color;
 
@@ -47,6 +41,10 @@ class Treemap extends TreemapLayout {
                         .attr("class", function(d) { return "node level-" + d.depth; })
                         .attr("id", function(d) { return d.children ? d.data.name : d.parent.data.name; });
         return cells;
+    }
+
+    private deleteCells() {
+        d3.selectAll(".node").remove();
     }
 
     private styleCells() {
@@ -79,6 +77,7 @@ class Treemap extends TreemapLayout {
             .style("opacity", function(d) { return d.depth > 1 ? 0 : 1; });
 
         upButton.on("click", function(d) { zoom(d, cells, xScale, yScale, upButton, nodes); });
+
         return cells;
     }
 
@@ -116,22 +115,12 @@ class Treemap extends TreemapLayout {
         }
     }
 
-    static display(processedData: any, width: number, height: number, sizeOption: string, colorOption: string, color, fileOption = "all") {
-        let treemap = new Treemap(processedData, width, height, sizeOption, colorOption, color, fileOption);
-        // const fileSelector = new FileSelector(treemap.processedData);
-        // fileSelector.createDropDown();
-
-        // d3.select("#fileSelector")
-        //     .on("change", function(d){
-        //         const selected = d3.select("#fileSelector").property("value");
-        //         console.log(selected);
-        //         Treemap.display(processedData, width, height, sizeOption, colorOption, color, selected);
-        //     });
-
+    static display(width: number, height: number, sizeOption: string, colorOption: string, color) {
+        const instance = new Treemap(width, height, sizeOption, colorOption, color);
         if (d3.select(".node")) {
-            d3.selectAll(".node").remove();
+            instance.deleteCells();
         }
-        treemap.styleCells();
+        instance.styleCells();
     }
 }
 

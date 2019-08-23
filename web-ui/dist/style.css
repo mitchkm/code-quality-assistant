@@ -44,7 +44,7 @@
   .node .label {
 	display: inline;
 	font-family: sans-serif;
-	color: "black";
+	color: rgba(255, 255, 255, .6);
 	position: absolute;
 	padding: 0;
 	margin: 0;
@@ -61,7 +61,7 @@
 	filter: blur(10px);
   }
   .node:hover .label {
-	color: rgba(36, 47, 112, 0.548);
+	color: rgba(255, 255, 255, 1);
   }
  
   .node.level-0 {
@@ -78,7 +78,4 @@
 	z-index: 2;
 	font-size: 2vmin;
   }
-
-  /* .fileSelector option:checked{
-  } */
   
