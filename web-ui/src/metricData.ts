@@ -60,6 +60,7 @@ export class MetricData {
     for (const key in this.rawData.files) {
       const file = this.rawData.files[key];
       const filename = this.parseFileName(file.filename);
+      console.log(this.ignoreList);
       if (this.ignoreList.indexOf(filename) === -1) {
         const fileChild: TreemapChild = {
           name: "",

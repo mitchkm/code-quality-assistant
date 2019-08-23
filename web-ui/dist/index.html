@@ -6,11 +6,16 @@
   <body>
     <meta charset = "utf-8">
     <h1 style = "text-align: left; color: cadetblue" font-family = "Arial" id = "title">Metrics</h1>
+    <h3 font-family = "Arial">Select files to analyze: 
+      <select id = "fileSelector"></select>
+    </h3>
+    <!-- <br style = "line-height: 1px"> -->
     <nav>
       <link rel = "stylesheet" type="text/css" href = "style.css">
       <div class = "up">&larr;UP</div>
     </nav>
-    <div class = "feature" id = "chart"></div>
+    <div class = "feature" id = "chart">
+    </div>
     <script id="rawData" type="application/json">{code_analysis_json}</script>
     <script src="bundle.js"></script>
   </body>

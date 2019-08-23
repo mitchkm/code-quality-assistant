@@ -1,18 +1,20 @@
 import d3 = require("d3");
-import { exampleData } from "./example";
-import { MetricData } from "./metricData";
 
 class TreemapLayout {
 
+    processedData: any;
     width: number;
     height: number;
     sizeOption: string;
     colorOption: string;
-    constructor(width: number, height: number, sizeOption: string, colorOption: string) {
+    fileOption: string;
+    constructor(processedData: any, width: number, height: number, sizeOption: string, colorOption: string, fileOption = "all") {
+        this.processedData = processedData;
         this.width = width;
         this.height = height;
         this.sizeOption = sizeOption;
         this.colorOption = colorOption;
+        this.fileOption = fileOption;
     }
 
     private createTreemap(paddingTop, paddingBottom, paddingLeft, paddingRight) {
@@ -28,24 +30,15 @@ class TreemapLayout {
     }
 
     protected createNodes() {
-        let data;
-        try {
-            data = JSON.parse(document.getElementById("rawData").textContent);
-        } catch (err) {
-            console.log("Could not parse injected rawData!" + err);
-            console.log("Displaying exampleData");
-            data = exampleData;
-        }
-
-        // TODO process data:
-        const mD = new MetricData(data);
-        const processedData: any = mD.toTreemapData(this.sizeOption, this.colorOption);
+        let processedData = this.processedData;
+        // if (this.fileOption !== "all") {
+        //     processedData = this.processedData.children.filter(function(d) { return d.name === this.fileOption; });
+        // }
         const root = d3.hierarchy(processedData);
         const treemap = this.createTreemap(0.3, 0.3, 0.3, 0.3);
         const nodes = treemap(root
                                 .sort(d => d.value)
                                 .sort((a, b) => a.value - b.value));
-        // console.log(nodes);
         return nodes;
     }
 }
