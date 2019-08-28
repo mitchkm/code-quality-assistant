@@ -1,0 +1,100 @@
+//@import "reset";
+//@import "variables";
+//@import "mixins";
+
+// ========================== Variables ==========================
+$my-primary: rgb(21, 18, 52);
+$my-secondary: rgb(61, 66, 114);
+$my-background: rgb(36, 39, 67);
+$my-header-color: rgb(219, 224, 227);
+$my-subheader-color: #686868;
+$my-text-color: rgb(246, 246, 246);
+
+$blue: rgb(0, 132, 232);
+$dark-blue: rgb(24, 52, 88);
+$purple: rgb(152, 72, 226);
+$green: rgb(0, 224, 159);
+$red: rgb(255, 0, 51);
+$orange: rgb(255, 42, 12);
+$pink: rgb(255, 0, 106);
+
+
+$theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $my-background);
+
+// ======================== End Variables ========================
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// ============================ Mixins ============================
+
+@mixin normal-button {
+    color: pink;
+    background-color: rgba(white, 0.0);
+    border-color: rgba(pink, 0.5);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    &:hover{
+        border-color: darken( rgba(pink, 0.5), 10%);
+        color: darken(pink, 10%);
+        background-color: rgba(black, 0.05);
+    }
+}
+
+
+// ========================== End Mixins ==========================
+
+// ======================== Sidebar Styles ========================
+#sidebar {
+    position: absolute;
+    height: 100vh;
+    width: 20%;
+    top: 0;
+    left: 80%;
+    background-color: $my-primary;
+
+
+    .sidebar-header {
+        text-align: center;
+
+        //background-color: $my-secondary;
+        color: $my-text-color;
+
+        margin-top: 10px;
+        vertical-align: center;
+    }
+
+    hr {
+        background-color: $my-subheader-color;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .btn {
+        @include normal-button;
+    }
+
+    #sliderValDisplay{
+        color: $my-text-color;
+    }
+
+    #ccnSlider{
+        color: purple;
+    }
+}
+
+// ====================== End Sidebar Styles ======================
+
+// ====================== Body Content Styles ======================
+
+body {
+    background-color: $my-background;
+    font-family: 'Roboto', sans-serif;
+}
+
+// ==================== End Body Content Styles ====================
+
+
+// ========================== Chart Styles ==========================
+
+
+// ======================== End Chart Styles ========================

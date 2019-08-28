@@ -1,7 +1,7 @@
 import d3 = require("d3");
 import treemapConfig from "./treemapConfig";
 
-class Treemap extends treemapConfig {
+export class Treemap extends treemapConfig {
 
 
     processedData: any;

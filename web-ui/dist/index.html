@@ -2,11 +2,28 @@
 <html lang = "en">
   <head>
     <title>Code Quality Assistant</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Vue.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="../styles/styles.css">
+
+    <!-- includes for bootstrap vue slider -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-slider@latest/dist/css/bootstrap-slider.css">
+    <script src="https://unpkg.com/bootstrap-slider@latest/dist/bootstrap-slider.js"></script>
+    <script src="https://unpkg.com/vue-bootstrap-slider@latest/dist/vue-bootstrap-slider.js"></script>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
   </head>
   <body>
     <meta charset = "utf-8">
     <h1 style = "text-align: left; color: cadetblue" font-family = "Arial" id = "title">Metrics</h1>
-    <h3 font-family = "Arial">Select a file to filter: 
+    <h3 font-family = "Arial">Select a file to filter:
       <select id = "fileSelector"></select>
     </h3>
     <!-- <br style = "line-height: 1px"> -->
@@ -14,8 +31,72 @@
       <link rel = "stylesheet" type="text/css" href = "style.css">
       <div class = "up">&larr;UP</div>
     </nav>
-    <div class = "feature" id = "chart"></div>
-    <script id="rawData" type="application/json">{code_analysis_json}</script>
-    <script src="bundle.js"></script>
+    <div id="vapp">
+            <div id="sidebar">
+                <div class="sidebar-header">
+                    <h3>OPTIONS <hr /></h3>
+                </div>
+
+                <button type="button" class="btn btn-block btn-outline-secondary" v-on:click='buttonEvent()'> {{buttonText}} </button>
+                <br />
+
+               
+                
+                <input id="ccnSlider" type="range" v-model="sliderValue" class="form-control-range">
+                <p id="sliderValDisplay">Value of slider: {{sliderValue}}</p>
+                <br />
+
+                <button type="button" id="backButtonID" class="btn btn-block btn-outline-secondary" v-on:click='backButtonEvent()'> back </button>
+                <br />
+                <!--
+                <b-form-slider ref="basic" v-model="sliderValue2" :min="0" :max="100" trigger-change-event></b-form-slider>
+                <p>Value of slider is {{ sliderValue2 }}</p>
+                -->
+
+
+            </div>
+        </div>
+      
+        <div class = "feature" id = "chart"></div>
+        <script id="rawData" type="application/json">{code_analysis_json}</script>
+        <script src="bundle.js"></script>
   </body>
-</html> 
+</html>
+
+<script>
+$(function(){
+
+$('#backButtonID').on('click', function (e) {
+
+    alert('Hello!');
+
+});
+    
+
+});
+</script>
+
+<script>
+  //import {Treemap} from "../src/treemap.ts"
+
+    const vueApp = new Vue({
+        el: '#vapp',
+        data: {
+            buttonText: 'this',
+            sliderValue: 2,
+            sliderValue2: 1,
+        },
+        methods: {
+            buttonEvent: function() {
+                if(this.buttonText === 'this') this.buttonText = 'that';
+                else                           this.buttonText = 'this';
+                
+            },
+            backButtonEvent: function() {
+                
+                
+            },
+        },
+    })
+
+</script>
