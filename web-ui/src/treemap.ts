@@ -1,30 +1,31 @@
 import d3 = require("d3");
-import treemapConfig from "./treemapConfig";
+import TreemapData from "./treemapData";
 
-class Treemap extends treemapConfig {
-
+class Treemap {
 
     processedData: any;
 
+    width: number;
+
+    height: number;
+
     color: ((x: number) => string);
 
-    xScale: ((x: number) => number);
+    xScale: any;
 
-    yScale: ((x: number) => number);
-
-    sizeOption: string;
-
-    colorOption: string;
-
-    fileOption: string;
+    yScale: any;
 
     chart: any;
 
     upButton: any;
 
-    private constructor(width: number, height: number, sizeOption: string, colorOption: string, color, fileOption = "none") {
+    constructor(proceesedData, width: number, height: number, color) {
 
-        super(width, height, sizeOption, colorOption, fileOption);
+        this.processedData = proceesedData;
+
+        this.width = width;
+
+        this.height = height;
 
         this.color = color;
 
@@ -37,99 +38,127 @@ class Treemap extends treemapConfig {
         this.upButton = d3.select(".up");
     }
 
-    private addCells(nodes) {
-        const cells = this.chart
+    private createTreemap(paddingTop, paddingBottom, paddingLeft, paddingRight) {
+        const treemap = d3.treemap()
+                        .size([this.width, this.height])
+                        .tile(d3.treemapResquarify)
+                        .round(false)
+                        .paddingTop(paddingTop)
+                        .paddingBottom(paddingBottom)
+                        .paddingLeft(paddingLeft)
+                        .paddingRight(paddingRight);
+        return treemap;
+    }
+
+    private createTreeNodes() {
+        const root = d3.hierarchy(this.processedData);
+        const treemap = this.createTreemap(0.3, 0.3, 0.3, 0.3);
+        const nodes = treemap(root
+                                .sort(d => d.value)
+                                .sort((a, b) => a.value - b.value));
+        return nodes;
+    }
+
+    private setUpTreemapChart(nodes) {
+
+        // deleting previous cell style
+        if (d3.select(".node")) {
+            d3.selectAll(".node").remove();
+        }
+
+        const chart = this.chart
                         .selectAll(".node")
                         .data(nodes.descendants())
                         .enter()
                         .append("div")
                         .attr("class", function(d) { return "node level-" + d.depth; })
                         .attr("id", function(d) { return d.children ? d.data.name : d.parent.data.name; });
-        return cells;
+        return chart;
     }
 
-    private styleCells() {
-        const nodes = super.createNodes();
-        const cells = this.addCells(nodes);
-        const xScale = this.xScale;
-        const yScale = this.yScale;
-        const zoom = this.zoomCells;
+    drawTreemap() {
+        const nodes = this.createTreeNodes();
+        const chart = this.setUpTreemapChart(nodes);
         const upButton = this.upButton.datum(nodes);
-        const color = this.color;
-        cells
-            .style("left", function(d) { return xScale(d.x0) + "%"; })
-            .style("top", function(d) { return yScale(d.y0) + "%"; })
-            .style("width", function(d) { return xScale(d.x1) - xScale(d.x0) + "%"; })
-            .style("height", function(d) { return yScale(d.y1) - yScale(d.y0) + "%"; })
-            .style("background-color", function(d) {
+
+        chart
+            .style("left", (d) => { return this.xScale(d.x0) + "%"; })
+            .style("top", (d) => { return this.yScale(d.y0) + "%"; })
+            .style("width", (d) => { return this.xScale(d.x1) - this.xScale(d.x0) + "%"; })
+            .style("height", (d) => { return this.yScale(d.y1) - this.yScale(d.y0) + "%"; })
+            .style("background-color", (d) => {
                 // need to fix this!
                 if (d.depth === 1) {
                     return "transparent";
                 }
-                return d.parent ? color(d.data.value2 / d.parent.data.value2) : "none";
+                return d.parent ? this.color(d.data.value2 / d.parent.data.value2) : "none";
             })
-            .on("click", function(d) { zoom(d, cells, xScale, yScale, upButton, nodes); })
+            .on("click", (d) => { this.zoomTreemap(d, chart, upButton, nodes); })
             .append("p")
             .attr("class", "label")
-            .text(function(d) { return d.data.name ? d.data.name : "---"; });
+            .text((d) => { return d.data.name ? d.data.name : "---"; });
 
         // hide the text when it's fully zoomed-out
-        cells.selectAll("p")
-            .style("opacity", function(d) { return d.depth > 1 ? 0 : 1; });
+        chart.selectAll("p")
+            .style("opacity", (d) => { return d.depth > 1 ? 0 : 1; });
 
-        upButton.on("click", function(d) { zoom(d, cells, xScale, yScale, upButton, nodes); });
-        return cells;
+        upButton.on("click", (d) => { this.zoomTreemap(d, chart, upButton, nodes); });
+        return chart;
     }
 
-    private zoomCells(d, cells, xScale, yScale, upButton, nodes) {
+    /**
+     * This function does ...
+     * @param d parameter to do something
+     * @param chart 
+     * @param xScale 
+     * @param yScale 
+     * @param upButton 
+     * @param nodes 
+     */
+    private zoomTreemap(d, chart, upButton, nodes) {
         const currentDepth = d.depth;
+        const xScale = this.xScale;
         xScale.domain([d.x0, d.x1]);
-        yScale.domain([d.y0, d.y1]);
+        this.yScale.domain([d.y0, d.y1]);
         upButton.datum(d.parent || nodes);
 
         const t = d3.transition()
             .duration(800)
             .ease(d3.easeCubicOut);
 
-        cells
+        chart
             .transition(t)
-            .style("left", function(d) { return xScale(d.x0) + "%"; })
-            .style("top", function(d) { return yScale(d.y0) + "%"; })
-            .style("width", function(d) { return xScale(d.x1) - xScale(d.x0) + "%"; })
-            .style("height", function(d) { return yScale(d.y1) - yScale(d.y0) + "%"; });
-        cells // hide this depth and above
+            .style("left", (d) => { return this.xScale(d.x0) + "%"; })
+            .style("top", (d) => { return this.yScale(d.y0) + "%"; })
+            .style("width", (d) => { return this.xScale(d.x1) - this.xScale(d.x0) + "%"; })
+            .style("height", (d) => { return this.yScale(d.y1) - this.yScale(d.y0) + "%"; });
+        chart // hide this depth and above
             .filter(function(d) { return d.depth <= currentDepth; })
             .classed("hide", function(d) { return d.children ? true : false; });
-        cells // show this depth + 1 and below
+        chart // show this depth + 1 and below
             .filter(function(d) { return d.depth > currentDepth; })
             .classed("hide", false);
             // show the functions when zoomed in
-        cells
+        chart
             .selectAll("p")
             .style("opacity", function(d) { return d.depth >= currentDepth ? 1 : 0; });
             // show only the file name when zoomed out
         if (currentDepth === 0) {
-            cells
+            chart
                 .selectAll("p")
                 .style("opacity", function(d) { return d.depth > currentDepth + 1 ? 0 : 1; });
         }
     }
 
-    static display(width: number, height: number, sizeOption: string, colorOption: string, color, fileOption = "none") {
-
-        const treemap = new Treemap(width, height, sizeOption, colorOption, color, fileOption);
-
-        d3.select("#fileSelector")
-            .on("change", function(d) {
-                const selected = d3.select("#fileSelector").property("value");
-                console.log(selected);
-                Treemap.display(width, height, sizeOption, colorOption, color, selected);
-            });
-
-        if (d3.select(".node")) {
-            d3.selectAll(".node").remove();
-        }
-        treemap.styleCells();
+    updateTreemap() {
+        const selectedSize = d3.select("#sizeSelector").property("value");
+        const selectedColor = d3.select("#colorSelector").property("value");
+        const selectedFile = d3.select("#fileSelector").property("value");
+        const treemapData = new TreemapData(selectedSize, selectedColor, selectedFile);
+        const processedData = treemapData.processData();
+        const treemap = new Treemap(processedData, this.width, this.height, this.color);
+        console.log(treemap);
+        treemap.drawTreemap();
     }
 }
 
