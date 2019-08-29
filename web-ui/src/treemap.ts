@@ -109,11 +109,11 @@ class Treemap {
     /**
      * This function does ...
      * @param d parameter to do something
-     * @param chart
-     * @param xScale
-     * @param yScale
-     * @param upButton
-     * @param nodes
+     * @param chart 
+     * @param xScale 
+     * @param yScale 
+     * @param upButton 
+     * @param nodes 
      */
     private zoomTreemap(d, chart, upButton, nodes) {
         const currentDepth = d.depth;
