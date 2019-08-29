@@ -1,4 +1,4 @@
-import SelectorFactory from "./selectorFactory";
+import SelectorFactory from "../Selector/selectorFactory";
 import d3 = require("d3");
 import Treemap from "./treemap";
 

@@ -1,7 +1,7 @@
 import d3 = require("d3");
-import Treemap from "./treemap";
-import TreemapData from "./treemapData";
-import TreemapOptions from "./treemapOptions";
+import Treemap from "./Treemap/treemap";
+import TreemapData from "./Treemap/treemapData";
+import TreemapOptions from "./Treemap/treemapOptions";
 
 const width = 100;
 const height = 100;
