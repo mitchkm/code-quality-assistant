@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Vue.js CDN 
+    <!-- Vue.js CDN
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     -->
      <!-- Our Custom CSS -->
@@ -26,7 +26,15 @@
     <meta charset = "utf-8">
     <h1 style = "text-align: left; color: cadetblue" font-family = "Arial" id = "title">Metrics</h1>
     <h3 font-family = "Arial">Select a file to filter:
-      <select id = "fileSelector"></select>
+      <input autoComplete = "on" list = "fileOptions" id = "fileSelector">
+      <datalist id = "fileOptions"></datalist>
+      <button id = "fileSelectButton">Filter</button>
+    </h3>
+    <h3 font-family = "Arial">Size
+      <select id = "sizeSelector"></select>
+    </h3>
+    <h3 font-family = "Arial">Color
+      <select id = "colorSelector"></select>
     </h3>
     <!-- <br style = "line-height: 1px"> -->
     <nav>
@@ -62,5 +70,3 @@
         <script src="bundle.js"></script>
   </body>
 </html>
-
-
