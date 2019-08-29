@@ -2,6 +2,14 @@
 <html lang = "en">
   <head>
     <title>Code Quality Assistant</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="../styles/styles.css">
+        
   </head>
   <body>
     <meta charset = "utf-8">
@@ -17,13 +25,40 @@
     <h3 font-family = "Arial">Color
       <select id = "colorSelector"></select>
     </h3>
-    <!-- <br style = "line-height: 1px"> -->
     <nav>
       <link rel = "stylesheet" type="text/css" href = "style.css">
       <div class = "up">&larr;UP</div>
     </nav>
-    <div class = "feature" id = "chart"></div>
-    <script id="rawData" type="application/json">{code_analysis_json}</script>
-    <script src="bundle.js"></script>
+    <div id="vapp">
+            <div id="sidebar">
+                <div class="sidebar-header">
+                    <h3>OPTIONS <hr /></h3>
+                </div>
+
+                <button type="button" class="btn btn-block btn-outline-secondary"> buttonText </button>
+
+                <div class = "sidebar - colorSlider">
+                  <table id = "sidebarinputs">
+                    <col width = "10">
+                    <col width = "10">
+                    <tr>
+                      <th>Lower bound</th>
+                      <th>Upper bound</th>
+                    </tr>
+                    <tr>
+                      <td width = "30%"><input type= "number" id = "min" size = "2"></td>
+                      <td width = "40%"><input type = "number" id = "max" size = "2"></td>
+                    </tr>
+                  </table>
+                  <button id = "limitButton">Apply</button>
+                  <input id="colorSlider" type="range" class="form-control-range">
+                </div>
+            </div>
+        </div>
+        <body id = "container">
+            <div class = "feature" id = "chart"></div>
+        </body>
+        <script id="rawData" type="application/json">{code_analysis_json}</script>
+        <script src="bundle.js"></script>
   </body>
-</html> 
+</html>
