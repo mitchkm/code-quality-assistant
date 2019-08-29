@@ -3,9 +3,11 @@
 //@import "mixins";
 
 // ========================== Variables ==========================
-$my-primary: rgb(21, 18, 52);
+$my-primary: rgb(0, 255, 242);
 $my-secondary: rgb(61, 66, 114);
-$my-background: rgb(36, 39, 67);
+$my-background: rgb(23, 26, 26);
+$my-sidebar-background: rgb(53, 58, 59);
+$my-secondary-background: rgb(82, 87, 87);
 $my-header-color: rgb(219, 224, 227);
 $my-subheader-color: #686868;
 $my-text-color: rgb(246, 246, 246);
@@ -50,7 +52,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     width: 20%;
     top: 0;
     left: 80%;
-    background-color: $my-primary;
+    background-color: $my-sidebar-background;
 
 
     .sidebar-header {
