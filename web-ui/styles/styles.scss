@@ -1,0 +1,267 @@
+//@import "reset";
+//@import "variables";
+//@import "mixins";
+
+// ========================== Variables ==========================
+$my-primary: rgb(68, 0, 255);
+$my-secondary: rgb(174, 0, 255);
+$my-background: rgb(23, 26, 26);
+$my-sidebar-background: rgb(53, 58, 59);
+$my-secondary-background: rgb(82, 87, 87);
+$my-header-color: rgb(219, 224, 227);
+$my-subheader-color: #686868;
+$my-text-color: rgb(246, 246, 246);
+
+$blue: rgb(0, 132, 232);
+$dark-blue: rgb(24, 52, 88);
+$purple: rgb(152, 72, 226);
+$green: rgb(0, 224, 159);
+$red: rgb(255, 0, 51);
+$orange: rgb(255, 42, 12);
+$pink: rgb(255, 0, 106);
+
+$sidebar-width: 30%;
+
+$theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $my-background);
+
+// ======================== End Variables ========================
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// ============================ Mixins ============================
+
+@mixin normal-button {
+    color: $my-primary;
+    background-color: rgba($my-primary, 0.2);
+    border-color: $my-primary;
+    z-index: 1;
+
+    &:hover {
+        border-color: darken($my-primary, 10%);
+        color: darken($my-primary, 10%);
+        background-color: darken(rgba($my-primary, 0.2), 10%);
+    }
+
+    &:active {
+        border-color: lighten($my-primary, 10%);
+        color: lighten($my-primary, 10%);
+        background-color: lighten(rgba($my-primary, 0.4), 10%);
+    }
+}
+
+@mixin secondary-button {
+    color: $my-secondary;
+    background-color: rgba($my-secondary, 0.2);
+    border-color: $my-secondary;
+    z-index: 1;
+
+    &:hover {
+        border-color: darken($my-secondary, 10%);
+        color: darken($my-secondary, 10%);
+        background-color: darken(rgba($my-secondary, 0.2), 10%);
+    }
+
+    &:active {
+        border-color: lighten($my-secondary, 10%);
+        color: lighten($my-secondary, 10%);
+        background-color: lighten(rgba($my-secondary, 0.4), 10%);
+    }
+}
+
+@mixin sidebar-block-button{
+    margin-left: 5%;
+    width: 90%;
+}
+
+@mixin square-button($size-percentage){
+    width: $size-percentage;
+    height: $size-percentage;
+}
+
+// ========================== End Mixins ==========================
+
+// ======================== Sidebar Styles ========================
+#sidebar {
+    position: absolute;
+    height: 100vh;
+    width: $sidebar-width;
+    top: 0;
+    left: 100% - $sidebar-width;
+    background-color: $my-sidebar-background;
+
+    .sidebar-header {
+        text-align: center;
+
+        //background-color: $my-secondary;
+        color: $my-text-color;
+        margin-top: 10px;
+        vertical-align: center;
+    }
+
+    hr {
+        background-color: $my-subheader-color;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .btn {
+        @include normal-button;
+        @include sidebar-block-button;
+    }
+
+    #fileFilterSection{
+        p{
+            margin-left: 5%;
+        }
+        #fileSelector{
+            margin-left: 5%;
+            width: 90%;
+        }
+        #filterButton{
+            @include normal-button;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            //padding: 100% 100%;
+        }
+    }
+    #sizeMetricSelector{
+        p{
+            color: $my-text-color;
+            margin-left: 5%;
+            text-align: right;
+        }
+        #sizeSelector{
+            //width: 100%;
+        }
+    }
+    #colorMetricSelector{
+        p{
+            color: $my-text-color;
+            margin-left: 5%;
+            text-align: right;
+        }
+        #colorSelector{
+            //width: 100%;
+        }
+    }
+    #colorSlider{
+        #ccnSlider{
+            margin-left: 10%;
+            width: 80%;
+        }
+    }
+
+
+    #sliderValDisplay {
+        color: $my-text-color;
+    }
+
+    #ccnSlider {
+        color: purple;
+    }
+
+    p{
+        color: $my-text-color;
+    }
+}
+
+// ====================== End Sidebar Styles ======================
+
+// ====================== Body Content Styles ======================
+
+body {
+    background-color: $my-background;
+    font-family: 'Roboto', sans-serif;
+}
+
+// ==================== End Body Content Styles ====================
+
+// ========================== Chart Styles ==========================
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 80%;
+    height: 80%;
+    margin: 0;
+}
+
+#backNav {
+    position: relative;
+    width: 70%;
+    height: 6%;
+    z-index: 100;
+    margin-bottom: 2%;
+}
+
+#TreemapBackButton{
+    @include secondary-button;
+    
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+
+}
+
+#treeMapChart {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    overflow: hidden;
+}
+
+.node {
+    position: absolute;
+    background: transparent url("") no-repeat (50% / cover);
+    overflow: hidden;
+    transition: opacity 0.8s;
+    cursor: pointer;
+    border: 1px white groove;
+}
+
+.node .label {
+    display: inline;
+    font-family: sans-serif;
+    color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition: color 0.4s, opacity 0.8s, filter 0.8s;
+}
+
+.node.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.node.hide .label {
+    filter: blur(10px);
+}
+
+.node:hover .label {
+    color: rgba(255, 255, 255, 1);
+}
+
+.node.level-0 {
+    z-index: 4;
+    font-size: 13vmin;
+    display: none;
+}
+
+.node.level-1 {
+    z-index: 3;
+    font-size: 3vmin;
+}
+
+.node.level-2 {
+    z-index: 2;
+    font-size: 2vmin;
+}
+
+// ======================== End Chart Styles ========================
