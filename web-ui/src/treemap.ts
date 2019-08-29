@@ -33,20 +33,20 @@ class Treemap {
 
         this.yScale = d3.scaleLinear().domain([0, height]).range([0, height]);
 
-        this.chart = d3.select("#chart");
+        this.chart = d3.select("#treeMapChart");
 
-        this.upButton = d3.select(".up");
+        this.upButton = d3.select("#TreemapBackButton");
     }
 
     private createTreemap(paddingTop, paddingBottom, paddingLeft, paddingRight) {
         const treemap = d3.treemap()
-                        .size([this.width, this.height])
-                        .tile(d3.treemapResquarify)
-                        .round(false)
-                        .paddingTop(paddingTop)
-                        .paddingBottom(paddingBottom)
-                        .paddingLeft(paddingLeft)
-                        .paddingRight(paddingRight);
+            .size([this.width, this.height])
+            .tile(d3.treemapResquarify)
+            .round(false)
+            .paddingTop(paddingTop)
+            .paddingBottom(paddingBottom)
+            .paddingLeft(paddingLeft)
+            .paddingRight(paddingRight);
         return treemap;
     }
 
@@ -54,8 +54,8 @@ class Treemap {
         const root = d3.hierarchy(this.processedData);
         const treemap = this.createTreemap(0.3, 0.3, 0.3, 0.3);
         const nodes = treemap(root
-                                .sort(d => d.value)
-                                .sort((a, b) => a.value - b.value));
+            .sort(d => d.value)
+            .sort((a, b) => a.value - b.value));
         return nodes;
     }
 
@@ -67,12 +67,12 @@ class Treemap {
         }
 
         const chart = this.chart
-                        .selectAll(".node")
-                        .data(nodes.descendants())
-                        .enter()
-                        .append("div")
-                        .attr("class", function(d) { return "node level-" + d.depth; })
-                        .attr("id", function(d) { return d.children ? d.data.name : d.parent.data.name; });
+            .selectAll(".node")
+            .data(nodes.descendants())
+            .enter()
+            .append("div")
+            .attr("class", function (d) { return "node level-" + d.depth; })
+            .attr("id", function (d) { return d.children ? d.data.name : d.parent.data.name; });
         return chart;
     }
 
@@ -109,11 +109,11 @@ class Treemap {
     /**
      * This function does ...
      * @param d parameter to do something
-     * @param chart 
-     * @param xScale 
-     * @param yScale 
-     * @param upButton 
-     * @param nodes 
+     * @param chart
+     * @param xScale
+     * @param yScale
+     * @param upButton
+     * @param nodes
      */
     private zoomTreemap(d, chart, upButton, nodes) {
         const currentDepth = d.depth;
@@ -133,20 +133,20 @@ class Treemap {
             .style("width", (d) => { return this.xScale(d.x1) - this.xScale(d.x0) + "%"; })
             .style("height", (d) => { return this.yScale(d.y1) - this.yScale(d.y0) + "%"; });
         chart // hide this depth and above
-            .filter(function(d) { return d.depth <= currentDepth; })
-            .classed("hide", function(d) { return d.children ? true : false; });
+            .filter(function (d) { return d.depth <= currentDepth; })
+            .classed("hide", function (d) { return d.children ? true : false; });
         chart // show this depth + 1 and below
-            .filter(function(d) { return d.depth > currentDepth; })
+            .filter(function (d) { return d.depth > currentDepth; })
             .classed("hide", false);
-            // show the functions when zoomed in
+        // show the functions when zoomed in
         chart
             .selectAll("p")
-            .style("opacity", function(d) { return d.depth >= currentDepth ? 1 : 0; });
-            // show only the file name when zoomed out
+            .style("opacity", function (d) { return d.depth >= currentDepth ? 1 : 0; });
+        // show only the file name when zoomed out
         if (currentDepth === 0) {
             chart
                 .selectAll("p")
-                .style("opacity", function(d) { return d.depth > currentDepth + 1 ? 0 : 1; });
+                .style("opacity", function (d) { return d.depth > currentDepth + 1 ? 0 : 1; });
         }
     }
 

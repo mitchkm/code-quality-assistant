@@ -7,65 +7,81 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Vue.js CDN 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    -->
+
   <!-- Our Custom CSS -->
   <link rel="stylesheet" href="../styles/styles.css">
-
-  <!-- includes for bootstrap vue slider
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-slider@latest/dist/css/bootstrap-slider.css">
-    <script src="https://unpkg.com/bootstrap-slider@latest/dist/bootstrap-slider.js"></script>
-    <script src="https://unpkg.com/vue-bootstrap-slider@latest/dist/vue-bootstrap-slider.js"></script>
-    -->
-
   <!-- JQuery -->
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-
 </head>
 
 <body>
   <meta charset="utf-8">
   <h1 style="text-align: left; color: cadetblue" font-family="Arial" id="title">Metrics</h1>
-  <h3 font-family="Arial">Select a file to filter:
-    <input autoComplete="on" list="fileOptions" id="fileSelector">
-    <datalist id="fileOptions"></datalist>
-    <button id="fileSelectButton">Filter</button>
-  </h3>
-  <h3 font-family="Arial">Size
-    <select id="sizeSelector"></select>
-  </h3>
-  <h3 font-family="Arial">Color
-    <select id="colorSelector"></select>
-  </h3>
+
   <!-- <br style = "line-height: 1px"> -->
-  <nav>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <div class="up">&larr;UP</div>
+  <nav id="backNav">
+    <button type="button" class="btn btn-block btn-outline-secondary" id="TreemapBackButton">&larr;UP</div>
   </nav>
-  <div id="vapp">
-    <div id="sidebar">
-      <div class="sidebar-header">
-        <h3>O P T I O N S
-          <hr />
-        </h3>
-      </div>
+  
+  <div class="feature" id="treeMapChart">
 
-      <button type="button" class="btn btn-block btn-outline-secondary"> buttonText </button>
-      <br /><br /><br />
-
-      <input id="ccnSlider" type="range" class="form-control-range">
-      <p id="sliderValDisplay">Value of slider: asdf</p>
-      <br /><br /><br />
-
-      <button type="button"  class="btn btn-block btn-outline-secondary"> back </button>
-      <br />
-
-
-    </div>
   </div>
 
-  <div class="feature" id="chart"></div>
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h3>O P T I O N S
+        <hr />
+      </h3>
+    </div>
+
+    <div id="fileFilterSection">
+      <div class="row">
+        <p>Select a file to filter:</p>
+      </div>
+      <div class="row">
+        <input autoComplete="on" list="fileOptions" id="fileSelector">
+        <datalist id="fileOptions"></datalist>
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-sq btn-outline-primary" id="filterButton">Filter</button>
+      </div>
+    </div>
+
+    <br /><br /><br />
+
+    <div id="sizeMetricSelector">
+      <div class="row">
+        <div class="col-md-6">
+          <p>Choose Size metric: </p>
+        </div>
+        <div class="col-md-6"><select id="sizeSelector"></select></div>
+      </div>
+    </div>
+    <div id="colorMetricSelector">
+      <div class="row">
+        <div class="col-md-6">
+          <p>Choose Color metric: </p>
+        </div>
+        <div class="col-md-6"><select id="colorSelector"></select></select></div>
+      </div>
+    </div>
+
+    <br/><br/>
+
+    <div id="colorSlider">
+      <div class="row">
+          <input id="ccnSlider" type="range" class="form-control-range">
+      </div>
+    </div>
+    
+
+  </div>
+
+  
+  </div>
+
+
+
   <script id="rawData" type="application/json">{code_analysis_json}</script>
   <script src="bundle.js"></script>
 </body>
