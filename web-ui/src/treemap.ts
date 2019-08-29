@@ -47,7 +47,9 @@ export class Treemap extends treemapConfig {
                         .attr("id", function(d) { return d.children ? d.data.name : d.parent.data.name; });
         return cells;
     }
-
+    public goBack(){
+        zoom(d, cells, xScale, yScale, upButton, nodes);
+    }
     private styleCells() {
         const nodes = super.createNodes();
         const cells = this.addCells(nodes);
