@@ -1,42 +1,33 @@
 import d3 = require("d3");
-import Treemap from "./treemap";
 
-class FileSelector {
+class FileSelector implements Selector {
 
     processedData: any;
-
-    fileNames: string[];
 
     constructor(processedData) {
         this.processedData = processedData;
     }
 
     createDropDown() {
-        const fileNames = this.getFileNames(this.processedData);
-        // delete existing dropdown
-        if (d3.select("option") !== undefined) {
-            d3.selectAll("option").remove();
+        const fileNames = this.createOptions();
+        // delete existing dropdown options
+        if (d3.select("#fileOptions").select("option") !== undefined) {
+            d3.select("#fileOptions").selectAll("option").remove();
         }
 
-        d3.select("#fileSelector")
+        d3.select("#fileOptions")
+            .selectAll("option")
+            .data(fileNames)
+            .enter()
             .append("option")
-            .text("none")
-            .attr("value", "none");
-
-        let i;
-        for (i = 0; i < fileNames.length; i++) {
-            d3.select("#fileSelector")
-                .append("option")
-                .text(fileNames[i])
-                .attr("value", fileNames[i]);
-        }
+            .attr("value", function(d) { return d; });
     }
 
-    private getFileNames(processedData) {
-        const fileList = [];
+    private createOptions() {
+        const fileList = ["none"];
         let i;
-        for (i = 0; i < processedData.children.length; i++) {
-            fileList.push(processedData.children[i].name);
+        for (i = 0; i < this.processedData.children.length; i++) {
+            fileList.push(this.processedData.children[i].name);
         }
         return fileList;
     }

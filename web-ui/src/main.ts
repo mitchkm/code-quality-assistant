@@ -1,11 +1,11 @@
 import d3 = require("d3");
 import Treemap from "./treemap";
+import TreemapData from "./treemapData";
+import TreemapOptions from "./treemapOptions";
 
 const width = 100;
 const height = 100;
 const gamma = 1.0; // change the brightness of color
-const sizeOption = "nloc"; // choose sizeOption
-const colorOption = "ccn"; // choose colorOption
 
 // set up the color for treemap
 const color = d3.scaleLinear<string>()
@@ -13,5 +13,14 @@ const color = d3.scaleLinear<string>()
                 .range(["green", "yellow", "orange", "red"])
                 .interpolate(d3.interpolateRgb.gamma(gamma));
 
+const treemapData = new TreemapData();
+const processedData = treemapData.processData();
+
 // display treemap
-Treemap.display(width, height, sizeOption, colorOption, color);
+const treemap = new Treemap(processedData, width, height, color);
+
+const treemapOptions = new TreemapOptions(processedData);
+treemapOptions.setUpTreemapOptions(treemap);
+
+console.log(treemap);
+treemap.drawTreemap();
