@@ -24,7 +24,7 @@ $pink: rgb(255, 0, 106);
 
 $sidebar-width: 30%;
 $content-area-width: 70%;
-$content-margin: 3%;
+$content-margin: 2%;
 $margin-adjusted-percentage: 100% -(2 * $content-margin);
 
 
@@ -99,7 +99,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 
 // ======================== Sidebar Styles ========================
 #sidebar {
-    position: absolute;
+    position: fixed;
     height: 100vh;
     width: $sidebar-width;
     top: 0;
@@ -184,6 +184,29 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 
 // ====================== End Sidebar Styles ======================
 
+// ======================== Nav Card Styles ========================
+#chartNavCard{
+    @include content-card;
+    height: 10%;
+    ul{
+        list-style-type: none;
+        margin: 0;
+  padding: 0;
+        #codeHeader{
+            display: inline;
+            color: $my-header-color;
+        }
+        #analysisHeader{
+            display: inline;
+            color: $my-subheader-color;
+        }
+        li{
+            display: block;
+        }
+    }
+}
+// ====================== End Nav Card Styles ======================
+
 // ====================== Body Content Styles ======================
 
 html{
@@ -192,8 +215,8 @@ html{
 }
 
 body {
-    width: 100%;  //this is here to make the gradient fit
-    height: 100%; //this is here to make the gradient fit
+    width: 100%;   //this is here to make the gradient fit
+    height: 100%;  //this is here to make the gradient fit
     background: $my-gradient;
     font-family: 'Roboto', sans-serif;
 }
@@ -204,15 +227,15 @@ body {
 #treeMapCard{
     @include content-card;
     #TreemapBackButton{
-        position: relative;
         @include secondary-button;
+        position: relative;
         width: $margin-adjusted-percentage;
-        height: $margin-adjusted-percentage * .1 - ($content-margin / 2);
+        height: $margin-adjusted-percentage * .1 - $content-margin;
         margin: $content-margin;
     }
     #treeMapChart {
         position: relative;
-        height: $margin-adjusted-percentage  * .9 - ($content-margin / 2);
+        height: $margin-adjusted-percentage  * .9 - $content-margin;
         width: $margin-adjusted-percentage;
         margin: $content-margin;
         margin-top: 0;
@@ -222,11 +245,10 @@ body {
 
 // ======================== Content Area Styles ========================
 #contentArea{
-    position: absolute;
+    position: relative;
     width: $content-area-width;
     height: 100%;
     margin: 0;
-    top: 0;
 }
 // ====================== End Content Area Styles ======================
 

@@ -10723,7 +10723,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
 }
 
 #sidebar {
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 30%;
   top: 0;
@@ -10824,6 +10824,36 @@ a.text-body-bg:hover, a.text-body-bg:focus {
   color: #f6f6f6;
 }
 
+#chartNavCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  width: 96%;
+  height: 96%;
+  margin: 2%;
+  border-radius: 10px;
+  height: 10%;
+}
+
+#chartNavCard ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#chartNavCard ul #codeHeader {
+  display: inline;
+  color: #dbe0e3;
+}
+
+#chartNavCard ul #analysisHeader {
+  display: inline;
+  color: #686868;
+}
+
+#chartNavCard ul li {
+  display: block;
+}
+
 html {
   width: 100%;
   height: 100%;
@@ -10840,21 +10870,21 @@ body {
 #treeMapCard {
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  width: 94%;
-  height: 94%;
-  margin: 3%;
+  width: 96%;
+  height: 96%;
+  margin: 2%;
   border-radius: 10px;
 }
 
 #treeMapCard #TreemapBackButton {
-  position: relative;
   color: #ff1b72;
   background-color: rgba(255, 27, 114, 0.2);
   border-color: #ff1b72;
   z-index: 1;
-  width: 94%;
-  height: 7.9%;
-  margin: 3%;
+  position: relative;
+  width: 96%;
+  height: 7.6%;
+  margin: 2%;
 }
 
 #treeMapCard #TreemapBackButton:hover {
@@ -10871,18 +10901,17 @@ body {
 
 #treeMapCard #treeMapChart {
   position: relative;
-  height: 83.1%;
-  width: 94%;
-  margin: 3%;
+  height: 84.4%;
+  width: 96%;
+  margin: 2%;
   margin-top: 0;
 }
 
 #contentArea {
-  position: absolute;
+  position: relative;
   width: 70%;
   height: 100%;
   margin: 0;
-  top: 0;
 }
 
 *, *:before, *:after {
