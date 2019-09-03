@@ -68,11 +68,22 @@
 
     <br/><br/>
 
-    <div id="colorSlider">
-      <div class="row">
-          <input id="ccnSlider" type="range" class="form-control-range">
+    <div class = "sidebar - colorSlider">
+        <table id = "sidebarinputs">
+          <col width = "10">
+          <col width = "10">
+          <tr>
+            <th>Lower bound</th>
+            <th>Upper bound</th>
+          </tr>
+          <tr>
+            <td width = "30%"><input type= "number" id = "min" size = "2"></td>
+            <td width = "40%"><input type = "number" id = "max" size = "2"></td>
+          </tr>
+        </table>
+        <button id = "limitButton">Apply</button>
+        <input id="colorSlider" type="range" class="form-control-range">
       </div>
-    </div>
     
 
   </div>
