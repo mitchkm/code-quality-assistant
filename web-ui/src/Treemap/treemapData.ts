@@ -1,5 +1,5 @@
-import { MetricData } from "./metricData";
-import { exampleData } from "./example";
+import { MetricData } from "../Data/metricData";
+import { exampleData } from "../Data/example";
 
 class TreemapData {
 
