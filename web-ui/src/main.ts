@@ -2,6 +2,7 @@ import d3 = require("d3");
 import Treemap from "./Treemap/treemap";
 import TreemapData from "./Treemap/treemapData";
 import TreemapOptions from "./Treemap/treemapOptions";
+import InterfaceEventController from "./InterfaceEventController";
 
 const width = 100;
 const height = 100;
@@ -23,5 +24,7 @@ const treemap = new Treemap(processedData, width, height, color);
 const treemapOptions = new TreemapOptions(processedData);
 treemapOptions.setUpTreemapOptions(treemap);
 
+new InterfaceEventController();
 console.log(treemap);
 treemap.drawTreemap();
+

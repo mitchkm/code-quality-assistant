@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Our Custom CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles/styles.css">
   <!-- JQuery -->
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
@@ -19,16 +19,6 @@
 
 
   <div id="contentArea">
-    <!--
-    <div id="chartNavCard">
-        <ul>
-          <li><h1 id="codeHeader">Code</h1><h1 id="analysisHeader">|Analysis</h1></li>
-          <li><a href="">Area Map</a></li>
-          <li><a href="">Chart 2</a></li>
-          <li><a href="">Chart 3</a></li>
-        </ul>
-    </div>
-  -->
     <div id="treeMapCard">
       <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">&larr;UP</button>
       <div class="feature" id="treeMapChart"></div>
@@ -37,25 +27,32 @@
 
   <div id="sidebar">
     <div class="sidebar-header">
-      <h3>O P T I O N S
-        <hr />
-      </h3>
+      <h1 id="codeHeader">O P T I O N S</h1>
+      <hr />
     </div>
 
-    <div id="fileFilterSection">
+    <div id="chartSelectBar">
       <div class="row">
-        <p>Select a file to filter:</p>
+        <div class="col-md-4">
+            <button id="treemapChart">Tree Map</button>
+        </div>
+        <div class="col-md-4">
+            <button id="chart2">Chart 2</button>
+        </div>
+        <div class="col-md-4">
+            <button id="chart3">Chart3</button>
+        </div>
       </div>
-      <div class="row">
-        <input autoComplete="on" list="fileOptions" id="fileSelector">
-        <datalist id="fileOptions"></datalist>
-      </div>
-      <div class="row">
-        <button type="button" class="btn btn-sq btn-outline-primary" id="filterButton">Filter</button>
-      </div>
+      <!--
+      <ul>
+        <li class="treeMap active"><a>Tree Map</a></li>
+        <li class="chart2"><button>Chart 2</a></li>
+        <li class="chart3"><a>Chart 3</a></li>
+      </ul>
+      -->
     </div>
+    <br/> <br/>
 
-    <br /><br /><br />
 
     <div id="sizeMetricSelector">
       <div class="row">
@@ -76,23 +73,35 @@
 
     <br /><br />
 
-    <div class = "sidebar - colorSlider">
-        <table id = "sidebarinputs">
-          <col width = "10">
-          <col width = "10">
-          <tr>
-            <th>Lower bound</th>
-            <th>Upper bound</th>
-          </tr>
-          <tr>
-            <td width = "30%"><input type= "number" id = "min" size = "2"></td>
-            <td width = "40%"><input type = "number" id = "max" size = "2"></td>
-          </tr>
-        </table>
-        <button id = "limitButton">Apply</button>
-        <input id="colorSlider" type="range" class="form-control-range">
+    <div class="sidebar - colorSlider">
+      <table id="sidebarinputs">
+        <col width="10">
+        <col width="10">
+        <tr>
+          <th>Lower bound</th>
+          <th>Upper bound</th>
+        </tr>
+        <tr>
+          <td width="30%"><input type="number" id="min" size="2"></td>
+          <td width="40%"><input type="number" id="max" size="2"></td>
+        </tr>
+      </table>
+      <button id="limitButton">Apply</button>
+      <input id="colorSlider" type="range" class="form-control-range">
+    </div>
+    <br /><br />
+    <div id="fileFilterSection">
+      <div class="row">
+        <p>Select a file to filter:</p>
       </div>
-    
+      <div class="row">
+        <input autoComplete="on" list="fileOptions" id="fileSelector">
+        <datalist id="fileOptions"></datalist>
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-sq btn-outline-primary" id="filterButton">Filter</button>
+      </div>
+    </div>
 
   </div>
 
