@@ -10,7 +10,7 @@
   --purple: #9848e2;
   --pink: #ff006a;
   --red: #ff0033;
-  --orange: #ff2a0c;
+  --orange: #c7b9b8;
   --yellow: #ffc107;
   --green: #00e09f;
   --teal: #20c997;
@@ -10944,35 +10944,5 @@ body {
   transition: color 0.4s, opacity 0.8s, -webkit-filter 0.8s;
   transition: color 0.4s, opacity 0.8s, filter 0.8s;
   transition: color 0.4s, opacity 0.8s, filter 0.8s, -webkit-filter 0.8s;
-}
-
-.node.hide {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.node.hide .label {
-  -webkit-filter: blur(10px);
-          filter: blur(10px);
-}
-
-.node:hover .label {
-  color: white;
-}
-
-.node.level-0 {
-  z-index: 4;
-  font-size: 13vmin;
-  display: none;
-}
-
-.node.level-1 {
-  z-index: 3;
-  font-size: 3vmin;
-}
-
-.node.level-2 {
-  z-index: 2;
-  font-size: 2vmin;
 }
 /*# sourceMappingURL=styles.css.map */
