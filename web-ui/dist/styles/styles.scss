@@ -34,7 +34,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 
 // ======================== End Variables ========================
 
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 // ============================ Mixins ============================
 
@@ -86,6 +86,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     height: $size-percentage;
 }
 
+// template for a full-page background card for a chart
 @mixin content-card{
     position: relative;
     background: $card-background;
