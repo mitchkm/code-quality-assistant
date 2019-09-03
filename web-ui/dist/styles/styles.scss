@@ -14,27 +14,27 @@ $my-subheader-color: #686868;
 $my-text-color: rgb(246, 246, 246);
 $card-background: rgba(255, 255, 255, 0.1);
 
+$my-gradient: linear-gradient(to bottom right, darken($my-primary, 55%), darken($my-secondary, 50%));
+
 $blue: rgb(0, 132, 232);
 $dark-blue: rgb(24, 52, 88);
 $purple: rgb(152, 72, 226);
 $green: rgb(0, 224, 159);
 $red: rgb(255, 0, 51);
-$orange: rgb(255, 42, 12);
+$orange: rgb(199, 185, 184);
 $pink: rgb(255, 0, 106);
+
 
 $sidebar-width: 30%;
 $content-area-width: 70%;
 $content-margin: 2%;
 $margin-adjusted-percentage: 100% -(2 * $content-margin);
 
-
-$my-gradient: linear-gradient(to bottom right, darken($my-primary, 55%), darken($my-secondary, 50%));
-
 $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $my-background);
 
 // ======================== End Variables ========================
 
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 // ============================ Mixins ============================
 
@@ -280,33 +280,33 @@ body {
     transition: color 0.4s, opacity 0.8s, filter 0.8s;
 }
 
-.node.hide {
-    opacity: 0;
-    pointer-events: none;
-}
+// .node.hide {
+//     opacity: 0;
+//     pointer-events: none;
+// }
 
-.node.hide .label {
-    filter: blur(10px);
-}
+// .node.hide .label {
+//     filter: blur(10px);
+// }
 
-.node:hover .label {
-    color: rgba(255, 255, 255, 1);
-}
+// .node:hover .label {
+//     color: rgba(255, 255, 255, 1);
+// }
 
-.node.level-0 {
-    z-index: 4;
-    font-size: 13vmin;
-    display: none;
-}
+// .node.level-0 {
+//     z-index: 4;
+//     font-size: 13vmin;
+//     display: none;
+// }
 
-.node.level-1 {
-    z-index: 3;
-    font-size: 3vmin;
-}
+// .node.level-1 {
+//     z-index: 3;
+//     font-size: 3vmin;
+// }
 
-.node.level-2 {
-    z-index: 2;
-    font-size: 2vmin;
-}
+// .node.level-2 {
+//     z-index: 2;
+//     font-size: 2vmin;
+// }
 
 // ======================== End Chart Styles ========================
