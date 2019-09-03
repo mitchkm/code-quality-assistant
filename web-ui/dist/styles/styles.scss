@@ -3,14 +3,16 @@
 //@import "mixins";
 
 // ========================== Variables ==========================
-$my-primary: rgb(68, 0, 255);
-$my-secondary: rgb(174, 0, 255);
+$my-primary: #4faaff;
+$my-secondary: #ff1b72;
+$my-grad-list: $my-primary 0%, $my-secondary 100%;
 $my-background: rgb(23, 26, 26);
-$my-sidebar-background: rgb(53, 58, 59);
+$my-sidebar-background: rgb(44, 26, 68);
 $my-secondary-background: rgb(82, 87, 87);
 $my-header-color: rgb(219, 224, 227);
 $my-subheader-color: #686868;
 $my-text-color: rgb(246, 246, 246);
+$card-background: rgba(255, 255, 255, 0.1);
 
 $blue: rgb(0, 132, 232);
 $dark-blue: rgb(24, 52, 88);
@@ -21,6 +23,12 @@ $orange: rgb(255, 42, 12);
 $pink: rgb(255, 0, 106);
 
 $sidebar-width: 30%;
+$content-area-width: 70%;
+$content-margin: 2%;
+$margin-adjusted-percentage: 100% -(2 * $content-margin);
+
+
+$my-gradient: linear-gradient(to bottom right, darken($my-primary, 55%), darken($my-secondary, 50%));
 
 $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $my-background);
 
@@ -78,16 +86,25 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     height: $size-percentage;
 }
 
+@mixin content-card{
+    position: relative;
+    background: $card-background;
+    width: $margin-adjusted-percentage;
+    height: $margin-adjusted-percentage;
+    margin: $content-margin;
+    border-radius: 10px;
+}
+
 // ========================== End Mixins ==========================
 
 // ======================== Sidebar Styles ========================
 #sidebar {
-    position: absolute;
+    position: fixed;
     height: 100vh;
     width: $sidebar-width;
     top: 0;
     left: 100% - $sidebar-width;
-    background-color: $my-sidebar-background;
+    background-color: $card-background;
 
     .sidebar-header {
         text-align: center;
@@ -167,50 +184,78 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 
 // ====================== End Sidebar Styles ======================
 
+// ======================== Nav Card Styles ========================
+#chartNavCard{
+    @include content-card;
+    height: 10%;
+    ul{
+        list-style-type: none;
+        margin: 0;
+  padding: 0;
+        #codeHeader{
+            display: inline;
+            color: $my-header-color;
+        }
+        #analysisHeader{
+            display: inline;
+            color: $my-subheader-color;
+        }
+        li{
+            display: block;
+        }
+    }
+}
+// ====================== End Nav Card Styles ======================
+
 // ====================== Body Content Styles ======================
 
+html{
+    width: 100%;  //this is here to make the gradient fit
+    height: 100%; //this is here to make the gradient fit
+}
+
 body {
-    background-color: $my-background;
+    width: 100%;   //this is here to make the gradient fit
+    height: 100%;  //this is here to make the gradient fit
+    background: $my-gradient;
     font-family: 'Roboto', sans-serif;
 }
 
 // ==================== End Body Content Styles ====================
 
+// ======================== Chart Card Styles ========================
+#treeMapCard{
+    @include content-card;
+    #TreemapBackButton{
+        @include secondary-button;
+        position: relative;
+        width: $margin-adjusted-percentage;
+        height: $margin-adjusted-percentage * .1 - $content-margin;
+        margin: $content-margin;
+    }
+    #treeMapChart {
+        position: relative;
+        height: $margin-adjusted-percentage  * .9 - $content-margin;
+        width: $margin-adjusted-percentage;
+        margin: $content-margin;
+        margin-top: 0;
+    }   
+}
+// ====================== End Chart Card Styles ======================
+
+// ======================== Content Area Styles ========================
+#contentArea{
+    position: relative;
+    width: $content-area-width;
+    height: 100%;
+    margin: 0;
+}
+// ====================== End Content Area Styles ======================
+
 // ========================== Chart Styles ==========================
 
 *, *:before, *:after {
     box-sizing: border-box;
-}
-
-html, body {
-    width: 80%;
-    height: 80%;
-    margin: 0;
-}
-
-#backNav {
-    position: relative;
-    width: 70%;
-    height: 6%;
-    z-index: 100;
-    margin-bottom: 2%;
-}
-
-#TreemapBackButton{
-    @include secondary-button;
-    
-    position: relative;
-    width: 100%;
-    margin-left: 0%;
-
-}
-
-#treeMapChart {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    overflow: hidden;
 }
 
 .node {

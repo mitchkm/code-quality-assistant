@@ -9,22 +9,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Our Custom CSS -->
-  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="styles.css">
   <!-- JQuery -->
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 
 <body>
   <meta charset="utf-8">
-  <h1 style="text-align: left; color: cadetblue" font-family="Arial" id="title">Metrics</h1>
 
-  <!-- <br style = "line-height: 1px"> -->
-  <nav id="backNav">
-    <button type="button" class="btn btn-block btn-outline-secondary" id="TreemapBackButton">&larr;UP</div>
-  </nav>
-  
-  <div class="feature" id="treeMapChart">
 
+  <div id="contentArea">
+    <!--
+    <div id="chartNavCard">
+        <ul>
+          <li><h1 id="codeHeader">Code</h1><h1 id="analysisHeader">|Analysis</h1></li>
+          <li><a href="">Area Map</a></li>
+          <li><a href="">Chart 2</a></li>
+          <li><a href="">Chart 3</a></li>
+        </ul>
+    </div>
+  -->
+    <div id="treeMapCard">
+      <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">&larr;UP</button>
+      <div class="feature" id="treeMapChart"></div>
+    </div>
   </div>
 
   <div id="sidebar">
@@ -66,8 +74,9 @@
       </div>
     </div>
 
-    <br/><br/>
+    <br /><br />
 
+<<<<<<< HEAD
     <div class = "sidebar - colorSlider">
         <table id = "sidebarinputs">
           <col width = "10">
@@ -85,10 +94,18 @@
         <input id="colorSlider" type="range" class="form-control-range">
       </div>
     
+=======
+    <div id="colorSlider">
+      <div class="row">
+        <input id="ccnSlider" type="range" class="form-control-range">
+      </div>
+    </div>
+
+>>>>>>> 212a109fd998ae50e62f9c8b0b214f9b14a352bf
 
   </div>
 
-  
+
   </div>
 
 

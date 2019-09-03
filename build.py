@@ -28,6 +28,7 @@ print("\tDone!")
 print("Making new dist directory...")
 os.mkdir(DIST_DIR)
 os.mkdir(DIST_DIR + "/web-ui")
+os.mkdir(DIST_DIR + "/web-ui/styles")
 print("\tDone!")
 
 # Create bundled web-ui javascript
@@ -41,7 +42,7 @@ if err:
     exit()
 
 proc = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/index.html", DIST_DIR + "/web-ui/index.html"], stderr=subprocess.PIPE)
-proc2 = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/style.css", DIST_DIR + "/web-ui/style.css"], stderr=subprocess.PIPE)
+proc2 = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/styles/styles.css", DIST_DIR + "/web-ui/styles/styles.css"], stderr=subprocess.PIPE)
 # proc3 = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/index.html", DIST_DIR + "web-ui/index.html"], stderr=subprocess.PIPE)
 err = proc.stderr.read()
 err2 = proc2.stderr.read()
