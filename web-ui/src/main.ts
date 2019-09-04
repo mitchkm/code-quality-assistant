@@ -2,7 +2,6 @@ import { MetricData, Metrics } from "./Data/metricData";
 import { exampleData } from "./Data/example";
 import Treemap from "./Treemap/treemap";
 import TreemapData from "./Data/treemapData";
-import colorSetting from "./Treemap/colorSetting";
 import treemapSetting from "./Treemap/treemapSetting";
 import InterfaceEventController from "./InterfaceEventController";
 import TreemapEventController from "./TreemapEventController";
@@ -11,6 +10,7 @@ const defaultSizeOption = Metrics.NLOC;
 const defaultColorOption = Metrics.CCN;
 const defaultfileOption = "none";
 
+// treemap Setting
 const treemapSettings: treemapSetting = {
     width: 100,
     height: 100,
@@ -46,6 +46,7 @@ treemap.drawTreemap();
 // set up DOM elements
 InterfaceEventController.init();
 
+// control user inputs for treemap
 const treemapController = TreemapEventController.instance;
 treemapController.setContext(mD, treemap, treemapSettings);
 treemapController.init();
