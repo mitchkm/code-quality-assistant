@@ -17,7 +17,9 @@ class Treemap {
     this.processedData = proceesedData;
     this.treemapSetting = treemapSetting;
   }
-
+/**
+ * create a treemapLayout based on treemapSetting
+ */
   private createTreemap() {
     const paddingTop = this.treemapSetting.paddings[0];
     const paddingBottom = this.treemapSetting.paddings[1];
@@ -50,6 +52,9 @@ class Treemap {
     return treemap;
   }
 
+  /**
+   * Create nodes of a treemap based on the hierarchy of data
+   */
   private createTreeNodes() {
     const root = d3.hierarchy(this.processedData);
     const treemap = this.createTreemap();
@@ -59,6 +64,10 @@ class Treemap {
     return nodes;
   }
 
+  /**
+   * dyamically add treemapChart in our web application
+   * @param nodes treemap nodes to create treemap with
+   */
   private setUpTreemapChart(nodes) {
     // deleting previous cell style
     if (d3.select(".node")) {
@@ -80,6 +89,10 @@ class Treemap {
     return chart;
   }
 
+  /**
+   * styles and displays a treemap in frontend
+   * @param processedData data to update the treemap
+   */
   drawTreemap(processedData?: TreemapData) {
     if (processedData) {
         this.processedData = processedData;
@@ -132,8 +145,8 @@ class Treemap {
   }
 
   /**
-   * This function does ...
-   * @param d parameter to do something
+   * Handles zooming in the treemap
+   * @param d 
    * @param chart
    * @param xScale
    * @param yScale
