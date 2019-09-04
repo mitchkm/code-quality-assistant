@@ -7164,8 +7164,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
     width: 100%;
-    padding: 3%;
-    border: 2px solid rgba(79, 170, 255, 0.5); }
+    padding: 3%; }
     #sidebar #treemapOptionsSidebarCard p {
       width: 100%;
       text-align: center;
@@ -7386,6 +7385,11 @@ input[type=range]::-webkit-slider-thumb {
   font-size: 1rem; }
 
 button:focus {
-  outline: none;
-  box-shadow: none;
+  outline: none !important;
+  box-shadow: none !important;
+  border: 2px solid transparent; }
+
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
   border: 2px solid transparent; }
