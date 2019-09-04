@@ -1,20 +1,17 @@
-import d3 = require("d3");
 import { MetricData, Metrics } from "./Data/metricData";
 import { exampleData } from "./Data/example";
 import Treemap from "./Treemap/treemap";
 import TreemapData from "./Data/treemapData";
 import colorSetting from "./Treemap/colorSetting";
 import treemapSetting from "./Treemap/treemapSetting";
-import FileSelector from "./Selector/fileSelector";
-import ColorSelector from "./Selector/colorSelector";
-import SizeSelector from "./Selector/sizeSelector";
 import InterfaceEventController from "./InterfaceEventController";
+import TreemapEventController from "./TreemapEventController";
 
 const defaultSizeOption = Metrics.NLOC;
 const defaultColorOption = Metrics.CCN;
 const defaultfileOption = "none";
 
-const treemapSetting: treemapSetting = {
+const treemapSettings: treemapSetting = {
     width: 100,
     height: 100,
     paddings: [0.3, 0.3, 0.3, 0.3],
@@ -38,33 +35,17 @@ try {
     data = exampleData;
 }
 
-// process data:
+// create metric data helper class
 const mD = new MetricData(data);
 
-// TreemapData
-const processedData: TreemapData = mD.toTreemapData(treemapSetting.sizeOption, treemapSetting.colorOption);
-
-// display treemap
-const treemap = new Treemap(processedData, treemapSetting);
-
-// treemap Options
-const fileSelector = new FileSelector(processedData, treemap);
-
-const colorSelector = new ColorSelector(treemap);
-
-const sizeSelector = new SizeSelector(treemap);
-
-fileSelector.createOptions();
-colorSelector.createOptions();
-sizeSelector.createOptions();
-
-// update treemap on change
-fileSelector.updateOnChange(data, treemapSetting);
-colorSelector.updateOnChange(data, treemapSetting);
-sizeSelector.updateOnChange(data, treemapSetting);
-
-InterfaceEventController.init();
-console.log(treemap);
+// create treemap
+const processedData: TreemapData = mD.toTreemapData(treemapSettings.sizeOption, treemapSettings.colorOption);
+const treemap = new Treemap(processedData, treemapSettings);
 treemap.drawTreemap();
-// treemap.drawTreemap(mD.toTreemapData(Metrics.CCN, Metrics.NLOC));
 
+// set up DOM elements
+InterfaceEventController.init();
+
+const treemapController = TreemapEventController.instance;
+treemapController.setContext(mD, treemap, treemapSettings);
+treemapController.init();
