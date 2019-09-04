@@ -286,59 +286,71 @@ body {
 
 // ========================== Chart Styles ==========================
 
+$m: 0; // margin
+
 *, *:before, *:after {
-    box-sizing: border-box;
+	box-sizing: border-box;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.feature {
+	position: relative;
+	width: calc(100% - #{$m} * 2 * 1px);
+	height: calc(100% - #{$m} * 2 * 1px);
+	margin: $m * 1px;
+	overflow: hidden;
 }
 
 .node {
-    position: absolute;
-    background: transparent url("") no-repeat (50% / cover);
-    overflow: hidden;
-    transition: opacity 0.8s;
+	position: absolute;
+	background: transparent url('') no-repeat 50% / cover;
+	overflow: hidden;
+	opacity: 0.8;
+	transition: opacity .8s;
     cursor: pointer;
     border: 1px white groove;
-}
-
-.node .label {
-    display: inline;
-    font-family: sans-serif;
-    color: rgba(255, 255, 255, 0.6);
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    transition: color 0.4s, opacity 0.8s, filter 0.8s;
-}
-
-.node.hide {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.node.hide .label {
-    filter: blur(10px);
-}
-
-.node:hover .label {
-    color: rgba(255, 255, 255, 1);
-}
-
-.node.level-0 {
-    z-index: 4;
-    font-size: 13vmin;
-    display: none;
-}
-
-.node.level-1 {
-    z-index: 3;
-    font-size: 3vmin;
-}
-
-.node.level-2 {
-    z-index: 2;
-    font-size: 2vmin;
+	.label {
+		display: inline;
+		font-family: sans-serif;
+		color: hsla(0,0,100,.6);
+		//white-space: nowrap;
+		position: absolute;
+		padding: 0;
+		margin: 0;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		transition: color .4s, opacity .8s, filter .8s;
+	}
+	&.hide { // zoom in
+		opacity: 0;
+		pointer-events: none;
+		.label {
+			filter: blur(10px);
+		}
+	}
+	&:hover {
+		.label {
+			color: hsla(0,0,100,1);
+		}
+	}
+	&.level-0 {
+		z-index: 4;
+		font-size: 13vmin;
+		display: none;
+	}
+	&.level-1 {
+		z-index: 3;
+		font-size: 3vmin;
+	}
+	&.level-2 {
+		z-index: 2;
+		font-size: 2vmin;
+	}
 }
 
 input[type=range]::-webkit-slider-runnable-track {
