@@ -15,6 +15,6 @@ An interactive tool that allows developers to visually see metrics of the codeba
 - tsify
 - d3
 ### Code Analysis
-- lizard
+- [lizard](https://github.com/terryyin/lizard) 1.16.3
 ### Build script dependencies
 - Pyinstaller
