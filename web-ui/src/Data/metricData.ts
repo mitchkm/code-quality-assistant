@@ -69,6 +69,14 @@ export class MetricData {
     }
   }
 
+  /**
+   * Deprecated held for compatiblity.
+   * TODO: remove this function
+   */
+  public ignore(names: string | string[], remove = false) {
+    this.addToFilterList(names, remove);
+  }
+
   private addToFilterListHelper(name: string, remove = false) {
     if (remove) {
       const index = this.filterList.indexOf(name);
@@ -161,8 +169,7 @@ export class MetricData {
     data.name = metricA + " x " + metricB;
     const values = [];
     const value2s = [];
-    for (const key in this.rawData.files) {
-      const file = this.rawData.files[key];
+    for (const file of this.rawData.files) {
       const filename = this.parseFileName(file.filename, this.rawData.path);
       if (ignoreList.indexOf(filename) === -1) {
         const fileChild: TreemapChild = {
@@ -174,8 +181,7 @@ export class MetricData {
         const cValues = [];
         const cValue2s = [];
         fileChild.name = filename;
-        for (const key2 in file.functions) {
-          const func = file.functions[key2];
+        for (const func of file.functions) {
           const funcChild: TreemapChild = {
             name: func.name,
             value: func[metricA],
