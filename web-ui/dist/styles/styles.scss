@@ -5,7 +5,8 @@
 // ========================== Variables ==========================
 $my-primary: #4faaff;
 $my-secondary: #ff1b72;
-$my-grad-list: $my-primary 0%, $my-secondary 100%;
+$my-grad-list: $my-primary 0%,
+$my-secondary 100%;
 $my-background: rgb(23, 26, 26);
 $my-sidebar-background: rgb(44, 26, 68);
 $my-secondary-background: rgb(82, 87, 87);
@@ -95,6 +96,14 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     border-radius: 10px;
 }
 
+@mixin sidebar-card {
+    position: relative;
+    background: $card-background;
+    width: 100%;
+    padding: 3%;
+
+}
+
 // ========================== End Mixins ==========================
 
 // ======================== Sidebar Styles ========================
@@ -124,9 +133,67 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         @include sidebar-block-button;
     }
 
+    #treemapOptionsSidebarCard {
+        @include sidebar-card;
+
+        p{
+            width: 100%;
+            text-align: center;
+            color: $my-text-color;
+            margin-top: 10px;
+            vertical-align: center;
+        }
+
+        hr {
+            background-color: $my-subheader-color;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        #sizeMetricSelector {
+            p {
+                color: $my-text-color;
+                margin-left: 5%;
+                text-align: right;
+            }
+
+            #sizeSelector {
+                width: 100%;
+            }
+        }
+
+        #colorMetricSelector {
+            p {
+                color: $my-text-color;
+                margin-left: 5%;
+                text-align: right;
+            }
+
+            #colorSelector {
+                width: 100%;
+            }
+        }
+
+        #colorSlider {
+            #ccnSlider {
+                margin-left: 10%;
+                width: 80%;
+            }
+        }
+
+        #sliderValDisplay {
+            color: $my-text-color;
+        }
+
+        #ccnSlider {
+            color: purple;
+        }
+
+    }
+
     #chartSelectBar {
 
-        button{
+        button {
             width: 100%;
             height: 50px;
             margin: 1px;
@@ -149,10 +216,12 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
                 background: rgba($my-secondary-background, 0.5);
             }
         }
+
         .active {
             color: rgba($my-primary, 0.8);
             border-bottom: 2px solid rgba($my-primary, 0.8);
-            background: rgba($my-secondary-background, 0.5);
+            background: $card-background;
+
             &:hover {
                 color: rgba($my-primary, 1);
                 border-bottom: 2px solid rgba($my-primary, 1);
@@ -184,47 +253,8 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
             margin-bottom: 2%;
 
             //padding: 100% 100%;
-       
+
         }
-    }
-
-    #sizeMetricSelector {
-        p {
-            color: $my-text-color;
-            margin-left: 5%;
-            text-align: right;
-        }
-
-        #sizeSelector {
-            width: 100%;
-        }
-    }
-
-    #colorMetricSelector {
-        p {
-            color: $my-text-color;
-            margin-left: 5%;
-            text-align: right;
-        }
-
-        #colorSelector {
-            width: 100%;
-        }
-    }
-
-    #colorSlider {
-        #ccnSlider {
-            margin-left: 10%;
-            width: 80%;
-        }
-    }
-
-    #sliderValDisplay {
-        color: $my-text-color;
-    }
-
-    #ccnSlider {
-        color: purple;
     }
 
     p {
@@ -239,6 +269,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 html {
     width: 100%; //this is here to make the gradient fit
     height: 100%; //this is here to make the gradient fit
+    overflow-y: hidden; // removes the scrollbar. Currently, our app doesn't scroll.
 }
 
 body {
@@ -309,7 +340,8 @@ html, body {
 	position: absolute;
 	background: transparent url('') no-repeat 50% / cover;
 	overflow: hidden;
-	opacity: 0.8;
+    opacity: 0.8;
+    -webkit-transition: opacity 0.8s;
 	transition: opacity .8s;
     cursor: pointer;
     border: 1px white groove;
@@ -399,6 +431,7 @@ input[type=range]::-webkit-slider-thumb {
 button:focus {
     outline: none;
     box-shadow: none;
-    border:2px solid transparent;
+    border: 2px solid transparent;
 }
+
 // ========================= End Style Fixes =========================

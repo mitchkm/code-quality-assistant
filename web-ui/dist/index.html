@@ -27,7 +27,7 @@
 
   <div id="sidebar">
     <div class="sidebar-header">
-      <h1 id="codeHeader">O P T I O N S</h1>
+      <h1>O P T I O N S</h1>
       <hr />
     </div>
 
@@ -51,44 +51,56 @@
       </ul>
       -->
     </div>
-    <br/> <br/>
 
+    <div id="treemapOptionsSidebarCard">
+        <p>Chart Options</p>
+        <hr />
 
-    <div id="sizeMetricSelector">
-      <div class="row">
-        <div class="col-md-6">
-          <p>Choose Size metric: </p>
-        </div>
-        <div class="col-md-6"><select id="sizeSelector"></select></div>
+        <div id="sizeMetricSelector">
+            <div class="row">
+              <div class="col-md-6">
+                <p>Choose Size metric: </p>
+              </div>
+              <div class="col-md-6"><select id="sizeSelector"></select></div>
+            </div>
+          </div>
+          <div id="colorMetricSelector">
+            <div class="row">
+              <div class="col-md-6">
+                <p>Choose Color metric: </p>
+              </div>
+              <div class="col-md-6"><select id="colorSelector"></select></select></div>
+            </div>
+          </div>
+      
+          <br /><br />
+      
+          <div class="sidebar - colorSlider">
+            <table id="sidebarinputs">
+              <col width="10">
+              <col width="10">
+              <tr>
+                <th>Lower bound</th>
+                <th>Upper bound</th>
+              </tr>
+              <tr>
+                <td width="30%"><input type="number" id="min" size="2"></td>
+                <td width="40%"><input type="number" id="max" size="2"></td>
+              </tr>
+            </table>
+            <button id="limitButton">Apply</button>
+            <input id="colorSlider" type="range" class="form-control-range">
+          </div>
+    </div>
+
+    <div id="chart2OptionsSidebarCard">
+      <!--Placeholder div for second chart-->
+    </div>
+
+    <div id="chart3OptionsSidebarCard">
+        <!--Placeholder div for third chart-->
       </div>
-    </div>
-    <div id="colorMetricSelector">
-      <div class="row">
-        <div class="col-md-6">
-          <p>Choose Color metric: </p>
-        </div>
-        <div class="col-md-6"><select id="colorSelector"></select></select></div>
-      </div>
-    </div>
-
-    <br /><br />
-
-    <div class="sidebar - colorSlider">
-      <table id="sidebarinputs">
-        <col width="10">
-        <col width="10">
-        <tr>
-          <th>Lower bound</th>
-          <th>Upper bound</th>
-        </tr>
-        <tr>
-          <td width="30%"><input type="number" id="min" size="2"></td>
-          <td width="40%"><input type="number" id="max" size="2"></td>
-        </tr>
-      </table>
-      <button id="limitButton">Apply</button>
-      <input id="colorSlider" type="range" class="form-control-range">
-    </div>
+  
     <br /><br />
     <div id="fileFilterSection">
       <div class="row">
@@ -98,6 +110,7 @@
         <input autoComplete="on" list="fileOptions" id="fileSelector">
         <datalist id="fileOptions"></datalist>
       </div>
+      <br/>
       <div class="row">
         <button type="button" class="btn btn-sq btn-outline-primary" id="fileFilterButton">Filter</button>
       </div>
