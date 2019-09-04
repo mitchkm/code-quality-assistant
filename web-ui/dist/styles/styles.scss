@@ -312,34 +312,34 @@ body {
     transition: color 0.4s, opacity 0.8s, filter 0.8s;
 }
 
-// .node.hide {
-//     opacity: 0;
-//     pointer-events: none;
-// }
+.node.hide {
+    opacity: 0;
+    pointer-events: none;
+}
 
-// .node.hide .label {
-//     filter: blur(10px);
-// }
+.node.hide .label {
+    filter: blur(10px);
+}
 
-// .node:hover .label {
-//     color: rgba(255, 255, 255, 1);
-// }
+.node:hover .label {
+    color: rgba(255, 255, 255, 1);
+}
 
-// .node.level-0 {
-//     z-index: 4;
-//     font-size: 13vmin;
-//     display: none;
-// }
+.node.level-0 {
+    z-index: 4;
+    font-size: 13vmin;
+    display: none;
+}
 
-// .node.level-1 {
-//     z-index: 3;
-//     font-size: 3vmin;
-// }
+.node.level-1 {
+    z-index: 3;
+    font-size: 3vmin;
+}
 
-// .node.level-2 {
-//     z-index: 2;
-//     font-size: 2vmin;
-// }
+.node.level-2 {
+    z-index: 2;
+    font-size: 2vmin;
+}
 
 input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
