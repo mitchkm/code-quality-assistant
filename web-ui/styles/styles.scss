@@ -101,6 +101,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     background: $card-background;
     width: 100%;
     padding: 3%;
+    display: none; //sets all cards to not display by default. Displaying is handled in InterfaceEventController.ts
     //border: 
 
 }
@@ -190,6 +191,15 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
             color: purple;
         }
 
+    }
+    #chart2OptionsSidebarCard{
+        @include sidebar-card;
+        height: 100px;
+
+    }
+    #chart3OptionsSidebarCard{
+        @include sidebar-card;
+        height: 200px;
     }
 
     #chartSelectBar {
