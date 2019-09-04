@@ -98,7 +98,6 @@ class Treemap {
         this.processedData = processedData;
     }
     const nodes = this.createTreeNodes();
-    console.log(nodes);
     const chart = this.setUpTreemapChart(nodes);
     const upButton = d3.select("#TreemapBackButton").datum(nodes);
 
@@ -146,12 +145,10 @@ class Treemap {
 
   /**
    * Handles zooming in the treemap
-   * @param d 
-   * @param chart
-   * @param xScale
-   * @param yScale
-   * @param upButton
-   * @param nodes
+   * @param d current node in the treemap
+   * @param chart treemapChart created by setUpTreemapChart function
+   * @param upButton navigates treemap to zoom out
+   * @param nodes entire nodes in the treemap
    */
   private zoomTreemap(d, chart, upButton, nodes) {
     const currentDepth = d.depth;
