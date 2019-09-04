@@ -32,6 +32,8 @@ def checkPathExists():
     if(os.path.exists(path) is not True):
         print("error: Path \'", path, "\' does not exist.")
         sys.exit()
+    if (os.path.isdir(path)):
+        path += '/'
     return path
 
 # for packaged data files in the stand alone executable
