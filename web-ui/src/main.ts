@@ -63,7 +63,7 @@ fileSelector.updateOnChange(data, treemapSetting);
 colorSelector.updateOnChange(data, treemapSetting);
 sizeSelector.updateOnChange(data, treemapSetting);
 
-new InterfaceEventController();
+InterfaceEventController.init();
 console.log(treemap);
 treemap.drawTreemap();
 // treemap.drawTreemap(mD.toTreemapData(Metrics.CCN, Metrics.NLOC));
