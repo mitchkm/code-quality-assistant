@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Our Custom CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles/styles.css">
   <!-- JQuery -->
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
@@ -19,16 +19,6 @@
 
 
   <div id="contentArea">
-    <!--
-    <div id="chartNavCard">
-        <ul>
-          <li><h1 id="codeHeader">Code</h1><h1 id="analysisHeader">|Analysis</h1></li>
-          <li><a href="">Area Map</a></li>
-          <li><a href="">Chart 2</a></li>
-          <li><a href="">Chart 3</a></li>
-        </ul>
-    </div>
-  -->
     <div id="treeMapCard">
       <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">&larr;UP</button>
       <div class="feature" id="treeMapChart"></div>
@@ -51,7 +41,7 @@
         <datalist id="fileOptions"></datalist>
       </div>
       <div class="row">
-        <button type="button" class="btn btn-sq btn-outline-primary" id="filterButton">Filter</button>
+        <button type="button" class="btn btn-sq btn-outline-primary" id="fileFilterButton">Filter</button>
       </div>
     </div>
 
@@ -75,28 +65,7 @@
     </div>
 
     <br /><br />
-
-    <div class = "sidebar - colorSlider">
-        <table id = "sidebarinputs">
-          <col width = "10">
-          <col width = "10">
-          <tr>
-            <th>Lower bound</th>
-            <th>Upper bound</th>
-          </tr>
-          <tr>
-            <td width = "30%"><input type= "number" id = "min" size = "2"></td>
-            <td width = "40%"><input type = "number" id = "max" size = "2"></td>
-          </tr>
-        </table>
-        <button id = "limitButton">Apply</button>
-        <input id="colorSlider" type="range" class="form-control-range">
-      </div>
-    
-
   </div>
-
-
   </div>
 
 
