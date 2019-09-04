@@ -28,14 +28,10 @@ def checkPathExists():
     if(len(sys.argv) < 2):
         print("error: No path given.")
         sys.exit()
-    path = sys.argv[1]
-    if (path[-1] is not '/') and os.path.isdir(path):
-        path += "/"
+    path = os.path.abspath(sys.argv[1])
     if(os.path.exists(path) is not True):
         print("error: Path \'", path, "\' does not exist.")
         sys.exit()
-    if path[0] is not '/':
-        path = os.getcwd() + "/" + path
     return path
 
 # for packaged data files in the stand alone executable
@@ -72,7 +68,7 @@ def buildFilenameList(path):
             files.append(path)
             return files
     for ext in analyzer.LIZARD_SUPPORTED_LANGUAGES:
-        addUs = [f for f in glob.glob(path + "**/*." + ext, recursive=True)]
+        addUs = [f for f in glob.glob(path + "/**/*." + ext, recursive=True)]
         files.extend(addUs)
     return files
 
