@@ -1,7 +1,8 @@
 dist/*
-code-analysis/testfile.py
 **/node_modules/*
+**/__pycache__/*
 code-quality-assistant
+
 code-analysis/web-ui/*
 code-analysis/code-quality-assistant/*
 !code-analysis/web-ui/.keep

@@ -8,6 +8,7 @@ import treemapSetting from "./Treemap/treemapSetting";
 import FileSelector from "./Selector/fileSelector";
 import ColorSelector from "./Selector/colorSelector";
 import SizeSelector from "./Selector/sizeSelector";
+import InterfaceEventController from "./InterfaceEventController";
 
 const defaultSizeOption = "nloc";
 const defaultColorOption = "ccn";
@@ -67,5 +68,7 @@ fileSelector.updateOnChange(data, treemapSetting);
 colorSelector.updateOnChange(data, treemapSetting);
 sizeSelector.updateOnChange(data, treemapSetting);
 
-// console.log(treemap);
+new InterfaceEventController();
+console.log(treemap);
 treemap.drawTreemap();
+

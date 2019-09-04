@@ -24,11 +24,10 @@ $red: rgb(255, 0, 51);
 $orange: rgb(199, 185, 184);
 $pink: rgb(255, 0, 106);
 
-
 $sidebar-width: 30%;
 $content-area-width: 70%;
 $content-margin: 2%;
-$margin-adjusted-percentage: 100% -(2 * $content-margin);
+$margin-adjusted-percentage: 100% - 2 * $content-margin;
 
 $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $my-background);
 
@@ -76,18 +75,18 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     }
 }
 
-@mixin sidebar-block-button{
+@mixin sidebar-block-button {
     margin-left: 5%;
     width: 90%;
 }
 
-@mixin square-button($size-percentage){
+@mixin square-button($size-percentage) {
     width: $size-percentage;
     height: $size-percentage;
 }
 
 // template for a full-page background card for a chart
-@mixin content-card{
+@mixin content-card {
     position: relative;
     background: $card-background;
     width: $margin-adjusted-percentage;
@@ -109,8 +108,6 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 
     .sidebar-header {
         text-align: center;
-
-        //background-color: $my-secondary;
         color: $my-text-color;
         margin-top: 10px;
         vertical-align: center;
@@ -127,48 +124,100 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         @include sidebar-block-button;
     }
 
-    #fileFilterSection{
-        p{
+    #chartSelectBar {
+
+        button{
+            width: 100%;
+            height: 50px;
+            margin: 1px;
+            color: rgba($my-primary, 0.5);
+            border: none;
+            border-bottom: 2px solid rgba($my-primary, 0.5);
+            background: transparent;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+
+            &:hover {
+                color: rgba($my-primary, 1);
+                border-bottom: 2px solid rgba($my-primary, 1);
+                background: rgba($my-secondary-background, 0.1);
+            }
+
+            &:active {
+                color: rgba($my-primary, 0.8);
+                border-bottom: 2px solid rgba($my-primary, 0.8);
+                background: rgba($my-secondary-background, 0.5);
+            }
+        }
+        .active {
+            color: rgba($my-primary, 0.8);
+            border-bottom: 2px solid rgba($my-primary, 0.8);
+            background: rgba($my-secondary-background, 0.5);
+            &:hover {
+                color: rgba($my-primary, 1);
+                border-bottom: 2px solid rgba($my-primary, 1);
+                background: rgba($my-secondary-background, 0.6);
+            }
+
+            &:active {
+                color: rgba($my-primary, 0.8);
+                border-bottom: 2px solid rgba($my-primary, 0.8);
+                background: rgba($my-secondary-background, 0.6);
+            }
+        }
+    }
+
+    #fileFilterSection {
+        p {
             margin-left: 5%;
         }
-        #fileSelector{
+
+        #fileSelector {
             margin-left: 5%;
             width: 90%;
         }
-        #filterButton{
+
+        #filterButton {
             @include normal-button;
+
             margin-top: 2%;
             margin-bottom: 2%;
+
             //padding: 100% 100%;
+       
         }
     }
-    #sizeMetricSelector{
-        p{
+
+    #sizeMetricSelector {
+        p {
             color: $my-text-color;
             margin-left: 5%;
             text-align: right;
         }
-        #sizeSelector{
-            //width: 100%;
+
+        #sizeSelector {
+            width: 100%;
         }
     }
-    #colorMetricSelector{
-        p{
+
+    #colorMetricSelector {
+        p {
             color: $my-text-color;
             margin-left: 5%;
             text-align: right;
         }
-        #colorSelector{
-            //width: 100%;
+
+        #colorSelector {
+            width: 100%;
         }
     }
-    #colorSlider{
-        #ccnSlider{
+
+    #colorSlider {
+        #ccnSlider {
             margin-left: 10%;
             width: 80%;
         }
     }
-
 
     #sliderValDisplay {
         color: $my-text-color;
@@ -178,46 +227,23 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         color: purple;
     }
 
-    p{
+    p {
         color: $my-text-color;
     }
 }
 
 // ====================== End Sidebar Styles ======================
 
-// ======================== Nav Card Styles ========================
-#chartNavCard{
-    @include content-card;
-    height: 10%;
-    ul{
-        list-style-type: none;
-        margin: 0;
-  padding: 0;
-        #codeHeader{
-            display: inline;
-            color: $my-header-color;
-        }
-        #analysisHeader{
-            display: inline;
-            color: $my-subheader-color;
-        }
-        li{
-            display: block;
-        }
-    }
-}
-// ====================== End Nav Card Styles ======================
-
 // ====================== Body Content Styles ======================
 
-html{
-    width: 100%;  //this is here to make the gradient fit
+html {
+    width: 100%; //this is here to make the gradient fit
     height: 100%; //this is here to make the gradient fit
 }
 
 body {
-    width: 100%;   //this is here to make the gradient fit
-    height: 100%;  //this is here to make the gradient fit
+    width: 100%; //this is here to make the gradient fit
+    height: 100%; //this is here to make the gradient fit
     background: $my-gradient;
     font-family: 'Roboto', sans-serif;
 }
@@ -225,32 +251,37 @@ body {
 // ==================== End Body Content Styles ====================
 
 // ======================== Chart Card Styles ========================
-#treeMapCard{
+#treeMapCard {
     @include content-card;
-    #TreemapBackButton{
+
+    #TreemapBackButton {
         @include secondary-button;
+
         position: relative;
         width: $margin-adjusted-percentage;
-        height: $margin-adjusted-percentage * .1 - $content-margin;
+        height: $margin-adjusted-percentage * 0.1 - $content-margin;
         margin: $content-margin;
     }
+
     #treeMapChart {
         position: relative;
-        height: $margin-adjusted-percentage  * .9 - $content-margin;
+        height: $margin-adjusted-percentage * 0.9 - $content-margin;
         width: $margin-adjusted-percentage;
         margin: $content-margin;
         margin-top: 0;
-    }   
+    }
 }
+
 // ====================== End Chart Card Styles ======================
 
 // ======================== Content Area Styles ========================
-#contentArea{
+#contentArea {
     position: relative;
     width: $content-area-width;
     height: 100%;
     margin: 0;
 }
+
 // ====================== End Content Area Styles ======================
 
 // ========================== Chart Styles ==========================
@@ -311,42 +342,51 @@ body {
 // }
 
 input[type=range]::-webkit-slider-runnable-track {
-	width: 100%;
-	height: 19px;
-	cursor: pointer;
-	box-shadow: 0 4px 4px rgba(0,0,0,0.3) inset;
-	background: linear-gradient(to right, green, yellow, orange, red);
-	border-radius: 20px;
-	border: 0.2px solid #010101;
-  }
+    width: 100%;
+    height: 19px;
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3) inset;
+    background: linear-gradient(to right, green, yellow, orange, red);
+    border-radius: 20px;
+    border: 0.2px solid #010101;
+}
 
-  input[type=range]::-webkit-slider-thumb {
-	box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-	border: 1px solid #000000;
-	height: 20px;
-	width: 20px;
-	border-radius: 20px;
-	background: white;
-	cursor: pointer;
-	-webkit-appearance: none;
-	margin-top: -1px;
-  }
-  
-  #colorSlider:before {
-	content: attr(min);
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	color: black;
-	font-size: 1rem;
-  }
-  #colorSlider:after {
-	content: attr(max);
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	color: black;
-	font-size: 1rem;
-  }
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -1px;
+}
+
+#colorSlider:before {
+    content: attr(min);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: black;
+    font-size: 1rem;
+}
+
+#colorSlider:after {
+    content: attr(max);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: black;
+    font-size: 1rem;
+}
 
 // ======================== End Chart Styles ========================
+
+// =========================== Style Fixes ===========================
+button:focus {
+    outline: none;
+    box-shadow: none;
+    border:2px solid transparent;
+}
+// ========================= End Style Fixes =========================
