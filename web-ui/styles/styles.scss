@@ -136,7 +136,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 
     #treemapOptionsSidebarCard {
         @include sidebar-card;
-        border: 2px solid rgba($my-primary, 0.5);
+        //border: 10px solid rgba($my-primary, 0.5);
         p{
             width: 100%;
             text-align: center;
@@ -430,8 +430,13 @@ input[type=range]::-webkit-slider-thumb {
 
 // =========================== Style Fixes ===========================
 button:focus {
-    outline: none;
-    box-shadow: none;
+    outline: none!important;
+    box-shadow: none!important;
+    border: 2px solid transparent;
+}
+input:focus {
+    outline: none!important;
+    box-shadow: none!important;
     border: 2px solid transparent;
 }
 
