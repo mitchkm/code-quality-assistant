@@ -1,15 +1,22 @@
 import d3 = require("d3");
+import Selector from "./selector";
+import Treemap from "../Treemap/treemap";
+import TreemapData from "../Data/treemapData";
+import TreemapSetting from "../Treemap/treemapSetting";
+import { MetricData } from "../Data/metricData";
 
-class FileSelector implements Selector {
+class FileSelector extends Selector {
 
-    processedData: any;
+    processedData: TreemapData;
 
-    constructor(processedData) {
+    constructor(processedData: TreemapData, treemap: Treemap) {
+        super(treemap);
         this.processedData = processedData;
     }
 
-    createDropDown() {
-        const fileNames = this.createOptions();
+    createOptions() {
+        const fileNames = this.listOptions();
+
         // delete existing dropdown options
         if (d3.select("#fileOptions").select("option") !== undefined) {
             d3.select("#fileOptions").selectAll("option").remove();
@@ -23,7 +30,14 @@ class FileSelector implements Selector {
             .attr("value", function(d) { return d; });
     }
 
-    private createOptions() {
+    updateOnChange(data: any, treemapSetting: TreemapSetting) {
+        d3.select("#fileFilterButton")
+            .on("click", () => {
+                super.updateTreemap(data, treemapSetting);
+            });
+    }
+
+    private listOptions() {
         const fileList = ["none"];
         let i;
         for (i = 0; i < this.processedData.children.length; i++) {
