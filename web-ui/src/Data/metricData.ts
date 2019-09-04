@@ -29,6 +29,9 @@ export enum Metrics {
 
 export class MetricData {
   private allFiles: string[] = [];
+  public get fileList() {
+    return this.allFiles;
+  }
   private filterList: string[] = [];
   private inverseFilterList: string[] = [];
   private listToggle = "black";
@@ -42,6 +45,9 @@ export class MetricData {
     this.inverseFilterList = this.allFiles.slice();
   }
 
+  /**
+   * clear list of files that should be filter
+   */
   public clearFilterList() {
     this.filterList = [];
     this.inverseFilterList = this.allFiles.slice();
@@ -127,7 +133,7 @@ export class MetricData {
    * @param metricA Metric to represent the size of treemap
    * @param metricB Metric to represent normalized value for color or other visual
    */
-  public toTreemapData(metricA: string, metricB: string) {
+  public toTreemapData(metricA: string, metricB: string): TreemapData {
     let ignoreList;
     if (this.listToggle === "white") {
       ignoreList = this.inverseFilterList;
@@ -150,7 +156,7 @@ export class MetricData {
     ignoreList: string[],
     aggregateA: (arr: number[]) => number = this.sumArray,
     aggregateB: (arr: number[]) => number = this.sumArray
-  ) {
+  ): TreemapData {
     const data: TreemapData = {
       name: "",
       value: 0,

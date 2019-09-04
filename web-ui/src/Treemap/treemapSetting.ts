@@ -1,9 +1,11 @@
+import ColorSetting from "./colorSetting";
+
 interface TreemapSetting {
     width: number;
     height: number;
     // [paddingTop, paddingBottom, paddingLeft, paddingRight]
     paddings: number[];
-    color: d3.ScaleLinear<string, string>;
+    color: ColorSetting;
     sizeOption: string;
     colorOption: string;
     fileOption: string;
