@@ -43,6 +43,8 @@ def fileInfoToDict(fileInfo):
 # converts FunctionInformation object into dictionary
 def funcInfoToDict(funcInfo):
     return { 'name'   : funcInfo.name,
+             'longName': funcInfo.long_name,
+             'startLine': funcInfo.start_line,
              'nloc'   : funcInfo.nloc,
              'ccn'    : funcInfo.cyclomatic_complexity,
              'tokens' : funcInfo.token_count,
