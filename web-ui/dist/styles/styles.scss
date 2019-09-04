@@ -340,7 +340,8 @@ html, body {
 	position: absolute;
 	background: transparent url('') no-repeat 50% / cover;
 	overflow: hidden;
-	opacity: 0.8;
+    opacity: 0.8;
+    -webkit-transition: opacity 0.8s;
 	transition: opacity .8s;
     cursor: pointer;
     border: 1px white groove;

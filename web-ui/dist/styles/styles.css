@@ -10956,19 +10956,33 @@ body {
   margin: 0;
 }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.feature {
+  position: relative;
+  width: calc(100% - 0 * 2 * 1px);
+  height: calc(100% - 0 * 2 * 1px);
+  margin: 0px;
+  overflow: hidden;
 }
 
 .node {
   position: absolute;
   background: transparent url("") no-repeat 50%/cover;
   overflow: hidden;
+  opacity: 0.8;
   -webkit-transition: opacity 0.8s;
-  transition: opacity 0.8s;
+  -webkit-transition: opacity .8s;
+  transition: opacity .8s;
   cursor: pointer;
   border: 1px white groove;
 }
@@ -10984,10 +10998,10 @@ body {
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%);
-  -webkit-transition: color 0.4s, opacity 0.8s, -webkit-filter 0.8s;
-  transition: color 0.4s, opacity 0.8s, -webkit-filter 0.8s;
-  transition: color 0.4s, opacity 0.8s, filter 0.8s;
-  transition: color 0.4s, opacity 0.8s, filter 0.8s, -webkit-filter 0.8s;
+  -webkit-transition: color .4s, opacity .8s, -webkit-filter .8s;
+  transition: color .4s, opacity .8s, -webkit-filter .8s;
+  transition: color .4s, opacity .8s, filter .8s;
+  transition: color .4s, opacity .8s, filter .8s, -webkit-filter .8s;
 }
 
 .node.hide {
