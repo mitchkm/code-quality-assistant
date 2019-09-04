@@ -1,9 +1,4 @@
-interface TreemapChild {
-  name: string;
-  value: number;
-  value2: number;
-  children: TreemapChild[];
-}
+import TreemapData from "./treemapData";
 
 interface FunctionData {
   name: string;
@@ -156,7 +151,7 @@ export class MetricData {
     aggregateA: (arr: number[]) => number = this.sumArray,
     aggregateB: (arr: number[]) => number = this.sumArray
   ) {
-    const data: TreemapChild = {
+    const data: TreemapData = {
       name: "",
       value: 0,
       value2: 0,
@@ -172,7 +167,7 @@ export class MetricData {
     for (const file of this.rawData.files) {
       const filename = this.parseFileName(file.filename, this.rawData.path);
       if (ignoreList.indexOf(filename) === -1) {
-        const fileChild: TreemapChild = {
+        const fileChild: TreemapData = {
           name: "",
           value: 0,
           value2: 0,
@@ -182,7 +177,7 @@ export class MetricData {
         const cValue2s = [];
         fileChild.name = filename;
         for (const func of file.functions) {
-          const funcChild: TreemapChild = {
+          const funcChild: TreemapData = {
             name: func.name,
             value: func[metricA],
             value2: func[metricB],

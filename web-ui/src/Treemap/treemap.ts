@@ -1,46 +1,35 @@
 import d3 = require("d3");
-import TreemapData from "./treemapData";
+import TreemapSetting from "./treemapSetting";
 
 class Treemap {
 
     processedData: any;
 
-    width: number;
-
-    height: number;
-
-    color: ((x: number) => string);
-
     xScale: any;
 
     yScale: any;
 
-    chart: any;
+    treemapSetting: TreemapSetting;
 
-    upButton: any;
-
-    constructor(proceesedData, width: number, height: number, color) {
+    constructor(proceesedData, treemapSetting) {
 
         this.processedData = proceesedData;
 
-        this.width = width;
+        this.treemapSetting = treemapSetting;
 
-        this.height = height;
+        this.xScale = d3.scaleLinear().domain([0, treemapSetting.width]).range([0, treemapSetting.width]);
 
-        this.color = color;
-
-        this.xScale = d3.scaleLinear().domain([0, width]).range([0, width]);
-
-        this.yScale = d3.scaleLinear().domain([0, height]).range([0, height]);
-
-        this.chart = d3.select("#treeMapChart");
-
-        this.upButton = d3.select("#TreemapBackButton");
+        this.yScale = d3.scaleLinear().domain([0, treemapSetting.height]).range([0, treemapSetting.height]);
     }
 
-    private createTreemap(paddingTop, paddingBottom, paddingLeft, paddingRight) {
+    private createTreemap() {
+        const paddingTop = this.treemapSetting.paddings[0];
+        const paddingBottom = this.treemapSetting.paddings[1];
+        const paddingLeft = this.treemapSetting.paddings[2];
+        const paddingRight = this.treemapSetting.paddings[3];
+
         const treemap = d3.treemap()
-            .size([this.width, this.height])
+            .size([this.treemapSetting.width, this.treemapSetting.height])
             .tile(d3.treemapResquarify)
             .round(false)
             .paddingTop(paddingTop)
@@ -52,7 +41,7 @@ class Treemap {
 
     private createTreeNodes() {
         const root = d3.hierarchy(this.processedData);
-        const treemap = this.createTreemap(0.3, 0.3, 0.3, 0.3);
+        const treemap = this.createTreemap();
         const nodes = treemap(root
             .sort(d => d.value)
             .sort((a, b) => a.value - b.value));
@@ -66,41 +55,42 @@ class Treemap {
             d3.selectAll(".node").remove();
         }
 
-        const chart = this.chart
+        const chart = d3.select("#treeMapChart")
             .selectAll(".node")
             .data(nodes.descendants())
             .enter()
             .append("div")
-            .attr("class", function (d) { return "node level-" + d.depth; })
-            .attr("id", function (d) { return d.children ? d.data.name : d.parent.data.name; });
+            .attr("class", (d: any) => { return "node level-" + d.depth; })
+            .attr("id", (d: any) => { return d.children ? d.data.name : d.parent.data.name; });
         return chart;
     }
 
     drawTreemap() {
         const nodes = this.createTreeNodes();
+        console.log(nodes);
         const chart = this.setUpTreemapChart(nodes);
-        const upButton = this.upButton.datum(nodes);
+        const upButton = d3.select("#TreemapBackButton").datum(nodes);
 
         chart
-            .style("left", (d) => { return this.xScale(d.x0) + "%"; })
-            .style("top", (d) => { return this.yScale(d.y0) + "%"; })
-            .style("width", (d) => { return this.xScale(d.x1) - this.xScale(d.x0) + "%"; })
-            .style("height", (d) => { return this.yScale(d.y1) - this.yScale(d.y0) + "%"; })
-            .style("background-color", (d) => {
-                // need to fix this!
+            .style("left", (d: any) => { return this.xScale(d.x0) + "%"; })
+            .style("top", (d: any) => { return this.yScale(d.y0) + "%"; })
+            .style("width", (d: any) => { return this.xScale(d.x1) - this.xScale(d.x0) + "%"; })
+            .style("height", (d: any) => { return this.yScale(d.y1) - this.yScale(d.y0) + "%"; })
+            .style("background-color", (d: any) => {
+                // make user to choose these thresholds
                 if (d.depth === 1) {
                     return "transparent";
                 }
-                return d.parent ? this.color(d.data.value2 / d.parent.data.value2) : "none";
+                return d.parent ? this.treemapSetting.color(d.data.value2 / d.parent.data.value2) : "none";
             })
             .on("click", (d) => { this.zoomTreemap(d, chart, upButton, nodes); })
             .append("p")
             .attr("class", "label")
-            .text((d) => { return d.data.name ? d.data.name : "---"; });
+            .text((d: any) => { return d.data.name ? d.data.name : "---"; });
 
         // hide the text when it's fully zoomed-out
         chart.selectAll("p")
-            .style("opacity", (d) => { return d.depth > 1 ? 0 : 1; });
+            .style("opacity", (d: any) => { return d.depth > 1 ? 0 : 1; });
 
         upButton.on("click", (d) => { this.zoomTreemap(d, chart, upButton, nodes); });
         return chart;
@@ -117,8 +107,7 @@ class Treemap {
      */
     private zoomTreemap(d, chart, upButton, nodes) {
         const currentDepth = d.depth;
-        const xScale = this.xScale;
-        xScale.domain([d.x0, d.x1]);
+        this.xScale.domain([d.x0, d.x1]);
         this.yScale.domain([d.y0, d.y1]);
         upButton.datum(d.parent || nodes);
 
@@ -148,17 +137,6 @@ class Treemap {
                 .selectAll("p")
                 .style("opacity", function (d) { return d.depth > currentDepth + 1 ? 0 : 1; });
         }
-    }
-
-    updateTreemap() {
-        const selectedSize = d3.select("#sizeSelector").property("value");
-        const selectedColor = d3.select("#colorSelector").property("value");
-        const selectedFile = d3.select("#fileSelector").property("value");
-        const treemapData = new TreemapData(selectedSize, selectedColor, selectedFile);
-        const processedData = treemapData.processData();
-        const treemap = new Treemap(processedData, this.width, this.height, this.color);
-        console.log(treemap);
-        treemap.drawTreemap();
     }
 }
 
