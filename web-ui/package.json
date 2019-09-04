@@ -4,11 +4,13 @@
   "description": "Web based UI to visualize code quality analysis metrics",
   "main": "index.js",
   "scripts": {
+    "build": "run-p bundle sass",
     "bundle": "node ./bundler.js > ./dist/bundle.js",
     "sass": "node-sass ./styles/styles.scss -o ./dist/",
     "sass:watch": "node-sass --watch ./styles/styles.scss -o ./dist/",
+    "premove-to-code-analysis": "run-s build",
     "move-to-code-analysis": "cp ./dist/* ../code-analysis/web-ui",
-    "ts-build": "tsc -b",
+    "watch": "nodemon --watch ./src --watch ./styles -e ts,scss -x \"npm run build\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "contributors": [
@@ -26,6 +28,8 @@
     "browserify": "^16.3.0",
     "jquery": "^3.4.1",
     "node-sass": "^4.12.0",
+    "nodemon": "^1.19.2",
+    "npm-run-all": "^4.1.5",
     "popper.js": "^1.14.7",
     "ts-loader": "^6.0.4",
     "tsify": "^4.0.1",
