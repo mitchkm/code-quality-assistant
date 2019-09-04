@@ -10770,6 +10770,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
   background: rgba(255, 255, 255, 0.1);
   width: 100%;
   padding: 3%;
+  border: 2px solid rgba(79, 170, 255, 0.5);
 }
 
 #sidebar #treemapOptionsSidebarCard p {
