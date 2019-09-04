@@ -7164,7 +7164,8 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
     width: 100%;
-    padding: 3%; }
+    padding: 3%;
+    display: none; }
     #sidebar #treemapOptionsSidebarCard p {
       width: 100%;
       text-align: center;
@@ -7194,6 +7195,20 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       color: #f6f6f6; }
     #sidebar #treemapOptionsSidebarCard #ccnSlider {
       color: purple; }
+  #sidebar #chart2OptionsSidebarCard {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    padding: 3%;
+    display: none;
+    height: 100px; }
+  #sidebar #chart3OptionsSidebarCard {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    padding: 3%;
+    display: none;
+    height: 200px; }
   #sidebar #chartSelectBar button {
     width: 100%;
     height: 50px;

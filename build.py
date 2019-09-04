@@ -41,8 +41,14 @@ if err:
     print("\tFailed to bundle typescript code!")
     exit()
 
+proc = subprocess.Popen(["npm", "run", "sass"], cwd=WEB_UI_DIR, stderr=subprocess.PIPE)
+err = proc.stderr.read()
+if err: 
+    print("\tFailed to compile sass stylesheet!")
+    exit()
+
 proc = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/index.html", DIST_DIR + "/web-ui/index.html"], stderr=subprocess.PIPE)
-proc2 = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/styles/styles.css", DIST_DIR + "/web-ui/styles/styles.css"], stderr=subprocess.PIPE)
+proc2 = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/styles.css", DIST_DIR + "/web-ui/styles.css"], stderr=subprocess.PIPE)
 # proc3 = subprocess.Popen(["cp", WEB_UI_DIR + "/dist/index.html", DIST_DIR + "web-ui/index.html"], stderr=subprocess.PIPE)
 err = proc.stderr.read()
 err2 = proc2.stderr.read()
@@ -56,8 +62,10 @@ print("\tDone!")
 # Get python files
 print("Get python files...")
 proc = subprocess.Popen(["cp", CODE_ANALYSIS_DIR + "/main.py", DIST_DIR + "/main.py"], stderr=subprocess.PIPE)
+proc2 = subprocess.Popen(["cp", CODE_ANALYSIS_DIR + "/analyzer.py", DIST_DIR + "/analyzer.py"], stderr=subprocess.PIPE)
 err = proc.stderr.read()
-if err: 
+err2 = proc2.stderr.read()
+if err or err2: 
     print("\tFailed to copy python files")
     exit()
 print("\tDone!")
