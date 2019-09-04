@@ -70,14 +70,6 @@ export class MetricData {
     }
   }
 
-  /**
-   * Deprecated held for compatiblity.
-   * TODO: remove this function
-   */
-  public ignore(names: string | string[], remove = false) {
-    this.addToFilterList(names, remove);
-  }
-
   private addToFilterListHelper(name: string, remove = false) {
     if (remove) {
       const index = this.filterList.indexOf(name);
