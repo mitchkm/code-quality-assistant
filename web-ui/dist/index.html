@@ -49,37 +49,26 @@
         <h3>Tree Map Options</h3>
         <hr>
 
-        <div id="sizeMetricSelector">
+        <div id="optionsGridContainer">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
               <p>Choose Size metric: </p>
             </div>
-            <div class="col-md-6"><select id="sizeSelector"></select></div>
+            <div class="col-md-7">
+              <select id="sizeSelector"></select>
+            </div>
           </div>
-        </div>
-        <div id="colorMetricSelector">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-5">
               <p>Choose Color metric: </p>
             </div>
-            <div class="col-md-6"><select id="colorSelector"></select></select></div>
+            <div class="col-7">
+              <select id="colorSelector"></select>
+            </div>
           </div>
-        </div>
-        <div class="sidebar - colorSlider">
-          <table id="sidebarinputs">
-            <col width="10">
-            <col width="10">
-            <tr>
-              <th>Lower bound</th>
-              <th>Upper bound</th>
-            </tr>
-            <tr>
-              <td width="30%"><input type="number" id="min" size="2"></td>
-              <td width="40%"><input type="number" id="max" size="2"></td>
-            </tr>
-          </table>
-          <button id="limitButton">Apply</button>
-          <input id="colorSlider" type="range" class="form-control-range">
+          <div class="row">
+            <input id="colorSlider" type="range" class="form-control-range">
+          </div>
         </div>
       </div>
 

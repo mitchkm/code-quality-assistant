@@ -7180,21 +7180,38 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       background-color: #686868;
       margin-left: 20px;
       margin-right: 20px; }
-    #sidebar #treemapOptionsSidebarCard #sizeMetricSelector p {
-      color: #f6f6f6;
+    #sidebar #treemapOptionsSidebarCard #sizeSelector {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0;
       margin-left: 5%;
-      text-align: right; }
-    #sidebar #treemapOptionsSidebarCard #sizeMetricSelector #sizeSelector {
-      width: 100%; }
-    #sidebar #treemapOptionsSidebarCard #colorMetricSelector p {
-      color: #f6f6f6;
+      margin-right: 5%;
+      width: 90%;
+      padding-left: 5px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0; }
+      #sidebar #treemapOptionsSidebarCard #sizeSelector::placeholder {
+        color: black; }
+    #sidebar #treemapOptionsSidebarCard #colorSelector {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0;
       margin-left: 5%;
-      text-align: right; }
-    #sidebar #treemapOptionsSidebarCard #colorMetricSelector #colorSelector {
-      width: 100%; }
-    #sidebar #treemapOptionsSidebarCard #colorSlider #ccnSlider {
-      margin-left: 10%;
-      width: 80%; }
+      margin-right: 5%;
+      width: 90%;
+      padding-left: 5px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0; }
+      #sidebar #treemapOptionsSidebarCard #colorSelector::placeholder {
+        color: black; }
+    #sidebar #treemapOptionsSidebarCard #colorSlider {
+      margin-left: 4%;
+      margin-right: 4%;
+      width: 96%; }
     #sidebar #treemapOptionsSidebarCard #sliderValDisplay {
       color: #f6f6f6; }
     #sidebar #treemapOptionsSidebarCard #ccnSlider {
@@ -7298,15 +7315,23 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         min-height: 60px;
         max-height: 160px; }
     #sidebar #fileFilterCard #fileSelector {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0;
       margin-left: 5%;
-      width: 90%; }
+      margin-right: 5%;
+      width: 90%;
+      padding-left: 5px; }
+      #sidebar #fileFilterCard #fileSelector::placeholder {
+        color: black; }
     #sidebar #fileFilterCard #filterButton {
       color: #4faaff;
       background-color: rgba(79, 170, 255, 0.2);
       border-color: #4faaff;
       z-index: 1;
-      margin-top: 2%;
-      margin-bottom: 2%; }
+      margin: 2%;
+      width: 92%; }
       #sidebar #fileFilterCard #filterButton:hover {
         border-color: #1c91ff;
         color: #1c91ff;

@@ -84,10 +84,6 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     width: 90%;
 }
 
-@mixin square-button($size-percentage) {
-    width: $size-percentage;
-    height: $size-percentage;
-}
 
 // template for a full-page background card for a chart
 @mixin content-card {
@@ -107,6 +103,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     display: none; //sets all cards to not display by default. Displaying is handled in InterfaceEventController.ts
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+
     h3 {
         width: 100%;
         text-align: center;
@@ -121,6 +118,23 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         margin-right: 20px;
     }
 
+}
+
+@mixin input-field-styling {
+    background: rgba(white, .8);
+    color: black;
+    border-radius: 5px;
+    border: 0;
+    margin-left: $sidebar-margin + 1%;
+    margin-right: $sidebar-margin + 1%;
+    width: $sidebar-adjusted-size - 2%;
+    padding-left: 5px;
+    &::placeholder{
+        color: black;
+
+    }
+
+    //border: darken($my-secondary-background, 20%)
 }
 
 // ========================== End Mixins ==========================
@@ -160,36 +174,25 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         @include sidebar-options-card;
 
         //border: 10px solid rgba($my-primary, 0.5);
-
-        #sizeMetricSelector {
-            p {
-                color: $my-text-color;
-                margin-left: 5%;
-                text-align: right;
-            }
-
-            #sizeSelector {
-                width: 100%;
-            }
+        #sizeSelector {
+            @include input-field-styling;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
         }
 
-        #colorMetricSelector {
-            p {
-                color: $my-text-color;
-                margin-left: 5%;
-                text-align: right;
-            }
-
-            #colorSelector {
-                width: 100%;
-            }
+        #colorSelector {
+            @include input-field-styling;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
         }
+
 
         #colorSlider {
-            #ccnSlider {
-                margin-left: 10%;
-                width: 80%;
-            }
+            margin-left: $sidebar-margin;
+            margin-right: $sidebar-margin;
+            width: $margin-adjusted-percentage;
         }
 
         #sliderValDisplay {
@@ -256,7 +259,8 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
                 background: rgba($my-secondary-background, 0.6);
             }
         }
-        .row{
+
+        .row {
             margin-bottom: 0px;
         }
     }
@@ -269,21 +273,23 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         padding: $sidebar-margin / 2;
         border-radius: 10px;
 
-        h3{
+        h3 {
             width: 100%;
             color: $my-text-color;
             text-align: center;
         }
+
         hr {
             background-color: $my-subheader-color;
             margin-left: 20px;
             margin-right: 20px;
         }
+
         p {
             margin-left: 5%;
         }
 
-        #fileListCard{
+        #fileListCard {
             position: relative;
             background: $card-background;
             margin: $sidebar-margin;
@@ -291,7 +297,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
             padding: $sidebar-margin / 2;
             border-radius: 10px;
 
-            #fileList{
+            #fileList {
                 width: 100%;
                 min-height: 60px;
                 max-height: 160px;
@@ -299,18 +305,13 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         }
 
         #fileSelector {
-            margin-left: 5%;
-            width: 90%;
+            @include input-field-styling;
         }
 
         #filterButton {
             @include normal-button;
-
-            margin-top: 2%;
-            margin-bottom: 2%;
-
-            //padding: 100% 100%;
-
+            margin: $content-margin;
+            width: $sidebar-adjusted-size;
         }
     }
 
@@ -336,7 +337,7 @@ body {
     font-family: 'Quicksand', sans-serif;
 }
 
-.row{
+.row {
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -513,5 +514,6 @@ input:focus {
     box-shadow: none !important;
     border: 2px solid transparent;
 }
+
 
 // ========================= End Style Fixes =========================
