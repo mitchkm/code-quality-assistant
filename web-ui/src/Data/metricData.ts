@@ -1,4 +1,5 @@
 import TreemapData from "./treemapData";
+import * as stats from "simple-statistics";
 
 interface FunctionData {
   name: string;
