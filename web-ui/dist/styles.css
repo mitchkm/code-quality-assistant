@@ -7160,13 +7160,17 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       border-color: #82c3ff;
       color: #82c3ff;
       background-color: rgba(130, 195, 255, 0.4); }
+  #sidebar #chartOptionsContainer {
+    margin: 4%; }
   #sidebar #treemapOptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
     width: 100%;
     padding: 3%;
-    display: none; }
-    #sidebar #treemapOptionsSidebarCard p {
+    display: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; }
+    #sidebar #treemapOptionsSidebarCard h3 {
       width: 100%;
       text-align: center;
       color: #f6f6f6;
@@ -7201,14 +7205,38 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     width: 100%;
     padding: 3%;
     display: none;
-    height: 100px; }
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 200px; }
+    #sidebar #chart2OptionsSidebarCard h3 {
+      width: 100%;
+      text-align: center;
+      color: #f6f6f6;
+      margin-top: 10px;
+      vertical-align: center; }
+    #sidebar #chart2OptionsSidebarCard hr {
+      background-color: #686868;
+      margin-left: 20px;
+      margin-right: 20px; }
   #sidebar #chart3OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
     width: 100%;
     padding: 3%;
     display: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     height: 200px; }
+    #sidebar #chart3OptionsSidebarCard h3 {
+      width: 100%;
+      text-align: center;
+      color: #f6f6f6;
+      margin-top: 10px;
+      vertical-align: center; }
+    #sidebar #chart3OptionsSidebarCard hr {
+      background-color: #686868;
+      margin-left: 20px;
+      margin-right: 20px; }
   #sidebar #chartSelectBar button {
     width: 100%;
     height: 50px;
@@ -7239,26 +7267,54 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       color: rgba(79, 170, 255, 0.8);
       border-bottom: 2px solid rgba(79, 170, 255, 0.8);
       background: rgba(82, 87, 87, 0.6); }
-  #sidebar #fileFilterSection p {
-    margin-left: 5%; }
-  #sidebar #fileFilterSection #fileSelector {
-    margin-left: 5%;
-    width: 90%; }
-  #sidebar #fileFilterSection #filterButton {
-    color: #4faaff;
-    background-color: rgba(79, 170, 255, 0.2);
-    border-color: #4faaff;
-    z-index: 1;
-    margin-top: 2%;
-    margin-bottom: 2%; }
-    #sidebar #fileFilterSection #filterButton:hover {
-      border-color: #1c91ff;
-      color: #1c91ff;
-      background-color: rgba(28, 145, 255, 0.2); }
-    #sidebar #fileFilterSection #filterButton:active {
-      border-color: #82c3ff;
-      color: #82c3ff;
-      background-color: rgba(130, 195, 255, 0.4); }
+  #sidebar #chartSelectBar .row {
+    margin-bottom: 0px; }
+  #sidebar #fileFilterCard {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4%;
+    width: 92%;
+    padding: 2%;
+    border-radius: 10px; }
+    #sidebar #fileFilterCard h3 {
+      width: 100%;
+      color: #f6f6f6;
+      text-align: center; }
+    #sidebar #fileFilterCard hr {
+      background-color: #686868;
+      margin-left: 20px;
+      margin-right: 20px; }
+    #sidebar #fileFilterCard p {
+      margin-left: 5%; }
+    #sidebar #fileFilterCard #fileListCard {
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 4%;
+      width: 92%;
+      padding: 2%;
+      border-radius: 10px; }
+      #sidebar #fileFilterCard #fileListCard #fileList {
+        width: 100%;
+        min-height: 60px;
+        max-height: 160px; }
+    #sidebar #fileFilterCard #fileSelector {
+      margin-left: 5%;
+      width: 90%; }
+    #sidebar #fileFilterCard #filterButton {
+      color: #4faaff;
+      background-color: rgba(79, 170, 255, 0.2);
+      border-color: #4faaff;
+      z-index: 1;
+      margin-top: 2%;
+      margin-bottom: 2%; }
+      #sidebar #fileFilterCard #filterButton:hover {
+        border-color: #1c91ff;
+        color: #1c91ff;
+        background-color: rgba(28, 145, 255, 0.2); }
+      #sidebar #fileFilterCard #filterButton:active {
+        border-color: #82c3ff;
+        color: #82c3ff;
+        background-color: rgba(130, 195, 255, 0.4); }
   #sidebar p {
     color: #f6f6f6; }
 
@@ -7271,7 +7327,11 @@ body {
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom right, #001c36, #1b000a);
-  font-family: 'Roboto', sans-serif; }
+  font-family: 'Quicksand', sans-serif; }
+
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px; }
 
 #treeMapCard {
   position: relative;
@@ -7310,10 +7370,13 @@ body {
   height: 100%;
   margin: 0; }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box; }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0; }

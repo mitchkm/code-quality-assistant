@@ -10,7 +10,17 @@ const defaultSizeOption = Metrics.NLOC;
 const defaultColorOption = Metrics.CCN;
 const defaultfileOption = "none";
 
-// treemap Setting
+function getUrlVars() {
+    const vars = {};
+    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value): string {
+        vars[key] = value;
+        return;
+    });
+    return vars;
+}
+
+const urlParams = getUrlVars();
+
 const treemapSettings: treemapSetting = {
     width: 100,
     height: 100,
@@ -44,7 +54,7 @@ const treemap = new Treemap(processedData, treemapSettings);
 treemap.drawTreemap();
 
 // set up DOM elements
-InterfaceEventController.init();
+InterfaceEventController.init(urlParams["chart"]);
 
 // control user inputs for treemap
 const treemapController = TreemapEventController.instance;

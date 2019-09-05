@@ -8,6 +8,8 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+
   <!-- Our Custom CSS -->
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -26,100 +28,109 @@
   <div id="sidebar">
     <div class="sidebar-header">
       <h1>Code Analysis Tool</h1>
-      <hr />
     </div>
 
-    <div id="chartSelectBar">
-      <div class="row">
-        <div class="col-md-4">
-            <button id="treemapChartButton">Tree Map</button>
-        </div>
-        <div class="col-md-4">
-            <button id="chart2Button">Chart 2</button>
-        </div>
-        <div class="col-md-4">
-            <button id="chart3Button">Chart 3</button>
+    <div id="chartOptionsContainer">
+      <div id="chartSelectBar">
+        <div class="row">
+          <div class="col-md-4">
+            <button id="treemapChartButton"><b>Tree Map</b></button>
+          </div>
+          <div class="col-md-4">
+            <button id="chart2Button"><b>Chart 2</b></button>
+          </div>
+          <div class="col-md-4">
+            <button id="chart3Button"><b>Chart 3</b></button>
+          </div>
         </div>
       </div>
-      <!--
-      <ul>
-        <li class="treeMap active"><a>Tree Map</a></li>
-        <li class="chart2"><button>Chart 2</a></li>
-        <li class="chart3"><a>Chart 3</a></li>
-      </ul>
-      -->
-    </div>
 
-    <div id="treemapOptionsSidebarCard">
-        <p>Chart Options</p>
-        <hr />
+      <div id="treemapOptionsSidebarCard">
+        <h3>Tree Map Options</h3>
+        <hr>
 
         <div id="sizeMetricSelector">
-            <div class="row">
-              <div class="col-md-6">
-                <p>Choose Size metric: </p>
-              </div>
-              <div class="col-md-6"><select id="sizeSelector"></select></div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>Choose Size metric: </p>
             </div>
+            <div class="col-md-6"><select id="sizeSelector"></select></div>
           </div>
-          <div id="colorMetricSelector">
-            <div class="row">
-              <div class="col-md-6">
-                <p>Choose Color metric: </p>
-              </div>
-              <div class="col-md-6"><select id="colorSelector"></select></select></div>
+        </div>
+        <div id="colorMetricSelector">
+          <div class="row">
+            <div class="col-md-6">
+              <p>Choose Color metric: </p>
             </div>
+            <div class="col-md-6"><select id="colorSelector"></select></select></div>
           </div>
-      
-          <br /><br />
-      
-          <div class="sidebar - colorSlider">
-            <table id="sidebarinputs">
-              <col width="10">
-              <col width="10">
-              <tr>
-                <th>Lower bound</th>
-                <th>Upper bound</th>
-              </tr>
-              <tr>
-                <td width="30%"><input type="number" id="min" size="2"></td>
-                <td width="40%"><input type="number" id="max" size="2"></td>
-              </tr>
-            </table>
-            <button id="limitButton">Apply</button>
-            <input id="colorSlider" type="range" class="form-control-range">
-          </div>
-    </div>
+        </div>
+        <div class="sidebar - colorSlider">
+          <table id="sidebarinputs">
+            <col width="10">
+            <col width="10">
+            <tr>
+              <th>Lower bound</th>
+              <th>Upper bound</th>
+            </tr>
+            <tr>
+              <td width="30%"><input type="number" id="min" size="2"></td>
+              <td width="40%"><input type="number" id="max" size="2"></td>
+            </tr>
+          </table>
+          <button id="limitButton">Apply</button>
+          <input id="colorSlider" type="range" class="form-control-range">
+        </div>
+      </div>
 
-    <div id="chart2OptionsSidebarCard">
-      <!--Placeholder div for second chart-->
-    </div>
+      <div id="chart2OptionsSidebarCard">
+        <!--Placeholder div for second chart-->
+        <h3>Chart 2 Options</h3>
+        <hr />
+      </div>
 
-    <div id="chart3OptionsSidebarCard">
+      <div id="chart3OptionsSidebarCard">
         <!--Placeholder div for third chart-->
+        <h3>Chart 3 Options</h3>
+        <hr />
       </div>
-  
+
+    </div>
+
     <br /><br />
-    <div id="fileFilterSection">
-      <div class="row">
-        <p>Select a file to filter:</p>
+
+    <div id="fileFilterCard">
+      <div id="gridContainer">
+        <h3>File Filtering</h3>
+        <hr />
+        <div class="row">
+          <input autoComplete="on" list="fileOptions" id="fileSelector" placeholder="Select File">
+          <datalist id="fileOptions"></datalist>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-sq btn-outline-primary" id="fileFilterButton">Filter</button>
+        </div>
+        <div class="row">
+          <div id="fileListCard">
+            <div id="fileList">
+
+            </div>
+
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <input autoComplete="on" list="fileOptions" id="fileSelector">
-        <datalist id="fileOptions"></datalist>
-      </div>
-      <br/>
-      <div class="row">
-        <button type="button" class="btn btn-sq btn-outline-primary" id="fileFilterButton">Filter</button>
-      </div>
+
     </div>
 
   </div>
-  </div>
 
 
 
-  <script id="rawData" type="application/json">{code_analysis_json}</script>
+  <script id="rawData" type="application/json">
+    {
+      code_analysis_json
+    }
+  </script>
   <script src="bundle.js"></script>
 </body>
 
