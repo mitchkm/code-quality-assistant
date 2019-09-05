@@ -359,9 +359,9 @@ html, body {
 	.label {
 		display: inline;
 		font-family: sans-serif;
-		color: hsla(0,0,100,.6);
-		//white-space: nowrap;
-		position: absolute;
+        color: #000000;
+        font-weight: bold;
+        position: absolute;
 		padding: 0;
 		margin: 0;
 		top: 50%;
@@ -378,7 +378,7 @@ html, body {
 	}
 	&:hover {
 		.label {
-			color: hsla(0,0,100,1);
+			color: #7a7979;
 		}
 	}
 	&.level-0 {
@@ -388,11 +388,11 @@ html, body {
 	}
 	&.level-1 {
 		z-index: 3;
-		font-size: 3vmin;
+		font-size: 4vmin;
 	}
 	&.level-2 {
 		z-index: 2;
-		font-size: 2vmin;
+		font-size: 2.5vmin;
 	}
 }
 
