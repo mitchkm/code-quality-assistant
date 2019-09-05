@@ -1,5 +1,14 @@
 class InterfaceEventController {
-  static init() {
+  static init(initialState?: string) {
+
+    const charts = [
+      "treemap",
+      "chart2",
+      "chart3"
+    ];
+
+    let chart = charts.indexOf(initialState);
+    chart = chart !== -1 ? chart : 0;
 
     const chartSelectButtons: HTMLElement[] = [
       document.getElementById("treemapChartButton"),
@@ -13,8 +22,8 @@ class InterfaceEventController {
       document.getElementById("chart3OptionsSidebarCard")
     ];
 
-    let currentChart = chartSelectButtons[0];
-    let currentCard = chartOptionsCards[0];
+    let currentChart = chartSelectButtons[chart];
+    let currentCard = chartOptionsCards[chart];
     currentChart.className += " active";
     currentCard.style.display = "block";
 
