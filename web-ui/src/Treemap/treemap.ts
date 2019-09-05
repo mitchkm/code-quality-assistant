@@ -1,6 +1,7 @@
 import d3 = require("d3");
 import TreemapSetting from "./treemapSetting";
 import TreemapData from "../Data/treemapData";
+import { FunctionData } from "../Data/metricData";
 
 class Treemap {
   processedData: TreemapData;
@@ -17,7 +18,9 @@ class Treemap {
     this.processedData = proceesedData;
     this.treemapSetting = treemapSetting;
   }
-
+  /**
+   * create a treemapLayout based on treemapSetting
+   */
   private createTreemap() {
     const paddingTop = this.treemapSetting.paddings[0];
     const paddingBottom = this.treemapSetting.paddings[1];
@@ -50,6 +53,9 @@ class Treemap {
     return treemap;
   }
 
+  /**
+   * Create nodes of a treemap based on the hierarchy of data
+   */
   private createTreeNodes() {
     const root = d3.hierarchy(this.processedData);
     const treemap = this.createTreemap();
@@ -59,6 +65,10 @@ class Treemap {
     return nodes;
   }
 
+  /**
+   * dyamically add treemapChart in our web application
+   * @param nodes treemap nodes to create treemap with
+   */
   private setUpTreemapChart(nodes) {
     // deleting previous cell style
     if (d3.select(".node")) {
@@ -80,15 +90,24 @@ class Treemap {
     return chart;
   }
 
+  /**
+   * styles and displays a treemap in frontend
+   * @param processedData data to update the treemap
+   */
   drawTreemap(processedData?: TreemapData) {
     if (processedData) {
-        this.processedData = processedData;
+      this.processedData = processedData;
     }
     const nodes = this.createTreeNodes();
-    console.log(nodes);
     const chart = this.setUpTreemapChart(nodes);
     const upButton = d3.select("#TreemapBackButton").datum(nodes);
+    // console.log(this.processedData);
+    // console.log(nodes);
 
+    const fileNames = d3
+      .select("#treeMapCard")
+      .append("div")
+      .attr("class", "fileNames");
     chart
       .style("left", (d: any) => {
         return this.xScale(d.x0) + "%";
@@ -111,13 +130,36 @@ class Treemap {
           ? this.color(d.data.value2 / d.parent.data.value2)
           : "none";
       })
-      .on("click", d => {
+      .on("click", (d: any) => {
         this.zoomTreemap(d, chart, upButton, nodes);
       })
       .append("p")
       .attr("class", "label")
       .text((d: any) => {
+        if (d.depth === 2) {
+          if (d.data.name) {
+            let funcData = "";
+            funcData += "\nfunctionName: " + d.data.funcData.name;
+            funcData += "\nfunctionLongName: " + d.data.funcData.longName;
+            funcData += "\nstartLine: " + d.data.funcData.startLine;
+            funcData += "\nnloc: " + d.data.funcData.nloc;
+            funcData += "\nccn: " + d.data.funcData.ccn;
+            funcData += "\ntokens: " + d.data.funcData.tokens;
+            funcData += "\nparams: " + d.data.funcData.params;
+            funcData += "\nlength: " + d.data.funcData.length;
+            return funcData;
+          }
+        }
         return d.data.name ? d.data.name : "---";
+      })
+      .on("mouseover", (d: any) => {
+        fileNames.style("left", d3.event.pageX + 10 + "px");
+        fileNames.style("top", d3.event.pageY - 20 + "px");
+        fileNames.style("display", "inline-block");
+        fileNames.html(d.data.name);
+      })
+      .on("mouseout", d => {
+        fileNames.style("display", "none");
       });
 
     // hide the text when it's fully zoomed-out
@@ -132,13 +174,11 @@ class Treemap {
   }
 
   /**
-   * This function does ...
-   * @param d parameter to do something
-   * @param chart
-   * @param xScale
-   * @param yScale
-   * @param upButton
-   * @param nodes
+   * Handles zooming in the treemap
+   * @param d current node in the treemap
+   * @param chart treemapChart created by setUpTreemapChart function
+   * @param upButton navigates treemap to zoom out
+   * @param nodes entire nodes in the treemap
    */
   private zoomTreemap(d, chart, upButton, nodes) {
     const currentDepth = d.depth;

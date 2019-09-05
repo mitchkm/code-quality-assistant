@@ -2,7 +2,6 @@ import { MetricData, Metrics } from "./Data/metricData";
 import { exampleData } from "./Data/example";
 import Treemap from "./Treemap/treemap";
 import TreemapData from "./Data/treemapData";
-import colorSetting from "./Treemap/colorSetting";
 import treemapSetting from "./Treemap/treemapSetting";
 import InterfaceEventController from "./InterfaceEventController";
 import TreemapEventController from "./TreemapEventController";
@@ -57,6 +56,7 @@ treemap.drawTreemap();
 // set up DOM elements
 InterfaceEventController.init(urlParams["chart"]);
 
+// control user inputs for treemap
 const treemapController = TreemapEventController.instance;
 treemapController.setContext(mD, treemap, treemapSettings);
 treemapController.init();
