@@ -4,6 +4,7 @@
 
 import json
 import lizard
+from lizard_ext.lizardduplicate import LizardExtension as DuplicateDetector
 
 #GLOBALS
 LIZARD_SUPPORTED_LANGUAGES = ["c", "cpp", "cc", "mm", "cxx", "h", "hpp", "cs", "gd",
@@ -19,9 +20,10 @@ def lizAnalyze(path, filenameList):
 
 # Runs lizard on each individual file designated in the given filenameList.
 def runLizard(filenameList):
-    outList = []
-    for file in filenameList:
-        outList.append((lizard.analyze_file(file))) 
+    duplicates = DuplicateDetector()
+    extensions = lizard.get_extensions([duplicates])
+    outList = list(lizard.analyze_files(filenameList, exts=extensions))
+    duplicates.print_result()
     return outList
 
 # converts a list of FileInformation objects into a list of dictionaries
@@ -37,6 +39,7 @@ def fileInfoToDict(fileInfo):
     funcs = []
     for func in fileInfo.function_list:
         funcs.append(funcInfoToDict(func))
+    
     return {'filename'  : filename,
             'functions' : funcs}
 
