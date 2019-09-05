@@ -101,6 +101,9 @@ class Treemap {
     const chart = this.setUpTreemapChart(nodes);
     const upButton = d3.select("#TreemapBackButton").datum(nodes);
 
+    const fileNames = d3.select("#treeMapCard").append("div").attr("class", "fileNames");
+    const files = d3.select(".level-1");
+
     chart
       .style("left", (d: any) => {
         return this.xScale(d.x0) + "%";
@@ -123,13 +126,24 @@ class Treemap {
           ? this.color(d.data.value2 / d.parent.data.value2)
           : "none";
       })
-      .on("click", d => {
+      .on("click", (d: any) => {
+        console.log(d.depth);
         this.zoomTreemap(d, chart, upButton, nodes);
       })
       .append("p")
       .attr("class", "label")
       .text((d: any) => {
         return d.data.name ? d.data.name : "---";
+      })
+      .on("mouseover", (d: any) => {
+        console.log(d);
+        fileNames.style("left", d3.event.pageX + 10 + "px");
+        fileNames.style("top", d3.event.pageY - 20 + "px");
+        fileNames.style("display", "inline-block");
+        fileNames.html(d.data.name);
+      })
+      .on("mouseout", (d) => {
+        fileNames.style("display", "none");
       });
 
     // hide the text when it's fully zoomed-out
