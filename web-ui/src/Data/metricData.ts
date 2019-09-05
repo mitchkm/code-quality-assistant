@@ -54,6 +54,9 @@ export class MetricData {
   }
   private statistics: Map<string, Map<string, FileStatistics>> = new Map();
   private funcLookup: Map<string, Map<string, FunctionData>> = new Map();
+  public get functionLookup() {
+    return this.funcLookup;
+  }
   private filterList: string[] = [];
   private inverseFilterList: string[] = [];
   private listToggle = "black";
@@ -100,6 +103,14 @@ export class MetricData {
     }
     this.statistics.set(relativeName, statMap);
     this.funcLookup.set(relativeName, funcMap);
+  }
+
+  /**
+   * Returns map of statistical information on each metric
+   * @param filename relative name of file
+   */
+  public getMetricStatitistics(filename: string): Map<string, FileStatistics> {
+    return this.statistics.get(filename);
   }
 
   /**
