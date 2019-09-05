@@ -39,7 +39,7 @@ export enum Metrics {
   PARAMS = "params",
   LENGTH = "length"
 }
-export const allMetrics = [
+export const allMetrics: string[] = [
   Metrics.NLOC,
   Metrics.CCN,
   Metrics.TOKENS,
@@ -179,6 +179,12 @@ export class MetricData {
    * @param metricB Metric to represent normalized value for color or other visual
    */
   public toTreemapData(metricA: string, metricB: string): TreemapData {
+    if (allMetrics.indexOf(metricA) === -1) {
+      metricA = Metrics.NLOC;
+    }
+    if (allMetrics.indexOf(metricB) === -1) {
+      metricB = Metrics.NLOC;
+    }
     let ignoreList;
     if (this.listToggle === "white") {
       ignoreList = this.inverseFilterList;
