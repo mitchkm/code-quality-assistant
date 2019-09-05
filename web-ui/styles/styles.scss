@@ -412,53 +412,60 @@ body {
     transition: opacity .8s;
     cursor: pointer;
     border: 1px white groove;
-
-    .label {
+	.label {
         display: inline;
-        font-family: sans-serif;
-        color: hsla(0, 0, 100, .6);
-        //white-space: nowrap;
+        white-space: pre-line;
+		font-family: sans-serif;
+        color: #000000;
+        font-weight: 500;
         position: absolute;
-        padding: 0;
-        margin: 0;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        transition: color .4s, opacity .8s, filter .8s;
-    }
-
-    &.hide {
-        // zoom in
-        opacity: 0;
-        pointer-events: none;
-
-        .label {
-            filter: blur(10px);
-        }
-    }
-
-    &:hover {
-        .label {
-            color: hsla(0, 0, 100, 1);
-        }
-    }
-
-    &.level-0 {
-        z-index: 4;
-        font-size: 13vmin;
-        display: none;
-    }
-
-    &.level-1 {
+		padding: 0;
+		margin: 0;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		transition: color .4s, opacity .8s, filter .8s;
+	}
+	&.hide { // zoom in
+		opacity: 0;
+		pointer-events: none;
+		.label {
+			filter: blur(10px);
+		}
+	}
+	&:hover {
+		.label {
+			color: #585858;
+		}
+	}
+	&.level-0 {
+		display: none;
+	}
+	&.level-1 {
         z-index: 3;
         font-size: 3vmin;
-    }
-
-    &.level-2 {
-        z-index: 2;
-        font-size: 2vmin;
-    }
+	}
+	&.level-2 {
+		z-index: 2;
+		font-size: 2.5vmin;
+  }
 }
+
+.fileNames {
+    position: absolute;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
+    color: black;
+    font: 12px sans-serif;
+    padding: 5px;
+    text-align: center;
+    z-index: 4;
+  }
 
 input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
