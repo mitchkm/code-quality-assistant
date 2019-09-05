@@ -1,6 +1,7 @@
 import d3 = require("d3");
 import TreemapSetting from "./treemapSetting";
 import TreemapData from "../Data/treemapData";
+import { FunctionData } from "../Data/metricData";
 
 class Treemap {
   processedData: TreemapData;
@@ -17,9 +18,9 @@ class Treemap {
     this.processedData = proceesedData;
     this.treemapSetting = treemapSetting;
   }
-/**
- * create a treemapLayout based on treemapSetting
- */
+  /**
+   * create a treemapLayout based on treemapSetting
+   */
   private createTreemap() {
     const paddingTop = this.treemapSetting.paddings[0];
     const paddingBottom = this.treemapSetting.paddings[1];
@@ -95,15 +96,18 @@ class Treemap {
    */
   drawTreemap(processedData?: TreemapData) {
     if (processedData) {
-        this.processedData = processedData;
+      this.processedData = processedData;
     }
     const nodes = this.createTreeNodes();
     const chart = this.setUpTreemapChart(nodes);
     const upButton = d3.select("#TreemapBackButton").datum(nodes);
+    // console.log(this.processedData);
+    // console.log(nodes);
 
-    const fileNames = d3.select("#treeMapCard").append("div").attr("class", "fileNames");
-    const files = d3.select(".level-1");
-
+    const fileNames = d3
+      .select("#treeMapCard")
+      .append("div")
+      .attr("class", "fileNames");
     chart
       .style("left", (d: any) => {
         return this.xScale(d.x0) + "%";
@@ -127,22 +131,34 @@ class Treemap {
           : "none";
       })
       .on("click", (d: any) => {
-        console.log(d.depth);
         this.zoomTreemap(d, chart, upButton, nodes);
       })
       .append("p")
       .attr("class", "label")
       .text((d: any) => {
+        if (d.depth === 2) {
+          if (d.data.name) {
+            let funcData = "";
+            funcData += "\nfunctionName: " + d.data.funcData.name;
+            funcData += "\nfunctionLongName: " + d.data.funcData.longName;
+            funcData += "\nstartLine: " + d.data.funcData.startLine;
+            funcData += "\nnloc: " + d.data.funcData.nloc;
+            funcData += "\nccn: " + d.data.funcData.ccn;
+            funcData += "\ntokens: " + d.data.funcData.tokens;
+            funcData += "\nparams: " + d.data.funcData.params;
+            funcData += "\nlength: " + d.data.funcData.length;
+            return funcData;
+          }
+        }
         return d.data.name ? d.data.name : "---";
       })
       .on("mouseover", (d: any) => {
-        console.log(d);
         fileNames.style("left", d3.event.pageX + 10 + "px");
         fileNames.style("top", d3.event.pageY - 20 + "px");
         fileNames.style("display", "inline-block");
         fileNames.html(d.data.name);
       })
-      .on("mouseout", (d) => {
+      .on("mouseout", d => {
         fileNames.style("display", "none");
       });
 
