@@ -17,7 +17,7 @@ const treemapSettings: treemapSetting = {
   paddings: [0.3, 0.3, 0.3, 0.3],
   color: {
     colors: ["#00a539", "#fff453", "#fd7900", "#ff001f"],
-    thresholds: [0, 0.3333, 0.66666, 1],
+    thresholds: [0, 0.25, 0.50, 0.75, 1],
     gamma: 1.0
   },
   sizeOption: Metrics.NLOC,
