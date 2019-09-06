@@ -62,7 +62,6 @@ class Treemap {
    * Create nodes of a treemap based on the hierarchy of data
    */
   private createTreeNodes() {
-
     // creates hierarchy of data
     const root = d3.hierarchy(this.processedData);
 
@@ -80,7 +79,6 @@ class Treemap {
    * @param nodes treemap nodes to create treemap with
    */
   private setUpTreemapChart(nodes) {
-
     // deleting previous cell style
     if (d3.select(".node")) {
       d3.selectAll(".node").remove();
@@ -107,7 +105,6 @@ class Treemap {
    * @param processedData data to update the treemap
    */
   drawTreemap(processedData?: TreemapData) {
-
     // change to new data from user
     if (processedData) {
       this.processedData = processedData;
@@ -119,10 +116,7 @@ class Treemap {
 
     const upButton = d3.select("#TreemapBackButton").datum(nodes);
 
-    const mouseHover = d3
-      .select("#treeMapCard")
-      .append("div")
-      .attr("class", "mouseHover");
+    const mouseHover = d3.select(".mouseHover");
 
     chart
       .style("left", (d: any) => {
@@ -148,7 +142,7 @@ class Treemap {
       })
       .on("click", (d: any) => {
         // on click zoom-in treemap
-        this.zoomTreemap(d, chart, upButton, nodes);
+        this.zoomTreemap(d, chart, upButton, mouseHover, nodes);
       })
       .append("p")
       .attr("class", "label")
@@ -174,7 +168,7 @@ class Treemap {
 
     // on click zoom out treemap
     upButton.on("click", d => {
-      this.zoomTreemap(d, chart, upButton, nodes);
+      this.zoomTreemap(d, chart, upButton, mouseHover, nodes);
     });
     return chart;
   }
@@ -186,8 +180,7 @@ class Treemap {
    * @param upButton navigates treemap to zoom out
    * @param nodes entire nodes in the treemap
    */
-  private zoomTreemap(d, chart, upButton, nodes) {
-
+  private zoomTreemap(d, chart, upButton, mouseHover, nodes) {
     const currentDepth = d.depth;
 
     // changes domains of width and height according to selected node
@@ -203,11 +196,9 @@ class Treemap {
       .ease(d3.easeCubicOut);
 
     // changes message when treemap is hovered and fully zoomed in
-    const mouseHover = d3.select(".mouseHover");
-
     if (currentDepth === 2) {
       chart
-        .on("mousemove", (d) => {
+        .on("mousemove", d => {
           let funcData = "";
           funcData += "functionName: " + d.data.funcData.name;
           funcData += "\nfunctionFullName: " + d.data.funcData.longName;
@@ -225,7 +216,7 @@ class Treemap {
     } else {
       // display file/function name when treemap is not fully zoomed in and gets mouse hovered
       chart
-        .on("mousemove", (d) => {
+        .on("mousemove", d => {
           mouseHover.text(d.data.name);
         })
         .on("mouseout", () => {
