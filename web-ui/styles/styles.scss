@@ -351,6 +351,7 @@ body {
     #TreemapBackButton {
         @include secondary-button;
 
+        cursor: zoom-out;
         position: relative;
         width: $margin-adjusted-percentage;
         height: $margin-adjusted-percentage * 0.1 - $content-margin;
@@ -414,7 +415,6 @@ body {
     border: 1px white groove;
 	.label {
         display: inline;
-        white-space: pre-line;
 		font-family: sans-serif;
         color: #000000;
         font-weight: 500;
@@ -451,8 +451,9 @@ body {
   }
 }
 
-.fileNames {
+.mouseHover {
     position: absolute;
+    white-space: pre-line;
     display: none;
     width: auto;
     height: auto;
@@ -461,7 +462,7 @@ body {
     border-radius: 8px 8px 8px 8px;
     box-shadow: -3px 3px 15px #888888;
     color: black;
-    font: 12px sans-serif;
+    font: 14px sans-serif;
     padding: 5px;
     text-align: center;
     z-index: 4;

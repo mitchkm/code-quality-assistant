@@ -7370,6 +7370,7 @@ body {
     background-color: rgba(255, 27, 114, 0.2);
     border-color: #ff1b72;
     z-index: 1;
+    cursor: zoom-out;
     position: relative;
     width: 96%;
     height: 7.6%;
@@ -7424,7 +7425,6 @@ body {
   border: 1px white groove; }
   .node .label {
     display: inline;
-    white-space: pre-line;
     font-family: sans-serif;
     color: #000000;
     font-weight: 500;
@@ -7451,8 +7451,9 @@ body {
     z-index: 2;
     font-size: 2.5vmin; }
 
-.fileNames {
+.mouseHover {
   position: absolute;
+  white-space: pre-line;
   display: none;
   width: auto;
   height: auto;
@@ -7461,7 +7462,7 @@ body {
   border-radius: 8px 8px 8px 8px;
   box-shadow: -3px 3px 15px #888888;
   color: black;
-  font: 12px sans-serif;
+  font: 14px sans-serif;
   padding: 5px;
   text-align: center;
   z-index: 4; }
