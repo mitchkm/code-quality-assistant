@@ -3,7 +3,6 @@ import { exampleData } from "./Data/example";
 import * as util from "./util";
 import Treemap from "./Treemap/treemap";
 import TreemapData from "./Data/treemapData";
-import colorSetting from "./Treemap/colorSetting";
 import treemapSetting from "./Treemap/treemapSetting";
 import InterfaceEventController from "./InterfaceEventController";
 import TreemapEventController from "./TreemapEventController";
