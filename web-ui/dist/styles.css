@@ -7135,7 +7135,8 @@ a.text-body-bg:hover, a.text-body-bg:focus {
   width: 30%;
   top: 0;
   left: 70%;
-  background-color: rgba(255, 255, 255, 0.1); }
+  background-color: rgba(255, 255, 255, 0.1);
+  overflow-y: scroll; }
   #sidebar .sidebar-header {
     text-align: center;
     color: #f6f6f6;
@@ -7208,14 +7209,93 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       margin-right: 0; }
       #sidebar #treemapOptionsSidebarCard #colorSelector::placeholder {
         color: black; }
-    #sidebar #treemapOptionsSidebarCard #colorSlider {
+    #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs {
+      overflow: hidden; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorFrom, #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorTo {
+        width: 49%; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorFrom {
+        float: left; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorTo {
+        float: right; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs label {
+        display: block;
+        color: #f6f6f6;
+        margin: 4%; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs input {
+        background: rgba(255, 255, 255, 0.8);
+        color: black;
+        border-radius: 5px;
+        border: 0;
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 90%;
+        padding-left: 5px;
+        margin: 1px 4%;
+        width: 92%; }
+        #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs input::placeholder {
+          color: black; }
+    #sidebar #treemapOptionsSidebarCard .treemapColors #treemapColorChange {
+      color: #4faaff;
+      background-color: rgba(79, 170, 255, 0.2);
+      border-color: #4faaff;
+      z-index: 1;
+      margin: 5px 4% 2px;
+      width: 92%; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors #treemapColorChange:hover {
+        border-color: #1c91ff;
+        color: #1c91ff;
+        background-color: rgba(28, 145, 255, 0.2); }
+      #sidebar #treemapOptionsSidebarCard .treemapColors #treemapColorChange:active {
+        border-color: #82c3ff;
+        color: #82c3ff;
+        background-color: rgba(130, 195, 255, 0.4); }
+    #sidebar #treemapOptionsSidebarCard .treemapColors .colorGradientBar {
+      height: 20px;
+      background-image: linear-gradient(to right, green, red);
+      margin: 4%;
+      width: 92%; }
+    #sidebar #treemapOptionsSidebarCard .colorThreshold label {
+      color: #f6f6f6; }
+    #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider {
       margin-left: 4%;
       margin-right: 4%;
-      width: 96%; }
-    #sidebar #treemapOptionsSidebarCard #sliderValDisplay {
-      color: #f6f6f6; }
-    #sidebar #treemapOptionsSidebarCard #ccnSlider {
-      color: purple; }
+      width: 100%; }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .range-slider-range {
+        -webkit-appearance: none;
+        width: 75%;
+        height: 15px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s; }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .range-slider-range:hover {
+        opacity: 1; }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .range-slider-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #0fadf7;
+        cursor: pointer; }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .range-slider-range::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #0fadf7;
+        cursor: pointer; }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .value-selected {
+        display: inline-block;
+        width: 60px;
+        line-height: 20px;
+        color: #f6f6f6;
+        text-align: center;
+        border-radius: 3px;
+        background: #2c3e50;
+        padding: 5px 10px;
+        margin-left: 8px; }
   #sidebar #chart2OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
@@ -7352,7 +7432,7 @@ body {
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom right, #001c36, #1b000a);
-  font-family: 'Quicksand', sans-serif; }
+  font-family: "Quicksand", sans-serif; }
 
 .row {
   margin-top: 10px;
@@ -7420,7 +7500,7 @@ body {
   overflow: hidden;
   opacity: 0.8;
   -webkit-transition: opacity 0.8s;
-  transition: opacity .8s;
+  transition: opacity 0.8s;
   cursor: pointer;
   border: 1px white groove; }
   .node .label {
@@ -7434,7 +7514,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    transition: color .4s, opacity .8s, filter .8s; }
+    transition: color 0.4s, opacity 0.8s, filter 0.8s; }
   .node.hide {
     opacity: 0;
     pointer-events: none; }
@@ -7466,42 +7546,6 @@ body {
   padding: 5px;
   text-align: center;
   z-index: 4; }
-
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 19px;
-  cursor: pointer;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3) inset;
-  background: linear-gradient(to right, green, yellow, orange, red);
-  border-radius: 20px;
-  border: 0.2px solid #010101; }
-
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 20px;
-  width: 20px;
-  border-radius: 20px;
-  background: white;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -1px; }
-
-#colorSlider:before {
-  content: attr(min);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  color: black;
-  font-size: 1rem; }
-
-#colorSlider:after {
-  content: attr(max);
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: black;
-  font-size: 1rem; }
 
 button:focus {
   outline: none !important;

@@ -5,8 +5,7 @@
 // ========================== Variables ==========================
 $my-primary: #4faaff;
 $my-secondary: #ff1b72;
-$my-grad-list: $my-primary 0%,
-$my-secondary 100%;
+$my-grad-list: $my-primary 0%, $my-secondary 100%;
 $my-background: rgb(23, 26, 26);
 $my-sidebar-background: rgb(44, 26, 68);
 $my-secondary-background: rgb(82, 87, 87);
@@ -15,7 +14,11 @@ $my-subheader-color: #686868;
 $my-text-color: rgb(246, 246, 246);
 $card-background: rgba(255, 255, 255, 0.1);
 
-$my-gradient: linear-gradient(to bottom right, darken($my-primary, 55%), darken($my-secondary, 50%));
+$my-gradient: linear-gradient(
+  to bottom right,
+  darken($my-primary, 55%),
+  darken($my-secondary, 50%)
+);
 
 $blue: rgb(0, 132, 232);
 $dark-blue: rgb(24, 52, 88);
@@ -33,7 +36,11 @@ $margin-adjusted-percentage: 100% - 2 * $content-margin;
 $sidebar-margin: 4%;
 $sidebar-adjusted-size: 100% - 2 * $sidebar-margin;
 
-$theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $my-background);
+$theme-colors: (
+  "primary": $my-primary,
+  "secondary": $my-secondary,
+  "body-bg": $my-background
+);
 
 // ======================== End Variables ========================
 
@@ -42,282 +49,350 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 // ============================ Mixins ============================
 
 @mixin normal-button {
-    color: $my-primary;
-    background-color: rgba($my-primary, 0.2);
-    border-color: $my-primary;
-    z-index: 1;
+  color: $my-primary;
+  background-color: rgba($my-primary, 0.2);
+  border-color: $my-primary;
+  z-index: 1;
 
-    &:hover {
-        border-color: darken($my-primary, 10%);
-        color: darken($my-primary, 10%);
-        background-color: darken(rgba($my-primary, 0.2), 10%);
-    }
+  &:hover {
+    border-color: darken($my-primary, 10%);
+    color: darken($my-primary, 10%);
+    background-color: darken(rgba($my-primary, 0.2), 10%);
+  }
 
-    &:active {
-        border-color: lighten($my-primary, 10%);
-        color: lighten($my-primary, 10%);
-        background-color: lighten(rgba($my-primary, 0.4), 10%);
-    }
+  &:active {
+    border-color: lighten($my-primary, 10%);
+    color: lighten($my-primary, 10%);
+    background-color: lighten(rgba($my-primary, 0.4), 10%);
+  }
 }
 
 @mixin secondary-button {
-    color: $my-secondary;
-    background-color: rgba($my-secondary, 0.2);
-    border-color: $my-secondary;
-    z-index: 1;
+  color: $my-secondary;
+  background-color: rgba($my-secondary, 0.2);
+  border-color: $my-secondary;
+  z-index: 1;
 
-    &:hover {
-        border-color: darken($my-secondary, 10%);
-        color: darken($my-secondary, 10%);
-        background-color: darken(rgba($my-secondary, 0.2), 10%);
-    }
+  &:hover {
+    border-color: darken($my-secondary, 10%);
+    color: darken($my-secondary, 10%);
+    background-color: darken(rgba($my-secondary, 0.2), 10%);
+  }
 
-    &:active {
-        border-color: lighten($my-secondary, 10%);
-        color: lighten($my-secondary, 10%);
-        background-color: lighten(rgba($my-secondary, 0.4), 10%);
-    }
+  &:active {
+    border-color: lighten($my-secondary, 10%);
+    color: lighten($my-secondary, 10%);
+    background-color: lighten(rgba($my-secondary, 0.4), 10%);
+  }
 }
 
 @mixin sidebar-block-button {
-    margin-left: 5%;
-    width: 90%;
+  margin-left: 5%;
+  width: 90%;
 }
-
 
 // template for a full-page background card for a chart
 @mixin content-card {
-    position: relative;
-    background: $card-background;
-    width: $margin-adjusted-percentage;
-    height: $margin-adjusted-percentage;
-    margin: $content-margin;
-    border-radius: 10px;
+  position: relative;
+  background: $card-background;
+  width: $margin-adjusted-percentage;
+  height: $margin-adjusted-percentage;
+  margin: $content-margin;
+  border-radius: 10px;
 }
 
 @mixin sidebar-options-card {
-    position: relative;
-    background: $card-background;
+  position: relative;
+  background: $card-background;
+  width: 100%;
+  padding: 3%;
+  display: none; //sets all cards to not display by default. Displaying is handled in InterfaceEventController.ts
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  h3 {
     width: 100%;
-    padding: 3%;
-    display: none; //sets all cards to not display by default. Displaying is handled in InterfaceEventController.ts
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    text-align: center;
+    color: $my-text-color;
+    margin-top: 10px;
+    vertical-align: center;
+  }
 
-    h3 {
-        width: 100%;
-        text-align: center;
-        color: $my-text-color;
-        margin-top: 10px;
-        vertical-align: center;
-    }
-
-    hr {
-        background-color: $my-subheader-color;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-
+  hr {
+    background-color: $my-subheader-color;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
 
 @mixin input-field-styling {
-    background: rgba(white, .8);
+  background: rgba(white, 0.8);
+  color: black;
+  border-radius: 5px;
+  border: 0;
+  margin-left: $sidebar-margin + 1%;
+  margin-right: $sidebar-margin + 1%;
+  width: $sidebar-adjusted-size - 2%;
+  padding-left: 5px;
+  &::placeholder {
     color: black;
-    border-radius: 5px;
-    border: 0;
-    margin-left: $sidebar-margin + 1%;
-    margin-right: $sidebar-margin + 1%;
-    width: $sidebar-adjusted-size - 2%;
-    padding-left: 5px;
-    &::placeholder{
-        color: black;
+  }
 
-    }
-
-    //border: darken($my-secondary-background, 20%)
+  //border: darken($my-secondary-background, 20%)
 }
 
 // ========================== End Mixins ==========================
 
 // ======================== Sidebar Styles ========================
 #sidebar {
-    position: fixed;
-    height: 100vh;
-    width: $sidebar-width;
-    top: 0;
-    left: 100% - $sidebar-width;
-    background-color: $card-background;
+  position: fixed;
+  height: 100vh;
+  width: $sidebar-width;
+  top: 0;
+  left: 100% - $sidebar-width;
+  background-color: $card-background;
+  overflow-y: scroll;
 
-    .sidebar-header {
-        text-align: center;
-        color: $my-text-color;
-        margin-top: 10px;
-        vertical-align: center;
+  .sidebar-header {
+    text-align: center;
+    color: $my-text-color;
+    margin-top: 10px;
+    vertical-align: center;
+  }
+
+  hr {
+    background-color: $my-subheader-color;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .btn {
+    @include normal-button;
+    @include sidebar-block-button;
+  }
+
+  #chartOptionsContainer {
+    margin: $sidebar-margin;
+  }
+
+  #treemapOptionsSidebarCard {
+    @include sidebar-options-card;
+
+    //border: 10px solid rgba($my-primary, 0.5);
+    #sizeSelector {
+      @include input-field-styling;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    #colorSelector {
+      @include input-field-styling;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .treemapColors {
+      .colorInputs {
+        overflow: hidden;
+        .colorFrom, .colorTo{
+            width: 49%
+        }
+        .colorFrom{
+            float: left;
+        }
+        .colorTo{
+            float: right;
+        }
+        label {
+          display: block;
+          color: $my-text-color;
+          margin: $sidebar-margin;
+        }
+        input {
+          @include input-field-styling;
+          margin: 1px $sidebar-margin;
+          width: $sidebar-adjusted-size;
+        }
+      }
+      #treemapColorChange{
+        @include normal-button;
+        margin: 5px $sidebar-margin 2px;
+        width: $sidebar-adjusted-size;
+      }
+      .colorGradientBar{
+        height: 20px;
+        background-image: linear-gradient(to right, green, red);
+        margin: $sidebar-margin;
+        width: $sidebar-adjusted-size;
+      }
+    }
+
+    .colorThreshold {
+        label{
+            color: $my-text-color;
+        }
+        .threshold-slider {
+            margin-left: $sidebar-margin;
+            margin-right: $sidebar-margin;
+            width: 100%;
+            .range-slider-range{
+                -webkit-appearance: none;
+                width: 75%;
+                height: 15px;
+                border-radius: 5px;
+                background: #d3d3d3;
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+            }
+            .range-slider-range:hover{
+                opacity: 1;
+            }
+            .range-slider-range::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: rgb(15, 173, 247);
+                cursor: pointer;
+            }
+            .range-slider-range::-moz-range-thumb {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: rgb(15, 173, 247);
+                cursor: pointer;
+              }
+            .value-selected{
+                display: inline-block;
+                width: 60px;
+                line-height: 20px;
+                color: $my-text-color;
+                text-align: center;
+                border-radius: 3px;
+                background: #2c3e50;
+                padding: 5px 10px;
+                margin-left: 8px;
+            }
+        }
+    }
+  }
+
+  #chart2OptionsSidebarCard {
+    @include sidebar-options-card;
+    height: 200px;
+  }
+
+  #chart3OptionsSidebarCard {
+    @include sidebar-options-card;
+    height: 200px;
+  }
+
+  #chartSelectBar {
+    button {
+      width: 100%;
+      height: 50px;
+      margin: 1px;
+      color: rgba($my-primary, 0.5);
+      border: none;
+      border-bottom: 2px solid rgba($my-primary, 0.5);
+      background: transparent;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+
+      &:hover {
+        color: rgba($my-primary, 1);
+        border-bottom: 2px solid rgba($my-primary, 1);
+        background: rgba($my-secondary-background, 0.1);
+      }
+
+      &:active {
+        color: rgba($my-primary, 0.8);
+        border-bottom: 2px solid rgba($my-primary, 0.8);
+        background: rgba($my-secondary-background, 0.5);
+      }
+    }
+
+    .active {
+      color: rgba($my-primary, 0.8);
+      border-bottom: 2px solid rgba($my-primary, 0.8);
+      background: $card-background;
+
+      &:hover {
+        color: rgba($my-primary, 1);
+        border-bottom: 2px solid rgba($my-primary, 1);
+        background: rgba($my-secondary-background, 0.6);
+      }
+
+      &:active {
+        color: rgba($my-primary, 0.8);
+        border-bottom: 2px solid rgba($my-primary, 0.8);
+        background: rgba($my-secondary-background, 0.6);
+      }
+    }
+
+    .row {
+      margin-bottom: 0px;
+    }
+  }
+
+  #fileFilterCard {
+    position: relative;
+    background: $card-background;
+    margin: $sidebar-margin;
+    width: $sidebar-adjusted-size;
+    padding: $sidebar-margin / 2;
+    border-radius: 10px;
+
+    h3 {
+      width: 100%;
+      color: $my-text-color;
+      text-align: center;
     }
 
     hr {
-        background-color: $my-subheader-color;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-
-    .btn {
-        @include normal-button;
-        @include sidebar-block-button;
-    }
-
-    #chartOptionsContainer {
-        margin: $sidebar-margin;
-    }
-
-    #treemapOptionsSidebarCard {
-        @include sidebar-options-card;
-
-        //border: 10px solid rgba($my-primary, 0.5);
-        #sizeSelector {
-            @include input-field-styling;
-            width: 100%;
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        #colorSelector {
-            @include input-field-styling;
-            width: 100%;
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-
-        #colorSlider {
-            margin-left: $sidebar-margin;
-            margin-right: $sidebar-margin;
-            width: $margin-adjusted-percentage;
-        }
-
-        #sliderValDisplay {
-            color: $my-text-color;
-        }
-
-        #ccnSlider {
-            color: purple;
-        }
-
-    }
-
-    #chart2OptionsSidebarCard {
-        @include sidebar-options-card;
-        height: 200px;
-
-    }
-
-    #chart3OptionsSidebarCard {
-        @include sidebar-options-card;
-        height: 200px;
-    }
-
-    #chartSelectBar {
-
-        button {
-            width: 100%;
-            height: 50px;
-            margin: 1px;
-            color: rgba($my-primary, 0.5);
-            border: none;
-            border-bottom: 2px solid rgba($my-primary, 0.5);
-            background: transparent;
-            border-top-right-radius: 5px;
-            border-top-left-radius: 5px;
-
-            &:hover {
-                color: rgba($my-primary, 1);
-                border-bottom: 2px solid rgba($my-primary, 1);
-                background: rgba($my-secondary-background, 0.1);
-            }
-
-            &:active {
-                color: rgba($my-primary, 0.8);
-                border-bottom: 2px solid rgba($my-primary, 0.8);
-                background: rgba($my-secondary-background, 0.5);
-            }
-        }
-
-        .active {
-            color: rgba($my-primary, 0.8);
-            border-bottom: 2px solid rgba($my-primary, 0.8);
-            background: $card-background;
-
-            &:hover {
-                color: rgba($my-primary, 1);
-                border-bottom: 2px solid rgba($my-primary, 1);
-                background: rgba($my-secondary-background, 0.6);
-            }
-
-            &:active {
-                color: rgba($my-primary, 0.8);
-                border-bottom: 2px solid rgba($my-primary, 0.8);
-                background: rgba($my-secondary-background, 0.6);
-            }
-        }
-
-        .row {
-            margin-bottom: 0px;
-        }
-    }
-
-    #fileFilterCard {
-        position: relative;
-        background: $card-background;
-        margin: $sidebar-margin;
-        width: $sidebar-adjusted-size;
-        padding: $sidebar-margin / 2;
-        border-radius: 10px;
-
-        h3 {
-            width: 100%;
-            color: $my-text-color;
-            text-align: center;
-        }
-
-        hr {
-            background-color: $my-subheader-color;
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-
-        p {
-            margin-left: 5%;
-        }
-
-        #fileListCard {
-            position: relative;
-            background: $card-background;
-            margin: $sidebar-margin;
-            width: $sidebar-adjusted-size;
-            padding: $sidebar-margin / 2;
-            border-radius: 10px;
-
-            #fileList {
-                width: 100%;
-                min-height: 60px;
-                max-height: 160px;
-            }
-        }
-
-        #fileSelector {
-            @include input-field-styling;
-        }
-
-        #filterButton {
-            @include normal-button;
-            margin: $content-margin;
-            width: $sidebar-adjusted-size;
-        }
+      background-color: $my-subheader-color;
+      margin-left: 20px;
+      margin-right: 20px;
     }
 
     p {
-        color: $my-text-color;
+      margin-left: 5%;
     }
+
+    #fileListCard {
+      position: relative;
+      background: $card-background;
+      margin: $sidebar-margin;
+      width: $sidebar-adjusted-size;
+      padding: $sidebar-margin / 2;
+      border-radius: 10px;
+
+      #fileList {
+        width: 100%;
+        min-height: 60px;
+        max-height: 160px;
+      }
+    }
+
+    #fileSelector {
+      @include input-field-styling;
+    }
+
+    #filterButton {
+      @include normal-button;
+      margin: $content-margin;
+      width: $sidebar-adjusted-size;
+    }
+  }
+
+  p {
+    color: $my-text-color;
+  }
 }
 
 // ====================== End Sidebar Styles ======================
@@ -325,56 +400,56 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 // ====================== Body Content Styles ======================
 
 html {
-    width: 100%; //this is here to make the gradient fit
-    height: 100%; //this is here to make the gradient fit
-    overflow-y: hidden; // removes the scrollbar. Currently, our app doesn't scroll.
+  width: 100%; //this is here to make the gradient fit
+  height: 100%; //this is here to make the gradient fit
+  overflow-y: hidden; // removes the scrollbar. Currently, our app doesn't scroll.
 }
 
 body {
-    width: 100%; //this is here to make the gradient fit
-    height: 100%; //this is here to make the gradient fit
-    background: $my-gradient;
-    font-family: 'Quicksand', sans-serif;
+  width: 100%; //this is here to make the gradient fit
+  height: 100%; //this is here to make the gradient fit
+  background: $my-gradient;
+  font-family: "Quicksand", sans-serif;
 }
 
 .row {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 // ==================== End Body Content Styles ====================
 
 // ======================== Chart Card Styles ========================
 #treeMapCard {
-    @include content-card;
+  @include content-card;
 
-    #TreemapBackButton {
-        @include secondary-button;
+  #TreemapBackButton {
+    @include secondary-button;
 
-        cursor: zoom-out;
-        position: relative;
-        width: $margin-adjusted-percentage;
-        height: $margin-adjusted-percentage * 0.1 - $content-margin;
-        margin: $content-margin;
-    }
+    cursor: zoom-out;
+    position: relative;
+    width: $margin-adjusted-percentage;
+    height: $margin-adjusted-percentage * 0.1 - $content-margin;
+    margin: $content-margin;
+  }
 
-    #treeMapChart {
-        position: relative;
-        height: $margin-adjusted-percentage * 0.9 - $content-margin;
-        width: $margin-adjusted-percentage;
-        margin: $content-margin;
-        margin-top: 0;
-    }
+  #treeMapChart {
+    position: relative;
+    height: $margin-adjusted-percentage * 0.9 - $content-margin;
+    width: $margin-adjusted-percentage;
+    margin: $content-margin;
+    margin-top: 0;
+  }
 }
 
 // ====================== End Chart Card Styles ======================
 
 // ======================== Content Area Styles ========================
 #contentArea {
-    position: relative;
-    width: $content-area-width;
-    height: 100%;
-    margin: 0;
+  position: relative;
+  width: $content-area-width;
+  height: 100%;
+  margin: 0;
 }
 
 // ====================== End Content Area Styles ======================
@@ -386,142 +461,102 @@ $m: 0; // margin
 *,
 *:before,
 *:after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 .feature {
-    position: relative;
-    width: calc(100% - #{$m} * 2 * 1px);
-    height: calc(100% - #{$m} * 2 * 1px);
-    margin: $m * 1px;
-    overflow: hidden;
+  position: relative;
+  width: calc(100% - #{$m} * 2 * 1px);
+  height: calc(100% - #{$m} * 2 * 1px);
+  margin: $m * 1px;
+  overflow: hidden;
 }
 
 .node {
+  position: absolute;
+  background: transparent url("") no-repeat 50% / cover;
+  overflow: hidden;
+  opacity: 0.8;
+  -webkit-transition: opacity 0.8s;
+  transition: opacity 0.8s;
+  cursor: pointer;
+  border: 1px white groove;
+  .label {
+    display: inline;
+    font-family: sans-serif;
+    color: #000000;
+    font-weight: 500;
     position: absolute;
-    background: transparent url('') no-repeat 50% / cover;
-    overflow: hidden;
-    opacity: 0.8;
-    -webkit-transition: opacity 0.8s;
-    transition: opacity .8s;
-    cursor: pointer;
-    border: 1px white groove;
-	.label {
-        display: inline;
-		font-family: sans-serif;
-        color: #000000;
-        font-weight: 500;
-        position: absolute;
-		padding: 0;
-		margin: 0;
-		top: 50%;
-		left: 50%;
-		transform: translateX(-50%) translateY(-50%);
-		transition: color .4s, opacity .8s, filter .8s;
-	}
-	&.hide { // zoom in
-		opacity: 0;
-		pointer-events: none;
-		.label {
-			filter: blur(10px);
-		}
-	}
-	&:hover {
-		.label {
-			color: #585858;
-		}
-	}
-	&.level-0 {
-		display: none;
-	}
-	&.level-1 {
-        z-index: 3;
-        font-size: 3vmin;
-	}
-	&.level-2 {
-		z-index: 2;
-		font-size: 2.5vmin;
+    padding: 0;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition: color 0.4s, opacity 0.8s, filter 0.8s;
+  }
+  &.hide {
+    // zoom in
+    opacity: 0;
+    pointer-events: none;
+    .label {
+      filter: blur(10px);
+    }
+  }
+  &:hover {
+    .label {
+      color: #585858;
+    }
+  }
+  &.level-0 {
+    display: none;
+  }
+  &.level-1 {
+    z-index: 3;
+    font-size: 3vmin;
+  }
+  &.level-2 {
+    z-index: 2;
+    font-size: 2.5vmin;
   }
 }
 
 .mouseHover {
-    position: absolute;
-    white-space: pre-line;
-    display: none;
-    width: auto;
-    height: auto;
-    background: none repeat scroll 0 0 white;
-    border: 0 none;
-    border-radius: 8px 8px 8px 8px;
-    box-shadow: -3px 3px 15px #888888;
-    color: black;
-    font: 14px sans-serif;
-    padding: 5px;
-    text-align: center;
-    z-index: 4;
-  }
-
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 19px;
-    cursor: pointer;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3) inset;
-    background: linear-gradient(to right, green, yellow, orange, red);
-    border-radius: 20px;
-    border: 0.2px solid #010101;
-}
-
-input[type=range]::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 20px;
-    width: 20px;
-    border-radius: 20px;
-    background: white;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -1px;
-}
-
-#colorSlider:before {
-    content: attr(min);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    color: black;
-    font-size: 1rem;
-}
-
-#colorSlider:after {
-    content: attr(max);
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    color: black;
-    font-size: 1rem;
+  position: absolute;
+  white-space: pre-line;
+  display: none;
+  width: auto;
+  height: auto;
+  background: none repeat scroll 0 0 white;
+  border: 0 none;
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: -3px 3px 15px #888888;
+  color: black;
+  font: 14px sans-serif;
+  padding: 5px;
+  text-align: center;
+  z-index: 4;
 }
 
 // ======================== End Chart Styles ========================
 
 // =========================== Style Fixes ===========================
 button:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: 2px solid transparent;
+  outline: none !important;
+  box-shadow: none !important;
+  border: 2px solid transparent;
 }
 
 input:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: 2px solid transparent;
+  outline: none !important;
+  box-shadow: none !important;
+  border: 2px solid transparent;
 }
-
 
 // ========================= End Style Fixes =========================

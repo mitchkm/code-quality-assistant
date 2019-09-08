@@ -43,7 +43,7 @@ class Treemap {
       .scaleLinear<string>()
       .domain(this.treemapSetting.color.thresholds)
       .range(this.treemapSetting.color.colors)
-      .interpolate(d3.interpolateRgb.gamma(this.treemapSetting.color.gamma));
+      .interpolate(d3.interpolateHslLong);
 
     // sets treemap layout
     const treemap = d3
@@ -137,7 +137,7 @@ class Treemap {
           return "transparent";
         }
         return d.parent
-          ? this.color(d.data.value2 / d.parent.data.value2)
+          ? this.color(d.data.value2)
           : "none";
       })
       .on("click", (d: any) => {
