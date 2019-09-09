@@ -7,6 +7,26 @@ import treemapSetting from "./Treemap/treemapSetting";
 import InterfaceEventController from "./InterfaceEventController";
 import TreemapEventController from "./TreemapEventController";
 
+// Process Data
+let data;
+try {
+  data = JSON.parse(document.getElementById("rawData").textContent);
+} catch (err) {
+  console.log("Could not parse injected rawData!" + err);
+  console.log("Displaying example data. NOT meaningful data!");
+  data = exampleData;
+}
+
+// create metric data helper class
+const mD = new MetricData(data);
+
+// default color thresholds
+const colorMetric = Metrics.CCN;
+const defaultMin = mD.getMinColorMetric(colorMetric);
+const defaultMax = mD.getMaxColorMetric(colorMetric);
+const defaultThreshold = (defaultMax - defaultMin) * 0.75;
+const defaultColorThresholds = [defaultMin, defaultThreshold, defaultMax];
+
 // Get URL injected paramters
 const urlParams: any = util.getUrlVars();
 
@@ -17,7 +37,7 @@ const treemapSettings: treemapSetting = {
   paddings: [0.3, 0.3, 0.3, 0.3],
   color: {
     colors: ["green", "red", "red"],
-    thresholds: [0, 7, 10],
+    thresholds: defaultColorThresholds,
   },
   sizeOption: Metrics.NLOC,
   colorOption: Metrics.CCN,
@@ -34,19 +54,6 @@ for (const key in treemapSettings) {
     treemapSettings[key] = tSettings[key];
   }
 }
-
-// Process Data
-let data;
-try {
-  data = JSON.parse(document.getElementById("rawData").textContent);
-} catch (err) {
-  console.log("Could not parse injected rawData!" + err);
-  console.log("Displaying example data. NOT meaningful data!");
-  data = exampleData;
-}
-
-// create metric data helper class
-const mD = new MetricData(data);
 
 // create treemap
 const processedData: TreemapData = mD.toTreemapData(

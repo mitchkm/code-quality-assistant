@@ -44,6 +44,7 @@ class TreemapEventController {
     this.initSizeMetricSelector();
     this.initColorMetricSelector();
     this.initTreemapColorSelector();
+    this.initColorThreshold();
   }
 
   private updateTreemap() {
@@ -148,9 +149,18 @@ class TreemapEventController {
       });
 
     d3.select(COLOR_SELECTOR).on("change", () => {
-      this.treemapSettings.sizeOption = d3
+      this.treemapSettings.colorOption = d3
         .select(COLOR_SELECTOR)
         .property("value");
+
+      // find min and max values of selected color option
+      const colorMetric = this.treemapSettings.colorOption;
+      const min = this.mD.getMinColorMetric(colorMetric);
+      const max = this.mD.getMaxColorMetric(colorMetric);
+      const threshold = (max - min) * 0.75;
+
+      // change colorThreshold
+      this.initColorThreshold(min, threshold, max);
       this.updateTreemap();
     });
   }
@@ -183,6 +193,43 @@ class TreemapEventController {
           "linear-gradient(to right," + startColor + ", " + endColor + ")"
         );
     });
+  }
+
+  /**
+   * initializes color threshold option for treemap.
+   * @param min the minimum value of selected color option among entire files.
+   * @param threshold the calculated threshold (75% of (max - min)).
+   * @param max the maximum value of selected color option among entire files.
+   */
+  private initColorThreshold(min?: number, threshold?: number, max?: number) {
+    if (!min && !max && !threshold) {
+      // use default min, max, and threshold
+      min = this.treemapSettings.color.thresholds[0];
+      threshold = this.treemapSettings.color.thresholds[1];
+      max = this.treemapSettings.color.thresholds[2];
+    }
+
+    // display threshold
+    d3.select(".value-selected").text("val: " + threshold);
+    d3.select(".selectedValueText").text("value >= " + threshold + " displayed in red");
+
+    // display min and max
+    d3.select(".min").text("Min: " + min);
+    d3.select(".max").text("Max: " + max);
+
+    // set min, max, and threshold for slider
+    d3.select(".range-slider-range")
+      .attr("min", min)
+      .attr("max", max)
+      .attr("value", threshold)
+      .on("change", () => {
+        const selectedVal = d3.select(".range-slider-range").property("value");
+        d3.select(".value-selected").text("val: " + selectedVal);
+        // update threshold
+        this.treemapSettings.color.thresholds = [min, selectedVal, max];
+        this.updateTreemap();
+        d3.select(".selectedValueText").text("value >= " + selectedVal + " displayed in red");
+      });
   }
 }
 
