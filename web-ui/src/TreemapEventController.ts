@@ -158,6 +158,7 @@ class TreemapEventController {
       const min = this.mD.getMinColorMetric(colorMetric);
       const max = this.mD.getMaxColorMetric(colorMetric);
       const threshold = (max - min) * 0.75;
+      this.treemapSettings.color.thresholds = [min, threshold, max];
 
       // change colorThreshold
       this.initColorThreshold(min, threshold, max);
