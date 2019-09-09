@@ -7181,7 +7181,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       margin-left: 20px;
       margin-right: 20px; }
     #sidebar #treemapOptionsSidebarCard #sizeSelector {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.5);
       color: black;
       border-radius: 5px;
       border: 0;
@@ -7195,7 +7195,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       #sidebar #treemapOptionsSidebarCard #sizeSelector::placeholder {
         color: black; }
     #sidebar #treemapOptionsSidebarCard #colorSelector {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.5);
       color: black;
       border-radius: 5px;
       border: 0;
@@ -7315,7 +7315,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         min-height: 60px;
         max-height: 160px; }
     #sidebar #fileFilterCard #fileSelector {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.5);
       color: black;
       border-radius: 5px;
       border: 0;

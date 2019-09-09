@@ -121,7 +121,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 }
 
 @mixin input-field-styling {
-    background: rgba(white, .8);
+    background: rgba(white, .5);
     color: black;
     border-radius: 5px;
     border: 0;
