@@ -3,7 +3,6 @@ import { exampleData } from "./Data/example";
 import * as util from "./util";
 import Treemap from "./Treemap/treemap";
 import TreemapData from "./Data/treemapData";
-import colorSetting from "./Treemap/colorSetting";
 import treemapSetting from "./Treemap/treemapSetting";
 import InterfaceEventController from "./InterfaceEventController";
 import TreemapEventController from "./TreemapEventController";
@@ -17,9 +16,8 @@ const treemapSettings: treemapSetting = {
   height: 100,
   paddings: [0.3, 0.3, 0.3, 0.3],
   color: {
-    colors: ["#00a539", "#fff453", "#fd7900", "#ff001f"],
-    thresholds: [0, 0.3333, 0.66666, 1],
-    gamma: 1.0
+    colors: ["green", "red", "red"],
+    thresholds: [0, 7, 10],
   },
   sizeOption: Metrics.NLOC,
   colorOption: Metrics.CCN,
