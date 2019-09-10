@@ -277,4 +277,54 @@ export class MetricData {
 
     return data;
   }
+
+  /**
+   * finds the minimum value of selected color option among entire files.
+   * @param fileList list of files to find the minimum value among.
+   * @param colorMetric colorOption to find the minimum value of.
+   */
+  public getMinColorMetric(colorMetric: string, fileList?: string[]) {
+    let overallMin;
+    let file;
+
+    if (!fileList) {
+      fileList = this.fileList;
+    }
+
+    for (file of fileList) {
+      const min = this.getMetricStatitistics(file).get(colorMetric).min;
+      if (!overallMin) {
+        overallMin = min;
+      }
+      else if (overallMin > min) {
+        overallMin = min;
+      }
+    }
+    return overallMin;
+  }
+
+  /**
+   * finds the maximum value of selected color option among entire files.
+   * @param fileList list of files to find the maximum value among.
+   * @param colorMetric colorOption to find the maximum value of.
+   */
+  public getMaxColorMetric(colorMetric: string, fileList?: string[]) {
+    let overallMax;
+    let file;
+
+    if (!fileList) {
+      fileList = this.fileList;
+    }
+
+    for (file of fileList) {
+      const max = this.getMetricStatitistics(file).get(colorMetric).max;
+      if (!overallMax) {
+        overallMax = max;
+      }
+      else if (overallMax < max) {
+        overallMax = max;
+      }
+    }
+    return overallMax;
+  }
 }
