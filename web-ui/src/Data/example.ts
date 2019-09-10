@@ -22,7 +22,7 @@ export const exampleData = {
           longName: "checkPathExists( )",
           startLine: 27,
           nloc: 11,
-          ccn: 4,
+          ccn: 10,
           tokens: 85,
           params: 0,
           length: 11
@@ -32,7 +32,7 @@ export const exampleData = {
           longName: "resource_path( relative_path )",
           startLine: 40,
           nloc: 6,
-          ccn: 2,
+          ccn: 12,
           tokens: 37,
           params: 1,
           length: 9
@@ -42,7 +42,7 @@ export const exampleData = {
           longName: "createWebFiles( )",
           startLine: 51,
           nloc: 2,
-          ccn: 1,
+          ccn: 29,
           tokens: 13,
           params: 0,
           length: 2
@@ -52,7 +52,7 @@ export const exampleData = {
           longName: "injectData( json )",
           startLine: 55,
           nloc: 8,
-          ccn: 2,
+          ccn: 21,
           tokens: 61,
           params: 1,
           length: 9
@@ -62,7 +62,7 @@ export const exampleData = {
           longName: "buildFilenameList( path )",
           startLine: 66,
           nloc: 10,
-          ccn: 5,
+          ccn: 15,
           tokens: 76,
           params: 1,
           length: 10
@@ -72,7 +72,7 @@ export const exampleData = {
           longName: "getExtensionFromFilename( path )",
           startLine: 78,
           nloc: 4,
-          ccn: 1,
+          ccn: 2,
           tokens: 24,
           params: 1,
           length: 4
