@@ -43,6 +43,7 @@ class InterfaceEventController {
       });
     }
   }
+  static init
 }
 
 export default InterfaceEventController;

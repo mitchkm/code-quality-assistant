@@ -10,7 +10,7 @@
   --purple: #9848e2;
   --pink: #ff006a;
   --red: #ff0033;
-  --orange: #c7b9b8;
+  --orange: #f05247;
   --yellow: #ffc107;
   --green: #00e09f;
   --teal: #20c997;
@@ -7303,6 +7303,20 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         background: #2c3e50;
         padding: 5px 10px;
         margin-left: 8px; }
+    #sidebar #treemapOptionsSidebarCard #optionsGridContainer #from, #sidebar #treemapOptionsSidebarCard #optionsGridContainer #to {
+      width: 100%; }
+    #sidebar #treemapOptionsSidebarCard #optionsGridContainer input {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0;
+      margin-left: 5%;
+      margin-right: 5%;
+      width: 90%;
+      padding-left: 5px;
+      width: 100%; }
+      #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::placeholder {
+        color: black; }
   #sidebar #chart2OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
@@ -7401,7 +7415,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       #sidebar #fileFilterCard #fileListCard #fileList {
         width: 92%;
         min-height: 60px;
-        max-height: 160px;
+        max-height: 120px;
         margin-left: 8%;
         overflow-y: scroll; }
         #sidebar #fileFilterCard #fileListCard #fileList .row {
@@ -7598,6 +7612,9 @@ input:focus {
   outline: none !important;
   box-shadow: none !important;
   border: 2px solid transparent; }
+
+label {
+  color: #f6f6f6; }
 
 .fileFilterPanel {
   position: relative;

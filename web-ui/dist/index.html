@@ -68,6 +68,17 @@
               <select id="colorSelector"></select>
             </div>
           </div>
+          <div class="row">
+            <div class="col-4">
+              <label>Re-color Tree Map </label>
+            </div>
+            <div class="col-4" id="from">
+              <input class="colorFromInput" type="text" placeholder="start color">
+            </div>
+            <div class="col-4" id="to">
+              <input class="colorToInput" type="text" placeholder="end color">
+            </div>
+          </div>
           <div class="treemapColors">
             <div class="colorInputs">
               <div class="colorFrom">
@@ -80,7 +91,7 @@
               </div>
             </div>
             <div>
-              <button id="treemapColorChange" class="btn btn-sq btn-outline-primary">Change</button>
+              <button id="treemapColorChange" class="btn btn-sq btn-outline-primary">Re-color</button>
             </div>
             <div class="colorGradientBar"></div>
             <div class="colorThreshold">
@@ -113,7 +124,6 @@
 
     </div>
 
-    <br /><br />
 
     <div id="fileFilterCard">
       <div id="gridContainer">

@@ -24,7 +24,7 @@ $dark-blue: rgb(24, 52, 88);
 $purple: rgb(152, 72, 226);
 $green: rgb(0, 224, 159);
 $red: rgb(255, 0, 51);
-$orange: rgb(199, 185, 184);
+$orange: rgb(240, 82, 71);
 $pink: rgb(255, 0, 106);
 
 $sidebar-width: 30%;
@@ -321,6 +321,17 @@ $theme-colors: ("primary": $my-primary,
                 }
             }
         }
+        #optionsGridContainer{
+            #from, #to{
+                width: 100%;
+            }
+            input {
+                @include input-field-styling;
+                //margin: 1px $sidebar-margin;
+                width: 100%;
+            }
+
+        }
     }
 
     #chart2OptionsSidebarCard {
@@ -417,7 +428,7 @@ $theme-colors: ("primary": $my-primary,
             #fileList {
                 width: $sidebar-adjusted-size;
                 min-height: 60px;
-                max-height: 160px;
+                max-height: 120px;
                 margin-left: $sidebar-margin * 2;
                 overflow-y: scroll;
 
@@ -625,6 +636,9 @@ input:focus {
     outline: none !important;
     box-shadow: none !important;
     border: 2px solid transparent;
+}
+label{
+    color: $my-text-color;
 }
 
 // ========================= End Style Fixes =========================
