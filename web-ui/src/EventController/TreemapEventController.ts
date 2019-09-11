@@ -53,7 +53,11 @@ class TreemapEventController {
    */
   private updateTreemap() {
     this.mD.clearFilterList();
-    this.mD.addToFilterList(this.treemapSettings.fileOption);
+    this.mD.useBlackList();
+    this.mD.addToFilterList(this.treemapSettings.fileOption.list);
+    if (this.treemapSettings.fileOption.type === "white") {
+      this.mD.useWhiteList();
+    }
     const data = this.mD.toTreemapData(
       this.treemapSettings.sizeOption,
       this.treemapSettings.colorOption
@@ -86,9 +90,9 @@ class TreemapEventController {
       });
 
     d3.select(FILE_FILTER_BUTTON).on("click", () => {
-      this.treemapSettings.fileOption = d3
+      this.treemapSettings.fileOption.list.push(d3
         .select(FILE_SELECTOR)
-        .property("value");
+        .property("value"));
       this.updateTreemap();
     });
   }
