@@ -7217,19 +7217,9 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         color: black; }
     #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs {
       overflow: hidden; }
-<<<<<<< HEAD
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .safeColor, #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .warningColor, #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .dangerColor {
         width: 32%;
         display: inline-block; }
-=======
-      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorFrom,
-      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorTo {
-        width: 49%; }
-      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorFrom {
-        float: left; }
-      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorTo {
-        float: right; }
->>>>>>> ac17bc32e15b1eaabe1650b3318ab7474fff2ce6
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs label {
         display: block;
         font-size: 14px;
@@ -7253,7 +7243,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       background-color: rgba(79, 170, 255, 0.2);
       border-color: #4faaff;
       z-index: 1;
-      margin: 4%;
+      margin: 5px 4% 2px;
       width: 92%; }
       #sidebar #treemapOptionsSidebarCard .treemapColors #treemapColorChange:hover {
         border-color: #1c91ff;
@@ -7302,7 +7292,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         cursor: pointer; }
       #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .value-selected {
         display: inline-block;
-        width: 65px;
+        width: 70px;
         line-height: 20px;
         color: #f6f6f6;
         text-align: center;
