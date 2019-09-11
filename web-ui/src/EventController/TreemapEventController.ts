@@ -166,7 +166,7 @@ class TreemapEventController {
         .select(COLOR_SELECTOR)
         .property("value");
 
-      // update colorThreshold according to selected colorOption
+      // reinitialize colorThreshold based on change
       this.initColorThreshold();
       this.updateTreemap();
     });
@@ -181,31 +181,41 @@ class TreemapEventController {
     const DANGER_COLOR = ".dangerColorInput";
     const COLOR_CHANGE_BUTTON = "#treemapColorChange";
     const COLOR_BAR = ".colorGradientBar";
-    const safeColorDefault = "green";
-    const dangerColorDefault = "red";
+    const currentSafeColor = this.treemapSettings.color.colors[0];
+    const currentWarningColor = this.treemapSettings.color.colors[1];
+    const currentDangerColor = this.treemapSettings.color.colors[2];
 
     d3.select(COLOR_CHANGE_BUTTON).on("click", () => {
-      const safeColorInput = d3
-        .select(SAFE_COLOR)
-        .property("value");
-      const dangerColorInput = d3
-        .select(DANGER_COLOR)
-        .property("value");
-      this.treemapSettings.color.colors[0] = safeColorInput ? safeColorInput : safeColorDefault;
-      this.treemapSettings.color.colors[1] = dangerColorInput ? dangerColorInput : dangerColorDefault;
-      this.treemapSettings.color.colors[2] = dangerColorInput ? dangerColorInput : dangerColorDefault;
+      const safeColorInput = d3.select(SAFE_COLOR).property("value");
+      const warningColorInput = d3.select(WARNING_COLOR).property("value");
+      const dangerColorInput = d3.select(DANGER_COLOR).property("value");
+      this.treemapSettings.color.colors[0] = safeColorInput
+        ? safeColorInput
+        : currentSafeColor;
+      this.treemapSettings.color.colors[1] = warningColorInput
+        ? warningColorInput
+        : currentWarningColor;
+      this.treemapSettings.color.colors[2] = dangerColorInput
+        ? dangerColorInput
+        : currentDangerColor;
+      this.treemapSettings.color.colors[3] = dangerColorInput
+        ? dangerColorInput
+        : currentDangerColor;
 
       // update Color Bar
-      const startColor = d3.select(SAFE_COLOR).property("value");
-      const middleColor = d3.select(WARNING_COLOR).property("value");
-      const endColor = d3.select(DANGER_COLOR).property("value");
       d3.select(COLOR_BAR)
         .style("height", "20px")
         .style(
           "background-image",
-          "linear-gradient(to right," + startColor + ", " + middleColor + ", " + endColor + ")"
-      );
-      // update thresholds
+          "linear-gradient(to right," +
+            safeColorInput +
+            ", " +
+            warningColorInput +
+            ", " +
+            dangerColorInput +
+            ")"
+        );
+      // reinitialize thresholds based on change
       this.initColorThreshold();
       this.updateTreemap();
     });
@@ -215,21 +225,32 @@ class TreemapEventController {
    * initializes color threshold option for treemap.
    */
   private initColorThreshold() {
+    const SAFE_COLOR = ".safeColorInput";
+    const WARNING_COLOR = ".warningColorInput";
+    const DANGER_COLOR = ".dangerColorInput";
     const colorMetric = this.treemapSettings.colorOption;
     const min = this.mD.getMinColorMetric(colorMetric);
     const max = this.mD.getMaxColorMetric(colorMetric);
+    const dangerThreshold = DangerThresholds[colorMetric];
+    const warningThreshold = WarningThresholds[colorMetric];
 
-    // check threshold based on colorMetric
-    this.checkColorMetricValues(colorMetric, min, max);
+    // reset threshold based on colorMetric
+    this.resetThresholdsColors(colorMetric, min, max);
 
-    // get threshold value
-    const threshold = this.treemapSettings.color.thresholds[1];
+    // set initial threshold value
+    let threshold = dangerThreshold;
+    if (max < warningThreshold) {
+      threshold = warningThreshold;
+    }
+
+    // decide if threshold is for warning or danger
+    const warning = this.isWarning(threshold);
 
     // display threshold value
     d3.select(".value-selected").text("val: " + threshold);
 
     // display threshold message
-    this.initColorThresholdDescription(threshold);
+    this.initColorThresholdDescription(warning, threshold);
 
     // display min and max
     d3.select(".min").text("Min: " + min);
@@ -241,13 +262,51 @@ class TreemapEventController {
       .attr("max", max)
       .attr("value", threshold)
       .on("change", () => {
-        const selectedVal = d3.select(".range-slider-range").property("value");
+        const selectedVal = parseInt(
+          d3.select(".range-slider-range").property("value")
+        );
         d3.select(".value-selected").text("val: " + selectedVal);
-        // update threshold
-        this.treemapSettings.color.thresholds = [min, selectedVal, max];
+
+        const safeColor = d3.select(SAFE_COLOR).property("value");
+        const warningColor = d3.select(WARNING_COLOR).property("value");
+        const dangerColor = d3.select(DANGER_COLOR).property("value");
+
+        // update threshold for danger
+        if (warningThreshold < selectedVal) {
+          this.treemapSettings.color.thresholds = [
+            min,
+            warningThreshold,
+            selectedVal,
+            max
+          ];
+          this.treemapSettings.color.colors = [
+            safeColor,
+            warningColor,
+            dangerColor,
+            dangerColor
+          ];
+        } else {
+          this.treemapSettings.color.thresholds = [min, selectedVal, max];
+          // check if threshold is for warning or not
+          if (warning) {
+            this.treemapSettings.color.colors = [
+              safeColor,
+              warningColor,
+              warningColor,
+              warningColor
+            ];
+          } else {
+            this.treemapSettings.color.colors = [
+              safeColor,
+              dangerColor,
+              dangerColor,
+              dangerColor
+            ];
+          }
+        }
         this.updateTreemap();
         // update threshold description
-        this.initColorThresholdDescription(selectedVal);
+        this.initColorThresholdDescription(warning, selectedVal);
       });
   }
 
@@ -255,18 +314,51 @@ class TreemapEventController {
    * describes the threshold for danger or warning.
    * @param threshold current threshold for danger or warning.
    */
-  private initColorThresholdDescription(threshold: number) {
+  private initColorThresholdDescription(warning: boolean, threshold: number) {
+    // if (threshold !== 0 && !threshold) {
+    //   const colorMetric = this.treemapSettings.colorOption;
+    //   const dangerThreshold = DangerThresholds[colorMetric];
+    //   const warningThreshold = WarningThresholds[colorMetric];
+    //   threshold = warning ? warningThreshold : dangerThreshold;
+    // }
     const WARNING_COLOR = ".warningColorInput";
     const DANGER_COLOR = ".dangerColorInput";
-    const middleColor = d3.select(WARNING_COLOR).property("value");
-    const endColor = d3.select(DANGER_COLOR).property("value");
+    const warningColor = d3.select(WARNING_COLOR).property("value");
+    const dangerColor = d3.select(DANGER_COLOR).property("value");
 
-    if (this.treemapSettings.color.colors[2] === middleColor) {
-      d3.select(".selectedValueText").text("values >= " + threshold + " colored in " + middleColor + " are in warning.");
+    // threshold description for warning
+    if (warning) {
+      d3.select(".selectedValueText").text(
+        "values >= " +
+          threshold +
+          " colored in " +
+          warningColor +
+          " are in warning."
+      );
     }
-    else if (this.treemapSettings.color.colors[2] === endColor) {
-      d3.select(".selectedValueText").text("values >= " + threshold + " colored in " + endColor + " are in danger.");
+    // threshold description for danger
+    else {
+      d3.select(".selectedValueText").text(
+        "values >= " +
+          threshold +
+          " colored in " +
+          dangerColor +
+          " are in danger."
+      );
     }
+  }
+
+  /**
+   * decides whether threshold is for warning or for danger.
+   * @param threshold default threshold value
+   */
+  private isWarning(threshold) {
+    const colorMetric = this.treemapSettings.colorOption;
+    const warningThreshold = WarningThresholds[colorMetric];
+    if (threshold === warningThreshold) {
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -275,27 +367,57 @@ class TreemapEventController {
    * @param min the minimum value of the current color option in the entire files.
    * @param max the maximum value of the current color option in the entire files.
    */
-  private checkColorMetricValues(colorMetric, min, max) {
+  private resetThresholdsColors(colorMetric, min, max) {
+    const SAFE_COLOR = ".safeColorInput";
     const WARNING_COLOR = ".warningColorInput";
+    const DANGER_COLOR = ".dangerColorInput";
+    const safeColor = d3.select(SAFE_COLOR).property("value");
+    const warningColor = d3.select(WARNING_COLOR).property("value");
+    const dangerColor = d3.select(DANGER_COLOR).property("value");
 
-     // get warning and danger thresholds of selected color option
-     const dangerThreshold = DangerThresholds[colorMetric];
-     const warningThreshold = WarningThresholds[colorMetric];
+    // get warning and danger thresholds of selected color option
+    const dangerThreshold = DangerThresholds[colorMetric];
+    const warningThreshold = WarningThresholds[colorMetric];
 
-     // get treemap warning color
-     const warningColor = d3.select(WARNING_COLOR).property("value");
+    // set basic thresholds and colors
+    this.treemapSettings.color.thresholds = [
+      min,
+      warningThreshold,
+      dangerThreshold,
+      max
+    ];
+    this.treemapSettings.color.colors = [
+      safeColor,
+      warningColor,
+      dangerColor,
+      dangerColor
+    ];
 
-     // change thresholds if none of the values are in danger
-     if (max < dangerThreshold) {
-       this.treemapSettings.color.thresholds = [min, dangerThreshold];
-     }
+    // change thresholds if none of the values are in danger
+    if (max < dangerThreshold) {
+      // check params because params do not have warning threshold
+      if (colorMetric === "params") {
+        this.treemapSettings.color.thresholds = [
+          min,
+          dangerThreshold,
+          dangerThreshold
+        ];
+        this.treemapSettings.color.colors[1] = dangerColor;
+      } else {
+        this.treemapSettings.color.thresholds = [
+          min,
+          warningThreshold,
+          dangerThreshold
+        ];
+      }
+    }
 
-     // change thresholds and color if none of the values are in warning
-     if (colorMetric !== "params" && max < warningThreshold) {
-       this.treemapSettings.color.thresholds = [min, warningThreshold];
-       this.treemapSettings.color.colors[1] = warningColor;
-       this.treemapSettings.color.colors[2] = warningColor;
-     }
+    // change thresholds and color if none of the values are in warning
+    if (colorMetric !== "params" && max < warningThreshold) {
+      this.treemapSettings.color.thresholds = [min, warningThreshold];
+      this.treemapSettings.color.colors[2] = warningColor;
+      this.treemapSettings.color.colors[3] = warningColor;
+    }
   }
 }
 
