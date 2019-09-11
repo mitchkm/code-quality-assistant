@@ -442,8 +442,10 @@ $theme-colors: ("primary": $my-primary,
             @include input-field-styling;
         }
 
+
+
         #fileFilterButton {
-            @include normal-button(#000000, lighten($my-secondary, 15%), lighten($my-secondary, 15%));
+            @include secondary-button;
             width: $sidebar-adjusted-size;
             margin-left: $sidebar-margin;
         }
@@ -451,6 +453,12 @@ $theme-colors: ("primary": $my-primary,
         #whitelistButton {
             @include normal-button(white, lighten($my-secondary, 10%), lighten($my-secondary, 10%));
             width: $sidebar-adjusted-size;
+        }
+
+        #blacklistButton{
+            @include normal-button(#000000, lighten($my-secondary, 15%), lighten($my-secondary, 15%));
+            width: $sidebar-adjusted-size;
+            margin-left: $sidebar-margin;
         }
 
         #clearAllButton {
@@ -626,6 +634,8 @@ body {
 // ======================== End Chart Styles ========================
 
 // =========================== Style Fixes ===========================
+
+
 button:focus {
     outline: none !important;
     box-shadow: none !important;
@@ -640,6 +650,13 @@ input:focus {
 
 label {
     color: $my-text-color;
+}
+input, select{
+    //height: 100%;
+    //font-size: 20px;
+}
+p, label{
+    //font-size: 25px;
 }
 
 // ========================= End Style Fixes =========================

@@ -7431,20 +7431,20 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       #sidebar #fileFilterCard #fileSelector::placeholder {
         color: black; }
     #sidebar #fileFilterCard #fileFilterButton {
-      color: #ff68a1;
-      background-color: rgba(0, 0, 0, 0.2);
-      border-color: #ff68a1;
+      color: #ff1b72;
+      background-color: rgba(255, 27, 114, 0.2);
+      border-color: #ff1b72;
       z-index: 1;
       width: 92%;
       margin-left: 4%; }
       #sidebar #fileFilterCard #fileFilterButton:hover {
-        border-color: #ff3582;
-        color: #ff3582;
-        background-color: rgba(0, 0, 0, 0.2); }
+        border-color: #e70058;
+        color: #e70058;
+        background-color: rgba(231, 0, 88, 0.2); }
       #sidebar #fileFilterCard #fileFilterButton:active {
-        border-color: #ff9bc1;
-        color: #ff9bc1;
-        background-color: rgba(26, 26, 26, 0.4); }
+        border-color: #ff4e92;
+        color: #ff4e92;
+        background-color: rgba(255, 78, 146, 0.4); }
     #sidebar #fileFilterCard #whitelistButton {
       color: #ff4e92;
       background-color: rgba(255, 255, 255, 0.2);
@@ -7459,6 +7459,21 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         border-color: #ff81b1;
         color: #ff81b1;
         background-color: rgba(255, 255, 255, 0.4); }
+    #sidebar #fileFilterCard #blacklistButton {
+      color: #ff68a1;
+      background-color: rgba(0, 0, 0, 0.2);
+      border-color: #ff68a1;
+      z-index: 1;
+      width: 92%;
+      margin-left: 4%; }
+      #sidebar #fileFilterCard #blacklistButton:hover {
+        border-color: #ff3582;
+        color: #ff3582;
+        background-color: rgba(0, 0, 0, 0.2); }
+      #sidebar #fileFilterCard #blacklistButton:active {
+        border-color: #ff9bc1;
+        color: #ff9bc1;
+        background-color: rgba(26, 26, 26, 0.4); }
     #sidebar #fileFilterCard #clearAllButton {
       color: #ff1b72;
       background-color: rgba(255, 27, 114, 0.2);

@@ -11,6 +11,9 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
+  <!--Bootstrap toggle CDN https://www.bootstraptoggle.com/-->
+
+
   <!-- Our Custom CSS -->
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -53,18 +56,18 @@
 
         <div id="optionsGridContainer">
           <div class="row">
-            <div class="col-md-5">
-              <p>Choose Size metric: </p>
+            <div class="col-md-8">
+              <p>Size metric: </p>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-4">
               <select id="sizeSelector"></select>
             </div>
           </div>
           <div class="row">
-            <div class="col-5">
-              <p>Choose Color metric: </p>
+            <div class="col-8">
+              <p>Color metric: </p>
             </div>
-            <div class="col-7">
+            <div class="col-4">
               <select id="colorSelector"></select>
             </div>
           </div>
@@ -82,18 +85,18 @@
           </div>
           -->
           <div class="treemapColors">
-            <div class = "colorInputs">
-              <div class = "safeColor">
+            <div class="colorInputs">
+              <div class="safeColor">
                 <label>Safety Color: </label>
-                <input class = "safeColorInput" type = "text" value = "green">
+                <input class="safeColorInput" type="text" value="green">
               </div>
-              <div class = "warningColor">
+              <div class="warningColor">
                 <label>Warning Color: </label>
-                <input class = "warningColorInput" type = "text" value = "orange">
+                <input class="warningColorInput" type="text" value="orange">
               </div>
-              <div class = "dangerColor">
+              <div class="dangerColor">
                 <label>Danger Color: </label>
-                <input class = "dangerColorInput" type = "text" value = "red">
+                <input class="dangerColorInput" type="text" value="red">
               </div>
             </div>
             <div>
@@ -105,11 +108,11 @@
               <div>
                 <label class="min"></label>
                 <div class="threshold-slider">
-                    <input class = "range-slider-range" type = "range">
-                    <span class = "value-selected">val</span>
+                  <input class="range-slider-range" type="range">
+                  <span class="value-selected">val</span>
                 </div>
                 <label class="max"></label>
-                <p class = "selectedValueText"></p>
+                <p class="selectedValueText"></p>
               </div>
             </div>
           </div>
@@ -136,12 +139,17 @@
         <h3>File Filtering</h3>
         <hr />
         <div class="row">
-          <input autoComplete="on" list="fileOptions" id="fileSelector" placeholder="Select File">
-          <datalist id="fileOptions"></datalist>
+          <div class="col-9">
+            <input autoComplete="on" list="fileOptions" id="fileSelector" placeholder="Select File">
+            <datalist id="fileOptions"></datalist>
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-sq btn-outline-dark" id="fileFilterButton">Filter</button>
+          </div>
         </div>
         <div class="row">
           <div class="col-6">
-            <button type="button" class="btn btn-sq btn-outline-dark" id="fileFilterButton">Filter {blacklist}</button>
+            <button type="button" class="btn btn-sq btn-outline-dark" id="blacklistButton">Filter {blacklist}</button>
           </div>
           <div class="col-6">
             <button type="button" class="btn btn-sq btn-outline-light" id="whitelistButton">Whitelist</button>
@@ -239,6 +247,10 @@
         </div>
         <div class="row">
           <button type="button" class="btn btn-sq btn-outline-dark" id="clearAllButton">Clear All Filters</button>
+        </div>
+        <div class="row">
+          <input type="checkbox" checked data-toggle="toggle" data-size="lg">
+
         </div>
 
       </div>
