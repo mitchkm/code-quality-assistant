@@ -4,8 +4,9 @@ import * as util from "./util";
 import Treemap from "./Treemap/treemap";
 import TreemapData from "./Data/treemapData";
 import treemapSetting from "./Treemap/treemapSetting";
-import InterfaceEventController from "./InterfaceEventController";
-import TreemapEventController from "./TreemapEventController";
+import InterfaceEventController from "./EventController/InterfaceEventController";
+import TreemapEventController from "./EventController/TreemapEventController";
+import { DangerThresholds, WarningThresholds } from "./Treemap/thresholds";
 
 // Process Data
 let data;
@@ -24,8 +25,27 @@ const mD = new MetricData(data);
 const colorMetric = Metrics.CCN;
 const defaultMin = mD.getMinColorMetric(colorMetric);
 const defaultMax = mD.getMaxColorMetric(colorMetric);
-const defaultThreshold = (defaultMax - defaultMin) * 0.75;
-const defaultColorThresholds = [defaultMin, defaultThreshold, defaultMax];
+const dangerThreshold = DangerThresholds[colorMetric];
+const warningThreshold = WarningThresholds[colorMetric];
+let defaultColorThresholds = [
+  defaultMin,
+  warningThreshold,
+  dangerThreshold,
+  defaultMax
+];
+
+// default treemap colors [safeColor, warningColor, dangerColor, dangerColor]
+let defaultTreemapColors = ["green", "orange", "red", "red"];
+
+// change threshold if none of the values are in danger
+if (defaultMax < dangerThreshold) {
+  defaultColorThresholds = [defaultMin, warningThreshold, dangerThreshold];
+}
+// change threshold if none of the values are in warning
+if (defaultMax < warningThreshold) {
+  defaultColorThresholds = [defaultMin, warningThreshold];
+  defaultTreemapColors = ["green", "orange", "orange", "orange"];
+}
 
 // Get URL injected paramters
 const urlParams: any = util.getUrlVars();
@@ -36,8 +56,8 @@ const treemapSettings: treemapSetting = {
   height: 100,
   paddings: [0.3, 0.3, 0.3, 0.3],
   color: {
-    colors: ["green", "red", "red"],
-    thresholds: defaultColorThresholds,
+    colors: defaultTreemapColors,
+    thresholds: defaultColorThresholds
   },
   sizeOption: Metrics.NLOC,
   colorOption: Metrics.CCN,

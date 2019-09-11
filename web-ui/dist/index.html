@@ -80,14 +80,18 @@
             </div>
           </div>
           <div class="treemapColors">
-            <div class="colorInputs">
-              <div class="colorFrom">
-                <label>Treemap Color From: </label>
-                <input class="colorFromInput" type="text" placeholder="start color">
+            <div class = "colorInputs">
+              <div class = "safeColor">
+                <label>Safety Color: </label>
+                <input class = "safeColorInput" type = "text" value = "green">
               </div>
-              <div class="colorTo">
-                <label>Treemap Color To: </label>
-                <input class="colorToInput" type="text" placeholder="end color">
+              <div class = "warningColor">
+                <label>Warning Color: </label>
+                <input class = "warningColorInput" type = "text" value = "orange">
+              </div>
+              <div class = "dangerColor">
+                <label>Danger Color: </label>
+                <input class = "dangerColorInput" type = "text" value = "red">
               </div>
             </div>
             <div>
@@ -97,13 +101,13 @@
             <div class="colorThreshold">
               <label>Threshold: </label>
               <div>
-                <label class="min">Min: 0</label>
+                <label class="min"></label>
                 <div class="threshold-slider">
-                  <input class="range-slider-range" type="range" value="75" min="0" max="100">
-                  <span class="value-selected">val</span>
+                    <input class = "range-slider-range" type = "range">
+                    <span class = "value-selected">val</span>
                 </div>
-                <label class="max">Max: 100</label>
-                <p class = "selectedValueText">value above 75 displayed in red</p>
+                <label class="max"></label>
+                <p class = "selectedValueText"></p>
               </div>
             </div>
           </div>

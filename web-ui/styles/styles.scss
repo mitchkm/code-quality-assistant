@@ -221,44 +221,32 @@ $theme-colors: ("primary": $my-primary,
         }
 
         .treemapColors {
-            .colorInputs {
-                overflow: hidden;
-
-                .colorFrom,
-                .colorTo {
-                    width: 49%
-                }
-
-                .colorFrom {
-                    float: left;
-                }
-
-                .colorTo {
-                    float: right;
-                }
-
-                label {
-                    display: block;
-                    color: $my-text-color;
-                    margin: $sidebar-margin;
-                }
-
-                input {
-                    @include input-field-styling;
-                    margin: 1px $sidebar-margin;
-                    width: $sidebar-adjusted-size;
-                }
+          .colorInputs {
+            overflow: hidden;
+            .safeColor, .warningColor, .dangerColor{
+                width: 32%;
+                display: inline-block;
             }
-
-            #treemapColorChange {
-                @include primary-button;
-                margin: $sidebar-margin;
-                width: $sidebar-adjusted-size;
+            label {
+              display: block;
+              font-size: 14px;
+              color: $my-text-color;
+              margin: $sidebar-margin;
             }
-
-            .colorGradientBar {
-                height: 20px;
-                background-image: linear-gradient(to right, green, red);
+            input {
+              @include input-field-styling;
+              margin: 1px $sidebar-margin;
+              width: $sidebar-adjusted-size;
+            }
+          }
+          #treemapColorChange{
+            @include normal-button;
+            margin: 5px $sidebar-margin 2px;
+            width: $sidebar-adjusted-size;
+          }
+          .colorGradientBar{
+            height: 20px;
+            background-image: linear-gradient(to right, green, orange, red);
                 margin: $sidebar-margin;
                 width: $sidebar-adjusted-size;
             }
@@ -274,52 +262,47 @@ $theme-colors: ("primary": $my-primary,
                 margin-right: $sidebar-margin;
                 width: 100%;
 
-                .range-slider-range {
-                    -webkit-appearance: none;
-                    width: 75%;
-                    height: 15px;
-                    border-radius: 5px;
-                    background: #d3d3d3;
-                    outline: none;
-                    opacity: 0.7;
-                    -webkit-transition: .2s;
-                    transition: opacity .2s;
-                }
-
-                .range-slider-range:hover {
-                    opacity: 1;
-                }
-
-                .range-slider-range::-webkit-slider-thumb {
-                    -webkit-appearance: none;
-                    appearance: none;
-                    width: 25px;
-                    height: 25px;
-                    border-radius: 50%;
-                    background: rgb(15, 173, 247);
-                    cursor: pointer;
-                }
-
-                .range-slider-range::-moz-range-thumb {
-                    width: 25px;
-                    height: 25px;
-                    border-radius: 50%;
-                    background: rgb(15, 173, 247);
-                    cursor: pointer;
-                }
-
-                .value-selected {
-                    display: inline-block;
-                    width: 60px;
-                    line-height: 20px;
-                    color: $my-text-color;
-                    text-align: center;
-                    border-radius: 3px;
-                    background: #2c3e50;
-                    padding: 5px 10px;
-                    margin-left: 8px;
-                }
+                .range-slider-range{
+                  -webkit-appearance: none;
+                  width: 70%;
+                  height: 15px;
+                  border-radius: 5px;
+                  background: #d3d3d3;
+                  outline: none;
+                  opacity: 0.7;
+                  -webkit-transition: .2s;
+                  transition: opacity .2s;
+              }
+              .range-slider-range:hover{
+                  opacity: 1;
+              }
+              .range-slider-range::-webkit-slider-thumb {
+                  -webkit-appearance: none;
+                  appearance: none;
+                  width: 25px;
+                  height: 25px;
+                  border-radius: 50%;
+                  background: rgb(15, 173, 247);
+                  cursor: pointer;
+              }
+              .range-slider-range::-moz-range-thumb {
+                  width: 25px;
+                  height: 25px;
+                  border-radius: 50%;
+                  background: rgb(15, 173, 247);
+                  cursor: pointer;
             }
+          .value-selected{
+              display: inline-block;
+              width: 70px;
+              line-height: 20px;
+              color: $my-text-color;
+              text-align: center;
+              border-radius: 3px;
+              background: #2c3e50;
+              padding: 5px 10px;
+              margin-left: 8px;
+          }
         }
         #optionsGridContainer{
             #from, #to{
