@@ -4,8 +4,8 @@ import * as util from "./util";
 import Treemap from "./Treemap/treemap";
 import TreemapData from "./Data/treemapData";
 import treemapSetting from "./Treemap/treemapSetting";
-import InterfaceEventController from "./InterfaceEventController";
-import TreemapEventController from "./TreemapEventController";
+import InterfaceEventController from "./EventController/InterfaceEventController";
+import TreemapEventController from "./EventController/TreemapEventController";
 import { DangerThresholds, WarningThresholds } from "./Treemap/thresholds";
 
 // Process Data
