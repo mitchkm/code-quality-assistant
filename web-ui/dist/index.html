@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- Our Custom CSS -->
   <link rel="stylesheet" href="./styles.css">
@@ -22,7 +23,7 @@
     <div id="treeMapCard">
       <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">&larr;UP</button>
       <div class="feature" id="treeMapChart"></div>
-      <div class = "mouseHover"></div>
+      <div class="mouseHover"></div>
     </div>
   </div>
 
@@ -83,11 +84,11 @@
               </div>
             </div>
             <div>
-              <button id = "treemapColorChange">Change</button>
+              <button id="treemapColorChange" class="btn btn-sq btn-outline-primary">Change</button>
             </div>
-            <div class = "colorGradientBar"></div>
-            <div class = "colorThreshold">
-              <label>Select Threshold: </label>
+            <div class="colorGradientBar"></div>
+            <div class="colorThreshold">
+              <label>Threshold: </label>
               <div>
                 <label class="min"></label>
                 <div class="threshold-slider">
@@ -127,30 +128,119 @@
           <datalist id="fileOptions"></datalist>
         </div>
         <div class="row">
-          <button type="button" class="btn btn-sq btn-outline-primary" id="fileFilterButton">Filter</button>
+          <div class="col-6">
+            <button type="button" class="btn btn-sq btn-outline-dark" id="fileFilterButton">Filter {blacklist}</button>
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-sq btn-outline-light" id="whitelistButton">Whitelist</button>
+          </div>
         </div>
         <div class="row">
           <div id="fileListCard">
             <div id="fileList">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="fileFilterPanel">
+                    <div class="fileName">
+                      <p>File placeholder text</p>
+                    </div>
+                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+              </div>
 
             </div>
 
           </div>
         </div>
+        <div class="row">
+          <button type="button" class="btn btn-sq btn-outline-dark" id="clearAllButton">Clear All Filters</button>
+        </div>
+
       </div>
 
     </div>
 
-  </div>
 
 
-
-  <script id="rawData" type="application/json">
-    {
-      code_analysis_json
-    }
-  </script>
-  <script src="bundle.js"></script>
+    <script id="rawData" type="application/json">
+      {
+        code_analysis_json
+      }
+    </script>
+    <script src="bundle.js"></script>
 </body>
 
 </html>

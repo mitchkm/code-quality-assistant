@@ -5,7 +5,8 @@
 // ========================== Variables ==========================
 $my-primary: #4faaff;
 $my-secondary: #ff1b72;
-$my-grad-list: $my-primary 0%, $my-secondary 100%;
+$my-grad-list: $my-primary 0%,
+$my-secondary 100%;
 $my-background: rgb(23, 26, 26);
 $my-sidebar-background: rgb(44, 26, 68);
 $my-secondary-background: rgb(82, 87, 87);
@@ -14,11 +15,9 @@ $my-subheader-color: #686868;
 $my-text-color: rgb(246, 246, 246);
 $card-background: rgba(255, 255, 255, 0.1);
 
-$my-gradient: linear-gradient(
-  to bottom right,
-  darken($my-primary, 55%),
-  darken($my-secondary, 50%)
-);
+$my-gradient: linear-gradient(to bottom right,
+    darken($my-primary, 55%),
+    darken($my-secondary, 50%));
 
 $blue: rgb(0, 132, 232);
 $dark-blue: rgb(24, 52, 88);
@@ -36,11 +35,9 @@ $margin-adjusted-percentage: 100% - 2 * $content-margin;
 $sidebar-margin: 4%;
 $sidebar-adjusted-size: 100% - 2 * $sidebar-margin;
 
-$theme-colors: (
-  "primary": $my-primary,
-  "secondary": $my-secondary,
-  "body-bg": $my-background
-);
+$theme-colors: ("primary": $my-primary,
+    "secondary": $my-secondary,
+    "body-bg": $my-background);
 
 // ======================== End Variables ========================
 
@@ -48,149 +45,157 @@ $theme-colors: (
 
 // ============================ Mixins ============================
 
-@mixin normal-button {
-  color: $my-primary;
-  background-color: rgba($my-primary, 0.2);
-  border-color: $my-primary;
-  z-index: 1;
 
-  &:hover {
-    border-color: darken($my-primary, 10%);
-    color: darken($my-primary, 10%);
-    background-color: darken(rgba($my-primary, 0.2), 10%);
-  }
 
-  &:active {
-    border-color: lighten($my-primary, 10%);
-    color: lighten($my-primary, 10%);
-    background-color: lighten(rgba($my-primary, 0.4), 10%);
-  }
+@mixin normal-button($button-color: $my-primary, $text-color: $my-primary, $border-color: $button-color) {
+    color: $text-color;
+    background-color: rgba($button-color, 0.2);
+    border-color: $border-color;
+    z-index: 1;
+
+    &:hover {
+        border-color: darken($border-color, 10%);
+        color: darken($text-color, 10%);
+        background-color: darken(rgba($button-color, 0.2), 10%);
+    }
+
+    &:active {
+        border-color: lighten($border-color, 10%);
+        color: lighten($text-color, 10%);
+        background-color: lighten(rgba($button-color, 0.4), 10%);
+    }
+}
+
+@mixin primary-button {
+    color: $my-primary;
+    background-color: rgba($my-primary, 0.2);
+    border-color: $my-primary;
+    z-index: 1;
+
+    &:hover {
+        border-color: darken($my-primary, 10%);
+        color: darken($my-primary, 10%);
+        background-color: darken(rgba($my-primary, 0.2), 10%);
+    }
+
+    &:active {
+        border-color: lighten($my-primary, 10%);
+        color: lighten($my-primary, 10%);
+        background-color: lighten(rgba($my-primary, 0.4), 10%);
+    }
 }
 
 @mixin secondary-button {
-  color: $my-secondary;
-  background-color: rgba($my-secondary, 0.2);
-  border-color: $my-secondary;
-  z-index: 1;
+    color: $my-secondary;
+    background-color: rgba($my-secondary, 0.2);
+    border-color: $my-secondary;
+    z-index: 1;
 
-  &:hover {
-    border-color: darken($my-secondary, 10%);
-    color: darken($my-secondary, 10%);
-    background-color: darken(rgba($my-secondary, 0.2), 10%);
-  }
+    &:hover {
+        border-color: darken($my-secondary, 10%);
+        color: darken($my-secondary, 10%);
+        background-color: darken(rgba($my-secondary, 0.2), 10%);
+    }
 
-  &:active {
-    border-color: lighten($my-secondary, 10%);
-    color: lighten($my-secondary, 10%);
-    background-color: lighten(rgba($my-secondary, 0.4), 10%);
-  }
+    &:active {
+        border-color: lighten($my-secondary, 10%);
+        color: lighten($my-secondary, 10%);
+        background-color: lighten(rgba($my-secondary, 0.4), 10%);
+    }
 }
 
 @mixin sidebar-block-button {
-  margin-left: 5%;
-  width: 90%;
+    margin-left: 5%;
+    width: 90%;
 }
 
 // template for a full-page background card for a chart
 @mixin content-card {
-  position: relative;
-  background: $card-background;
-  width: $margin-adjusted-percentage;
-  height: $margin-adjusted-percentage;
-  margin: $content-margin;
-  border-radius: 10px;
+    position: relative;
+    background: $card-background;
+    width: $margin-adjusted-percentage;
+    height: $margin-adjusted-percentage;
+    margin: $content-margin;
+    border-radius: 10px;
 }
 
 @mixin sidebar-options-card {
-  position: relative;
-  background: $card-background;
-  width: 100%;
-  padding: 3%;
-  display: none; //sets all cards to not display by default. Displaying is handled in InterfaceEventController.ts
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-
-  h3 {
+    position: relative;
+    background: $card-background;
     width: 100%;
-    text-align: center;
-    color: $my-text-color;
-    margin-top: 10px;
-    vertical-align: center;
-  }
+    padding: 3%;
+    display: none; //sets all cards to not display by default. Displaying is handled in InterfaceEventController.ts
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
-  hr {
-    background-color: $my-subheader-color;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
+    h3 {
+        width: 100%;
+        text-align: center;
+        color: $my-text-color;
+        margin-top: 10px;
+        vertical-align: center;
+    }
+
+    hr {
+        background-color: $my-subheader-color;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 }
 
 @mixin input-field-styling {
-  background: rgba(white, 0.8);
-  color: black;
-  border-radius: 5px;
-  border: 0;
-  margin-left: $sidebar-margin + 1%;
-  margin-right: $sidebar-margin + 1%;
-  width: $sidebar-adjusted-size - 2%;
-  padding-left: 5px;
-  &::placeholder {
+    background: rgba(white, 0.8);
     color: black;
-  }
+    border-radius: 5px;
+    border: 0;
+    margin-left: $sidebar-margin + 1%;
+    margin-right: $sidebar-margin + 1%;
+    width: $sidebar-adjusted-size - 2%;
+    padding-left: 5px;
 
-  //border: darken($my-secondary-background, 20%)
+    &::placeholder {
+        color: black;
+    }
+
+    //border: darken($my-secondary-background, 20%)
 }
 
 // ========================== End Mixins ==========================
 
 // ======================== Sidebar Styles ========================
 #sidebar {
-  position: fixed;
-  height: 100vh;
-  width: $sidebar-width;
-  top: 0;
-  left: 100% - $sidebar-width;
-  background-color: $card-background;
-  overflow-y: scroll;
+    position: fixed;
+    height: 100vh;
+    width: $sidebar-width;
+    top: 0;
+    left: 100% - $sidebar-width;
+    background-color: $card-background;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
-  .sidebar-header {
-    text-align: center;
-    color: $my-text-color;
-    margin-top: 10px;
-    vertical-align: center;
-  }
-
-  hr {
-    background-color: $my-subheader-color;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  .btn {
-    @include normal-button;
-    @include sidebar-block-button;
-  }
-
-  #chartOptionsContainer {
-    margin: $sidebar-margin;
-  }
-
-  #treemapOptionsSidebarCard {
-    @include sidebar-options-card;
-
-    //border: 10px solid rgba($my-primary, 0.5);
-    #sizeSelector {
-      @include input-field-styling;
-      width: 100%;
-      margin-left: 0;
-      margin-right: 0;
+    .sidebar-header {
+        //position: -webkit-sticky;
+        //position: sticky;
+        top: 0%;
+        text-align: center;
+        color: $my-text-color;
+        cursor: default;
+        margin: $sidebar-margin;
+        margin-top: $sidebar-margin / 2;
+        vertical-align: center;
+        pointer-events: visible;
+        z-index: 5;
     }
 
-    #colorSelector {
-      @include input-field-styling;
-      width: 100%;
-      margin-left: 0;
-      margin-right: 0;
+    hr {
+        background-color: $my-subheader-color;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .btn {
+        @include primary-button;
+        @include sidebar-block-button;
     }
 
     .treemapColors {
@@ -221,17 +226,21 @@ $theme-colors: (
         height: 20px;
         background-image: linear-gradient(to right, green, orange, red);
         margin: $sidebar-margin;
-        width: $sidebar-adjusted-size;
-      }
     }
 
-    .colorThreshold {
-        label{
-            color: $my-text-color;
+    #treemapOptionsSidebarCard {
+        @include sidebar-options-card;
+
+        //border: 10px solid rgba($my-primary, 0.5);
+        #sizeSelector {
+            @include input-field-styling;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
         }
-        .threshold-slider {
-            margin-left: $sidebar-margin;
-            margin-right: $sidebar-margin;
+
+        #colorSelector {
+            @include input-field-styling;
             width: 100%;
             .range-slider-range{
               -webkit-appearance: none;
@@ -276,119 +285,138 @@ $theme-colors: (
           }
         }
     }
-  }
 
-  #chart2OptionsSidebarCard {
-    @include sidebar-options-card;
-    height: 200px;
-  }
-
-  #chart3OptionsSidebarCard {
-    @include sidebar-options-card;
-    height: 200px;
-  }
-
-  #chartSelectBar {
-    button {
-      width: 100%;
-      height: 50px;
-      margin: 1px;
-      color: rgba($my-primary, 0.5);
-      border: none;
-      border-bottom: 2px solid rgba($my-primary, 0.5);
-      background: transparent;
-      border-top-right-radius: 5px;
-      border-top-left-radius: 5px;
-
-      &:hover {
-        color: rgba($my-primary, 1);
-        border-bottom: 2px solid rgba($my-primary, 1);
-        background: rgba($my-secondary-background, 0.1);
-      }
-
-      &:active {
-        color: rgba($my-primary, 0.8);
-        border-bottom: 2px solid rgba($my-primary, 0.8);
-        background: rgba($my-secondary-background, 0.5);
-      }
+    #chart2OptionsSidebarCard {
+        @include sidebar-options-card;
+        height: 200px;
     }
 
-    .active {
-      color: rgba($my-primary, 0.8);
-      border-bottom: 2px solid rgba($my-primary, 0.8);
-      background: $card-background;
-
-      &:hover {
-        color: rgba($my-primary, 1);
-        border-bottom: 2px solid rgba($my-primary, 1);
-        background: rgba($my-secondary-background, 0.6);
-      }
-
-      &:active {
-        color: rgba($my-primary, 0.8);
-        border-bottom: 2px solid rgba($my-primary, 0.8);
-        background: rgba($my-secondary-background, 0.6);
-      }
+    #chart3OptionsSidebarCard {
+        @include sidebar-options-card;
+        height: 200px;
     }
 
-    .row {
-      margin-bottom: 0px;
+    #chartSelectBar {
+        button {
+            width: 100%;
+            height: 50px;
+            margin: 1px;
+            color: rgba($my-primary, 0.5);
+            border: none;
+            border-bottom: 2px solid rgba($my-primary, 0.5);
+            background: transparent;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+
+            &:hover {
+                color: rgba($my-primary, 1);
+                border-bottom: 2px solid rgba($my-primary, 1);
+                background: rgba($my-secondary-background, 0.1);
+            }
+
+            &:active {
+                color: rgba($my-primary, 0.8);
+                border-bottom: 2px solid rgba($my-primary, 0.8);
+                background: rgba($my-secondary-background, 0.5);
+            }
+        }
+
+        .active {
+            color: rgba($my-primary, 0.8);
+            border-bottom: 2px solid rgba($my-primary, 0.8);
+            background: $card-background;
+
+            &:hover {
+                color: rgba($my-primary, 1);
+                border-bottom: 2px solid rgba($my-primary, 1);
+                background: rgba($my-secondary-background, 0.6);
+            }
+
+            &:active {
+                color: rgba($my-primary, 0.8);
+                border-bottom: 2px solid rgba($my-primary, 0.8);
+                background: rgba($my-secondary-background, 0.6);
+            }
+        }
+
+        .row {
+            margin-bottom: 0px;
+        }
     }
-  }
 
-  #fileFilterCard {
-    position: relative;
-    background: $card-background;
-    margin: $sidebar-margin;
-    width: $sidebar-adjusted-size;
-    padding: $sidebar-margin / 2;
-    border-radius: 10px;
+    #fileFilterCard {
+        position: relative;
+        background: $card-background;
+        margin: $sidebar-margin;
+        width: $sidebar-adjusted-size;
+        padding: $sidebar-margin / 2;
+        border-radius: 10px;
 
-    h3 {
-      width: 100%;
-      color: $my-text-color;
-      text-align: center;
-    }
+        h3 {
+            width: 100%;
+            color: $my-text-color;
+            text-align: center;
+        }
 
-    hr {
-      background-color: $my-subheader-color;
-      margin-left: 20px;
-      margin-right: 20px;
+        hr {
+            background-color: $my-subheader-color;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        p {
+            margin-left: 5%;
+        }
+
+        #fileListCard {
+            position: relative;
+            background: $card-background;
+            margin-left: $sidebar-margin;
+            margin-right: $sidebar-margin;
+            width: $sidebar-adjusted-size;
+            padding: $sidebar-margin / 2;
+            border-radius: 10px;
+
+            #fileList {
+                width: $sidebar-adjusted-size;
+                min-height: 60px;
+                max-height: 160px;
+                margin-left: $sidebar-margin * 2;
+                overflow-y: scroll;
+
+
+                .row {
+                    width: 100%;
+                }
+            }
+
+        }
+
+        #fileSelector {
+            @include input-field-styling;
+        }
+
+        #fileFilterButton {
+            @include normal-button(#000000, lighten($my-secondary, 15%), lighten($my-secondary, 15%));
+            width: $sidebar-adjusted-size;
+            margin-left: $sidebar-margin;
+        }
+        #whitelistButton{
+            @include normal-button(white, lighten($my-secondary, 10%), lighten($my-secondary, 10%));
+            width: $sidebar-adjusted-size;
+        }
+        #clearAllButton{
+            @include secondary-button;
+            margin-left: $sidebar-margin;
+            margin-right: $sidebar-margin;
+            width: $sidebar-adjusted-size;
+        }
+
     }
 
     p {
-      margin-left: 5%;
+        color: $my-text-color;
     }
-
-    #fileListCard {
-      position: relative;
-      background: $card-background;
-      margin: $sidebar-margin;
-      width: $sidebar-adjusted-size;
-      padding: $sidebar-margin / 2;
-      border-radius: 10px;
-
-      #fileList {
-        width: 100%;
-        min-height: 60px;
-        max-height: 160px;
-      }
-    }
-
-    #fileSelector {
-      @include input-field-styling;
-    }
-
-    #filterButton {
-      @include normal-button;
-      margin: $content-margin;
-      width: $sidebar-adjusted-size;
-    }
-  }
-
-  p {
-    color: $my-text-color;
-  }
 }
 
 // ====================== End Sidebar Styles ======================
@@ -396,56 +424,56 @@ $theme-colors: (
 // ====================== Body Content Styles ======================
 
 html {
-  width: 100%; //this is here to make the gradient fit
-  height: 100%; //this is here to make the gradient fit
-  overflow-y: hidden; // removes the scrollbar. Currently, our app doesn't scroll.
+    width: 100%; //this is here to make the gradient fit
+    height: 100%; //this is here to make the gradient fit
+    overflow-y: hidden; // removes the scrollbar. Currently, our app doesn't scroll.
 }
 
 body {
-  width: 100%; //this is here to make the gradient fit
-  height: 100%; //this is here to make the gradient fit
-  background: $my-gradient;
-  font-family: "Quicksand", sans-serif;
+    width: 100%; //this is here to make the gradient fit
+    height: 100%; //this is here to make the gradient fit
+    background: $my-gradient;
+    font-family: "Quicksand", sans-serif;
 }
 
 .row {
-  margin-top: 10px;
-  margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 // ==================== End Body Content Styles ====================
 
 // ======================== Chart Card Styles ========================
 #treeMapCard {
-  @include content-card;
+    @include content-card;
 
-  #TreemapBackButton {
-    @include secondary-button;
+    #TreemapBackButton {
+        @include secondary-button;
 
-    cursor: zoom-out;
-    position: relative;
-    width: $margin-adjusted-percentage;
-    height: $margin-adjusted-percentage * 0.1 - $content-margin;
-    margin: $content-margin;
-  }
+        cursor: zoom-out;
+        position: relative;
+        width: $margin-adjusted-percentage;
+        height: $margin-adjusted-percentage * 0.1 - $content-margin;
+        margin: $content-margin;
+    }
 
-  #treeMapChart {
-    position: relative;
-    height: $margin-adjusted-percentage * 0.9 - $content-margin;
-    width: $margin-adjusted-percentage;
-    margin: $content-margin;
-    margin-top: 0;
-  }
+    #treeMapChart {
+        position: relative;
+        height: $margin-adjusted-percentage * 0.9 - $content-margin;
+        width: $margin-adjusted-percentage;
+        margin: $content-margin;
+        margin-top: 0;
+    }
 }
 
 // ====================== End Chart Card Styles ======================
 
 // ======================== Content Area Styles ========================
 #contentArea {
-  position: relative;
-  width: $content-area-width;
-  height: 100%;
-  margin: 0;
+    position: relative;
+    width: $content-area-width;
+    height: 100%;
+    margin: 0;
 }
 
 // ====================== End Content Area Styles ======================
@@ -457,102 +485,192 @@ $m: 0; // margin
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 .feature {
-  position: relative;
-  width: calc(100% - #{$m} * 2 * 1px);
-  height: calc(100% - #{$m} * 2 * 1px);
-  margin: $m * 1px;
-  overflow: hidden;
+    position: relative;
+    width: calc(100% - #{$m} * 2 * 1px);
+    height: calc(100% - #{$m} * 2 * 1px);
+    margin: $m * 1px;
+    overflow: hidden;
 }
 
 .node {
-  position: absolute;
-  background: transparent url("") no-repeat 50% / cover;
-  overflow: hidden;
-  opacity: 0.8;
-  -webkit-transition: opacity 0.8s;
-  transition: opacity 0.8s;
-  cursor: pointer;
-  border: 1px white groove;
-  .label {
-    display: inline;
-    font-family: sans-serif;
-    color: #000000;
-    font-weight: 500;
     position: absolute;
-    padding: 0;
-    margin: 0;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    transition: color 0.4s, opacity 0.8s, filter 0.8s;
-  }
-  &.hide {
-    // zoom in
-    opacity: 0;
-    pointer-events: none;
+    background: transparent url("") no-repeat 50% / cover;
+    overflow: hidden;
+    opacity: 0.8;
+    -webkit-transition: opacity 0.8s;
+    transition: opacity 0.8s;
+    cursor: pointer;
+    border: 1px white groove;
+
     .label {
-      filter: blur(10px);
+        display: inline;
+        font-family: sans-serif;
+        color: #000000;
+        font-weight: 500;
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        transition: color 0.4s, opacity 0.8s, filter 0.8s;
     }
-  }
-  &:hover {
-    .label {
-      color: #585858;
+
+    &.hide {
+        // zoom in
+        opacity: 0;
+        pointer-events: none;
+
+        .label {
+            filter: blur(10px);
+        }
     }
-  }
-  &.level-0 {
-    display: none;
-  }
-  &.level-1 {
-    z-index: 3;
-    font-size: 3vmin;
-  }
-  &.level-2 {
-    z-index: 2;
-    font-size: 2.5vmin;
-  }
+
+    &:hover {
+        .label {
+            color: #585858;
+        }
+    }
+
+    &.level-0 {
+        display: none;
+    }
+
+    &.level-1 {
+        z-index: 3;
+        font-size: 3vmin;
+    }
+
+    &.level-2 {
+        z-index: 2;
+        font-size: 2.5vmin;
+    }
 }
 
 .mouseHover {
-  position: absolute;
-  white-space: pre-line;
-  display: none;
-  width: auto;
-  height: auto;
-  background: none repeat scroll 0 0 white;
-  border: 0 none;
-  border-radius: 8px 8px 8px 8px;
-  box-shadow: -3px 3px 15px #888888;
-  color: black;
-  font: 14px sans-serif;
-  padding: 5px;
-  text-align: center;
-  z-index: 4;
+    position: absolute;
+    white-space: pre-line;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
+    color: black;
+    font: 14px sans-serif;
+    padding: 5px;
+    text-align: center;
+    z-index: 4;
 }
 
 // ======================== End Chart Styles ========================
 
 // =========================== Style Fixes ===========================
 button:focus {
-  outline: none !important;
-  box-shadow: none !important;
-  border: 2px solid transparent;
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid transparent;
 }
 
 input:focus {
-  outline: none !important;
-  box-shadow: none !important;
-  border: 2px solid transparent;
+    outline: none !important;
+    box-shadow: none !important;
+    border: 2px solid transparent;
 }
 
 // ========================= End Style Fixes =========================
+
+
+// ===================== File Filter Card styling =====================
+
+.fileFilterPanel {
+    position: relative;
+    display: inline-block;
+    height: 25px;
+    background-color: rgba($card-background, 0.3);
+    border-radius: 25px;
+    text-align: left;
+    margin: $sidebar-margin;
+    cursor: default;
+    //white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+
+    .fileName {
+        display: inline-flex;
+        position: relative;
+        padding-left: 5px;
+        padding-right: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: calc(75%);
+    }
+
+
+    .btn-circle {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        right: 0%;
+        transform: translate(0%, -50%);
+        width: 25px !important;
+        height: 25px !important;
+        line-height: 25px;
+        padding: 0;
+        border-radius: 50%;
+        border-width: 0px;
+        border-color: $my-secondary;
+        background-color: rgba($my-secondary, 0.5);
+        color: rgba($card-background, 0.6);
+        overflow: visible;
+
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border: 2px solid transparent;
+        }
+
+        &:hover {
+            background-color: rgba($my-secondary, 0.7);
+        }
+    }
+}
+
+
+// =================== End File Filter Card styling ===================
+
+// ======================== Scrollbar styling ========================
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba($card-background, 0.3);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba($card-background, 0.4);
+}
+
+// ====================== End Scrollbar styling ======================
