@@ -48,6 +48,9 @@ class TreemapEventController {
     this.initColorThreshold();
   }
 
+  /**
+   * updates treemap according to the change in sizeOption, colorOption, and filtered files
+   */
   private updateTreemap() {
     this.mD.clearFilterList();
     this.mD.addToFilterList(this.treemapSettings.fileOption);
@@ -58,6 +61,9 @@ class TreemapEventController {
     this.treemap.drawTreemap(data);
   }
 
+  /**
+   * creates file filtering Options
+   */
   private initFileSelector() {
     const FILE_SELECTOR = "#fileSelector";
     const FILE_LIST = "#fileOptions";
@@ -87,6 +93,9 @@ class TreemapEventController {
     });
   }
 
+  /**
+   * creates sizeOption
+   */
   private initSizeMetricSelector() {
     const SIZE_SELECTOR = "#sizeSelector";
 
@@ -122,6 +131,9 @@ class TreemapEventController {
     });
   }
 
+  /**
+   * creates colorOption
+   */
   private initColorMetricSelector() {
     const COLOR_SELECTOR = "#colorSelector";
 
