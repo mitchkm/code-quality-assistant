@@ -7217,7 +7217,9 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         color: black; }
     #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs {
       overflow: hidden; }
-      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .safeColor, #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .warningColor, #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .dangerColor {
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .safeColor,
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .warningColor,
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .dangerColor {
         width: 32%;
         display: inline-block; }
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs label {
@@ -7290,16 +7292,16 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         border-radius: 50%;
         background: #0fadf7;
         cursor: pointer; }
-      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .value-selected {
-        display: inline-block;
-        width: 70px;
-        line-height: 20px;
-        color: #f6f6f6;
-        text-align: center;
-        border-radius: 3px;
-        background: #2c3e50;
-        padding: 5px 10px;
-        margin-left: 8px; }
+    #sidebar #treemapOptionsSidebarCard .colorThreshold .value-selected {
+      display: inline-block;
+      width: 70px;
+      line-height: 20px;
+      color: #f6f6f6;
+      text-align: center;
+      border-radius: 3px;
+      background: #2c3e50;
+      padding: 5px 10px;
+      margin-left: 8px; }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer #from, #sidebar #treemapOptionsSidebarCard #optionsGridContainer #to {
       width: 100%; }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer input {
