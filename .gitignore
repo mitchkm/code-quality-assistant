@@ -6,3 +6,5 @@ code-quality-assistant
 code-analysis/web-ui/*
 code-analysis/code-quality-assistant/*
 !code-analysis/web-ui/.keep
+
+swift-codebase/*
