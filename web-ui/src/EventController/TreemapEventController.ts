@@ -73,6 +73,7 @@ class TreemapEventController {
     const FILE_LIST = "#fileOptions";
     const FILE_FILTER_BUTTON = "#fileFilterButton";
     const FILE_CLEAR = "#clearAllButton";
+    const LIST_TYPE_SLIDER = "#togBtn";
 
     // delete existing dropdown options
     if (d3.select(FILE_LIST).select("option") !== undefined) {
@@ -103,6 +104,16 @@ class TreemapEventController {
         .select(".row")
         .selectAll("div")
         .remove();
+      this.updateTreemap();
+    });
+
+    d3.select(LIST_TYPE_SLIDER).on("change", () => {
+      if (d3.select(LIST_TYPE_SLIDER).property("checked")) {
+        this.treemapSettings.fileOption.type = "white";
+      }
+      else {
+        this.treemapSettings.fileOption.type = "black";
+      }
       this.updateTreemap();
     });
   }
