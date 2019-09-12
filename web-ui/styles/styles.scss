@@ -70,43 +70,11 @@ $theme-colors: ("primary": $my-primary,
 }
 
 @mixin primary-button {
-    color: $my-primary;
-    background-color: rgba($my-primary, 0.2);
-    border-color: $my-primary;
-    z-index: 1;
-    width: 100%;
-
-    &:hover {
-        border-color: darken($my-primary, 10%);
-        color: darken($my-primary, 10%);
-        background-color: darken(rgba($my-primary, 0.2), 10%);
-    }
-
-    &:active {
-        border-color: lighten($my-primary, 10%);
-        color: lighten($my-primary, 10%);
-        background-color: lighten(rgba($my-primary, 0.4), 10%);
-    }
+    @include normal-button;
 }
 
 @mixin secondary-button {
-    color: $my-secondary;
-    background-color: rgba($my-secondary, 0.2);
-    border-color: $my-secondary;
-    z-index: 1;
-    width: 100%;
-
-    &:hover {
-        border-color: darken($my-secondary, 10%);
-        color: darken($my-secondary, 10%);
-        background-color: darken(rgba($my-secondary, 0.2), 10%);
-    }
-
-    &:active {
-        border-color: lighten($my-secondary, 10%);
-        color: lighten($my-secondary, 10%);
-        background-color: lighten(rgba($my-secondary, 0.4), 10%);
-    }
+    @include normal-button($my-secondary, $my-secondary, $my-secondary);
 }
 
 // template for a full-page background card for a chart
@@ -429,6 +397,39 @@ $theme-colors: ("primary": $my-primary,
 
     }
 
+    #urlOptionsCard{
+        position: relative;
+        background: $card-background;
+        margin: $sidebar-margin;
+        width: $sidebar-adjusted-size;
+        padding: $sidebar-margin / 2;
+        border-radius: 10px;
+
+        #copyURLOptionsButton{
+            @include primary-button;
+            z-index: 5;
+        }
+
+        h3 {
+            width: 100%;
+            color: $my-text-color;
+            text-align: center;
+        }
+
+        hr {
+            background-color: $my-subheader-color;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        p {
+            margin-left: 5%;
+        }
+        input{
+            @include input-field-styling;
+        }
+    }
+
     p {
         color: $my-text-color;
     }
@@ -645,6 +646,7 @@ label {
     //font-size: 25px;
 }
 
+
 // ========================= End Style Fixes =========================
 
 
@@ -678,6 +680,7 @@ label {
     .btn-circle {
         cursor: pointer;
         position: absolute;
+        pointer-events: visible;
         top: 50%;
         right: 0%;
         transform: translate(0%, -50%);
