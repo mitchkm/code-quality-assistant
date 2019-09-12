@@ -8,7 +8,10 @@ interface TreemapSetting {
     color: ColorSetting;
     sizeOption: string;
     colorOption: string;
-    fileOption: string;
+    fileOption: {
+        list: string[];
+        type: string;
+    };
 }
 
 export default TreemapSetting;
