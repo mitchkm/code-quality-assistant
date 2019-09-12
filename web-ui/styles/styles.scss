@@ -241,7 +241,9 @@ $theme-colors: ("primary": $my-primary,
             .colorGradientBar {
                 height: 20px;
                 background-image: linear-gradient(to right, green, orange, red);
-                margin: $sidebar-margin;
+                position: relative;
+                margin-bottom: 15px;
+                left: 20px;
                 width: $sidebar-adjusted-size;
             }
         }
@@ -250,14 +252,52 @@ $theme-colors: ("primary": $my-primary,
             label {
                 color: $my-text-color;
             }
-
-            .dangerThresholdInput {
+            .thresholdTooltip {
+                position: relative;
+                margin-left: 7px;
+                display: inline-block;
+                border-bottom: 1px dotted black;
+                .thresholdTooltipText {
+                    visibility: hidden;
+                    width: 200px;
+                    background-color: black;
+                    color: $my-text-color;
+                    text-align: center;
+                    border-radius: 6px;
+                    padding: 5px 0;
+                    position: absolute;
+                    z-index: 1;
+                    top: 150%;
+                    left: 50%;
+                    margin-left: -60px;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 100%;
+                        left: 50%;
+                        margin-left: -5px;
+                        border-width: 5px;
+                        border-style: solid;
+                        border-color: transparent transparent black transparent;
+                    }
+                }
+                &:hover {
+                    .thresholdTooltipText {
+                        visibility: visible;
+                    }
+                }
+            }
+            .dangerThresholdInput{
                 @include input-field-styling;
             }
 
             #applyThresholdButton {
                 @include normal-button;
                 padding: 1px 0px 0px 5px;
+            }
+            .selectedValueText{
+                margin-left: 20px;
+                position: relative;
             }
         }
 

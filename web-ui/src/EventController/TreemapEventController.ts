@@ -236,8 +236,8 @@ class TreemapEventController {
     this.initColorThresholdDescription(dangerThreshold);
 
     // display min and max
-    d3.select(".min").text("Min: " + min);
-    d3.select(".max").text("Max: " + max);
+    d3.select(".thresholdTooltipText").text("Minimum value of " + colorMetric + " in the current folder: " + min + "\n"
+                                          + "Maximum value of " + colorMetric + " in the current folder: " + max);
 
     // update treemap color based on threshold
     d3.select("#applyThresholdButton").on("click", () => {
