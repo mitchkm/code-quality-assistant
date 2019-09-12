@@ -65,6 +65,17 @@ class TreemapEventController {
     this.treemap.drawTreemap(data);
   }
 
+  private processFile(file: string) {
+    if (
+      this.mD.fileList.indexOf(file) !== -1 &&
+      this.treemapSettings.fileOption.list.indexOf(file) === -1
+    ) {
+      this.treemapSettings.fileOption.list.push(file);
+      this.addFileToListUI(file);
+      return true;
+    }
+  }
+
   /**
    * creates file filtering Options
    */
@@ -93,9 +104,11 @@ class TreemapEventController {
 
     d3.select(FILE_FILTER_BUTTON).on("click", () => {
       const file = d3.select(FILE_SELECTOR).property("value");
-      this.treemapSettings.fileOption.list.push(file);
-      this.addFileToListUI(file);
-      this.updateTreemap();
+      const update = this.processFile(file);
+      d3.select(FILE_SELECTOR).property("value", "");
+      if (update) {
+        this.updateTreemap();
+      }
     });
 
     d3.select(FILE_CLEAR).on("click", () => {
@@ -110,8 +123,7 @@ class TreemapEventController {
     d3.select(LIST_TYPE_SLIDER).on("change", () => {
       if (d3.select(LIST_TYPE_SLIDER).property("checked")) {
         this.treemapSettings.fileOption.type = "white";
-      }
-      else {
+      } else {
         this.treemapSettings.fileOption.type = "black";
       }
       this.updateTreemap();
@@ -257,8 +269,17 @@ class TreemapEventController {
     this.initColorThresholdDescription(dangerThreshold);
 
     // display min and max
-    d3.select(".minMaxText").text("Minimum value of " + colorMetric + " in the current folder: " + min + "\n"
-                                          + "Maximum value of " + colorMetric + " in the current folder: " + max);
+    d3.select(".minMaxText").text(
+      "Minimum value of " +
+        colorMetric +
+        " in the current folder: " +
+        min +
+        "\n" +
+        "Maximum value of " +
+        colorMetric +
+        " in the current folder: " +
+        max
+    );
 
     // update treemap color based on threshold
     d3.select("#applyThresholdButton").on("click", () => {
