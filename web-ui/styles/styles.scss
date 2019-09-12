@@ -233,19 +233,52 @@ $theme-colors: ("primary": $my-primary,
                 }
 
                 input {
-                    @include input-field-styling;
-                    margin: $sidebar-margin;
-                    width: $sidebar-adjusted-size;
+                    // @include input-field-styling;
+                    // margin-left: 0px;
+                    // margin-right: 0px;
+                    // // width: 30%;
+                    // padding-left: 0px;
+                    size: 5;
+                    // margin: $sidebar-margin;
+                    // width: 60%;
                 }
 
-                #treemapColorChange {
-                    @include normal-button;
-                    margin: $sidebar-margin;
-                    width: $sidebar-adjusted-size;
-                    padding: 1px 0px 0px 5px;
+                .thresholdTooltip {
+                    position: relative;
+                    margin-left: 7px;
+                    display: inline-block;
+                    border-bottom: 1px dotted black;
+                    .thresholdTooltipText {
+                        visibility: hidden;
+                        width: 400px;
+                        background-color: black;
+                        color: $my-text-color;
+                        text-align: center;
+                        border-radius: 6px;
+                        padding: 5px 0;
+                        position: absolute;
+                        z-index: 1;
+                        top: 150%;
+                        left: 50%;
+                        margin-left: -60px;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            bottom: 100%;
+                            left: 15%;
+                            margin-left: -5px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: transparent transparent black transparent;
+                        }
+                    }
+                    &:hover {
+                        .thresholdTooltipText {
+                            visibility: visible;
+                        }
+                    }
                 }
             }
-
             .colorGradientBar {
                 height: 20px;
                 background-image: linear-gradient(to right, green, orange, red);
@@ -257,48 +290,6 @@ $theme-colors: ("primary": $my-primary,
         }
 
         .colorThreshold {
-            label {
-                color: $my-text-color;
-            }
-            .thresholdTooltip {
-                position: relative;
-                margin-left: 7px;
-                display: inline-block;
-                border-bottom: 1px dotted black;
-                .thresholdTooltipText {
-                    visibility: hidden;
-                    width: 400px;
-                    background-color: black;
-                    color: $my-text-color;
-                    text-align: center;
-                    border-radius: 6px;
-                    padding: 5px 0;
-                    position: absolute;
-                    z-index: 1;
-                    top: 150%;
-                    left: 50%;
-                    margin-left: -60px;
-                    &::after {
-                        content: "";
-                        position: absolute;
-                        bottom: 100%;
-                        left: 15%;
-                        margin-left: -5px;
-                        border-width: 5px;
-                        border-style: solid;
-                        border-color: transparent transparent black transparent;
-                    }
-                }
-                &:hover {
-                    .thresholdTooltipText {
-                        visibility: visible;
-                    }
-                }
-            }
-            .dangerThresholdInput{
-                @include input-field-styling;
-            }
-
             #applyThresholdButton {
                 @include normal-button;
                 padding: 1px 0px 0px 5px;

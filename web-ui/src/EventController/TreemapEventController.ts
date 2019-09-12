@@ -192,17 +192,28 @@ class TreemapEventController {
   private initTreemapColorSelector() {
     const SAFE_COLOR = ".safeColorInput";
     const DANGER_COLOR = ".dangerColorInput";
-    const COLOR_CHANGE_BUTTON = "#treemapColorChange";
-    const COLOR_BAR = ".colorGradientBar";
+    // const APPLY_BUTTON = "#applyThresholdButton";
     const currentSafeColor = this.treemapSettings.color.colors[0];
     const currentDangerColor = this.treemapSettings.color.colors[2];
 
-    d3.select(COLOR_CHANGE_BUTTON).on("click", () => {
+    d3.select(SAFE_COLOR).on("change", () => {
       const safeColorInput = d3.select(SAFE_COLOR).property("value");
       const dangerColorInput = d3.select(DANGER_COLOR).property("value");
       this.treemapSettings.color.colors[0] = safeColorInput
         ? safeColorInput
         : currentSafeColor;
+
+      // update Color Bar
+      this.updateColorBar(safeColorInput, dangerColorInput);
+      // update color in threshold description
+      this.initColorThresholdDescription();
+      this.updateTreemap();
+    });
+
+    d3.select(DANGER_COLOR).on("change", () => {
+      const safeColorInput = d3.select(SAFE_COLOR).property("value");
+      const dangerColorInput = d3.select(DANGER_COLOR).property("value");
+
       this.treemapSettings.color.colors[1] = dangerColorInput
         ? dangerColorInput
         : currentDangerColor;
@@ -211,20 +222,26 @@ class TreemapEventController {
         : currentDangerColor;
 
       // update Color Bar
-      d3.select(COLOR_BAR)
-        .style("height", "20px")
-        .style(
-          "background-image",
-          "linear-gradient(to right," +
-            safeColorInput +
-            ", " +
-            dangerColorInput +
-            ")"
-        );
+      this.updateColorBar(safeColorInput, dangerColorInput);
       // update color in threshold description
       this.initColorThresholdDescription();
       this.updateTreemap();
     });
+  }
+
+  private updateColorBar(safeColorInput, dangerColorInput) {
+    const COLOR_BAR = ".colorGradientBar";
+    // update Color Bar
+    d3.select(COLOR_BAR)
+    .style("height", "20px")
+    .style(
+      "background-image",
+      "linear-gradient(to right," +
+        safeColorInput +
+        ", " +
+        dangerColorInput +
+        ")"
+    );
   }
 
   /**
@@ -235,12 +252,13 @@ class TreemapEventController {
     const min = this.mD.getMinColorMetric(colorMetric);
     const max = this.mD.getMaxColorMetric(colorMetric);
     const dangerThreshold = DangerThresholds[colorMetric];
+    const DANGER_THRESHOLD = ".dangerThresholdInput";
 
     // set default threshold value
     this.setThreshold(min, dangerThreshold, max);
 
     // display default threshold value
-    d3.select(".dangerThresholdInput").property("value", dangerThreshold);
+    d3.select(DANGER_THRESHOLD).property("value", dangerThreshold);
 
     // display default threshold message
     this.initColorThresholdDescription(dangerThreshold);
@@ -250,9 +268,9 @@ class TreemapEventController {
                                           + "Maximum value of " + colorMetric + " in the current folder: " + max);
 
     // update treemap color based on threshold
-    d3.select("#applyThresholdButton").on("click", () => {
+    d3.select(DANGER_THRESHOLD).on("change", () => {
       const selectedVal = parseInt(
-        d3.select(".dangerThresholdInput").property("value")
+        d3.select(DANGER_THRESHOLD).property("value")
       );
       this.setThreshold(min, selectedVal, max);
       this.updateTreemap();
@@ -294,6 +312,7 @@ class TreemapEventController {
         " are in danger."
     );
   }
+
   private addFileToListUI(name: string) {
     const item = d3
       .select("#fileList")
