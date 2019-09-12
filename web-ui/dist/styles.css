@@ -7217,13 +7217,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         color: black; }
     #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs {
       overflow: hidden; }
-      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .safeColor,
-      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .warningColor,
-      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .dangerColor {
-        width: 32%;
-        display: inline-block; }
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs label {
-        display: block;
         font-size: 14px;
         color: #f6f6f6;
         margin: 4%; }
@@ -7236,25 +7230,26 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         margin-right: 5%;
         width: 90%;
         padding-left: 5px;
-        margin: 1px 4%;
+        margin: 4%;
         width: 92%; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs input::placeholder {
           color: black; }
-    #sidebar #treemapOptionsSidebarCard .treemapColors #treemapColorChange {
-      color: #4faaff;
-      background-color: rgba(79, 170, 255, 0.2);
-      border-color: #4faaff;
-      z-index: 1;
-      margin: 5px 4% 2px;
-      width: 92%; }
-      #sidebar #treemapOptionsSidebarCard .treemapColors #treemapColorChange:hover {
-        border-color: #1c91ff;
-        color: #1c91ff;
-        background-color: rgba(28, 145, 255, 0.2); }
-      #sidebar #treemapOptionsSidebarCard .treemapColors #treemapColorChange:active {
-        border-color: #82c3ff;
-        color: #82c3ff;
-        background-color: rgba(130, 195, 255, 0.4); }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #treemapColorChange {
+        color: #4faaff;
+        background-color: rgba(79, 170, 255, 0.2);
+        border-color: #4faaff;
+        z-index: 1;
+        margin: 4%;
+        width: 92%;
+        padding: 1px 0px 0px 5px; }
+        #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #treemapColorChange:hover {
+          border-color: #1c91ff;
+          color: #1c91ff;
+          background-color: rgba(28, 145, 255, 0.2); }
+        #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #treemapColorChange:active {
+          border-color: #82c3ff;
+          color: #82c3ff;
+          background-color: rgba(130, 195, 255, 0.4); }
     #sidebar #treemapOptionsSidebarCard .treemapColors .colorGradientBar {
       height: 20px;
       background-image: linear-gradient(to right, green, orange, red);
@@ -7262,46 +7257,31 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       width: 92%; }
     #sidebar #treemapOptionsSidebarCard .colorThreshold label {
       color: #f6f6f6; }
-    #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider {
-      margin-left: 4%;
-      margin-right: 4%;
-      width: 100%; }
-      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .range-slider-range {
-        -webkit-appearance: none;
-        width: 70%;
-        height: 15px;
-        border-radius: 5px;
-        background: #d3d3d3;
-        outline: none;
-        opacity: 0.7;
-        -webkit-transition: .2s;
-        transition: opacity .2s; }
-      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .range-slider-range:hover {
-        opacity: 1; }
-      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .range-slider-range::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background: #0fadf7;
-        cursor: pointer; }
-      #sidebar #treemapOptionsSidebarCard .colorThreshold .threshold-slider .range-slider-range::-moz-range-thumb {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background: #0fadf7;
-        cursor: pointer; }
-    #sidebar #treemapOptionsSidebarCard .colorThreshold .value-selected {
-      display: inline-block;
-      width: 70px;
-      line-height: 20px;
-      color: #f6f6f6;
-      text-align: center;
-      border-radius: 3px;
-      background: #2c3e50;
-      padding: 5px 10px;
-      margin-left: 8px; }
+    #sidebar #treemapOptionsSidebarCard .colorThreshold .dangerThresholdInput {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0;
+      margin-left: 5%;
+      margin-right: 5%;
+      width: 90%;
+      padding-left: 5px; }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold .dangerThresholdInput::placeholder {
+        color: black; }
+    #sidebar #treemapOptionsSidebarCard .colorThreshold #applyThresholdButton {
+      color: #4faaff;
+      background-color: rgba(79, 170, 255, 0.2);
+      border-color: #4faaff;
+      z-index: 1;
+      padding: 1px 0px 0px 5px; }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold #applyThresholdButton:hover {
+        border-color: #1c91ff;
+        color: #1c91ff;
+        background-color: rgba(28, 145, 255, 0.2); }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold #applyThresholdButton:active {
+        border-color: #82c3ff;
+        color: #82c3ff;
+        background-color: rgba(130, 195, 255, 0.4); }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer #from, #sidebar #treemapOptionsSidebarCard #optionsGridContainer #to {
       width: 100%; }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer input {

@@ -26,25 +26,18 @@ const colorMetric = Metrics.CCN;
 const defaultMin = mD.getMinColorMetric(colorMetric);
 const defaultMax = mD.getMaxColorMetric(colorMetric);
 const dangerThreshold = DangerThresholds[colorMetric];
-const warningThreshold = WarningThresholds[colorMetric];
 let defaultColorThresholds = [
   defaultMin,
-  warningThreshold,
   dangerThreshold,
   defaultMax
 ];
 
-// default treemap colors [safeColor, warningColor, dangerColor, dangerColor]
-let defaultTreemapColors = ["green", "orange", "red", "red"];
+// default treemap colors [safeColor, dangerColor, dangerColor]
+const defaultTreemapColors = ["green", "red", "red"];
 
 // change threshold if none of the values are in danger
 if (defaultMax < dangerThreshold) {
-  defaultColorThresholds = [defaultMin, warningThreshold, dangerThreshold];
-}
-// change threshold if none of the values are in warning
-if (defaultMax < warningThreshold) {
-  defaultColorThresholds = [defaultMin, warningThreshold];
-  defaultTreemapColors = ["green", "orange", "orange", "orange"];
+  defaultColorThresholds = [defaultMin, dangerThreshold];
 }
 
 // Get URL injected paramters

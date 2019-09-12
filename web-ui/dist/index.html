@@ -86,33 +86,51 @@
           -->
           <div class="treemapColors">
             <div class="colorInputs">
-              <div class="safeColor">
-                <label>Safety Color: </label>
-                <input class="safeColorInput" type="text" value="green">
+              <div class= "row">
+                <div class = "col-md-4">
+                  <label>Safety Color: </label>
+                </div>
+                <div class = "col-md-4">
+                  <label>Danger Color: </label>
+                </div>
               </div>
-              <div class="warningColor">
-                <label>Warning Color: </label>
-                <input class="warningColorInput" type="text" value="orange">
+              <div class = "row">
+                <div class = "col-md-4">
+                  <input class="safeColorInput" type="text" value="green">
+                </div>
+                <div class = "col-md-4">
+                  <input class="dangerColorInput" type="text" value="red">
+                </div>
+                <div class = "col-md-4">
+                  <button id="treemapColorChange" class="btn btn-sq btn-outline-primary">Change</button>
+                </div>
               </div>
-              <div class="dangerColor">
-                <label>Danger Color: </label>
-                <input class="dangerColorInput" type="text" value="red">
-              </div>
-            </div>
-            <div>
-              <button id="treemapColorChange" class="btn btn-sq btn-outline-primary">Re-color</button>
             </div>
             <div class="colorGradientBar"></div>
             <div class="colorThreshold">
-              <label>Threshold: </label>
-              <div>
-                <label class="min"></label>
-                <div class="threshold-slider">
-                  <input class="range-slider-range" type="range">
-                  <span class="value-selected">val</span>
+              <div class = "row">
+                <div class = "col-md-4">
+                  <label class="min">min</label>
                 </div>
-                <label class="max"></label>
-                <p class="selectedValueText"></p>
+                <div class = "col-md-4">
+                  <label class="max">max</label>
+                </div>
+              </div>
+              <div class = "row">
+                <div class = "col-md-4">
+                  <label>Threshold: </label>
+                </div>
+                <div class = "col-md-4">
+                  <input class="dangerThresholdInput" type="text">
+                </div>
+                <div class = "col-md-4">
+                  <button id="applyThresholdButton" class = "btn btn-sq btn-outline-primary">Apply</button>
+                </div>
+              </div>
+              <div class = "row">
+                <div class = "col-md-12">
+                  <p class="selectedValueText"></p>
+                </div>
               </div>
             </div>
           </div>
