@@ -6,7 +6,7 @@ import TreemapData from "./Data/treemapData";
 import treemapSetting from "./Treemap/treemapSetting";
 import InterfaceEventController from "./EventController/InterfaceEventController";
 import TreemapEventController from "./EventController/TreemapEventController";
-import { DangerThresholds, WarningThresholds } from "./Treemap/thresholds";
+import { DangerThresholds } from "./Treemap/thresholds";
 
 // Process Data
 let data;

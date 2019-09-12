@@ -2,7 +2,7 @@ import { MetricData, Metrics } from "../Data/metricData";
 import Treemap from "../Treemap/treemap";
 import TreemapSetting from "../Treemap/treemapSetting";
 import * as d3 from "d3";
-import { DangerThresholds, WarningThresholds } from "../Treemap/thresholds";
+import { DangerThresholds } from "../Treemap/thresholds";
 
 const metricOptions = [
   Metrics.NLOC,

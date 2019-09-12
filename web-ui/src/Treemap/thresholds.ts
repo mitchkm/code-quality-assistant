@@ -4,9 +4,3 @@ export enum DangerThresholds {
     "params" = 5,
     "length" = 58 // including comments
 }
-
-export enum WarningThresholds {
-    "nloc" = 21,
-    "ccn" = 11,
-    "length" = 31
-}
