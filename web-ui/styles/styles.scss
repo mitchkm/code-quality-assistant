@@ -256,7 +256,7 @@ $theme-colors: ("primary": $my-primary,
                 border-bottom: 1px dotted black;
                 .thresholdTooltipText {
                     visibility: hidden;
-                    width: 200px;
+                    width: 400px;
                     background-color: black;
                     color: $my-text-color;
                     text-align: center;
@@ -271,7 +271,7 @@ $theme-colors: ("primary": $my-primary,
                         content: "";
                         position: absolute;
                         bottom: 100%;
-                        left: 50%;
+                        left: 15%;
                         margin-left: -5px;
                         border-width: 5px;
                         border-style: solid;
@@ -291,10 +291,6 @@ $theme-colors: ("primary": $my-primary,
             #applyThresholdButton {
                 @include normal-button;
                 padding: 1px 0px 0px 5px;
-            }
-            .selectedValueText{
-                margin-left: 20px;
-                position: relative;
             }
         }
 

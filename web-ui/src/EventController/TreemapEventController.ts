@@ -72,6 +72,7 @@ class TreemapEventController {
     const FILE_SELECTOR = "#fileSelector";
     const FILE_LIST = "#fileOptions";
     const FILE_FILTER_BUTTON = "#fileFilterButton";
+    const FILE_CLEAR = "#clearAllButton";
 
     // delete existing dropdown options
     if (d3.select(FILE_LIST).select("option") !== undefined) {
@@ -90,9 +91,18 @@ class TreemapEventController {
       });
 
     d3.select(FILE_FILTER_BUTTON).on("click", () => {
-      this.treemapSettings.fileOption.list.push(d3
-        .select(FILE_SELECTOR)
-        .property("value"));
+      const file = d3.select(FILE_SELECTOR).property("value");
+      this.treemapSettings.fileOption.list.push(file);
+      this.addFileToListUI(file);
+      this.updateTreemap();
+    });
+
+    d3.select(FILE_CLEAR).on("click", () => {
+      this.treemapSettings.fileOption.list = [];
+      d3.select("#fileList")
+        .select(".row")
+        .selectAll("div")
+        .remove();
       this.updateTreemap();
     });
   }
@@ -236,7 +246,7 @@ class TreemapEventController {
     this.initColorThresholdDescription(dangerThreshold);
 
     // display min and max
-    d3.select(".thresholdTooltipText").text("Minimum value of " + colorMetric + " in the current folder: " + min + "\n"
+    d3.select(".minMaxText").text("Minimum value of " + colorMetric + " in the current folder: " + min + "\n"
                                           + "Maximum value of " + colorMetric + " in the current folder: " + max);
 
     // update treemap color based on threshold
@@ -283,6 +293,29 @@ class TreemapEventController {
         dangerColor +
         " are in danger."
     );
+  }
+  private addFileToListUI(name: string) {
+    const item = d3
+      .select("#fileList")
+      .select(".row")
+      .append("div")
+      .attr("class", "col-md-6");
+    const fileItem = item.append("div").attr("class", "fileFilterPanel");
+    fileItem
+      .append("div")
+      .attr("class", "fileName")
+      .append("p")
+      .text(name);
+    const button = fileItem.append("button").attr("class", "btn-circle");
+    button.append("i").attr("class", "fa fa-times");
+    button.on("click", () => {
+      const index = this.treemapSettings.fileOption.list.indexOf(name);
+      if (index !== -1) {
+        this.treemapSettings.fileOption.list.splice(index, 1);
+      }
+      item.remove();
+      this.updateTreemap();
+    });
   }
 }
 
