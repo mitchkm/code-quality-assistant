@@ -35,7 +35,7 @@ $margin-adjusted-percentage: 100% - 2 * $content-margin;
 $sidebar-margin: 4%;
 $sidebar-adjusted-size: 100% - 2 * $sidebar-margin;
 
-$row-height: 40px;
+$row-height: 36px;
 
 $theme-colors: ("primary": $my-primary,
     "secondary": $my-secondary,
@@ -54,6 +54,7 @@ $theme-colors: ("primary": $my-primary,
     background-color: rgba($button-color, 0.2);
     border-color: $border-color;
     z-index: 1;
+    width: 100%;
 
     &:hover {
         border-color: darken($border-color, 10%);
@@ -73,6 +74,7 @@ $theme-colors: ("primary": $my-primary,
     background-color: rgba($my-primary, 0.2);
     border-color: $my-primary;
     z-index: 1;
+    width: 100%;
 
     &:hover {
         border-color: darken($my-primary, 10%);
@@ -92,6 +94,7 @@ $theme-colors: ("primary": $my-primary,
     background-color: rgba($my-secondary, 0.2);
     border-color: $my-secondary;
     z-index: 1;
+    width: 100%;
 
     &:hover {
         border-color: darken($my-secondary, 10%);
@@ -104,11 +107,6 @@ $theme-colors: ("primary": $my-primary,
         color: lighten($my-secondary, 10%);
         background-color: lighten(rgba($my-secondary, 0.4), 10%);
     }
-}
-
-@mixin sidebar-block-button {
-    margin-left: 5%;
-    width: 90%;
 }
 
 // template for a full-page background card for a chart
@@ -149,11 +147,10 @@ $theme-colors: ("primary": $my-primary,
     background: rgba(white, 0.8);
     color: black;
     border-radius: 5px;
-    border: 0;
-    margin-left: $sidebar-margin + 1%;
-    margin-right: $sidebar-margin + 1%;
-    width: $sidebar-adjusted-size - 2%;
-    padding-left: 5px;
+    border: 0px;
+    width: 100%;
+    height: 100%;
+    padding-left: 8px;
 
     &::placeholder {
         color: black;
@@ -193,11 +190,6 @@ $theme-colors: ("primary": $my-primary,
         background-color: $my-subheader-color;
         margin-left: 20px;
         margin-right: 20px;
-    }
-
-    .btn {
-        @include primary-button;
-        @include sidebar-block-button;
     }
 
     #chartOptionsContainer {
@@ -342,6 +334,7 @@ $theme-colors: ("primary": $my-primary,
 
         .row {
             margin-bottom: 0px;
+            height: auto;
         }
     }
 
@@ -372,9 +365,9 @@ $theme-colors: ("primary": $my-primary,
         #fileListCard {
             position: relative;
             background: $card-background;
-            margin-left: $sidebar-margin;
-            margin-right: $sidebar-margin;
-            width: $sidebar-adjusted-size;
+            //margin-left: $sidebar-margin;
+            //margin-right: $sidebar-margin;
+            width: 100%;
             padding: $sidebar-margin / 2;
             border-radius: 10px;
 
@@ -388,6 +381,7 @@ $theme-colors: ("primary": $my-primary,
 
                 .row {
                     width: 100%;
+                    height: auto;
                 }
             }
 
@@ -401,32 +395,19 @@ $theme-colors: ("primary": $my-primary,
 
         #fileFilterButton {
             @include secondary-button;
-            width: $sidebar-adjusted-size;
-            margin-left: $sidebar-margin;
-        }
-
-        #whitelistButton {
-            @include normal-button(white, lighten($my-secondary, 10%), lighten($my-secondary, 10%));
-            width: $sidebar-adjusted-size;
-        }
-
-        #blacklistButton {
-            @include normal-button(#000000, lighten($my-secondary, 15%), lighten($my-secondary, 15%));
-            width: $sidebar-adjusted-size;
-            margin-left: $sidebar-margin;
         }
 
         #clearAllButton {
             @include secondary-button;
-            margin-left: $sidebar-margin;
-            margin-right: $sidebar-margin;
-            width: $sidebar-adjusted-size;
         }
 
     }
 
     p {
         color: $my-text-color;
+    }
+    #fileListRow{
+        height: auto;
     }
 }
 
@@ -445,11 +426,6 @@ body {
     height: 100%; //this is here to make the gradient fit
     background: $my-gradient;
     font-family: "Quicksand", sans-serif;
-}
-
-.row {
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 // ==================== End Body Content Styles ====================
@@ -586,6 +562,16 @@ body {
     z-index: 4;
 }
 
+.row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: $row-height;
+    p, label{
+        font-size: calc($row-height * 0.8);
+        vertical-align: bottom;
+    }
+}
+
 // ======================== End Chart Styles ========================
 
 // =========================== Style Fixes ===========================
@@ -609,7 +595,7 @@ label {
 
 input,
 select {
-    //height: 100%;
+    height: 100%;
     //font-size: 20px;
 }
 
@@ -704,9 +690,9 @@ label {
 // ====================== End Scrollbar styling =====================
 
 
+// ========================== Switch styling =========================
+
 .switch {
-    $switch-black: rgba(black, 0.5);
-    $switch-white: rgba(white, 0.5);
     $switch-margin: 4px;
     $switch-height: $row-height;
     $slider-height: $switch-height - (2 * $switch-margin);
@@ -735,16 +721,19 @@ label {
     .slider {
         width: 100%;
         height: 100%;
-        background-color: $switch-black;
+        background-color: rgba(black, 0.3);
         border-radius: $switch-height;
         transition: ease $transition-length;
         z-index: 1;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba($my-secondary, 0.3);
+        //box-shadow: 0 5px 15px rgba($my-secondary, 0.2);
 
         &::after {
-            //display: inline-block;
             content: 'Blacklist';
             overflow: hidden;
-            color: $switch-black;
+            color: white;
             text-align: center;
             font-size: $slider-height - 2.5 * $switch-margin;
             position: absolute;
@@ -752,7 +741,7 @@ label {
             width: 50%;
             height: $slider-height;
             border-radius: $slider-height;
-            background-color: $switch-white;
+            background-color: rgba(black, 0.5);
             top: 50%;
             left: $switch-margin;
             transform: translate(0%, -50%);
@@ -763,14 +752,18 @@ label {
     }
 
     input:checked+.slider {
-        background-color: $switch-white;
+        background-color: rgba(white, 0.3);
+        border-color: rgba($my-primary, 0.3);
+        //box-shadow: 0 5px 15px rgba($my-primary, 0.2);
+
     }
     input:checked+.slider:after{
         content: 'Whitelist';
+        color: black;
         transform: translate(calc(100% - 2 * #{$switch-margin}), -50%);
+        background-color: rgba(white, 0.5);
     }
 
 }
 
-
-/*--------- END --------*/
+// ======================== End Switch styling =======================
