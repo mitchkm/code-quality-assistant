@@ -232,9 +232,6 @@ $theme-colors: ("primary": $my-primary,
 
                 #treemapColorChange {
                     @include normal-button;
-                    margin: $sidebar-margin;
-                    width: $sidebar-adjusted-size;
-                    padding: 1px 0px 0px 5px;
                 }
             }
 
@@ -414,7 +411,7 @@ $theme-colors: ("primary": $my-primary,
             #fileList {
                 width: $sidebar-adjusted-size;
                 min-height: 60px;
-                max-height: 120px;
+                max-height: 160px;
                 margin-left: $sidebar-margin * 2;
                 overflow-y: scroll;
 
@@ -610,6 +607,20 @@ body {
         font-size: calc($row-height * 0.8);
         vertical-align: bottom;
     }
+    .col-md-1, 
+    .col-md-2, 
+    .col-md-3, 
+    .col-md-4, 
+    .col-md-5, 
+    .col-md-6, 
+    .col-md-7, 
+    .col-md-8, 
+    .col-md-9, 
+    .col-md-10, 
+    .col-md-11, 
+    .col-md-12{
+        height: 100%;
+    }
 }
 
 // ======================== End Chart Styles ========================
@@ -634,7 +645,8 @@ label {
 }
 
 input,
-select {
+select, 
+button {
     height: 100%;
     //font-size: 20px;
 }
@@ -768,7 +780,7 @@ label {
         border-width: 1px;
         border-style: solid;
         border-color: rgba($my-secondary, 0.3);
-        //box-shadow: 0 5px 15px rgba($my-secondary, 0.2);
+        box-shadow: 0 5px 15px rgba($my-secondary, 0.2);
 
         &::after {
             content: 'Blacklist';
@@ -794,7 +806,7 @@ label {
     input:checked+.slider {
         background-color: rgba(white, 0.3);
         border-color: rgba($my-primary, 0.3);
-        //box-shadow: 0 5px 15px rgba($my-primary, 0.2);
+        box-shadow: 0 5px 15px rgba($my-primary, 0.2);
 
     }
     input:checked+.slider:after{

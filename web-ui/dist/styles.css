@@ -7221,10 +7221,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         background-color: rgba(79, 170, 255, 0.2);
         border-color: #4faaff;
         z-index: 1;
-        width: 100%;
-        margin: 4%;
-        width: 92%;
-        padding: 1px 0px 0px 5px; }
+        width: 100%; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #treemapColorChange:hover {
           border-color: #1c91ff;
           color: #1c91ff;
@@ -7410,7 +7407,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       #sidebar #fileFilterCard #fileListCard #fileList {
         width: 92%;
         min-height: 60px;
-        max-height: 120px;
+        max-height: 160px;
         margin-left: 8%;
         overflow-y: scroll; }
         #sidebar #fileFilterCard #fileListCard #fileList .row {
@@ -7587,6 +7584,19 @@ body {
   .row p, .row label {
     font-size: calc($row-height * 0.8);
     vertical-align: bottom; }
+  .row .col-md-1,
+  .row .col-md-2,
+  .row .col-md-3,
+  .row .col-md-4,
+  .row .col-md-5,
+  .row .col-md-6,
+  .row .col-md-7,
+  .row .col-md-8,
+  .row .col-md-9,
+  .row .col-md-10,
+  .row .col-md-11,
+  .row .col-md-12 {
+    height: 100%; }
 
 button:focus {
   outline: none !important;
@@ -7602,7 +7612,8 @@ label {
   color: #f6f6f6; }
 
 input,
-select {
+select,
+button {
   height: 100%; }
 
 .fileFilterPanel {
@@ -7683,7 +7694,8 @@ select {
     z-index: 1;
     border-width: 1px;
     border-style: solid;
-    border-color: rgba(255, 27, 114, 0.3); }
+    border-color: rgba(255, 27, 114, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 27, 114, 0.2); }
     .switch .slider::after {
       content: 'Blacklist';
       overflow: hidden;
@@ -7704,7 +7716,8 @@ select {
       transition: ease 0.3s; }
   .switch input:checked + .slider {
     background-color: rgba(255, 255, 255, 0.3);
-    border-color: rgba(79, 170, 255, 0.3); }
+    border-color: rgba(79, 170, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(79, 170, 255, 0.2); }
   .switch input:checked + .slider:after {
     content: 'Whitelist';
     color: black;
