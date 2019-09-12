@@ -7253,10 +7253,41 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     #sidebar #treemapOptionsSidebarCard .treemapColors .colorGradientBar {
       height: 20px;
       background-image: linear-gradient(to right, green, orange, red);
-      margin: 4%;
+      position: relative;
+      margin-bottom: 15px;
+      left: 20px;
       width: 92%; }
     #sidebar #treemapOptionsSidebarCard .colorThreshold label {
       color: #f6f6f6; }
+    #sidebar #treemapOptionsSidebarCard .colorThreshold .thresholdTooltip {
+      position: relative;
+      margin-left: 7px;
+      display: inline-block;
+      border-bottom: 1px dotted black; }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold .thresholdTooltip .thresholdTooltipText {
+        visibility: hidden;
+        width: 200px;
+        background-color: black;
+        color: #f6f6f6;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 150%;
+        left: 50%;
+        margin-left: -60px; }
+        #sidebar #treemapOptionsSidebarCard .colorThreshold .thresholdTooltip .thresholdTooltipText::after {
+          content: "";
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent transparent black transparent; }
+      #sidebar #treemapOptionsSidebarCard .colorThreshold .thresholdTooltip:hover .thresholdTooltipText {
+        visibility: visible; }
     #sidebar #treemapOptionsSidebarCard .colorThreshold .dangerThresholdInput {
       background: rgba(255, 255, 255, 0.8);
       color: black;
@@ -7282,6 +7313,9 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         border-color: #82c3ff;
         color: #82c3ff;
         background-color: rgba(130, 195, 255, 0.4); }
+    #sidebar #treemapOptionsSidebarCard .colorThreshold .selectedValueText {
+      margin-left: 20px;
+      position: relative; }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer #from, #sidebar #treemapOptionsSidebarCard #optionsGridContainer #to {
       width: 100%; }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer input {
