@@ -32,7 +32,7 @@
           class="btn btn-outline-secondary"
           id="TreemapBackButton"
         >
-          &larr;UP
+          &larr; UP
         </button>
         <div class="feature" id="treeMapChart"></div>
         <div class="mouseHover"></div>
@@ -65,30 +65,30 @@
 
           <div id="optionsGridContainer">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <p>Size metric:</p>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <select id="sizeSelector"></select>
               </div>
             </div>
             <div class="row">
-              <div class="col-8">
+              <div class="col-md-6">
                 <p>Color metric:</p>
               </div>
-              <div class="col-4">
+              <div class="col-md-6">
                 <select id="colorSelector"></select>
               </div>
             </div>
             <!--
           <div class="row">
-            <div class="col-4">
+            <div class="col-md-4">
               <label>Re-color Tree Map </label>
             </div>
-            <div class="col-4" id="from">
+            <div class="col-md-4" id="from">
               <input class="colorFromInput" type="text" placeholder="start color">
             </div>
-            <div class="col-4" id="to">
+            <div class="col-md-4" id="to">
               <input class="colorToInput" type="text" placeholder="end color">
             </div>
           </div>
@@ -147,7 +147,7 @@
           <h3>File Filtering</h3>
           <hr />
           <div class="row">
-            <div class="col-9">
+            <div class="col-md-9">
               <input
                 autoComplete="on"
                 list="fileOptions"
@@ -156,7 +156,7 @@
               />
               <datalist id="fileOptions"></datalist>
             </div>
-            <div class="col-3">
+            <div class="col-md-3">
               <button
                 type="button"
                 class="btn btn-sq btn-outline-dark"
@@ -166,31 +166,33 @@
               </button>
             </div>
           </div>
-          <div class="row">
-            <div id="fileListCard">
-              <div id="fileList">
-                <div class="row">
-                  <!--
-                  <div class="fileFilterPanel">
-                    <div class="fileName">
-                      <p>File placeholder text</p>
-                    </div>
-                    <button class="btn-circle"><i class="fa fa-times"></i></button>
+          <div class="row" id="fileListRow">
+            <div class="col-md-12">
+              <div id="fileListCard">
+                <div id="fileList">
+                  <div class="row">
+                    <!--
+                        <div class="fileFilterPanel">
+                          <div class="fileName">
+                            <p>File placeholder text</p>
+                          </div>
+                          <button class="btn-circle"><i class="fa fa-times"></i></button>
+                        </div>
+                        -->
                   </div>
-                  -->
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-6">
+          <div class="col-md-6">
             <div class="switch">
               <input type="checkbox" id="togBtn" />
               <label class="slider"></label>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <button
               type="button"
               class="btn btn-sq btn-outline-dark"
@@ -204,9 +206,7 @@
     </div>
 
     <script id="rawData" type="application/json">
-      {
-        code_analysis_json
-      }
+      {code_analysis_json}
     </script>
     <script src="bundle.js"></script>
   </body>

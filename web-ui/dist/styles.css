@@ -7152,21 +7152,6 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     background-color: #686868;
     margin-left: 20px;
     margin-right: 20px; }
-  #sidebar .btn {
-    color: #4faaff;
-    background-color: rgba(79, 170, 255, 0.2);
-    border-color: #4faaff;
-    z-index: 1;
-    margin-left: 5%;
-    width: 90%; }
-    #sidebar .btn:hover {
-      border-color: #1c91ff;
-      color: #1c91ff;
-      background-color: rgba(28, 145, 255, 0.2); }
-    #sidebar .btn:active {
-      border-color: #82c3ff;
-      color: #82c3ff;
-      background-color: rgba(130, 195, 255, 0.4); }
   #sidebar #chartOptionsContainer {
     margin: 4%; }
   #sidebar #treemapOptionsSidebarCard {
@@ -7191,11 +7176,10 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       background: rgba(255, 255, 255, 0.8);
       color: black;
       border-radius: 5px;
-      border: 0;
-      margin-left: 5%;
-      margin-right: 5%;
-      width: 90%;
-      padding-left: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px;
       width: 100%;
       margin-left: 0;
       margin-right: 0; }
@@ -7205,11 +7189,10 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       background: rgba(255, 255, 255, 0.8);
       color: black;
       border-radius: 5px;
-      border: 0;
-      margin-left: 5%;
-      margin-right: 5%;
-      width: 90%;
-      padding-left: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px;
       width: 100%;
       margin-left: 0;
       margin-right: 0; }
@@ -7264,6 +7247,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       background-color: rgba(79, 170, 255, 0.2);
       border-color: #4faaff;
       z-index: 1;
+      width: 100%;
       padding: 1px 0px 0px 5px; }
       #sidebar #treemapOptionsSidebarCard .colorThreshold #applyThresholdButton:hover {
         border-color: #1c91ff;
@@ -7280,11 +7264,10 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       background: rgba(255, 255, 255, 0.8);
       color: black;
       border-radius: 5px;
-      border: 0;
-      margin-left: 5%;
-      margin-right: 5%;
-      width: 90%;
-      padding-left: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px;
       width: 100%; }
       #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::placeholder {
         color: black; }
@@ -7357,7 +7340,8 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       border-bottom: 2px solid rgba(79, 170, 255, 0.8);
       background: rgba(82, 87, 87, 0.6); }
   #sidebar #chartSelectBar .row {
-    margin-bottom: 0px; }
+    margin-bottom: 0px;
+    height: auto; }
   #sidebar #fileFilterCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
@@ -7378,28 +7362,26 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     #sidebar #fileFilterCard #fileListCard {
       position: relative;
       background: rgba(255, 255, 255, 0.1);
-      margin-left: 4%;
-      margin-right: 4%;
-      width: 92%;
+      width: 100%;
       padding: 2%;
       border-radius: 10px; }
       #sidebar #fileFilterCard #fileListCard #fileList {
         width: 92%;
         min-height: 60px;
-        max-height: 120px;
+        max-height: 160px;
         margin-left: 8%;
         overflow-y: scroll; }
         #sidebar #fileFilterCard #fileListCard #fileList .row {
-          width: 100%; }
+          width: 100%;
+          height: auto; }
     #sidebar #fileFilterCard #fileSelector {
       background: rgba(255, 255, 255, 0.8);
       color: black;
       border-radius: 5px;
-      border: 0;
-      margin-left: 5%;
-      margin-right: 5%;
-      width: 90%;
-      padding-left: 5px; }
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px; }
       #sidebar #fileFilterCard #fileSelector::placeholder {
         color: black; }
     #sidebar #fileFilterCard #fileFilterButton {
@@ -7407,8 +7389,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       background-color: rgba(255, 27, 114, 0.2);
       border-color: #ff1b72;
       z-index: 1;
-      width: 92%;
-      margin-left: 4%; }
+      width: 100%; }
       #sidebar #fileFilterCard #fileFilterButton:hover {
         border-color: #e70058;
         color: #e70058;
@@ -7417,43 +7398,12 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         border-color: #ff4e92;
         color: #ff4e92;
         background-color: rgba(255, 78, 146, 0.4); }
-    #sidebar #fileFilterCard #whitelistButton {
-      color: #ff4e92;
-      background-color: rgba(255, 255, 255, 0.2);
-      border-color: #ff4e92;
-      z-index: 1;
-      width: 92%; }
-      #sidebar #fileFilterCard #whitelistButton:hover {
-        border-color: #ff1b72;
-        color: #ff1b72;
-        background-color: rgba(230, 230, 230, 0.2); }
-      #sidebar #fileFilterCard #whitelistButton:active {
-        border-color: #ff81b1;
-        color: #ff81b1;
-        background-color: rgba(255, 255, 255, 0.4); }
-    #sidebar #fileFilterCard #blacklistButton {
-      color: #ff68a1;
-      background-color: rgba(0, 0, 0, 0.2);
-      border-color: #ff68a1;
-      z-index: 1;
-      width: 92%;
-      margin-left: 4%; }
-      #sidebar #fileFilterCard #blacklistButton:hover {
-        border-color: #ff3582;
-        color: #ff3582;
-        background-color: rgba(0, 0, 0, 0.2); }
-      #sidebar #fileFilterCard #blacklistButton:active {
-        border-color: #ff9bc1;
-        color: #ff9bc1;
-        background-color: rgba(26, 26, 26, 0.4); }
     #sidebar #fileFilterCard #clearAllButton {
       color: #ff1b72;
       background-color: rgba(255, 27, 114, 0.2);
       border-color: #ff1b72;
       z-index: 1;
-      margin-left: 4%;
-      margin-right: 4%;
-      width: 92%; }
+      width: 100%; }
       #sidebar #fileFilterCard #clearAllButton:hover {
         border-color: #e70058;
         color: #e70058;
@@ -7464,6 +7414,8 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         background-color: rgba(255, 78, 146, 0.4); }
   #sidebar p {
     color: #f6f6f6; }
+  #sidebar #fileListRow {
+    height: auto; }
 
 html {
   width: 100%;
@@ -7475,10 +7427,6 @@ body {
   height: 100%;
   background: linear-gradient(to bottom right, #001c36, #1b000a);
   font-family: "Quicksand", sans-serif; }
-
-.row {
-  margin-top: 10px;
-  margin-bottom: 10px; }
 
 #treeMapCard {
   position: relative;
@@ -7492,6 +7440,7 @@ body {
     background-color: rgba(255, 27, 114, 0.2);
     border-color: #ff1b72;
     z-index: 1;
+    width: 100%;
     cursor: zoom-out;
     position: relative;
     width: 96%;
@@ -7589,6 +7538,27 @@ body {
   text-align: center;
   z-index: 4; }
 
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 36px; }
+  .row p, .row label {
+    font-size: calc($row-height * 0.8);
+    vertical-align: bottom; }
+  .row .col-md-1,
+  .row .col-md-2,
+  .row .col-md-3,
+  .row .col-md-4,
+  .row .col-md-5,
+  .row .col-md-6,
+  .row .col-md-7,
+  .row .col-md-8,
+  .row .col-md-9,
+  .row .col-md-10,
+  .row .col-md-11,
+  .row .col-md-12 {
+    height: 100%; }
+
 button:focus {
   outline: none !important;
   box-shadow: none !important;
@@ -7602,20 +7572,26 @@ input:focus {
 label {
   color: #f6f6f6; }
 
+input,
+select,
+button {
+  height: 100%; }
+
 .fileFilterPanel {
   position: relative;
   display: inline-block;
   height: 25px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 25px;
-  text-align: left;
   margin: 4%;
   cursor: default;
-  max-width: 100%;
+  white-space: nowrap;
+  width: 100%;
   overflow: hidden; }
   .fileFilterPanel .fileName {
     display: inline-flex;
     position: relative;
+    text-indent: calc(50% - height);
     padding-left: 5px;
     padding-right: 5px;
     overflow: hidden;
@@ -7643,7 +7619,8 @@ label {
       box-shadow: none !important;
       border: 2px solid transparent; }
     .fileFilterPanel .btn-circle:hover {
-      background-color: rgba(255, 27, 114, 0.7); }
+      background-color: rgba(255, 27, 114, 0.7);
+      box-shadow: 0 5px 15px rgba(255, 27, 114, 0.8); }
 
 /* width */
 ::-webkit-scrollbar {
@@ -7662,8 +7639,8 @@ label {
   position: relative;
   display: inline-block;
   width: 100%;
-  height: 40px;
-  border-radius: 40px;
+  height: 36px;
+  border-radius: 36px;
   background-color: transparent; }
   .switch input {
     position: absolute;
@@ -7674,22 +7651,26 @@ label {
   .switch .slider {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 36px;
     transition: ease 0.3s;
-    z-index: 1; }
+    z-index: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 27, 114, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 27, 114, 0.2); }
     .switch .slider::after {
       content: 'Blacklist';
       overflow: hidden;
-      color: rgba(0, 0, 0, 0.5);
+      color: white;
       text-align: center;
-      font-size: 22px;
+      font-size: 18px;
       position: absolute;
       z-index: 2;
       width: 50%;
-      height: 32px;
-      border-radius: 32px;
-      background-color: rgba(255, 255, 255, 0.5);
+      height: 28px;
+      border-radius: 28px;
+      background-color: rgba(0, 0, 0, 0.5);
       top: 50%;
       left: 4px;
       transform: translate(0%, -50%);
@@ -7697,9 +7678,11 @@ label {
       -webkit-transition: ease 0.3s;
       transition: ease 0.3s; }
   .switch input:checked + .slider {
-    background-color: rgba(255, 255, 255, 0.5); }
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(79, 170, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(79, 170, 255, 0.2); }
   .switch input:checked + .slider:after {
     content: 'Whitelist';
-    transform: translate(calc(100% - 2 * 4px), -50%); }
-
-/*--------- END --------*/
+    color: black;
+    transform: translate(calc(100% - 2 * 4px), -50%);
+    background-color: rgba(255, 255, 255, 0.5); }
