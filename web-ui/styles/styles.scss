@@ -35,6 +35,8 @@ $margin-adjusted-percentage: 100% - 2 * $content-margin;
 $sidebar-margin: 4%;
 $sidebar-adjusted-size: 100% - 2 * $sidebar-margin;
 
+$row-height: 40px;
+
 $theme-colors: ("primary": $my-primary,
     "secondary": $my-secondary,
     "body-bg": $my-background);
@@ -256,25 +258,30 @@ $theme-colors: ("primary": $my-primary,
             label {
                 color: $my-text-color;
             }
-            .dangerThresholdInput{
+
+            .dangerThresholdInput {
                 @include input-field-styling;
             }
-            #applyThresholdButton{
+
+            #applyThresholdButton {
                 @include normal-button;
                 padding: 1px 0px 0px 5px;
             }
         }
 
-        #optionsGridContainer{
-            #from, #to{
+        #optionsGridContainer {
+
+            #from,
+            #to {
                 width: 100%;
             }
+
             input {
                 @include input-field-styling;
                 //margin: 1px $sidebar-margin;
                 width: 100%;
             }
-            
+
 
         }
 
@@ -403,7 +410,7 @@ $theme-colors: ("primary": $my-primary,
             width: $sidebar-adjusted-size;
         }
 
-        #blacklistButton{
+        #blacklistButton {
             @include normal-button(#000000, lighten($my-secondary, 15%), lighten($my-secondary, 15%));
             width: $sidebar-adjusted-size;
             margin-left: $sidebar-margin;
@@ -599,11 +606,15 @@ input:focus {
 label {
     color: $my-text-color;
 }
-input, select{
+
+input,
+select {
     //height: 100%;
     //font-size: 20px;
 }
-p, label{
+
+p,
+label {
     //font-size: 25px;
 }
 
@@ -691,3 +702,75 @@ p, label{
 }
 
 // ====================== End Scrollbar styling =====================
+
+
+.switch {
+    $switch-black: rgba(black, 0.5);
+    $switch-white: rgba(white, 0.5);
+    $switch-margin: 4px;
+    $switch-height: $row-height;
+    $slider-height: $switch-height - (2 * $switch-margin);
+    $transition-length: 0.3s;
+
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: $row-height;
+    border-radius: $switch-height;
+    background-color: transparent;
+
+
+
+    input {
+        position: absolute;
+        -webkit-appearance: none;
+        //-moz-appearance: none;
+        //appearance: none;
+
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .slider {
+        width: 100%;
+        height: 100%;
+        background-color: $switch-black;
+        border-radius: $switch-height;
+        transition: ease $transition-length;
+        z-index: 1;
+
+        &::after {
+            //display: inline-block;
+            content: 'Blacklist';
+            overflow: hidden;
+            color: $switch-black;
+            text-align: center;
+            font-size: $slider-height - 2.5 * $switch-margin;
+            position: absolute;
+            z-index: 2;
+            width: 50%;
+            height: $slider-height;
+            border-radius: $slider-height;
+            background-color: $switch-white;
+            top: 50%;
+            left: $switch-margin;
+            transform: translate(0%, -50%);
+            pointer-events: none;
+            -webkit-transition: ease $transition-length;
+            transition: ease $transition-length;
+        }
+    }
+
+    input:checked+.slider {
+        background-color: $switch-white;
+    }
+    input:checked+.slider:after{
+        content: 'Whitelist';
+        transform: translate(calc(100% - 2 * #{$switch-margin}), -50%);
+    }
+
+}
+
+
+/*--------- END --------*/
