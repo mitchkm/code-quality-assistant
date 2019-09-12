@@ -7266,7 +7266,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       border-bottom: 1px dotted black; }
       #sidebar #treemapOptionsSidebarCard .colorThreshold .thresholdTooltip .thresholdTooltipText {
         visibility: hidden;
-        width: 200px;
+        width: 400px;
         background-color: black;
         color: #f6f6f6;
         text-align: center;
@@ -7281,7 +7281,7 @@ a.text-body-bg:hover, a.text-body-bg:focus {
           content: "";
           position: absolute;
           bottom: 100%;
-          left: 50%;
+          left: 15%;
           margin-left: -5px;
           border-width: 5px;
           border-style: solid;
@@ -7313,9 +7313,6 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         border-color: #82c3ff;
         color: #82c3ff;
         background-color: rgba(130, 195, 255, 0.4); }
-    #sidebar #treemapOptionsSidebarCard .colorThreshold .selectedValueText {
-      margin-left: 20px;
-      position: relative; }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer #from,
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer #to {
       width: 100%; }
