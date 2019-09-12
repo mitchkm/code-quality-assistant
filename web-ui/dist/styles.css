@@ -7619,14 +7619,15 @@ button {
   height: 25px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 25px;
-  text-align: left;
   margin: 4%;
   cursor: default;
-  max-width: 100%;
+  white-space: nowrap;
+  width: 100%;
   overflow: hidden; }
   .fileFilterPanel .fileName {
     display: inline-flex;
     position: relative;
+    text-indent: calc(50% - height);
     padding-left: 5px;
     padding-right: 5px;
     overflow: hidden;
@@ -7654,7 +7655,8 @@ button {
       box-shadow: none !important;
       border: 2px solid transparent; }
     .fileFilterPanel .btn-circle:hover {
-      background-color: rgba(255, 27, 114, 0.7); }
+      background-color: rgba(255, 27, 114, 0.7);
+      box-shadow: 0 5px 15px rgba(255, 27, 114, 0.8); }
 
 /* width */
 ::-webkit-scrollbar {
