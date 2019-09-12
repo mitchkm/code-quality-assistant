@@ -398,6 +398,39 @@ $theme-colors: ("primary": $my-primary,
 
     }
 
+    #urlOptionsCard{
+        position: relative;
+        background: $card-background;
+        margin: $sidebar-margin;
+        width: $sidebar-adjusted-size;
+        padding: $sidebar-margin / 2;
+        border-radius: 10px;
+
+        #copyURLOptionsButton{
+            @include primary-button;
+            z-index: 5;
+        }
+
+        h3 {
+            width: 100%;
+            color: $my-text-color;
+            text-align: center;
+        }
+
+        hr {
+            background-color: $my-subheader-color;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        p {
+            margin-left: 5%;
+        }
+        input{
+            @include input-field-styling;
+        }
+    }
+
     p {
         color: $my-text-color;
     }
@@ -613,6 +646,7 @@ p,
 label {
     //font-size: 25px;
 }
+
 
 // ========================= End Style Fixes =========================
 
