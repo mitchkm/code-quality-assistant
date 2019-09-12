@@ -32,6 +32,16 @@ export interface FileStatistics {
   allValues: number[];
 }
 
+const ZERO_STAT: FileStatistics = {
+  min: 0,
+  mean: 0,
+  stdDev: 0,
+  median: 0,
+  mode: 0,
+  max: 0,
+  allValues: []
+};
+
 export enum Metrics {
   NLOC = "nloc",
   CCN = "ccn",
@@ -88,6 +98,10 @@ export class MetricData {
     // Calculate statistics
     const statMap = new Map();
     for (const m of allMetrics) {
+      if (valuesMap.get(m).length <= 0) {
+        statMap.set(m, ZERO_STAT);
+        continue;
+      }
       // Create sorted list of values lowest to highest
       const values = valuesMap.get(m).sort((a, b) => a - b);
       const metricStats: FileStatistics = {
