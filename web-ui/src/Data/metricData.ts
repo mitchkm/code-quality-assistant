@@ -12,13 +12,27 @@ export interface FunctionData {
   length: number;
 }
 
+export interface Duplicate {
+  filename: string;
+  startLine: number;
+  endLine: number;
+}
+
+export interface DuplicateInfo {
+  duplicates: Duplicate[][];
+  duplicateRate: number;
+  uniqueRate: number;
+}
+
 export interface FileData {
   filename: string;
+  filetype: string;
   functions: FunctionData[];
 }
 
 export interface AnalysisData {
   path: string;
+  duplicateInfo: DuplicateInfo;
   files: FileData[];
 }
 
