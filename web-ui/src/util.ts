@@ -1,4 +1,5 @@
 import TreemapSetting from "./Treemap/treemapSetting";
+import InterfaceEventController from "./EventController/InterfaceEventController";
 
 export function getUrlVars() {
     const vars = {};
@@ -9,7 +10,7 @@ export function getUrlVars() {
     return vars;
 }
 
-export function generateUrlParams(chart: string, treemapSettings: TreemapSetting) {
+export function generateUrlParams(treemapSettings: TreemapSetting) {
     const tSettings = encodeURI(JSON.stringify(treemapSettings));
-    return "?chart=" + chart + "&" + "treemapSettings=" + tSettings;
+    return "?chart=" + InterfaceEventController.curChartName + "&" + "treemapSettings=" + tSettings;
 }

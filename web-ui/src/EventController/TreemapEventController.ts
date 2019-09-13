@@ -3,6 +3,7 @@ import Treemap from "../Treemap/treemap";
 import TreemapSetting from "../Treemap/treemapSetting";
 import * as d3 from "d3";
 import { DangerThresholds } from "../Treemap/thresholds";
+import * as util from "../util";
 
 const metricOptions = [
   Metrics.NLOC,
@@ -46,6 +47,7 @@ class TreemapEventController {
     this.initColorMetricSelector();
     this.initTreemapColorSelector();
     this.initColorThreshold();
+    this.updateTreemap();
   }
 
   /**
@@ -63,6 +65,9 @@ class TreemapEventController {
       this.treemapSettings.colorOption
     );
     this.treemap.drawTreemap(data);
+    const params = util.generateUrlParams(this.treemapSettings);
+    const mainLink = window.location.href.split("?");
+    d3.select("#urlOptionsString").property("value", mainLink[0] + params);
   }
 
   private processFile(file: string) {
@@ -128,6 +133,15 @@ class TreemapEventController {
       }
       this.updateTreemap();
     });
+
+    if (this.treemapSettings.fileOption.list.length > 0) {
+      this.treemapSettings.fileOption.list.forEach((file) => {
+        this.addFileToListUI(file);
+      });
+    }
+    if (this.treemapSettings.fileOption.type === "white") {
+      d3.select(LIST_TYPE_SLIDER).property("checked", true);
+    }
   }
 
   /**
@@ -216,15 +230,15 @@ class TreemapEventController {
     const SAFE_COLOR = ".safeColorInput";
     const DANGER_COLOR = ".dangerColorInput";
     // const APPLY_BUTTON = "#applyThresholdButton";
-    const currentSafeColor = this.treemapSettings.color.colors[0];
-    const currentDangerColor = this.treemapSettings.color.colors[2];
+    const defaultSafeColor = "green";
+    const defaultDangerColor = "red";
 
     d3.select(SAFE_COLOR).on("change", () => {
       const safeColorInput = d3.select(SAFE_COLOR).property("value");
       const dangerColorInput = d3.select(DANGER_COLOR).property("value");
       this.treemapSettings.color.colors[0] = safeColorInput
         ? safeColorInput
-        : currentSafeColor;
+        : defaultSafeColor;
 
       // update Color Bar
       this.updateColorBar(safeColorInput, dangerColorInput);
@@ -236,13 +250,12 @@ class TreemapEventController {
     d3.select(DANGER_COLOR).on("change", () => {
       const safeColorInput = d3.select(SAFE_COLOR).property("value");
       const dangerColorInput = d3.select(DANGER_COLOR).property("value");
-
       this.treemapSettings.color.colors[1] = dangerColorInput
         ? dangerColorInput
-        : currentDangerColor;
-      this.treemapSettings.color.colors[2] = dangerColorInput
+        : defaultDangerColor;
+        this.treemapSettings.color.colors[2] = dangerColorInput
         ? dangerColorInput
-        : currentDangerColor;
+        : defaultDangerColor;
 
       // update Color Bar
       this.updateColorBar(safeColorInput, dangerColorInput);
@@ -250,6 +263,12 @@ class TreemapEventController {
       this.initColorThresholdDescription();
       this.updateTreemap();
     });
+
+    const safeColor = this.treemapSettings.color.colors[0];
+    const dangerColor = this.treemapSettings.color.colors[1];
+    d3.select(SAFE_COLOR).property("value", safeColor);
+    d3.select(DANGER_COLOR).property("value", dangerColor);
+    this.updateColorBar(safeColor, dangerColor);
   }
 
   private updateColorBar(safeColorInput, dangerColorInput) {
@@ -308,6 +327,8 @@ class TreemapEventController {
       this.updateTreemap();
       this.initColorThresholdDescription(selectedVal);
     });
+
+    d3.select(DANGER_THRESHOLD).property("value", this.treemapSettings.color.thresholds[1]);
   }
 
   /**
