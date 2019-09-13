@@ -2,7 +2,7 @@
 # input : file or directory to run code analysis on
 # output: hmtl website to analyze code analysis results found ./code-quality-assistant directory
 
-import analyzer
+import lizardAnalyzer
 
 import glob
 import sys
@@ -18,7 +18,7 @@ DATA_REPLACE_TOKEN = "{code_analysis_json}"
 def run():
     path = checkPathExists()
     filenameList = buildFilenameList(path)
-    jsonData = analyzer.lizAnalyze(path, filenameList)
+    jsonData = lizardAnalyzer.analyze(path, filenameList)
     createWebFiles()
     injectData(jsonData)
 
@@ -66,10 +66,10 @@ def injectData(json):
 def buildFilenameList(path):
     files = []
     if(os.path.isfile(path)):
-        if getExtensionFromFilename(path) in analyzer.LIZARD_SUPPORTED_LANGUAGES:
+        if getExtensionFromFilename(path) in lizardAnalyzer.LIZARD_SUPPORTED_LANGUAGES:
             files.append(path)
             return files
-    for ext in analyzer.LIZARD_SUPPORTED_LANGUAGES:
+    for ext in lizardAnalyzer.LIZARD_SUPPORTED_LANGUAGES:
         addUs = [f for f in glob.glob(path + "/**/*." + ext, recursive=True)]
         files.extend(addUs)
     return files
