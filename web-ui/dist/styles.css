@@ -7129,6 +7129,53 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid transparent; }
+
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 2px solid transparent; }
+
+label {
+  color: #f6f6f6; }
+
+input,
+select,
+button {
+  height: 100%;
+  overflow: hidden; }
+
+.row {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 36px; }
+  .row p,
+  .row label {
+    font-size: calc($row-height * 0.8);
+    vertical-align: bottom; }
+  .row .col-md-1,
+  .row .col-md-2,
+  .row .col-md-3,
+  .row .col-md-4,
+  .row .col-md-5,
+  .row .col-md-6,
+  .row .col-md-7,
+  .row .col-md-8,
+  .row .col-md-9,
+  .row .col-md-10,
+  .row .col-md-11,
+  .row .col-md-12 {
+    height: 100%; }
+
+option {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f6f6f6; }
+
 #sidebar {
   position: fixed;
   height: 100vh;
@@ -7149,32 +7196,20 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     pointer-events: visible;
     z-index: 5; }
   #sidebar hr {
-    background-color: #686868;
     margin-left: 20px;
     margin-right: 20px; }
-  #sidebar #chartOptionsContainer {
-    margin: 4%; }
   #sidebar #treemapOptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    width: 100%;
-    padding: 3%;
+    margin: 4%;
+    margin-top: 0px;
+    width: 92%;
     display: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px; }
-    #sidebar #treemapOptionsSidebarCard h3 {
-      width: 100%;
-      text-align: center;
-      color: #f6f6f6;
-      margin-top: 10px;
-      vertical-align: center; }
-    #sidebar #treemapOptionsSidebarCard hr {
-      background-color: #686868;
-      margin-left: 20px;
-      margin-right: 20px; }
     #sidebar #treemapOptionsSidebarCard #sizeSelector {
-      background: rgba(255, 255, 255, 0.8);
-      color: black;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
       border-radius: 5px;
       border: 0px;
       width: 100%;
@@ -7184,10 +7219,12 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       margin-left: 0;
       margin-right: 0; }
       #sidebar #treemapOptionsSidebarCard #sizeSelector::placeholder {
-        color: black; }
+        color: #f6f6f6; }
+      #sidebar #treemapOptionsSidebarCard #sizeSelector::-webkit-calendar-picker-indicator {
+        opacity: 0.1; }
     #sidebar #treemapOptionsSidebarCard #colorSelector {
-      background: rgba(255, 255, 255, 0.8);
-      color: black;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
       border-radius: 5px;
       border: 0px;
       width: 100%;
@@ -7197,17 +7234,18 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       margin-left: 0;
       margin-right: 0; }
       #sidebar #treemapOptionsSidebarCard #colorSelector::placeholder {
-        color: black; }
+        color: #f6f6f6; }
+      #sidebar #treemapOptionsSidebarCard #colorSelector::-webkit-calendar-picker-indicator {
+        opacity: 0.1; }
     #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs {
       overflow: hidden; }
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs label {
         font-size: 14px;
-        color: #f6f6f6;
-        margin: 4%; }
+        color: #f6f6f6; }
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip {
         position: relative;
         display: inline-block;
-        border-bottom: 1px dotted black; }
+        border-bottom: 1px solid rgba(79, 170, 255, 0.3); }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip .thresholdTooltipText {
           visibility: hidden;
           white-space: pre-line;
@@ -7238,12 +7276,30 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         position: relative;
         margin-bottom: 15px;
         border-radius: 5px; }
+    #sidebar #treemapOptionsSidebarCard #optionsGridContainer #headerRow {
+      margin-top: -4%;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-left: 0;
+      width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      height: 52px;
+      border-radius: 0px;
+      margin-top: 0;
+      margin-left: 0;
+      top: 0; }
+      #sidebar #treemapOptionsSidebarCard #optionsGridContainer #headerRow h3 {
+        width: 100%;
+        color: #f6f6f6;
+        text-align: center;
+        height: 100%;
+        line-height: 52px; }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer #from,
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer #to {
       width: 100%; }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer input {
-      background: rgba(255, 255, 255, 0.8);
-      color: black;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
       border-radius: 5px;
       border: 0px;
       width: 100%;
@@ -7251,98 +7307,135 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       padding-left: 8px;
       width: 100%; }
       #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::placeholder {
-        color: black; }
+        color: #f6f6f6; }
+      #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::-webkit-calendar-picker-indicator {
+        opacity: 0.1; }
   #sidebar #chart2OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    width: 100%;
-    padding: 3%;
+    margin: 4%;
+    margin-top: 0px;
+    width: 92%;
     display: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     height: 200px; }
-    #sidebar #chart2OptionsSidebarCard h3 {
+    #sidebar #chart2OptionsSidebarCard #optionsGridContainer #headerRow {
+      margin-top: -4%;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-left: 0;
       width: 100%;
-      text-align: center;
-      color: #f6f6f6;
-      margin-top: 10px;
-      vertical-align: center; }
-    #sidebar #chart2OptionsSidebarCard hr {
-      background-color: #686868;
-      margin-left: 20px;
-      margin-right: 20px; }
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      height: 52px;
+      border-radius: 0px;
+      margin-top: 0;
+      margin-left: 0;
+      top: 0; }
+      #sidebar #chart2OptionsSidebarCard #optionsGridContainer #headerRow h3 {
+        width: 100%;
+        color: #f6f6f6;
+        text-align: center;
+        height: 100%;
+        line-height: 52px; }
   #sidebar #chart3OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    width: 100%;
-    padding: 3%;
+    margin: 4%;
+    margin-top: 0px;
+    width: 92%;
     display: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     height: 200px; }
-    #sidebar #chart3OptionsSidebarCard h3 {
+    #sidebar #chart3OptionsSidebarCard #optionsGridContainer #headerRow {
+      margin-top: -4%;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-left: 0;
       width: 100%;
-      text-align: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      height: 52px;
+      border-radius: 0px;
+      margin-top: 0;
+      margin-left: 0;
+      top: 0; }
+      #sidebar #chart3OptionsSidebarCard #optionsGridContainer #headerRow h3 {
+        width: 100%;
+        color: #f6f6f6;
+        text-align: center;
+        height: 100%;
+        line-height: 52px; }
+  #sidebar #chartSelectBar {
+    width: 92%;
+    margin-left: 4%;
+    margin-right: 2%;
+    margin-bottom: 1px; }
+    #sidebar #chartSelectBar .row {
+      margin-left: 0px;
+      margin-right: 0px; }
+      #sidebar #chartSelectBar .row .col-md-4 {
+        padding: 5px;
+        padding-bottom: 0; }
+      #sidebar #chartSelectBar .row #left {
+        padding-left: 0px; }
+      #sidebar #chartSelectBar .row #right {
+        padding-right: 0px; }
+    #sidebar #chartSelectBar button {
+      width: 100%;
+      height: 50px;
       color: #f6f6f6;
-      margin-top: 10px;
-      vertical-align: center; }
-    #sidebar #chart3OptionsSidebarCard hr {
-      background-color: #686868;
-      margin-left: 20px;
-      margin-right: 20px; }
-  #sidebar #chartSelectBar button {
-    width: 100%;
-    height: 50px;
-    margin: 1px;
-    color: rgba(79, 170, 255, 0.5);
-    border: none;
-    border-bottom: 2px solid rgba(79, 170, 255, 0.5);
-    background: transparent;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px; }
-    #sidebar #chartSelectBar button:hover {
-      color: #4faaff;
-      border-bottom: 2px solid #4faaff;
-      background: rgba(82, 87, 87, 0.1); }
-    #sidebar #chartSelectBar button:active {
-      color: rgba(79, 170, 255, 0.8);
+      border: none;
+      border-bottom: 2px solid rgba(79, 170, 255, 0.5);
+      background: transparent;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px; }
+      #sidebar #chartSelectBar button:hover {
+        border-bottom: 2px solid #4faaff;
+        background: rgba(255, 255, 255, 0.5); }
+      #sidebar #chartSelectBar button:active {
+        border-bottom: 2px solid rgba(79, 170, 255, 0.8);
+        background: rgba(255, 255, 255, 0.3); }
+    #sidebar #chartSelectBar .active {
       border-bottom: 2px solid rgba(79, 170, 255, 0.8);
-      background: rgba(82, 87, 87, 0.5); }
-  #sidebar #chartSelectBar .active {
-    color: rgba(79, 170, 255, 0.8);
-    border-bottom: 2px solid rgba(79, 170, 255, 0.8);
-    background: rgba(255, 255, 255, 0.1); }
-    #sidebar #chartSelectBar .active:hover {
-      color: #4faaff;
-      border-bottom: 2px solid #4faaff;
-      background: rgba(82, 87, 87, 0.6); }
-    #sidebar #chartSelectBar .active:active {
-      color: rgba(79, 170, 255, 0.8);
-      border-bottom: 2px solid rgba(79, 170, 255, 0.8);
-      background: rgba(82, 87, 87, 0.6); }
-  #sidebar #chartSelectBar .row {
-    margin-bottom: 0px;
-    height: auto; }
+      background: rgba(255, 255, 255, 0.3); }
+      #sidebar #chartSelectBar .active:hover {
+        border-bottom: 2px solid #4faaff;
+        background: rgba(255, 255, 255, 0.5); }
+      #sidebar #chartSelectBar .active:active {
+        border-bottom: 2px solid rgba(79, 170, 255, 0.8);
+        background: rgba(255, 255, 255, 0.6); }
+    #sidebar #chartSelectBar .row {
+      margin-bottom: -1px;
+      margin-left: 0px;
+      margin-right: 0px;
+      height: auto; }
   #sidebar #fileFilterCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
     margin: 4%;
+    margin-top: 8%;
     width: 92%;
-    padding: 2%;
+    padding: 0;
+    padding-bottom: 5px;
     border-radius: 10px; }
-    #sidebar #fileFilterCard h3 {
+    #sidebar #fileFilterCard #headerRow {
+      margin-top: -4%;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-left: 0;
       width: 100%;
-      color: #f6f6f6;
-      text-align: center; }
-    #sidebar #fileFilterCard hr {
-      background-color: #686868;
-      margin-left: 20px;
-      margin-right: 20px; }
-    #sidebar #fileFilterCard p {
-      margin-left: 5%; }
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      height: 52px; }
+      #sidebar #fileFilterCard #headerRow h3 {
+        width: 100%;
+        color: #f6f6f6;
+        text-align: center;
+        height: 100%;
+        line-height: 52px; }
     #sidebar #fileFilterCard #fileListCard {
       position: relative;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.2);
       width: 100%;
       padding: 2%;
       border-radius: 10px; }
@@ -7351,34 +7444,37 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         min-height: 60px;
         max-height: 160px;
         margin-left: 8%;
-        overflow-y: scroll; }
+        overflow-y: scroll;
+        overflow-x: hidden; }
         #sidebar #fileFilterCard #fileListCard #fileList .row {
           width: 100%;
           height: auto; }
     #sidebar #fileFilterCard #fileSelector {
-      background: rgba(255, 255, 255, 0.8);
-      color: black;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
       border-radius: 5px;
       border: 0px;
       width: 100%;
       height: 100%;
       padding-left: 8px; }
       #sidebar #fileFilterCard #fileSelector::placeholder {
-        color: black; }
+        color: #f6f6f6; }
+      #sidebar #fileFilterCard #fileSelector::-webkit-calendar-picker-indicator {
+        opacity: 0.1; }
     #sidebar #fileFilterCard #fileFilterButton {
-      color: #ff1b72;
-      background-color: rgba(255, 27, 114, 0.2);
-      border-color: #ff1b72;
+      color: #4faaff;
+      background-color: rgba(79, 170, 255, 0.2);
+      border-color: #4faaff;
       z-index: 1;
       width: 100%; }
       #sidebar #fileFilterCard #fileFilterButton:hover {
-        border-color: #e70058;
-        color: #e70058;
-        background-color: rgba(231, 0, 88, 0.2); }
+        border-color: #1c91ff;
+        color: #1c91ff;
+        background-color: rgba(28, 145, 255, 0.2); }
       #sidebar #fileFilterCard #fileFilterButton:active {
-        border-color: #ff4e92;
-        color: #ff4e92;
-        background-color: rgba(255, 78, 146, 0.4); }
+        border-color: #82c3ff;
+        color: #82c3ff;
+        background-color: rgba(130, 195, 255, 0.4); }
     #sidebar #fileFilterCard #clearAllButton {
       color: #ff1b72;
       background-color: rgba(255, 27, 114, 0.2);
@@ -7397,9 +7493,25 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
     margin: 4%;
+    margin-top: 8%;
     width: 92%;
-    padding: 2%;
-    border-radius: 10px; }
+    padding: 0;
+    border-radius: 10px;
+    padding-bottom: 5px; }
+    #sidebar #urlOptionsCard #headerRow {
+      margin-top: -4%;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-left: 0;
+      width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      height: 52px; }
+      #sidebar #urlOptionsCard #headerRow h3 {
+        width: 100%;
+        color: #f6f6f6;
+        text-align: center;
+        height: 100%;
+        line-height: 52px; }
     #sidebar #urlOptionsCard #copyURLOptionsButton {
       color: #4faaff;
       background-color: rgba(79, 170, 255, 0.2);
@@ -7426,15 +7538,17 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     #sidebar #urlOptionsCard p {
       margin-left: 5%; }
     #sidebar #urlOptionsCard input {
-      background: rgba(255, 255, 255, 0.8);
-      color: black;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
       border-radius: 5px;
       border: 0px;
       width: 100%;
       height: 100%;
       padding-left: 8px; }
       #sidebar #urlOptionsCard input::placeholder {
-        color: black; }
+        color: #f6f6f6; }
+      #sidebar #urlOptionsCard input::-webkit-calendar-picker-indicator {
+        opacity: 0.1; }
   #sidebar p {
     color: #f6f6f6; }
   #sidebar #fileListRow {
@@ -7561,45 +7675,6 @@ body {
   text-align: center;
   z-index: 4; }
 
-.row {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  height: 36px; }
-  .row p, .row label {
-    font-size: calc($row-height * 0.8);
-    vertical-align: bottom; }
-  .row .col-md-1,
-  .row .col-md-2,
-  .row .col-md-3,
-  .row .col-md-4,
-  .row .col-md-5,
-  .row .col-md-6,
-  .row .col-md-7,
-  .row .col-md-8,
-  .row .col-md-9,
-  .row .col-md-10,
-  .row .col-md-11,
-  .row .col-md-12 {
-    height: 100%; }
-
-button:focus {
-  outline: none !important;
-  box-shadow: none !important;
-  border: 1px solid transparent; }
-
-input:focus {
-  outline: none !important;
-  box-shadow: none !important;
-  border: 2px solid transparent; }
-
-label {
-  color: #f6f6f6; }
-
-input,
-select,
-button {
-  height: 100%; }
-
 .fileFilterPanel {
   position: relative;
   display: inline-block;
@@ -7679,10 +7754,9 @@ button {
     border-radius: 36px;
     transition: ease 0.3s;
     z-index: 1;
-    border-width: 1px;
+    border-width: 0px;
     border-style: solid;
-    border-color: rgba(255, 27, 114, 0.3);
-    box-shadow: 0 5px 15px rgba(255, 27, 114, 0.2); }
+    border-color: rgba(255, 27, 114, 0.3); }
     .switch .slider::after {
       content: 'Blacklist';
       overflow: hidden;
@@ -7703,8 +7777,7 @@ button {
       transition: ease 0.3s; }
   .switch input:checked + .slider {
     background-color: rgba(255, 255, 255, 0.3);
-    border-color: rgba(79, 170, 255, 0.3);
-    box-shadow: 0 5px 15px rgba(79, 170, 255, 0.2); }
+    border-color: rgba(79, 170, 255, 0.3); }
   .switch input:checked + .slider:after {
     content: 'Whitelist';
     color: black;

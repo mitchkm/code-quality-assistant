@@ -38,23 +38,27 @@
     <div id="chartOptionsContainer">
       <div id="chartSelectBar">
         <div class="row">
-          <div class="col-md-4">
-            <button id="treemapChartButton"><b>Tree Map</b></button>
+          <div class="col-md-4" id="left">
+            <button id="treemapChartButton">Tree Map</button>
           </div>
           <div class="col-md-4">
-            <button id="chart2Button"><b>Chart 2</b></button>
+            <button id="chart2Button">Chart 2</button>
           </div>
-          <div class="col-md-4">
-            <button id="chart3Button"><b>Chart 3</b></button>
+          <div class="col-md-4" id="right">
+            <button id="chart3Button">Chart 3</button>
           </div>
         </div>
       </div>
 
       <div id="treemapOptionsSidebarCard">
-        <h3>Tree Map Options</h3>
-        <hr />
-
         <div id="optionsGridContainer">
+          <div class="row" id="headerRow">
+            <div class="col-md-12">
+              <div id="header">
+                <h3>Tree Map Options</h3>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-6">
               <p>Size metric:</p>
@@ -100,7 +104,11 @@
                   <input class="dangerThresholdInput" type="text" />
                 </div>
               </div>
-              <div class="colorGradientBar"></div>
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="colorGradientBar"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -108,21 +116,40 @@
 
       <div id="chart2OptionsSidebarCard">
         <!--Placeholder div for second chart-->
-        <h3>Chart 2 Options</h3>
-        <hr />
+        <div id="optionsGridContainer">
+            <div class="row" id="headerRow">
+              <div class="col-md-12">
+                <div id="header">
+                  <h3>Chart 2 Options</h3>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 
       <div id="chart3OptionsSidebarCard">
         <!--Placeholder div for third chart-->
-        <h3>Chart 3 Options</h3>
-        <hr />
+        <div id="optionsGridContainer">
+            <div class="row" id="headerRow">
+              <div class="col-md-12">
+                <div id="header">
+                  <h3>Chart 3 Options</h3>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
 
     <div id="fileFilterCard">
       <div id="gridContainer">
-        <h3>File Filtering</h3>
-        <hr />
+        <div class="row" id="headerRow">
+          <div class="col-md-12">
+            <div id="header">
+              <h3>File Filtering</h3>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-9">
             <input autoComplete="on" list="fileOptions" id="fileSelector" placeholder="Select File" />
@@ -162,11 +189,16 @@
 
     <div id="urlOptionsCard">
       <div id="gridContainer">
-        <h3>URL Parameters</h3>
-        <hr />
+        <div class="row" id="headerRow">
+          <div class="col-md-12">
+            <div id="header">
+              <h3>URL Parameters</h3>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-8">
-              <input id="urlOptionsString" readonly placeholder="*some url parameters*"/>
+            <input id="urlOptionsString" readonly placeholder="*some url parameters*" />
           </div>
           <div class="col-md-4">
             <button type="button" class="btn btn-sq btn-outline-dark" id="copyURLOptionsButton">

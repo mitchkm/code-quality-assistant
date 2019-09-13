@@ -46,6 +46,7 @@ class TreemapEventController {
     this.initSizeMetricSelector();
     this.initColorMetricSelector();
     this.initTreemapColorSelector();
+    this.initDropdownStyling();
     this.initColorThreshold();
     this.updateTreemap();
   }
@@ -180,6 +181,12 @@ class TreemapEventController {
         .property("value");
       this.updateTreemap();
     });
+  }
+
+  private initDropdownStyling(){
+    d3.selectAll("option")
+      .style("color", "$my-text-color")
+      .style("background-color", "#313131");
   }
 
   /**
