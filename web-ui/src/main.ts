@@ -86,4 +86,5 @@ const treemapController = TreemapEventController.instance;
 treemapController.setContext(mD, treemap, treemapSettings);
 treemapController.init();
 
-console.log(util.generateUrlParams("treemap", treemapSettings));
+// Debug fuction
+// (window as any).getURLParams = () => {return util.generateUrlParams(treemapSettings); };
