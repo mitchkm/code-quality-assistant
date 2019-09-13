@@ -192,24 +192,15 @@ $theme-colors: ("primary": $my-primary,
                     margin: $sidebar-margin;
                 }
 
-                input {
-                    // @include input-field-styling;
-                    // margin-left: 0px;
-                    // margin-right: 0px;
-                    // // width: 30%;
-                    // padding-left: 0px;
-                    size: 5;
-                    // margin: $sidebar-margin;
-                    // width: 60%;
-                }
-
                 .thresholdTooltip {
                     position: relative;
                     display: inline-block;
                     border-bottom: 1px dotted black;
                     .thresholdTooltipText {
                         visibility: hidden;
+                        white-space: pre-line;
                         width: 285px;
+                        height: 140px;
                         background-color: black;
                         color: $my-text-color;
                         text-align: center;
@@ -222,10 +213,10 @@ $theme-colors: ("primary": $my-primary,
                         &::after {
                             content: "";
                             position: absolute;
-                            top: 10%;
+                            top: 15%;
                             left: 100%;
-                            margin-top: -5px;
-                            border-width: 5px;
+                            margin-top: -10px;
+                            border-width: 10px;
                             border-style: solid;
                             border-color: transparent transparent transparent black;
                         }
@@ -236,15 +227,13 @@ $theme-colors: ("primary": $my-primary,
                         }
                     }
                 }
-            }
-            .colorGradientBar {
-                height: $row-height;
-                background-image: linear-gradient(to right, green, orange, red);
-                position: relative;
-                margin-bottom: 15px;
-                //left: 20px;
-                //width: $sidebar-adjusted-size;
-                border-radius: 5px;
+                .colorGradientBar {
+                    height: $row-height;
+                    background-image: linear-gradient(to right, green, orange, red);
+                    position: relative;
+                    margin-bottom: 15px;
+                    border-radius: 5px;
+                }
             }
         }
 

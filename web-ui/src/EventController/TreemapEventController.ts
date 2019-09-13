@@ -288,14 +288,14 @@ class TreemapEventController {
 
     // display min and max
     d3.select(".minMaxText").text(
-      "Minimum value of " +
+      "Codebase Min " +
         colorMetric +
-        " in the current folder: " +
+        ": " +
         min +
         "\n" +
-        "Maximum value of " +
+        "Codebase Max " +
         colorMetric +
-        " in the current folder: " +
+        ": " +
         max
     );
 

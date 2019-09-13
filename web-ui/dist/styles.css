@@ -7204,15 +7204,15 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         font-size: 14px;
         color: #f6f6f6;
         margin: 4%; }
-      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs input {
-        size: 5; }
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip {
         position: relative;
         display: inline-block;
         border-bottom: 1px dotted black; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip .thresholdTooltipText {
           visibility: hidden;
+          white-space: pre-line;
           width: 285px;
+          height: 140px;
           background-color: black;
           color: #f6f6f6;
           text-align: center;
@@ -7225,20 +7225,20 @@ a.text-body-bg:hover, a.text-body-bg:focus {
           #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip .thresholdTooltipText::after {
             content: "";
             position: absolute;
-            top: 10%;
+            top: 15%;
             left: 100%;
-            margin-top: -5px;
-            border-width: 5px;
+            margin-top: -10px;
+            border-width: 10px;
             border-style: solid;
             border-color: transparent transparent transparent black; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip:hover .thresholdTooltipText {
           visibility: visible; }
-    #sidebar #treemapOptionsSidebarCard .treemapColors .colorGradientBar {
-      height: 36px;
-      background-image: linear-gradient(to right, green, orange, red);
-      position: relative;
-      margin-bottom: 15px;
-      border-radius: 5px; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorGradientBar {
+        height: 36px;
+        background-image: linear-gradient(to right, green, orange, red);
+        position: relative;
+        margin-bottom: 15px;
+        border-radius: 5px; }
     #sidebar #treemapOptionsSidebarCard .colorThreshold #applyThresholdButton {
       color: #4faaff;
       background-color: rgba(79, 170, 255, 0.2);
