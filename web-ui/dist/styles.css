@@ -7208,31 +7208,29 @@ a.text-body-bg:hover, a.text-body-bg:focus {
         size: 5; }
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip {
         position: relative;
-        margin-left: 7px;
         display: inline-block;
         border-bottom: 1px dotted black; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip .thresholdTooltipText {
           visibility: hidden;
-          width: 400px;
+          width: 285px;
           background-color: black;
           color: #f6f6f6;
           text-align: center;
           border-radius: 6px;
           padding: 5px 0;
           position: absolute;
-          z-index: 1;
-          top: 150%;
-          left: 50%;
-          margin-left: -60px; }
+          z-index: 2;
+          top: -5px;
+          right: 110%; }
           #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip .thresholdTooltipText::after {
             content: "";
             position: absolute;
-            bottom: 100%;
-            left: 15%;
-            margin-left: -5px;
+            top: 10%;
+            left: 100%;
+            margin-top: -5px;
             border-width: 5px;
             border-style: solid;
-            border-color: transparent transparent black transparent; }
+            border-color: transparent transparent transparent black; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip:hover .thresholdTooltipText {
           visibility: visible; }
     #sidebar #treemapOptionsSidebarCard .treemapColors .colorGradientBar {
