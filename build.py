@@ -61,11 +61,12 @@ print("\tDone!")
 
 # Get python files
 print("Get python files...")
-proc = subprocess.Popen(["cp", CODE_ANALYSIS_DIR + "/main.py", DIST_DIR + "/main.py"], stderr=subprocess.PIPE)
-proc2 = subprocess.Popen(["cp", CODE_ANALYSIS_DIR + "/analyzer.py", DIST_DIR + "/analyzer.py"], stderr=subprocess.PIPE)
-err = proc.stderr.read()
-err2 = proc2.stderr.read()
-if err or err2: 
+files = ["main.py", "lizardAnalyzer.py"]
+for f in files:
+    print("Copying... " + f)
+    proc = subprocess.Popen(["cp", CODE_ANALYSIS_DIR + "/" + f, DIST_DIR + "/" + f], stderr=subprocess.PIPE)
+    err = err or proc.stderr.read()
+if err: 
     print("\tFailed to copy python files")
     exit()
 print("\tDone!")
