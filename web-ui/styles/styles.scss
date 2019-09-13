@@ -240,12 +240,13 @@ $theme-colors: ("primary": $my-primary,
                 }
             }
             .colorGradientBar {
-                height: 20px;
+                height: $row-height;
                 background-image: linear-gradient(to right, green, orange, red);
                 position: relative;
                 margin-bottom: 15px;
-                left: 20px;
-                width: $sidebar-adjusted-size;
+                //left: 20px;
+                //width: $sidebar-adjusted-size;
+                border-radius: 5px;
             }
         }
 
