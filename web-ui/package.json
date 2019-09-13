@@ -20,6 +20,7 @@
   ],
   "license": "ISC",
   "dependencies": {
+    "bootstrap4-toggle": "^3.5.0",
     "d3": "^5.9.7",
     "simple-statistics": "^7.0.5"
   },

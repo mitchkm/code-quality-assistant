@@ -3,25 +3,30 @@
 
 <head>
   <title>Code Quality Assistant</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet" />
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!--Bootstrap toggle CDN https://www.bootstraptoggle.com/-->
 
   <!-- Our Custom CSS -->
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <meta charset="utf-8">
-
+  <meta charset="utf-8" />
 
   <div id="contentArea">
     <div id="treeMapCard">
-      <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">&larr;UP</button>
+      <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">
+        &larr; UP
+      </button>
       <div class="feature" id="treeMapChart"></div>
+      <div class="mouseHover"></div>
     </div>
   </div>
 
@@ -47,39 +52,57 @@
 
       <div id="treemapOptionsSidebarCard">
         <h3>Tree Map Options</h3>
-        <hr>
+        <hr />
 
-        <div id="sizeMetricSelector">
+        <div id="optionsGridContainer">
           <div class="row">
             <div class="col-md-6">
-              <p>Choose Size metric: </p>
+              <p>Size metric:</p>
             </div>
-            <div class="col-md-6"><select id="sizeSelector"></select></div>
+            <div class="col-md-6">
+              <select id="sizeSelector"></select>
+            </div>
           </div>
-        </div>
-        <div id="colorMetricSelector">
           <div class="row">
             <div class="col-md-6">
-              <p>Choose Color metric: </p>
+              <p>Color metric:</p>
             </div>
-            <div class="col-md-6"><select id="colorSelector"></select></select></div>
+            <div class="col-md-6">
+              <select id="colorSelector"></select>
+            </div>
           </div>
-        </div>
-        <div class="sidebar - colorSlider">
-          <table id="sidebarinputs">
-            <col width="10">
-            <col width="10">
-            <tr>
-              <th>Lower bound</th>
-              <th>Upper bound</th>
-            </tr>
-            <tr>
-              <td width="30%"><input type="number" id="min" size="2"></td>
-              <td width="40%"><input type="number" id="max" size="2"></td>
-            </tr>
-          </table>
-          <button id="limitButton">Apply</button>
-          <input id="colorSlider" type="range" class="form-control-range">
+          <div class="treemapColors">
+            <div class="colorInputs">
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Safety Color: </label>
+                </div>
+                <div class="col-md-4">
+                  <label>Danger Color: </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="thresholdTooltip">Danger Threshold:
+                    <span class="thresholdTooltipText">
+                      <div class="minMaxText"></div>
+                      <div class="selectedValueText"></div>
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <input class="safeColorInput" type="text" value="green" />
+                </div>
+                <div class="col-md-4">
+                  <input class="dangerColorInput" type="text" value="red" />
+                </div>
+                <div class="col-md-4">
+                  <input class="dangerThresholdInput" type="text" />
+                </div>
+              </div>
+              <div class="colorGradientBar"></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -94,36 +117,66 @@
         <h3>Chart 3 Options</h3>
         <hr />
       </div>
-
     </div>
-
-    <br /><br />
 
     <div id="fileFilterCard">
       <div id="gridContainer">
         <h3>File Filtering</h3>
         <hr />
         <div class="row">
-          <input autoComplete="on" list="fileOptions" id="fileSelector" placeholder="Select File">
-          <datalist id="fileOptions"></datalist>
+          <div class="col-md-9">
+            <input autoComplete="on" list="fileOptions" id="fileSelector" placeholder="Select File" />
+            <datalist id="fileOptions"></datalist>
+          </div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-sq btn-outline-dark" id="fileFilterButton">
+              Filter
+            </button>
+          </div>
         </div>
-        <div class="row">
-          <button type="button" class="btn btn-sq btn-outline-primary" id="fileFilterButton">Filter</button>
-        </div>
-        <div class="row">
-          <div id="fileListCard">
-            <div id="fileList">
-
+        <div class="row" id="fileListRow">
+          <div class="col-md-12">
+            <div id="fileListCard">
+              <div id="fileList">
+                <div class="row">
+                </div>
+              </div>
             </div>
-
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="switch">
+              <input type="checkbox" id="togBtn" />
+              <label class="slider"></label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <button type="button" class="btn btn-sq btn-outline-dark" id="clearAllButton">
+              Clear All Filters
+            </button>
           </div>
         </div>
       </div>
-
     </div>
 
+    <div id="urlOptionsCard">
+      <div id="gridContainer">
+        <h3>URL Parameters</h3>
+        <hr />
+        <div class="row">
+          <div class="col-md-8">
+              <input id="urlOptionsString" readonly placeholder="*some url parameters*"/>
+          </div>
+          <div class="col-md-4">
+            <button type="button" class="btn btn-sq btn-outline-dark" id="copyURLOptionsButton">
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
 
 
   <script id="rawData" type="application/json">

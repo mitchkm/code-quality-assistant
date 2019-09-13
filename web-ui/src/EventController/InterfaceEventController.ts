@@ -1,4 +1,8 @@
+import d3 = require("d3");
+
 class InterfaceEventController {
+  public static curChartName = "treemap";
+  // static init
   static init(initialState?: string) {
 
     const charts = [
@@ -9,6 +13,7 @@ class InterfaceEventController {
 
     let chart = charts.indexOf(initialState);
     chart = chart !== -1 ? chart : 0;
+    InterfaceEventController.curChartName = charts[chart];
 
     const chartSelectButtons: HTMLElement[] = [
       document.getElementById("treemapChartButton"),
@@ -34,6 +39,7 @@ class InterfaceEventController {
 
         currentChart.className = "";
         this.className = "active";
+        InterfaceEventController.curChartName = charts[i];
 
         currentCard.style.display = "none";
         chartOptionsCards[chartSelectButtons.indexOf(this)].style.display = "block";
@@ -42,7 +48,15 @@ class InterfaceEventController {
         currentChart = this;
       });
     }
+
+    d3.select("#copyURLOptionsButton").on("click", () => {
+      const text = d3.select("#urlOptionsString").property("value");
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Link with URL Parameters copied to clipboard: " + text);
+      });
+    });
   }
+
 }
 
 export default InterfaceEventController;

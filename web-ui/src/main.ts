@@ -1,56 +1,81 @@
 import { MetricData, Metrics } from "./Data/metricData";
 import { exampleData } from "./Data/example";
+import * as util from "./util";
 import Treemap from "./Treemap/treemap";
 import TreemapData from "./Data/treemapData";
-import colorSetting from "./Treemap/colorSetting";
 import treemapSetting from "./Treemap/treemapSetting";
-import InterfaceEventController from "./InterfaceEventController";
-import TreemapEventController from "./TreemapEventController";
-
-const defaultSizeOption = Metrics.NLOC;
-const defaultColorOption = Metrics.CCN;
-const defaultfileOption = "none";
-
-function getUrlVars() {
-    const vars = {};
-    const parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value): string {
-        vars[key] = value;
-        return;
-    });
-    return vars;
-}
-
-const urlParams = getUrlVars();
-
-const treemapSettings: treemapSetting = {
-    width: 100,
-    height: 100,
-    paddings: [0.3, 0.3, 0.3, 0.3],
-    color: {
-        colors: ["#00a539", "#fff453", "#fd7900", "#ff001f"],
-        thresholds: [0, 0.3333, 0.66666, 1],
-        gamma: 1.0
-    },
-    sizeOption: defaultSizeOption,
-    colorOption: defaultColorOption,
-    fileOption: defaultfileOption
-};
+import InterfaceEventController from "./EventController/InterfaceEventController";
+import TreemapEventController from "./EventController/TreemapEventController";
+import { DangerThresholds } from "./Treemap/thresholds";
 
 // Process Data
 let data;
 try {
-    data = JSON.parse(document.getElementById("rawData").textContent);
+  data = JSON.parse(document.getElementById("rawData").textContent);
 } catch (err) {
-    console.log("Could not parse injected rawData!" + err);
-    console.log("Displaying example data. NOT meaningful data!");
-    data = exampleData;
+  console.log("Could not parse injected rawData!" + err);
+  console.log("Displaying example data. NOT meaningful data!");
+  data = exampleData;
 }
 
 // create metric data helper class
 const mD = new MetricData(data);
 
+// default color thresholds
+const colorMetric = Metrics.CCN;
+const defaultMin = mD.getMinColorMetric(colorMetric);
+const defaultMax = mD.getMaxColorMetric(colorMetric);
+const dangerThreshold = DangerThresholds[colorMetric];
+let defaultColorThresholds = [
+  defaultMin,
+  dangerThreshold,
+  defaultMax
+];
+
+// default treemap colors [safeColor, dangerColor, dangerColor]
+const defaultTreemapColors = ["green", "red", "red"];
+
+// change threshold if none of the values are in danger
+if (defaultMax < dangerThreshold) {
+  defaultColorThresholds = [defaultMin, dangerThreshold];
+}
+
+// Get URL injected paramters
+const urlParams: any = util.getUrlVars();
+
+// Treemap Default Settings
+const treemapSettings: treemapSetting = {
+  width: 100,
+  height: 100,
+  paddings: [0.3, 0.3, 0.3, 0.3],
+  color: {
+    colors: defaultTreemapColors,
+    thresholds: defaultColorThresholds
+  },
+  sizeOption: Metrics.NLOC,
+  colorOption: Metrics.CCN,
+  fileOption: {
+    list: [],
+    type: "black"
+  }
+};
+
+// Check for custom treemap settings
+let tSettings = {};
+try {
+  tSettings = JSON.parse(urlParams.treemapSettings);
+} catch {}
+for (const key in treemapSettings) {
+  if (tSettings[key]) {
+    treemapSettings[key] = tSettings[key];
+  }
+}
+
 // create treemap
-const processedData: TreemapData = mD.toTreemapData(treemapSettings.sizeOption, treemapSettings.colorOption);
+const processedData: TreemapData = mD.toTreemapData(
+  treemapSettings.sizeOption,
+  treemapSettings.colorOption
+);
 const treemap = new Treemap(processedData, treemapSettings);
 treemap.drawTreemap();
 
@@ -60,3 +85,6 @@ InterfaceEventController.init(urlParams["chart"]);
 const treemapController = TreemapEventController.instance;
 treemapController.setContext(mD, treemap, treemapSettings);
 treemapController.init();
+
+// Debug fuction
+// (window as any).getURLParams = () => {return util.generateUrlParams(treemapSettings); };

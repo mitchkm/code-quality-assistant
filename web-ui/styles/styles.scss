@@ -15,17 +15,19 @@ $my-subheader-color: #686868;
 $my-text-color: rgb(246, 246, 246);
 $card-background: rgba(255, 255, 255, 0.1);
 
-$my-gradient: linear-gradient(to bottom right, darken($my-primary, 55%), darken($my-secondary, 50%));
+$my-gradient: linear-gradient(to bottom right,
+    darken($my-primary, 55%),
+    darken($my-secondary, 50%));
 
 $blue: rgb(0, 132, 232);
 $dark-blue: rgb(24, 52, 88);
 $purple: rgb(152, 72, 226);
 $green: rgb(0, 224, 159);
 $red: rgb(255, 0, 51);
-$orange: rgb(199, 185, 184);
+$orange: rgb(240, 82, 71);
 $pink: rgb(255, 0, 106);
 
-$sidebar-width: 30%;
+$sidebar-width:  30%;
 $content-area-width: 70%;
 $content-margin: 2%;
 $margin-adjusted-percentage: 100% - 2 * $content-margin;
@@ -33,7 +35,11 @@ $margin-adjusted-percentage: 100% - 2 * $content-margin;
 $sidebar-margin: 4%;
 $sidebar-adjusted-size: 100% - 2 * $sidebar-margin;
 
-$theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $my-background);
+$row-height: 36px;
+
+$theme-colors: ("primary": $my-primary,
+    "secondary": $my-secondary,
+    "body-bg": $my-background);
 
 // ======================== End Variables ========================
 
@@ -41,52 +47,34 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
 
 // ============================ Mixins ============================
 
-@mixin normal-button {
-    color: $my-primary;
-    background-color: rgba($my-primary, 0.2);
-    border-color: $my-primary;
+
+
+@mixin normal-button($button-color: $my-primary, $text-color: $my-primary, $border-color: $button-color) {
+    color: $text-color;
+    background-color: rgba($button-color, 0.2);
+    border-color: $border-color;
     z-index: 1;
+    width: 100%;
 
     &:hover {
-        border-color: darken($my-primary, 10%);
-        color: darken($my-primary, 10%);
-        background-color: darken(rgba($my-primary, 0.2), 10%);
+        border-color: darken($border-color, 10%);
+        color: darken($text-color, 10%);
+        background-color: darken(rgba($button-color, 0.2), 10%);
     }
 
     &:active {
-        border-color: lighten($my-primary, 10%);
-        color: lighten($my-primary, 10%);
-        background-color: lighten(rgba($my-primary, 0.4), 10%);
+        border-color: lighten($border-color, 10%);
+        color: lighten($text-color, 10%);
+        background-color: lighten(rgba($button-color, 0.4), 10%);
     }
+}
+
+@mixin primary-button {
+    @include normal-button;
 }
 
 @mixin secondary-button {
-    color: $my-secondary;
-    background-color: rgba($my-secondary, 0.2);
-    border-color: $my-secondary;
-    z-index: 1;
-
-    &:hover {
-        border-color: darken($my-secondary, 10%);
-        color: darken($my-secondary, 10%);
-        background-color: darken(rgba($my-secondary, 0.2), 10%);
-    }
-
-    &:active {
-        border-color: lighten($my-secondary, 10%);
-        color: lighten($my-secondary, 10%);
-        background-color: lighten(rgba($my-secondary, 0.4), 10%);
-    }
-}
-
-@mixin sidebar-block-button {
-    margin-left: 5%;
-    width: 90%;
-}
-
-@mixin square-button($size-percentage) {
-    width: $size-percentage;
-    height: $size-percentage;
+    @include normal-button($my-secondary, $my-secondary, $my-secondary);
 }
 
 // template for a full-page background card for a chart
@@ -107,6 +95,7 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     display: none; //sets all cards to not display by default. Displaying is handled in InterfaceEventController.ts
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+
     h3 {
         width: 100%;
         text-align: center;
@@ -120,7 +109,22 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         margin-left: 20px;
         margin-right: 20px;
     }
+}
 
+@mixin input-field-styling {
+    background: rgba(white, 0.8);
+    color: black;
+    border-radius: 5px;
+    border: 0px;
+    width: 100%;
+    height: 100%;
+    padding-left: 8px;
+
+    &::placeholder {
+        color: black;
+    }
+
+    //border: darken($my-secondary-background, 20%)
 }
 
 // ========================== End Mixins ==========================
@@ -133,23 +137,27 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     top: 0;
     left: 100% - $sidebar-width;
     background-color: $card-background;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     .sidebar-header {
+        //position: -webkit-sticky;
+        //position: sticky;
+        top: 0%;
         text-align: center;
         color: $my-text-color;
-        margin-top: 10px;
+        cursor: default;
+        margin: $sidebar-margin;
+        margin-top: $sidebar-margin / 2;
         vertical-align: center;
+        pointer-events: visible;
+        z-index: 5;
     }
 
     hr {
         background-color: $my-subheader-color;
         margin-left: 20px;
         margin-right: 20px;
-    }
-
-    .btn {
-        @include normal-button;
-        @include sidebar-block-button;
     }
 
     #chartOptionsContainer {
@@ -160,44 +168,89 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         @include sidebar-options-card;
 
         //border: 10px solid rgba($my-primary, 0.5);
+        #sizeSelector {
+            @include input-field-styling;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
 
-        #sizeMetricSelector {
-            p {
-                color: $my-text-color;
-                margin-left: 5%;
-                text-align: right;
+        #colorSelector {
+            @include input-field-styling;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .treemapColors {
+            .colorInputs {
+                overflow: hidden;
+
+                label {
+                    font-size: 14px;
+                    color: $my-text-color;
+                    margin: $sidebar-margin;
+                }
+
+                .thresholdTooltip {
+                    position: relative;
+                    display: inline-block;
+                    border-bottom: 1px dotted black;
+                    .thresholdTooltipText {
+                        visibility: hidden;
+                        white-space: pre-line;
+                        width: 285px;
+                        // height: 140px;
+                        background-color: black;
+                        color: $my-text-color;
+                        text-align: center;
+                        border-radius: 6px;
+                        padding: 5px 0;
+                        position: absolute;
+                        z-index: 2;
+                        top: -5px;
+                        right: 110%;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 15%;
+                            left: 100%;
+                            margin-top: -10px;
+                            border-width: 10px;
+                            border-style: solid;
+                            border-color: transparent transparent transparent black;
+                        }
+                    }
+                    &:hover {
+                        .thresholdTooltipText {
+                            visibility: visible;
+                        }
+                    }
+                }
+                .colorGradientBar {
+                    height: $row-height;
+                    background-image: linear-gradient(to right, green, red);
+                    position: relative;
+                    margin-bottom: 15px;
+                    border-radius: 5px;
+                }
             }
+        }
 
-            #sizeSelector {
+        #optionsGridContainer {
+
+            #from,
+            #to {
                 width: 100%;
             }
-        }
 
-        #colorMetricSelector {
-            p {
-                color: $my-text-color;
-                margin-left: 5%;
-                text-align: right;
-            }
-
-            #colorSelector {
+            input {
+                @include input-field-styling;
+                //margin: 1px $sidebar-margin;
                 width: 100%;
             }
-        }
 
-        #colorSlider {
-            #ccnSlider {
-                margin-left: 10%;
-                width: 80%;
-            }
-        }
 
-        #sliderValDisplay {
-            color: $my-text-color;
-        }
-
-        #ccnSlider {
-            color: purple;
         }
 
     }
@@ -205,7 +258,6 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     #chart2OptionsSidebarCard {
         @include sidebar-options-card;
         height: 200px;
-
     }
 
     #chart3OptionsSidebarCard {
@@ -214,7 +266,6 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
     }
 
     #chartSelectBar {
-
         button {
             width: 100%;
             height: 50px;
@@ -256,8 +307,10 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
                 background: rgba($my-secondary-background, 0.6);
             }
         }
-        .row{
+
+        .row {
             margin-bottom: 0px;
+            height: auto;
         }
     }
 
@@ -269,53 +322,101 @@ $theme-colors: ("primary": $my-primary, "secondary": $my-secondary, "body-bg": $
         padding: $sidebar-margin / 2;
         border-radius: 10px;
 
-        h3{
+        h3 {
             width: 100%;
             color: $my-text-color;
             text-align: center;
         }
+
         hr {
             background-color: $my-subheader-color;
             margin-left: 20px;
             margin-right: 20px;
         }
+
         p {
             margin-left: 5%;
         }
 
-        #fileListCard{
+        #fileListCard {
             position: relative;
             background: $card-background;
-            margin: $sidebar-margin;
-            width: $sidebar-adjusted-size;
+            //margin-left: $sidebar-margin;
+            //margin-right: $sidebar-margin;
+            width: 100%;
             padding: $sidebar-margin / 2;
             border-radius: 10px;
 
-            #fileList{
-                width: 100%;
+            #fileList {
+                width: $sidebar-adjusted-size;
                 min-height: 60px;
                 max-height: 160px;
+                margin-left: $sidebar-margin * 2;
+                overflow-y: scroll;
+
+
+                .row {
+                    width: 100%;
+                    height: auto;
+                }
             }
+
         }
 
         #fileSelector {
-            margin-left: 5%;
-            width: 90%;
+            @include input-field-styling;
         }
 
-        #filterButton {
-            @include normal-button;
 
-            margin-top: 2%;
-            margin-bottom: 2%;
 
-            //padding: 100% 100%;
+        #fileFilterButton {
+            @include secondary-button;
+        }
 
+        #clearAllButton {
+            @include secondary-button;
+        }
+
+    }
+
+    #urlOptionsCard{
+        position: relative;
+        background: $card-background;
+        margin: $sidebar-margin;
+        width: $sidebar-adjusted-size;
+        padding: $sidebar-margin / 2;
+        border-radius: 10px;
+
+        #copyURLOptionsButton{
+            @include primary-button;
+            z-index: 5;
+        }
+
+        h3 {
+            width: 100%;
+            color: $my-text-color;
+            text-align: center;
+        }
+
+        hr {
+            background-color: $my-subheader-color;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        p {
+            margin-left: 5%;
+        }
+        input{
+            @include input-field-styling;
         }
     }
 
     p {
         color: $my-text-color;
+    }
+    #fileListRow{
+        height: auto;
     }
 }
 
@@ -333,12 +434,7 @@ body {
     width: 100%; //this is here to make the gradient fit
     height: 100%; //this is here to make the gradient fit
     background: $my-gradient;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.row{
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-family: "Quicksand", sans-serif;
 }
 
 // ==================== End Body Content Styles ====================
@@ -350,6 +446,7 @@ body {
     #TreemapBackButton {
         @include secondary-button;
 
+        cursor: zoom-out;
         position: relative;
         width: $margin-adjusted-percentage;
         height: $margin-adjusted-percentage * 0.1 - $content-margin;
@@ -404,26 +501,26 @@ body {
 
 .node {
     position: absolute;
-    background: transparent url('') no-repeat 50% / cover;
+    background: transparent url("") no-repeat 50% / cover;
     overflow: hidden;
     opacity: 0.8;
     -webkit-transition: opacity 0.8s;
-    transition: opacity .8s;
+    transition: opacity 0.8s;
     cursor: pointer;
     border: 1px white groove;
 
     .label {
         display: inline;
         font-family: sans-serif;
-        color: hsla(0, 0, 100, .6);
-        //white-space: nowrap;
+        color: #000000;
+        font-weight: 500;
         position: absolute;
         padding: 0;
         margin: 0;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
-        transition: color .4s, opacity .8s, filter .8s;
+        transition: color 0.4s, opacity 0.8s, filter 0.8s;
     }
 
     &.hide {
@@ -438,13 +535,11 @@ body {
 
     &:hover {
         .label {
-            color: hsla(0, 0, 100, 1);
+            color: #585858;
         }
     }
 
     &.level-0 {
-        z-index: 4;
-        font-size: 13vmin;
         display: none;
     }
 
@@ -455,57 +550,60 @@ body {
 
     &.level-2 {
         z-index: 2;
-        font-size: 2vmin;
+        font-size: 2.5vmin;
     }
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 19px;
-    cursor: pointer;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3) inset;
-    background: linear-gradient(to right, green, yellow, orange, red);
-    border-radius: 20px;
-    border: 0.2px solid #010101;
-}
-
-input[type=range]::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 20px;
-    width: 20px;
-    border-radius: 20px;
-    background: white;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -1px;
-}
-
-#colorSlider:before {
-    content: attr(min);
+.mouseHover {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    white-space: pre-line;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
     color: black;
-    font-size: 1rem;
+    font: 14px sans-serif;
+    padding: 5px;
+    text-align: center;
+    z-index: 4;
 }
 
-#colorSlider:after {
-    content: attr(max);
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    color: black;
-    font-size: 1rem;
+.row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: $row-height;
+    p, label{
+        font-size: calc($row-height * 0.8);
+        vertical-align: bottom;
+    }
+    .col-md-1, 
+    .col-md-2, 
+    .col-md-3, 
+    .col-md-4, 
+    .col-md-5, 
+    .col-md-6, 
+    .col-md-7, 
+    .col-md-8, 
+    .col-md-9, 
+    .col-md-10, 
+    .col-md-11, 
+    .col-md-12{
+        height: 100%;
+    }
 }
 
 // ======================== End Chart Styles ========================
 
 // =========================== Style Fixes ===========================
+
+
 button:focus {
     outline: none !important;
     box-shadow: none !important;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
 }
 
 input:focus {
@@ -514,4 +612,185 @@ input:focus {
     border: 2px solid transparent;
 }
 
+label {
+    color: $my-text-color;
+}
+
+input,
+select, 
+button {
+    height: 100%;
+    //font-size: 20px;
+}
+
+p,
+label {
+    //font-size: 25px;
+}
+
+
 // ========================= End Style Fixes =========================
+
+
+// ===================== File Filter Card styling =====================
+
+.fileFilterPanel {
+    position: relative;
+    display: inline-block;
+    height: 25px;
+    background-color: rgba($card-background, 0.3);
+    border-radius: 25px;
+    margin: $sidebar-margin;
+    cursor: default;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+
+    .fileName {
+        display: inline-flex;
+        position: relative;
+        text-indent: calc(50% - height);
+        padding-left: 5px;
+        padding-right: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: calc(75%);
+    }
+
+
+    .btn-circle {
+        cursor: pointer;
+        position: absolute;
+        pointer-events: visible;
+        top: 50%;
+        right: 0%;
+        transform: translate(0%, -50%);
+        width: 25px !important;
+        height: 25px !important;
+        line-height: 25px;
+        padding: 0;
+        border-radius: 50%;
+        border-width: 0px;
+        border-color: $my-secondary;
+        background-color: rgba($my-secondary, 0.5);
+        color: rgba($card-background, 0.6);
+        overflow: visible;
+
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border: 2px solid transparent;
+        }
+
+        &:hover {
+            background-color: rgba($my-secondary, 0.7);
+            box-shadow: 0 5px 15px rgba($my-secondary, 0.8);
+        }
+    }
+}
+
+
+// =================== End File Filter Card styling ===================
+
+// ======================== Scrollbar styling ========================
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba($card-background, 0.3);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba($card-background, 0.4);
+}
+
+// ====================== End Scrollbar styling =====================
+
+
+// ========================== Switch styling =========================
+
+.switch {
+    $switch-margin: 4px;
+    $switch-height: $row-height;
+    $slider-height: $switch-height - (2 * $switch-margin);
+    $transition-length: 0.3s;
+
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: $row-height;
+    border-radius: $switch-height;
+    background-color: transparent;
+
+
+
+    input {
+        position: absolute;
+        -webkit-appearance: none;
+        //-moz-appearance: none;
+        //appearance: none;
+
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .slider {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(black, 0.3);
+        border-radius: $switch-height;
+        transition: ease $transition-length;
+        z-index: 1;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba($my-secondary, 0.3);
+        box-shadow: 0 5px 15px rgba($my-secondary, 0.2);
+
+        &::after {
+            content: 'Blacklist';
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            font-size: $slider-height - 2.5 * $switch-margin;
+            position: absolute;
+            z-index: 2;
+            width: 50%;
+            height: $slider-height;
+            border-radius: $slider-height;
+            background-color: rgba(black, 0.5);
+            top: 50%;
+            left: $switch-margin;
+            transform: translate(0%, -50%);
+            pointer-events: none;
+            -webkit-transition: ease $transition-length;
+            transition: ease $transition-length;
+        }
+    }
+
+    input:checked+.slider {
+        background-color: rgba(white, 0.3);
+        border-color: rgba($my-primary, 0.3);
+        box-shadow: 0 5px 15px rgba($my-primary, 0.2);
+
+    }
+    input:checked+.slider:after{
+        content: 'Whitelist';
+        color: black;
+        transform: translate(calc(100% - 2 * #{$switch-margin}), -50%);
+        background-color: rgba(white, 0.5);
+    }
+
+}
+
+// ======================== End Switch styling =======================

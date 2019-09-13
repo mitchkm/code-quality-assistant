@@ -10,7 +10,7 @@
   --purple: #9848e2;
   --pink: #ff006a;
   --red: #ff0033;
-  --orange: #c7b9b8;
+  --orange: #f05247;
   --yellow: #ffc107;
   --green: #00e09f;
   --teal: #20c997;
@@ -7135,31 +7135,23 @@ a.text-body-bg:hover, a.text-body-bg:focus {
   width: 30%;
   top: 0;
   left: 70%;
-  background-color: rgba(255, 255, 255, 0.1); }
+  background-color: rgba(255, 255, 255, 0.1);
+  overflow-y: scroll;
+  overflow-x: hidden; }
   #sidebar .sidebar-header {
+    top: 0%;
     text-align: center;
     color: #f6f6f6;
-    margin-top: 10px;
-    vertical-align: center; }
+    cursor: default;
+    margin: 4%;
+    margin-top: 2%;
+    vertical-align: center;
+    pointer-events: visible;
+    z-index: 5; }
   #sidebar hr {
     background-color: #686868;
     margin-left: 20px;
     margin-right: 20px; }
-  #sidebar .btn {
-    color: #4faaff;
-    background-color: rgba(79, 170, 255, 0.2);
-    border-color: #4faaff;
-    z-index: 1;
-    margin-left: 5%;
-    width: 90%; }
-    #sidebar .btn:hover {
-      border-color: #1c91ff;
-      color: #1c91ff;
-      background-color: rgba(28, 145, 255, 0.2); }
-    #sidebar .btn:active {
-      border-color: #82c3ff;
-      color: #82c3ff;
-      background-color: rgba(130, 195, 255, 0.4); }
   #sidebar #chartOptionsContainer {
     margin: 4%; }
   #sidebar #treemapOptionsSidebarCard {
@@ -7180,25 +7172,86 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       background-color: #686868;
       margin-left: 20px;
       margin-right: 20px; }
-    #sidebar #treemapOptionsSidebarCard #sizeMetricSelector p {
-      color: #f6f6f6;
-      margin-left: 5%;
-      text-align: right; }
-    #sidebar #treemapOptionsSidebarCard #sizeMetricSelector #sizeSelector {
+    #sidebar #treemapOptionsSidebarCard #sizeSelector {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0; }
+      #sidebar #treemapOptionsSidebarCard #sizeSelector::placeholder {
+        color: black; }
+    #sidebar #treemapOptionsSidebarCard #colorSelector {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0; }
+      #sidebar #treemapOptionsSidebarCard #colorSelector::placeholder {
+        color: black; }
+    #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs {
+      overflow: hidden; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs label {
+        font-size: 14px;
+        color: #f6f6f6;
+        margin: 4%; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; }
+        #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip .thresholdTooltipText {
+          visibility: hidden;
+          white-space: pre-line;
+          width: 285px;
+          background-color: black;
+          color: #f6f6f6;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 2;
+          top: -5px;
+          right: 110%; }
+          #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip .thresholdTooltipText::after {
+            content: "";
+            position: absolute;
+            top: 15%;
+            left: 100%;
+            margin-top: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent transparent black; }
+        #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip:hover .thresholdTooltipText {
+          visibility: visible; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .colorGradientBar {
+        height: 36px;
+        background-image: linear-gradient(to right, green, red);
+        position: relative;
+        margin-bottom: 15px;
+        border-radius: 5px; }
+    #sidebar #treemapOptionsSidebarCard #optionsGridContainer #from,
+    #sidebar #treemapOptionsSidebarCard #optionsGridContainer #to {
       width: 100%; }
-    #sidebar #treemapOptionsSidebarCard #colorMetricSelector p {
-      color: #f6f6f6;
-      margin-left: 5%;
-      text-align: right; }
-    #sidebar #treemapOptionsSidebarCard #colorMetricSelector #colorSelector {
+    #sidebar #treemapOptionsSidebarCard #optionsGridContainer input {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px;
       width: 100%; }
-    #sidebar #treemapOptionsSidebarCard #colorSlider #ccnSlider {
-      margin-left: 10%;
-      width: 80%; }
-    #sidebar #treemapOptionsSidebarCard #sliderValDisplay {
-      color: #f6f6f6; }
-    #sidebar #treemapOptionsSidebarCard #ccnSlider {
-      color: purple; }
+      #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::placeholder {
+        color: black; }
   #sidebar #chart2OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
@@ -7268,7 +7321,8 @@ a.text-body-bg:hover, a.text-body-bg:focus {
       border-bottom: 2px solid rgba(79, 170, 255, 0.8);
       background: rgba(82, 87, 87, 0.6); }
   #sidebar #chartSelectBar .row {
-    margin-bottom: 0px; }
+    margin-bottom: 0px;
+    height: auto; }
   #sidebar #fileFilterCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
@@ -7289,34 +7343,102 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     #sidebar #fileFilterCard #fileListCard {
       position: relative;
       background: rgba(255, 255, 255, 0.1);
-      margin: 4%;
-      width: 92%;
+      width: 100%;
       padding: 2%;
       border-radius: 10px; }
       #sidebar #fileFilterCard #fileListCard #fileList {
-        width: 100%;
+        width: 92%;
         min-height: 60px;
-        max-height: 160px; }
+        max-height: 160px;
+        margin-left: 8%;
+        overflow-y: scroll; }
+        #sidebar #fileFilterCard #fileListCard #fileList .row {
+          width: 100%;
+          height: auto; }
     #sidebar #fileFilterCard #fileSelector {
-      margin-left: 5%;
-      width: 90%; }
-    #sidebar #fileFilterCard #filterButton {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px; }
+      #sidebar #fileFilterCard #fileSelector::placeholder {
+        color: black; }
+    #sidebar #fileFilterCard #fileFilterButton {
+      color: #ff1b72;
+      background-color: rgba(255, 27, 114, 0.2);
+      border-color: #ff1b72;
+      z-index: 1;
+      width: 100%; }
+      #sidebar #fileFilterCard #fileFilterButton:hover {
+        border-color: #e70058;
+        color: #e70058;
+        background-color: rgba(231, 0, 88, 0.2); }
+      #sidebar #fileFilterCard #fileFilterButton:active {
+        border-color: #ff4e92;
+        color: #ff4e92;
+        background-color: rgba(255, 78, 146, 0.4); }
+    #sidebar #fileFilterCard #clearAllButton {
+      color: #ff1b72;
+      background-color: rgba(255, 27, 114, 0.2);
+      border-color: #ff1b72;
+      z-index: 1;
+      width: 100%; }
+      #sidebar #fileFilterCard #clearAllButton:hover {
+        border-color: #e70058;
+        color: #e70058;
+        background-color: rgba(231, 0, 88, 0.2); }
+      #sidebar #fileFilterCard #clearAllButton:active {
+        border-color: #ff4e92;
+        color: #ff4e92;
+        background-color: rgba(255, 78, 146, 0.4); }
+  #sidebar #urlOptionsCard {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4%;
+    width: 92%;
+    padding: 2%;
+    border-radius: 10px; }
+    #sidebar #urlOptionsCard #copyURLOptionsButton {
       color: #4faaff;
       background-color: rgba(79, 170, 255, 0.2);
       border-color: #4faaff;
       z-index: 1;
-      margin-top: 2%;
-      margin-bottom: 2%; }
-      #sidebar #fileFilterCard #filterButton:hover {
+      width: 100%;
+      z-index: 5; }
+      #sidebar #urlOptionsCard #copyURLOptionsButton:hover {
         border-color: #1c91ff;
         color: #1c91ff;
         background-color: rgba(28, 145, 255, 0.2); }
-      #sidebar #fileFilterCard #filterButton:active {
+      #sidebar #urlOptionsCard #copyURLOptionsButton:active {
         border-color: #82c3ff;
         color: #82c3ff;
         background-color: rgba(130, 195, 255, 0.4); }
+    #sidebar #urlOptionsCard h3 {
+      width: 100%;
+      color: #f6f6f6;
+      text-align: center; }
+    #sidebar #urlOptionsCard hr {
+      background-color: #686868;
+      margin-left: 20px;
+      margin-right: 20px; }
+    #sidebar #urlOptionsCard p {
+      margin-left: 5%; }
+    #sidebar #urlOptionsCard input {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      border-radius: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px; }
+      #sidebar #urlOptionsCard input::placeholder {
+        color: black; }
   #sidebar p {
     color: #f6f6f6; }
+  #sidebar #fileListRow {
+    height: auto; }
 
 html {
   width: 100%;
@@ -7327,11 +7449,7 @@ body {
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom right, #001c36, #1b000a);
-  font-family: 'Quicksand', sans-serif; }
-
-.row {
-  margin-top: 10px;
-  margin-bottom: 10px; }
+  font-family: "Quicksand", sans-serif; }
 
 #treeMapCard {
   position: relative;
@@ -7345,6 +7463,8 @@ body {
     background-color: rgba(255, 27, 114, 0.2);
     border-color: #ff1b72;
     z-index: 1;
+    width: 100%;
+    cursor: zoom-out;
     position: relative;
     width: 96%;
     height: 7.6%;
@@ -7394,80 +7514,199 @@ body {
   overflow: hidden;
   opacity: 0.8;
   -webkit-transition: opacity 0.8s;
-  transition: opacity .8s;
+  transition: opacity 0.8s;
   cursor: pointer;
   border: 1px white groove; }
   .node .label {
     display: inline;
     font-family: sans-serif;
-    color: rgba(255, 255, 255, 0.6);
+    color: #000000;
+    font-weight: 500;
     position: absolute;
     padding: 0;
     margin: 0;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    transition: color .4s, opacity .8s, filter .8s; }
+    transition: color 0.4s, opacity 0.8s, filter 0.8s; }
   .node.hide {
     opacity: 0;
     pointer-events: none; }
     .node.hide .label {
       filter: blur(10px); }
   .node:hover .label {
-    color: white; }
+    color: #585858; }
   .node.level-0 {
-    z-index: 4;
-    font-size: 13vmin;
     display: none; }
   .node.level-1 {
     z-index: 3;
     font-size: 3vmin; }
   .node.level-2 {
     z-index: 2;
-    font-size: 2vmin; }
+    font-size: 2.5vmin; }
 
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 19px;
-  cursor: pointer;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3) inset;
-  background: linear-gradient(to right, green, yellow, orange, red);
-  border-radius: 20px;
-  border: 0.2px solid #010101; }
-
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 20px;
-  width: 20px;
-  border-radius: 20px;
-  background: white;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -1px; }
-
-#colorSlider:before {
-  content: attr(min);
+.mouseHover {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  white-space: pre-line;
+  display: none;
+  width: auto;
+  height: auto;
+  background: none repeat scroll 0 0 white;
+  border: 0 none;
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: -3px 3px 15px #888888;
   color: black;
-  font-size: 1rem; }
+  font: 14px sans-serif;
+  padding: 5px;
+  text-align: center;
+  z-index: 4; }
 
-#colorSlider:after {
-  content: attr(max);
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: black;
-  font-size: 1rem; }
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 36px; }
+  .row p, .row label {
+    font-size: calc($row-height * 0.8);
+    vertical-align: bottom; }
+  .row .col-md-1,
+  .row .col-md-2,
+  .row .col-md-3,
+  .row .col-md-4,
+  .row .col-md-5,
+  .row .col-md-6,
+  .row .col-md-7,
+  .row .col-md-8,
+  .row .col-md-9,
+  .row .col-md-10,
+  .row .col-md-11,
+  .row .col-md-12 {
+    height: 100%; }
 
 button:focus {
   outline: none !important;
   box-shadow: none !important;
-  border: 2px solid transparent; }
+  border: 1px solid transparent; }
 
 input:focus {
   outline: none !important;
   box-shadow: none !important;
   border: 2px solid transparent; }
+
+label {
+  color: #f6f6f6; }
+
+input,
+select,
+button {
+  height: 100%; }
+
+.fileFilterPanel {
+  position: relative;
+  display: inline-block;
+  height: 25px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  margin: 4%;
+  cursor: default;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden; }
+  .fileFilterPanel .fileName {
+    display: inline-flex;
+    position: relative;
+    text-indent: calc(50% - height);
+    padding-left: 5px;
+    padding-right: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: calc(75%); }
+  .fileFilterPanel .btn-circle {
+    cursor: pointer;
+    position: absolute;
+    pointer-events: visible;
+    top: 50%;
+    right: 0%;
+    transform: translate(0%, -50%);
+    width: 25px !important;
+    height: 25px !important;
+    line-height: 25px;
+    padding: 0;
+    border-radius: 50%;
+    border-width: 0px;
+    border-color: #ff1b72;
+    background-color: rgba(255, 27, 114, 0.5);
+    color: rgba(255, 255, 255, 0.6);
+    overflow: visible; }
+    .fileFilterPanel .btn-circle:focus {
+      outline: none !important;
+      box-shadow: none !important;
+      border: 2px solid transparent; }
+    .fileFilterPanel .btn-circle:hover {
+      background-color: rgba(255, 27, 114, 0.7);
+      box-shadow: 0 5px 15px rgba(255, 27, 114, 0.8); }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4); }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 36px;
+  border-radius: 36px;
+  background-color: transparent; }
+  .switch input {
+    position: absolute;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer; }
+  .switch .slider {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 36px;
+    transition: ease 0.3s;
+    z-index: 1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 27, 114, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 27, 114, 0.2); }
+    .switch .slider::after {
+      content: 'Blacklist';
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      font-size: 18px;
+      position: absolute;
+      z-index: 2;
+      width: 50%;
+      height: 28px;
+      border-radius: 28px;
+      background-color: rgba(0, 0, 0, 0.5);
+      top: 50%;
+      left: 4px;
+      transform: translate(0%, -50%);
+      pointer-events: none;
+      -webkit-transition: ease 0.3s;
+      transition: ease 0.3s; }
+  .switch input:checked + .slider {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(79, 170, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(79, 170, 255, 0.2); }
+  .switch input:checked + .slider:after {
+    content: 'Whitelist';
+    color: black;
+    transform: translate(calc(100% - 2 * 4px), -50%);
+    background-color: rgba(255, 255, 255, 0.5); }

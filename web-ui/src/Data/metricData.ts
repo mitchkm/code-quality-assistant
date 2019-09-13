@@ -32,6 +32,16 @@ export interface FileStatistics {
   allValues: number[];
 }
 
+const ZERO_STAT: FileStatistics = {
+  min: 0,
+  mean: 0,
+  stdDev: 0,
+  median: 0,
+  mode: 0,
+  max: 0,
+  allValues: []
+};
+
 export enum Metrics {
   NLOC = "nloc",
   CCN = "ccn",
@@ -39,7 +49,7 @@ export enum Metrics {
   PARAMS = "params",
   LENGTH = "length"
 }
-export const allMetrics = [
+export const allMetrics: string[] = [
   Metrics.NLOC,
   Metrics.CCN,
   Metrics.TOKENS,
@@ -88,6 +98,10 @@ export class MetricData {
     // Calculate statistics
     const statMap = new Map();
     for (const m of allMetrics) {
+      if (valuesMap.get(m).length <= 0) {
+        statMap.set(m, ZERO_STAT);
+        continue;
+      }
       // Create sorted list of values lowest to highest
       const values = valuesMap.get(m).sort((a, b) => a - b);
       const metricStats: FileStatistics = {
@@ -179,6 +193,12 @@ export class MetricData {
    * @param metricB Metric to represent normalized value for color or other visual
    */
   public toTreemapData(metricA: string, metricB: string): TreemapData {
+    if (allMetrics.indexOf(metricA) === -1) {
+      metricA = Metrics.NLOC;
+    }
+    if (allMetrics.indexOf(metricB) === -1) {
+      metricB = Metrics.NLOC;
+    }
     let ignoreList;
     if (this.listToggle === "white") {
       ignoreList = this.inverseFilterList;
@@ -270,5 +290,55 @@ export class MetricData {
     data.value2 = aggregateB(value2s);
 
     return data;
+  }
+
+  /**
+   * finds the minimum value of selected color option among entire files.
+   * @param fileList list of files to find the minimum value among.
+   * @param colorMetric colorOption to find the minimum value of.
+   */
+  public getMinColorMetric(colorMetric: string, fileList?: string[]) {
+    let overallMin;
+    let file;
+
+    if (!fileList) {
+      fileList = this.fileList;
+    }
+
+    for (file of fileList) {
+      const min = this.getMetricStatitistics(file).get(colorMetric).min;
+      if (!overallMin) {
+        overallMin = min;
+      }
+      else if (overallMin > min) {
+        overallMin = min;
+      }
+    }
+    return overallMin;
+  }
+
+  /**
+   * finds the maximum value of selected color option among entire files.
+   * @param fileList list of files to find the maximum value among.
+   * @param colorMetric colorOption to find the maximum value of.
+   */
+  public getMaxColorMetric(colorMetric: string, fileList?: string[]) {
+    let overallMax;
+    let file;
+
+    if (!fileList) {
+      fileList = this.fileList;
+    }
+
+    for (file of fileList) {
+      const max = this.getMetricStatitistics(file).get(colorMetric).max;
+      if (!overallMax) {
+        overallMax = max;
+      }
+      else if (overallMax < max) {
+        overallMax = max;
+      }
+    }
+    return overallMax;
   }
 }
