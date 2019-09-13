@@ -200,7 +200,7 @@ $theme-colors: ("primary": $my-primary,
                         visibility: hidden;
                         white-space: pre-line;
                         width: 285px;
-                        height: 140px;
+                        // height: 140px;
                         background-color: black;
                         color: $my-text-color;
                         text-align: center;
@@ -229,18 +229,11 @@ $theme-colors: ("primary": $my-primary,
                 }
                 .colorGradientBar {
                     height: $row-height;
-                    background-image: linear-gradient(to right, green, orange, red);
+                    background-image: linear-gradient(to right, green, red);
                     position: relative;
                     margin-bottom: 15px;
                     border-radius: 5px;
                 }
-            }
-        }
-
-        .colorThreshold {
-            #applyThresholdButton {
-                @include normal-button;
-                padding: 1px 0px 0px 5px;
             }
         }
 

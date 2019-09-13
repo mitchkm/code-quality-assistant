@@ -275,7 +275,7 @@ class TreemapEventController {
     const COLOR_BAR = ".colorGradientBar";
     // update Color Bar
     d3.select(COLOR_BAR)
-    .style("height", "20px")
+    .style("height", "36px")
     .style(
       "background-image",
       "linear-gradient(to right," +
