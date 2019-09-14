@@ -1,4 +1,4 @@
-import { MetricData, Metrics } from "./Data/metricData";
+import { MetricData, Metrics, AnalysisData } from "./Data/metricData";
 import { exampleData } from "./Data/example";
 import * as util from "./util";
 import Treemap from "./Treemap/treemap";
@@ -7,9 +7,10 @@ import treemapSetting from "./Treemap/treemapSetting";
 import InterfaceEventController from "./EventController/InterfaceEventController";
 import TreemapEventController from "./EventController/TreemapEventController";
 import { DangerThresholds } from "./Treemap/thresholds";
+import d3 = require("d3");
 
 // Process Data
-let data;
+let data: AnalysisData;
 try {
   data = JSON.parse(document.getElementById("rawData").textContent);
 } catch (err) {
@@ -17,6 +18,8 @@ try {
   console.log("Displaying example data. NOT meaningful data!");
   data = exampleData;
 }
+// Set path being viewed on webpage
+d3.select("#pathInput").property("value", data.path);
 
 // create metric data helper class
 const mD = new MetricData(data);
