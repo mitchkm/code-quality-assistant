@@ -4,6 +4,7 @@ import TreemapSetting from "../Treemap/treemapSetting";
 import * as d3 from "d3";
 import { DangerThresholds } from "../Treemap/thresholds";
 import * as util from "../util";
+import convert = require("color-convert");
 
 const metricOptions = [
   Metrics.NLOC,
@@ -183,7 +184,7 @@ class TreemapEventController {
     });
   }
 
-  private initDropdownStyling(){
+  private initDropdownStyling() {
     d3.selectAll("option")
       .style("color", "$my-text-color")
       .style("background-color", "#313131");
@@ -236,9 +237,8 @@ class TreemapEventController {
   private initTreemapColorSelector() {
     const SAFE_COLOR = ".safeColorInput";
     const DANGER_COLOR = ".dangerColorInput";
-    // const APPLY_BUTTON = "#applyThresholdButton";
-    const defaultSafeColor = "green";
-    const defaultDangerColor = "red";
+    const defaultSafeColor = "#008000";
+    const defaultDangerColor = "#ff0000";
 
     d3.select(SAFE_COLOR).on("change", () => {
       const safeColorInput = d3.select(SAFE_COLOR).property("value");
@@ -327,15 +327,17 @@ class TreemapEventController {
 
     // update treemap color based on threshold
     d3.select(DANGER_THRESHOLD).on("change", () => {
-      const selectedVal = parseInt(
+      let selectedVal = parseInt(
         d3.select(DANGER_THRESHOLD).property("value")
       );
+      // check the validity of danger threshold
+      if (isNaN(selectedVal) || selectedVal <= 0) {
+        selectedVal = this.treemapSettings.color.thresholds[1];
+      }
       this.setThreshold(min, selectedVal, max);
       this.updateTreemap();
       this.initColorThresholdDescription(selectedVal);
     });
-
-    d3.select(DANGER_THRESHOLD).property("value", this.treemapSettings.color.thresholds[1]);
   }
 
   /**
@@ -359,6 +361,7 @@ class TreemapEventController {
   private initColorThresholdDescription(threshold?: number) {
     const DANGER_COLOR = ".dangerColorInput";
     const dangerColor = d3.select(DANGER_COLOR).property("value");
+    const dangerColorKeyWord = convert.hex.keyword(dangerColor);
     if (!threshold) {
       threshold = this.treemapSettings.color.thresholds[1];
     }
@@ -368,7 +371,7 @@ class TreemapEventController {
       "values >= " +
         threshold +
         " colored in " +
-        dangerColor +
+        dangerColorKeyWord +
         " are in danger."
     );
   }

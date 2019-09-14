@@ -33,7 +33,7 @@ let defaultColorThresholds = [
 ];
 
 // default treemap colors [safeColor, dangerColor, dangerColor]
-const defaultTreemapColors = ["green", "red", "red"];
+const defaultTreemapColors = ["#008000", "#ff0000", "#ff0000"];
 
 // change threshold if none of the values are in danger
 if (defaultMax < dangerThreshold) {
