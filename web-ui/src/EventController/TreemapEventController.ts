@@ -66,9 +66,7 @@ class TreemapEventController {
       this.treemapSettings.colorOption
     );
     this.treemap.drawTreemap(data);
-    const params = util.generateUrlParams(this.treemapSettings);
-    const mainLink = window.location.href.split("?");
-    d3.select("#urlOptionsString").property("value", mainLink[0] + params);
+    util.fillURLText(this.treemapSettings);
   }
 
   private processFile(file: string) {

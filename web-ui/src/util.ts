@@ -1,5 +1,6 @@
 import TreemapSetting from "./Treemap/treemapSetting";
 import InterfaceEventController from "./EventController/InterfaceEventController";
+import d3 = require("d3");
 
 export function getUrlVars() {
     const vars = {};
@@ -13,4 +14,10 @@ export function getUrlVars() {
 export function generateUrlParams(treemapSettings: TreemapSetting) {
     const tSettings = encodeURI(JSON.stringify(treemapSettings));
     return "?chart=" + InterfaceEventController.curChartName + "&" + "treemapSettings=" + tSettings;
+}
+
+export function fillURLText(treemapSetting: TreemapSetting) {
+    const params = generateUrlParams(this.treemapSettings);
+    const mainLink = window.location.href.split("?");
+    d3.select("#urlOptionsString").property("value", mainLink[0] + params);
 }
