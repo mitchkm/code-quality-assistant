@@ -16,8 +16,9 @@ export function generateUrlParams(treemapSettings: TreemapSetting) {
     return "?chart=" + InterfaceEventController.curChartName + "&" + "treemapSettings=" + tSettings;
 }
 
-export function fillURLText(treemapSetting: TreemapSetting) {
-    const params = generateUrlParams(this.treemapSettings);
+export function fillURLText(treemapSettings: TreemapSetting) {
+    console.log("trrigered!");
+    const params = generateUrlParams(treemapSettings);
     const mainLink = window.location.href.split("?");
     d3.select("#urlOptionsString").property("value", mainLink[0] + params);
 }
