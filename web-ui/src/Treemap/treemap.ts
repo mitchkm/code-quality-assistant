@@ -200,14 +200,20 @@ class Treemap {
       chart
         .on("mousemove", d => {
           let funcData = "";
-          funcData += "functionName: " + d.data.funcData.name;
-          funcData += "\nfunctionFullName: " + d.data.funcData.longName;
-          funcData += "\nstartLine: " + d.data.funcData.startLine;
-          funcData += "\nnloc: " + d.data.funcData.nloc;
-          funcData += "\nccn: " + d.data.funcData.ccn;
-          funcData += "\ntokens: " + d.data.funcData.tokens;
-          funcData += "\nparams: " + d.data.funcData.params;
-          funcData += "\nlength: " + d.data.funcData.length;
+          const data: TreemapData = d.data;
+          funcData += "functionName: " + data.funcData.name;
+          funcData += "\nfunctionFullName: " + data.funcData.longName;
+          funcData += "\nstartLine: " + data.funcData.startLine;
+          funcData += "\nnloc: " + data.funcData.nloc;
+          funcData += "\nccn: " + data.funcData.ccn;
+          funcData += "\ntokens: " + data.funcData.tokens;
+          funcData += "\nparams: " + data.funcData.params;
+          funcData += "\nlength: " + data.funcData.length;
+          funcData += "\nfan in: " + data.funcData.fanIn;
+          funcData += "\nfan out: " + data.funcData.fanOut;
+          funcData += "\ngeneral fan out: " + data.funcData.generalFanOut;
+          funcData += "\nmax nesting depth: " + data.funcData.maxNestingDepth;
+          funcData += "\nmax nested structures: " + data.funcData.maxNestedStructures;
           mouseHover.text(funcData);
         })
         .on("mouseout", () => {

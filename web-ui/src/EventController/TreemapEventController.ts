@@ -9,8 +9,14 @@ import convert = require("color-convert");
 const metricOptions = [
   Metrics.NLOC,
   Metrics.CCN,
+  Metrics.TOKENS,
   Metrics.PARAMS,
-  Metrics.LENGTH
+  Metrics.LENGTH,
+  Metrics.FAN_IN,
+  Metrics.FAN_OUT,
+  Metrics.GENERAL_FAN_OUT,
+  Metrics.MAX_NESTING_DEPTH,
+  Metrics.MAX_NESTED_STRUCTURES
 ];
 
 class TreemapEventController {
@@ -67,9 +73,7 @@ class TreemapEventController {
       this.treemapSettings.colorOption
     );
     this.treemap.drawTreemap(data);
-    const params = util.generateUrlParams(this.treemapSettings);
-    const mainLink = window.location.href.split("?");
-    d3.select("#urlOptionsString").property("value", mainLink[0] + params);
+    util.fillURLText(this.treemapSettings);
   }
 
   private processFile(file: string) {
@@ -300,7 +304,8 @@ class TreemapEventController {
     const colorMetric = this.treemapSettings.colorOption;
     const min = this.mD.getMinColorMetric(colorMetric);
     const max = this.mD.getMaxColorMetric(colorMetric);
-    const dangerThreshold = DangerThresholds[colorMetric];
+    let dangerThreshold = DangerThresholds[colorMetric];
+    dangerThreshold = dangerThreshold !== -1 ? dangerThreshold : Math.floor(max * 2);
     const DANGER_THRESHOLD = ".dangerThresholdInput";
 
     // set default threshold value

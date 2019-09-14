@@ -1,4 +1,5 @@
 import d3 = require("d3");
+import * as util from "../util";
 
 class InterfaceEventController {
   public static curChartName = "treemap";
@@ -46,17 +47,19 @@ class InterfaceEventController {
 
         currentCard = chartOptionsCards[chartSelectButtons.indexOf(this)];
         currentChart = this;
+        util.fillURLText(undefined);
       });
     }
 
+    // Add copy button functionality for copying URL + params
     d3.select("#copyURLOptionsButton").on("click", () => {
       const text = d3.select("#urlOptionsString").property("value");
       navigator.clipboard.writeText(text).then(() => {
         alert("Link with URL Parameters copied to clipboard: " + text);
       });
     });
+    util.fillURLText(undefined);
   }
-
 }
 
 export default InterfaceEventController;

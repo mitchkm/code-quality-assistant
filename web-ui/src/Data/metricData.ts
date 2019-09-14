@@ -10,6 +10,11 @@ export interface FunctionData {
   tokens: number;
   params: number;
   length: number;
+  fanIn: number;
+  fanOut: number;
+  generalFanOut: number;
+  maxNestingDepth: number;
+  maxNestedStructures: number;
 }
 
 export interface Duplicate {
@@ -61,7 +66,12 @@ export enum Metrics {
   CCN = "ccn",
   TOKENS = "tokens",
   PARAMS = "params",
-  LENGTH = "length"
+  LENGTH = "length",
+  FAN_IN = "fanIn",
+  FAN_OUT = "fanOut",
+  GENERAL_FAN_OUT = "generalFanOut",
+  MAX_NESTING_DEPTH = "maxNestingDepth",
+  MAX_NESTED_STRUCTURES = "maxNestedStructures",
 }
 export const allMetrics: string[] = [
   Metrics.NLOC,
@@ -69,6 +79,11 @@ export const allMetrics: string[] = [
   Metrics.TOKENS,
   Metrics.PARAMS,
   Metrics.LENGTH,
+  Metrics.FAN_IN,
+  Metrics.FAN_OUT,
+  Metrics.GENERAL_FAN_OUT,
+  Metrics.MAX_NESTING_DEPTH,
+  Metrics.MAX_NESTED_STRUCTURES
 ];
 
 export class MetricData {
@@ -323,8 +338,7 @@ export class MetricData {
       const min = this.getMetricStatitistics(file).get(colorMetric).min;
       if (!overallMin) {
         overallMin = min;
-      }
-      else if (overallMin > min) {
+      } else if (overallMin > min) {
         overallMin = min;
       }
     }
@@ -348,8 +362,7 @@ export class MetricData {
       const max = this.getMetricStatitistics(file).get(colorMetric).max;
       if (!overallMax) {
         overallMax = max;
-      }
-      else if (overallMax < max) {
+      } else if (overallMax < max) {
         overallMax = max;
       }
     }
