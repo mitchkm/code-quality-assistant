@@ -8,8 +8,14 @@ import * as util from "../util";
 const metricOptions = [
   Metrics.NLOC,
   Metrics.CCN,
+  Metrics.TOKENS,
   Metrics.PARAMS,
-  Metrics.LENGTH
+  Metrics.LENGTH,
+  Metrics.FAN_IN,
+  Metrics.FAN_OUT,
+  Metrics.GENERAL_FAN_OUT,
+  Metrics.MAX_NESTING_DEPTH,
+  Metrics.MAX_NESTED_STRUCTURES
 ];
 
 class TreemapEventController {
@@ -181,7 +187,7 @@ class TreemapEventController {
     });
   }
 
-  private initDropdownStyling(){
+  private initDropdownStyling() {
     d3.selectAll("option")
       .style("color", "$my-text-color")
       .style("background-color", "#313131");
@@ -298,7 +304,8 @@ class TreemapEventController {
     const colorMetric = this.treemapSettings.colorOption;
     const min = this.mD.getMinColorMetric(colorMetric);
     const max = this.mD.getMaxColorMetric(colorMetric);
-    const dangerThreshold = DangerThresholds[colorMetric];
+    let dangerThreshold = DangerThresholds[colorMetric];
+    dangerThreshold = dangerThreshold !== -1 ? dangerThreshold : Math.floor(max * 2);
     const DANGER_THRESHOLD = ".dangerThresholdInput";
 
     // set default threshold value
