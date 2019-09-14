@@ -27,7 +27,7 @@ def analyze(path, filenameList):
 # Runs lizard on each individual file designated in the given filenameList.
 def runLizard(filenameList):
     duplicates = DuplicateDetector()
-    extensions = lizard.get_extensions([duplicates])
+    extensions = lizard.get_extensions([duplicates, 'cpre', 'nd', 'io', 'ns'])
     outList = list(lizard.analyze_files(filenameList, exts=extensions))
     dupCodeSnips = list(duplicates.get_duplicates(min_duplicate_tokens=MIN_DUP_TOKENS))
     dupInfo = { 'duplicates': [dupInfoToDict(d) for d in dupCodeSnips], 
@@ -57,6 +57,7 @@ def fileInfoToDict(fileInfo):
 
 # converts FunctionInformation object into dictionary
 def funcInfoToDict(funcInfo):
+    print(funcInfo.__dict__)
     return { 'name'   : funcInfo.name,
              'longName': funcInfo.long_name,
              'startLine': funcInfo.start_line,
@@ -64,7 +65,12 @@ def funcInfoToDict(funcInfo):
              'ccn'    : funcInfo.cyclomatic_complexity,
              'tokens' : funcInfo.token_count,
              'params' : len(funcInfo.parameters),
-             'length' : funcInfo.length}
+             'length' : funcInfo.length,
+             'fanIn'  : funcInfo.fan_in,
+             'fanOut' : funcInfo.fan_out,
+             'generalFanOut': funcInfo.general_fan_out,
+             'maxNestingDepth': funcInfo.max_nesting_depth,
+             'maxNestedStructures': funcInfo.max_nested_structures}
 
 # converts duplicate CodeSnippet objects to dicts of info
 def dupInfoToDict(snippets):    
