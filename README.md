@@ -9,12 +9,12 @@ An interactive tool that allows developers to visually see metrics of the codeba
 - Node/npm
 - Python 3.7
 - Pip
-### Web UI (see web-ui/package.json)
+### Web UI (see web-ui/package.json for full list)
 - Typescript
 - browserify
 - tsify
 - d3
 ### Code Analysis
-- [lizard](https://github.com/terryyin/lizard) 1.16.3
+- [lizard](https://github.com/terryyin/lizard) 1.16.6
 ### Build script dependencies
 - Pyinstaller
