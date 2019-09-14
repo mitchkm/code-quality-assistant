@@ -5,10 +5,9 @@
 // ========================== Variables ==========================
 $my-primary: #4faaff;
 $my-secondary: #ff1b72;
-$my-grad-list: $my-primary 0%, $my-secondary 100%;
+$my-grad-list: $my-primary 0%,
+$my-secondary 100%;
 $my-background: rgb(23, 26, 26);
-$my-header-color: rgb(219, 224, 227);
-$my-subheader-color: #686868;
 $my-text-color: rgb(246, 246, 246);
 $card-background: rgba(255, 255, 255, 0.1);
 
@@ -16,18 +15,12 @@ $my-gradient: linear-gradient(to bottom right,
     darken($my-primary, 55%),
     darken($my-secondary, 50%));
 
-$blue: rgb(0, 132, 232);
-$dark-blue: rgb(24, 52, 88);
-$purple: rgb(152, 72, 226);
-$green: rgb(0, 224, 159);
-$red: rgb(255, 0, 51);
-$orange: rgb(240, 82, 71);
-$pink: rgb(255, 0, 106);
 
 $sidebar-width: 30%;
 $content-area-width: 70%;
 $content-margin: 2%;
 $margin-adjusted-percentage: 100% - 2 * $content-margin;
+$path-card-height: 60px;
 
 $sidebar-margin: 4%;
 $sidebar-adjusted-size: 100% - 2 * $sidebar-margin;
@@ -80,9 +73,10 @@ $theme-colors: ("primary": $my-primary,
     position: relative;
     background: $card-background;
     width: $margin-adjusted-percentage;
-    height: $margin-adjusted-percentage;
+    height: calc(#{$margin-adjusted-percentage} - #{$path-card-height} - #{$content-margin} * 2);
     margin: $content-margin;
     border-radius: 10px;
+    display: none; //sets all cards to not display by default. Displaying is handled in InterfaceEventController.ts
 }
 
 @mixin sidebar-options-card {
@@ -106,23 +100,24 @@ $theme-colors: ("primary": $my-primary,
     height: 100%;
     padding-left: 8px;
 
-    &::placeholder{
+    &::placeholder {
         color: $my-text-color;
     }
+
     &::-webkit-calendar-picker-indicator {
         opacity: 0.1;
-      }
+    }
 }
 
 @mixin header-row-style($head-height: $row-height + 16px) {
-    margin-top: -$sidebar-margin ;
+    margin-top: -$sidebar-margin;
     background-color: rgba($card-background, 0.2);
     margin-left: 0;
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     height: $head-height;
-    
+
 
     h3 {
         width: 100%;
@@ -181,6 +176,7 @@ label {
         vertical-align: bottom;
     }
 
+    .col,
     .col-md-1,
     .col-md-2,
     .col-md-3,
@@ -197,7 +193,7 @@ label {
     }
 }
 
-option{
+option {
     background-color: $card-background;
     color: $my-text-color;
 }
@@ -261,25 +257,31 @@ option{
                     color: $my-text-color;
                 }
 
-                #pickerBackground{
+                #pickerBackground {
                     @include input-field-styling;
                     padding-left: 0;
 
-                    input{ 
+                    input {
                         width: 100%;
                         height: 100%;
-                        visibility: hidden; 
+                        visibility: hidden;
                     }
 
-                    label{
+                    label {
                         cursor: pointer;
                         height: $row-height - 8px;
                         margin: 4px;
                         width: calc(100% - 8px);
                         border-radius: 5px;
                     }
-                    #fakeSafePicker{ background-color: #008000; }
-                    #fakeDangerPicker{ background-color: #ff0000; }
+
+                    #fakeSafePicker {
+                        background-color: #008000;
+                    }
+
+                    #fakeDangerPicker {
+                        background-color: #ff0000;
+                    }
 
                 }
 
@@ -394,20 +396,25 @@ option{
         margin-left: $sidebar-margin;
         margin-right: $sidebar-margin / 2;
         margin-bottom: 1px;
-        .row{
+
+        .row {
             margin-left: 0px;
             margin-right: 0px;
-            .col-md-4{
+
+            .col-md-4 {
                 padding: 5px;
                 padding-bottom: 0;
             }
-            #left{
+
+            #left {
                 padding-left: 0px;
             }
-            #right{
+
+            #right {
                 padding-right: 0px;
             }
         }
+
         button {
             width: 100%;
             height: 50px;
@@ -531,12 +538,6 @@ option{
             text-align: center;
         }
 
-        hr {
-            background-color: $my-subheader-color;
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-
         p {
             margin-left: 5%;
         }
@@ -570,11 +571,29 @@ body {
     height: 100%; //this is here to make the gradient fit
     background: $my-gradient;
     font-family: "Quicksand", sans-serif;
+    overflow: hidden;
 }
 
 // ==================== End Body Content Styles ====================
 
 // ======================== Chart Card Styles ========================
+#pathCard {
+    input{ @include input-field-styling; }
+    position: relative;
+    background: $card-background;
+    width: $margin-adjusted-percentage;
+    height: $path-card-height;
+    margin: $content-margin;
+    border-radius: 10px;
+    padding: 10px;
+    label{ 
+        overflow: hidden;
+        display: inline; 
+        //width: 80px;
+    }
+    input{ width: calc(100% - 80px) }
+}
+
 #treeMapCard {
     @include content-card;
 
@@ -587,7 +606,7 @@ body {
         height: $margin-adjusted-percentage * 0.1 - $content-margin;
         margin: $content-margin;
     }
-    
+
 
     #treeMapChart {
         position: relative;
@@ -596,6 +615,14 @@ body {
         margin: $content-margin;
         margin-top: 0;
     }
+}
+
+#duplicatesCard {
+    @include content-card;
+}
+
+#statsCard {
+    @include content-card;
 }
 
 // ====================== End Chart Card Styles ======================

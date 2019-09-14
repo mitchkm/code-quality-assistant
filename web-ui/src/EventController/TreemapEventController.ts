@@ -242,6 +242,7 @@ class TreemapEventController {
     const SAFE_COLOR = ".safeColorInput";
     const DANGER_COLOR = ".dangerColorInput";
     const SAFE_LABEL = "#fakeSafePicker";
+    const DANGER_LABEL = "#fakeDangerPicker";
     const defaultSafeColor = "#008000";
     const defaultDangerColor = "#ff0000";
 
@@ -264,7 +265,6 @@ class TreemapEventController {
     d3.select(DANGER_COLOR).on("change", () => {
       const safeColorInput = d3.select(SAFE_COLOR).property("value");
       const dangerColorInput = d3.select(DANGER_COLOR).property("value");
-      const DANGER_LABEL = "#fakeDangerPicker";
 
       d3.select(DANGER_LABEL).style("background-color", dangerColorInput);
 
@@ -286,6 +286,8 @@ class TreemapEventController {
     const dangerColor = this.treemapSettings.color.colors[1];
     d3.select(SAFE_COLOR).property("value", safeColor);
     d3.select(DANGER_COLOR).property("value", dangerColor);
+    d3.select(SAFE_LABEL).style("background-color", safeColor);
+    d3.select(DANGER_LABEL).style("background-color", dangerColor);
     this.updateColorBar(safeColor, dangerColor);
   }
 

@@ -21,13 +21,23 @@
   <meta charset="utf-8" />
 
   <div id="contentArea">
-    <div id="treeMapCard">
-      <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">
-        &larr; UP
-      </button>
-      <div class="feature" id="treeMapChart"></div>
-      <div class="mouseHover"></div>
+    <div id="pathCard">
+      <label>Analyzing: </label>
+      <input id="pathInput" readonly placeholder="/some/Path/" type="text">
     </div>
+  <div id="treeMapCard">
+    <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">
+      &larr; UP
+    </button>
+    <div class="feature" id="treeMapChart"></div>
+    <div class="mouseHover"></div>
+  </div>
+  <div id="duplicatesCard">
+
+  </div>
+  <div id="statsCard">
+
+  </div>
   </div>
 
   <div id="sidebar">
@@ -42,10 +52,10 @@
             <button id="treemapChartButton">Tree Map</button>
           </div>
           <div class="col-md-4">
-            <button id="chart2Button">Chart 2</button>
+            <button id="chart2Button">Code Duplication</button>
           </div>
           <div class="col-md-4" id="right">
-            <button id="chart3Button">Chart 3</button>
+            <button id="chart3Button">Statistics</button>
           </div>
         </div>
       </div>
@@ -61,7 +71,7 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <p>Size metric:</p>
+              <p>Choose size metric:</p>
             </div>
             <div class="col-md-6">
               <select id="sizeSelector"></select>
@@ -69,7 +79,7 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <p>Color metric:</p>
+              <p>Choose color metric:</p>
             </div>
             <div class="col-md-6">
               <select id="colorSelector"></select>
@@ -129,7 +139,7 @@
           <div class="row" id="headerRow">
             <div class="col-md-12">
               <div id="header">
-                <h3>Chart 2 Options</h3>
+                <h3>Duplication Options</h3>
               </div>
             </div>
           </div>
@@ -142,7 +152,7 @@
           <div class="row" id="headerRow">
             <div class="col-md-12">
               <div id="header">
-                <h3>Chart 3 Options</h3>
+                <h3>Statistics Options</h3>
               </div>
             </div>
           </div>

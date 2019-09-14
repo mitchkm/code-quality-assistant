@@ -12,6 +12,12 @@ class InterfaceEventController {
       "chart3"
     ];
 
+    const chartElements = [
+      document.getElementById("treeMapCard"),
+      document.getElementById("duplicatesCard"),
+      document.getElementById("statsCard")
+    ];
+
     let chart = charts.indexOf(initialState);
     chart = chart !== -1 ? chart : 0;
     InterfaceEventController.curChartName = charts[chart];
@@ -28,25 +34,30 @@ class InterfaceEventController {
       document.getElementById("chart3OptionsSidebarCard")
     ];
 
-    let currentChart = chartSelectButtons[chart];
-    let currentCard = chartOptionsCards[chart];
-    currentChart.className += " active";
-    currentCard.style.display = "block";
+    let currentChartButton = chartSelectButtons[chart];
+    let currentOptionsCard = chartOptionsCards[chart];
+    let currentChart       = chartElements[chart];
+    currentChartButton.className += " active";
+    currentOptionsCard.style.display = "block";
+    currentChart.style.display = "block";
 
 
     // Loop through the buttons and add the active class to the current/clicked button
     for (let i = 0; i < chartSelectButtons.length; i++) {
-      chartSelectButtons[i].addEventListener("click", function() {
+      chartSelectButtons[i].addEventListener("click", function () {
 
-        currentChart.className = "";
+        currentChartButton.className = "";
         this.className = "active";
         InterfaceEventController.curChartName = charts[i];
 
-        currentCard.style.display = "none";
+        currentOptionsCard.style.display = "none";
+        currentChart.style.display = "none";
         chartOptionsCards[chartSelectButtons.indexOf(this)].style.display = "block";
+        chartElements[chartSelectButtons.indexOf(this)].style.display = "block";
 
-        currentCard = chartOptionsCards[chartSelectButtons.indexOf(this)];
-        currentChart = this;
+        currentOptionsCard = chartOptionsCards[chartSelectButtons.indexOf(this)];
+        currentChart =  chartElements[chartSelectButtons.indexOf(this)];
+        currentChartButton = this;
         util.fillURLText(undefined);
       });
     }
