@@ -11,8 +11,6 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet" />
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 
-  <!--Bootstrap toggle CDN https://www.bootstraptoggle.com/-->
-
   <!-- Our Custom CSS -->
   <link rel="stylesheet" href="./styles.css" />
 </head>
@@ -1042,25 +1040,9 @@
           </div>
           <div class="treemapColors">
             <div class="colorInputs">
-              <div class="row">
+              <div class="row" id="combinedRow">
                 <div class="col-md-4">
-                  <label>Safety Color: </label>
-                </div>
-                <div class="col-md-4">
-                  <label>Danger Color: </label>
-                </div>
-                <div class="col-md-4">
-                  <label class="thresholdTooltip">Danger Threshold:
-                    <span class="thresholdTooltipText">
-                      <div class="minMaxText"></div>
-                      <div class="requiredThresholdInput">Threshold must be a number > 0</div>
-                      <div class="selectedValueText"></div>
-                    </span>
-                  </label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
+                    <label>Safety Color: </label>
                   <div id="pickerBackground">
                     <label id="fakeSafePicker">
                       <input class="safeColorInput" type="color" value="#008000" />
@@ -1068,6 +1050,7 @@
                   </div>
                 </div>
                 <div class="col-md-4">
+                    <label>Danger Color: </label>
                   <div id="pickerBackground">
                     <label id="fakeDangerPicker">
                       <input class="dangerColorInput" type="color" value="#ff0000" />
@@ -1075,6 +1058,13 @@
                   </div>
                 </div>
                 <div class="col-md-4">
+                    <label class="thresholdTooltip">Danger Threshold:
+                        <span class="thresholdTooltipText">
+                          <div class="minMaxText"></div>
+                          <div class="requiredThresholdInput">Threshold must be a number > 0</div>
+                          <div class="selectedValueText"></div>
+                        </span>
+                      </label>
                   <input class="dangerThresholdInput" type="text" />
                 </div>
               </div>

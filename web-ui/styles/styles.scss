@@ -254,28 +254,42 @@ option {
         .treemapColors {
             .colorInputs {
                 overflow: hidden;
+                text-overflow: clip;
+
+                $labels-height: 20px;
+                
+                #combinedRow{
+                    height: $row-height + $labels-height;
+                }
 
                 label {
                     font-size: 14px;
                     color: $my-text-color;
+                    display: block;
+                    height: $labels-height;
+                    text-overflow: clip;
+                    white-space: nowrap;
+                    max-width: 100%;
                 }
 
                 #pickerBackground {
                     @include input-field-styling;
                     padding-left: 0;
+                    height: $row-height;
+                    padding: 4px;
 
                     input {
                         width: 100%;
-                        height: 100%;
+                        height: $row-height;
                         visibility: hidden;
                     }
 
                     label {
                         cursor: pointer;
                         height: $row-height - 8px;
-                        margin: 4px;
-                        width: calc(100% - 8px);
+                        width: calc(100%);
                         border-radius: 5px;
+                        top: 4px;
                     }
 
                     #fakeSafePicker {
@@ -286,6 +300,9 @@ option {
                         background-color: #ff0000;
                     }
 
+                }
+                .dangerThresholdInput{
+                    height: $row-height !important;
                 }
 
                 .thresholdTooltip {
@@ -643,7 +660,7 @@ body {
     #duplicatesListDiv{
         position: absolute;
         width: 100%;
-        height: 80%;
+        height: 70%;
         bottom: 0;
     }
 
