@@ -63,11 +63,15 @@ class TreemapEventController {
    */
   private updateTreemap() {
     this.mD.clearFilterList();
+    this.mD.clearFileTypeFilterList();
     this.mD.useBlackList();
-    this.mD.addToFilterList(this.treemapSettings.fileOption.list);
+    this.mD.addToFilterList(this.treemapSettings.fileOption.files);
     if (this.treemapSettings.fileOption.type === "white") {
       this.mD.useWhiteList();
     }
+    this.treemapSettings.fileOption.types.forEach(type => {
+      this.mD.addToFileTypeFilterList(type);
+    });
     const data = this.mD.toTreemapData(
       this.treemapSettings.sizeOption,
       this.treemapSettings.colorOption
@@ -77,14 +81,40 @@ class TreemapEventController {
   }
 
   private processFile(file: string) {
-    if (
-      this.mD.fileList.indexOf(file) !== -1 &&
-      this.treemapSettings.fileOption.list.indexOf(file) === -1
+    // detect basic globbing
+    if (file.indexOf("*") !== -1) {
+      const glob = file.split("*");
+      if (glob[1]) { // for filetypes: *.type
+        const type = glob[1].substr(1);
+        if (
+          this.mD.allTypes.indexOf(type) !== -1 &&
+          this.treemapSettings.fileOption.types.indexOf(type) === -1
+        ) {
+          this.treemapSettings.fileOption.types.push(type);
+          this.addFileTypeToListUI(type);
+        }
+      }
+      else { // for folders: /path/to/folder/*
+        const folder = glob[0];
+        this.mD.allFiles.forEach(file => {
+          if (file.split(folder)[1]) {
+            this.processFile(file);
+          }
+        });
+      }
+      return true;
+    }
+    // check if normal file
+    else if (
+      this.mD.allFiles.indexOf(file) !== -1 &&
+      this.treemapSettings.fileOption.files.indexOf(file) === -1
     ) {
-      this.treemapSettings.fileOption.list.push(file);
+      this.treemapSettings.fileOption.files.push(file);
       this.addFileToListUI(file);
       return true;
     }
+
+    return false;
   }
 
   /**
@@ -106,7 +136,7 @@ class TreemapEventController {
 
     d3.select(FILE_LIST)
       .selectAll("option")
-      .data(this.mD.fileList)
+      .data(this.mD.allFiles)
       .enter()
       .append("option")
       .attr("value", function(d) {
@@ -123,7 +153,7 @@ class TreemapEventController {
     });
 
     d3.select(FILE_CLEAR).on("click", () => {
-      this.treemapSettings.fileOption.list = [];
+      this.treemapSettings.fileOption.files = [];
       d3.select("#fileList")
         .select(".row")
         .selectAll("div")
@@ -140,9 +170,14 @@ class TreemapEventController {
       this.updateTreemap();
     });
 
-    if (this.treemapSettings.fileOption.list.length > 0) {
-      this.treemapSettings.fileOption.list.forEach((file) => {
+    if (this.treemapSettings.fileOption.files.length > 0) {
+      this.treemapSettings.fileOption.files.forEach(file => {
         this.addFileToListUI(file);
+      });
+    }
+    if (this.treemapSettings.fileOption.types.length > 0) {
+      this.treemapSettings.fileOption.types.forEach(type => {
+        this.addFileTypeToListUI(type);
       });
     }
     if (this.treemapSettings.fileOption.type === "white") {
@@ -271,7 +306,7 @@ class TreemapEventController {
       this.treemapSettings.color.colors[1] = dangerColorInput
         ? dangerColorInput
         : defaultDangerColor;
-        this.treemapSettings.color.colors[2] = dangerColorInput
+      this.treemapSettings.color.colors[2] = dangerColorInput
         ? dangerColorInput
         : defaultDangerColor;
 
@@ -295,15 +330,15 @@ class TreemapEventController {
     const COLOR_BAR = ".colorGradientBar";
     // update Color Bar
     d3.select(COLOR_BAR)
-    .style("height", "36px")
-    .style(
-      "background-image",
-      "linear-gradient(to right," +
-        safeColorInput +
-        ", " +
-        dangerColorInput +
-        ")"
-    );
+      .style("height", "36px")
+      .style(
+        "background-image",
+        "linear-gradient(to right," +
+          safeColorInput +
+          ", " +
+          dangerColorInput +
+          ")"
+      );
   }
 
   /**
@@ -314,7 +349,8 @@ class TreemapEventController {
     const min = this.mD.getMinColorMetric(colorMetric);
     const max = this.mD.getMaxColorMetric(colorMetric);
     let dangerThreshold = DangerThresholds[colorMetric];
-    dangerThreshold = dangerThreshold !== -1 ? dangerThreshold : Math.floor(max * 2);
+    dangerThreshold =
+      dangerThreshold !== -1 ? dangerThreshold : Math.floor(max * 2);
     const DANGER_THRESHOLD = ".dangerThresholdInput";
 
     // set default threshold value
@@ -341,9 +377,7 @@ class TreemapEventController {
 
     // update treemap color based on threshold
     d3.select(DANGER_THRESHOLD).on("change", () => {
-      let selectedVal = parseInt(
-        d3.select(DANGER_THRESHOLD).property("value")
-      );
+      let selectedVal = parseInt(d3.select(DANGER_THRESHOLD).property("value"));
       // check the validity of danger threshold
       if (isNaN(selectedVal) || selectedVal <= 0) {
         selectedVal = this.treemapSettings.color.thresholds[1];
@@ -391,6 +425,24 @@ class TreemapEventController {
   }
 
   private addFileToListUI(name: string) {
+    this.addToFilterListUIHelper(name, () => {
+      const index = this.treemapSettings.fileOption.files.indexOf(name);
+      if (index !== -1) {
+        this.treemapSettings.fileOption.files.splice(index, 1);
+      }
+    });
+  }
+
+  private addFileTypeToListUI(name: string) {
+    this.addToFilterListUIHelper("*." + name, () => {
+      const index = this.treemapSettings.fileOption.types.indexOf(name);
+      if (index !== -1) {
+        this.treemapSettings.fileOption.types.splice(index, 1);
+      }
+    });
+  }
+
+  private addToFilterListUIHelper(name: string, on) {
     const item = d3
       .select("#fileList")
       .select(".row")
@@ -405,10 +457,7 @@ class TreemapEventController {
     const button = fileItem.append("button").attr("class", "btn-circle");
     button.append("i").attr("class", "fa fa-times");
     button.on("click", () => {
-      const index = this.treemapSettings.fileOption.list.indexOf(name);
-      if (index !== -1) {
-        this.treemapSettings.fileOption.list.splice(index, 1);
-      }
+      on();
       item.remove();
       this.updateTreemap();
     });

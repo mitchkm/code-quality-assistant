@@ -58,7 +58,8 @@ const treemapSettings: treemapSetting = {
   sizeOption: Metrics.NLOC,
   colorOption: Metrics.CCN,
   fileOption: {
-    list: [],
+    files: [],
+    types: [],
     type: "black"
   }
 };
