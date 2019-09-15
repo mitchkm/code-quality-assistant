@@ -14,7 +14,7 @@ class InterfaceEventController {
 
     const chartElements = [
       document.getElementById("treeMapCard"),
-      document.getElementById("duplicatesCard"),
+      document.getElementById("codeDuplicationCard"),
       document.getElementById("statsCard")
     ];
 

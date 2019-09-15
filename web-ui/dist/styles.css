@@ -7129,7 +7129,9 @@ a.text-body-bg:hover, a.text-body-bg:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
-button:focus {
+button:focus,
+input:focus,
+select:focus {
   outline: none !important;
   box-shadow: none !important;
   border: 1px solid transparent; }
@@ -7177,6 +7179,10 @@ option {
   background-color: rgba(255, 255, 255, 0.1);
   color: #f6f6f6; }
 
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important; }
+
 #sidebar {
   position: fixed;
   height: 100vh;
@@ -7191,8 +7197,8 @@ option {
     text-align: center;
     color: #f6f6f6;
     cursor: default;
-    margin: 4%;
-    margin-top: 2%;
+    margin: 12px;
+    margin-top: 6px;
     vertical-align: center;
     pointer-events: visible;
     z-index: 5; }
@@ -7202,9 +7208,9 @@ option {
   #sidebar #treemapOptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    margin: 4%;
+    margin: 12px;
     margin-top: 0px;
-    width: 92%;
+    width: calc(100% - 2 * 12px);
     display: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px; }
@@ -7306,7 +7312,7 @@ option {
         margin-bottom: 15px;
         border-radius: 5px; }
     #sidebar #treemapOptionsSidebarCard #optionsGridContainer #headerRow {
-      margin-top: -4%;
+      margin-top: -12px;
       background-color: rgba(255, 255, 255, 0.2);
       margin-left: 0;
       width: 100%;
@@ -7342,15 +7348,15 @@ option {
   #sidebar #chart2OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    margin: 4%;
+    margin: 12px;
     margin-top: 0px;
-    width: 92%;
+    width: calc(100% - 2 * 12px);
     display: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     height: 200px; }
     #sidebar #chart2OptionsSidebarCard #optionsGridContainer #headerRow {
-      margin-top: -4%;
+      margin-top: -12px;
       background-color: rgba(255, 255, 255, 0.2);
       margin-left: 0;
       width: 100%;
@@ -7370,15 +7376,15 @@ option {
   #sidebar #chart3OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    margin: 4%;
+    margin: 12px;
     margin-top: 0px;
-    width: 92%;
+    width: calc(100% - 2 * 12px);
     display: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     height: 200px; }
     #sidebar #chart3OptionsSidebarCard #optionsGridContainer #headerRow {
-      margin-top: -4%;
+      margin-top: -12px;
       background-color: rgba(255, 255, 255, 0.2);
       margin-left: 0;
       width: 100%;
@@ -7396,9 +7402,9 @@ option {
         height: 100%;
         line-height: 52px; }
   #sidebar #chartSelectBar {
-    width: 92%;
-    margin-left: 4%;
-    margin-right: 2%;
+    width: calc(100% - 2 * 12px);
+    margin-left: 12px;
+    margin-right: 6px;
     margin-bottom: 1px; }
     #sidebar #chartSelectBar .row {
       margin-left: 0px;
@@ -7442,14 +7448,14 @@ option {
   #sidebar #fileFilterCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    margin: 4%;
-    margin-top: 8%;
-    width: 92%;
+    margin: 12px;
+    margin-top: 24px;
+    width: calc(100% - 2 * 12px);
     padding: 0;
     padding-bottom: 5px;
     border-radius: 10px; }
     #sidebar #fileFilterCard #headerRow {
-      margin-top: -4%;
+      margin-top: -12px;
       background-color: rgba(255, 255, 255, 0.2);
       margin-left: 0;
       width: 100%;
@@ -7466,15 +7472,17 @@ option {
       position: relative;
       background: rgba(0, 0, 0, 0.2);
       width: 100%;
-      padding: 2%;
+      padding: 6px;
       border-radius: 10px; }
       #sidebar #fileFilterCard #fileListCard #fileList {
-        width: 92%;
+        width: calc(100% - 2 * 12px);
         min-height: 60px;
         max-height: 160px;
-        margin-left: 8%;
+        margin-left: 12px;
+        margin-right: 12px;
         overflow-y: scroll;
-        overflow-x: hidden; }
+        overflow-x: hidden;
+        padding: 5px; }
         #sidebar #fileFilterCard #fileListCard #fileList .row {
           width: 100%;
           height: auto; }
@@ -7521,14 +7529,14 @@ option {
   #sidebar #urlOptionsCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
-    margin: 4%;
-    margin-top: 8%;
-    width: 92%;
+    margin: 12px;
+    margin-top: 24px;
+    width: calc(100% - 2 * 12px);
     padding: 0;
     border-radius: 10px;
     padding-bottom: 5px; }
     #sidebar #urlOptionsCard #headerRow {
-      margin-top: -4%;
+      margin-top: -12px;
       background-color: rgba(255, 255, 255, 0.2);
       margin-left: 0;
       width: 100%;
@@ -7594,9 +7602,9 @@ body {
 #pathCard {
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  width: 96%;
+  width: calc(100% - 2 * 16px);
   height: 60px;
-  margin: 2%;
+  margin: 16px;
   border-radius: 10px;
   padding: 10px; }
   #pathCard input {
@@ -7613,16 +7621,20 @@ body {
       opacity: 0.1; }
   #pathCard label {
     overflow: hidden;
-    display: inline; }
+    display: inline;
+    font-size: 30px;
+    line-height: 35px; }
   #pathCard input {
-    width: calc(100% - 80px); }
+    width: calc(100% - 150px);
+    cursor: default;
+    transform: translate(0, -2.5px); }
 
 #treeMapCard {
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  width: 96%;
-  height: calc(96% - 60px - 2% * 2);
-  margin: 2%;
+  width: calc(100% - 2 * 16px);
+  height: calc(calc(100% - 2 * 16px) - 60px - 16px);
+  margin: 16px;
   border-radius: 10px;
   display: none; }
   #treeMapCard #TreemapBackButton {
@@ -7633,9 +7645,9 @@ body {
     width: 100%;
     cursor: zoom-out;
     position: relative;
-    width: 96%;
-    height: 7.6%;
-    margin: 2%; }
+    width: calc(100% - 2 * 16px);
+    height: calc(calc(100% - 2 * 16px) * 0.1 - 16px);
+    margin: 16px; }
     #treeMapCard #TreemapBackButton:hover {
       border-color: #e70058;
       color: #e70058;
@@ -7646,26 +7658,75 @@ body {
       background-color: rgba(255, 78, 146, 0.4); }
   #treeMapCard #treeMapChart {
     position: relative;
-    height: 84.4%;
-    width: 96%;
-    margin: 2%;
+    height: calc(calc(100% - 2 * 16px) * 0.9 - 16px);
+    width: calc(100% - 2 * 16px);
+    margin: 16px;
     margin-top: 0; }
 
-#duplicatesCard {
+#codeDuplicationCard {
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  width: 96%;
-  height: calc(96% - 60px - 2% * 2);
-  margin: 2%;
+  width: calc(100% - 2 * 16px);
+  height: calc(calc(100% - 2 * 16px) - 60px - 16px);
+  margin: 16px;
   border-radius: 10px;
   display: none; }
+  #codeDuplicationCard .card-columns {
+    column-count: 4; }
+  #codeDuplicationCard #duplicatesListDiv {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    bottom: 0; }
+  #codeDuplicationCard #duplicatesList {
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    width: calc(100% - 2 * 16px);
+    height: calc(100% - 2 * 16px);
+    margin: 16px;
+    border-radius: 10px;
+    padding: 16px;
+    overflow-y: scroll; }
+    #codeDuplicationCard #duplicatesList #gridContainer {
+      width: calc(100% - 2 * 10px);
+      height: calc(100% - 2 * 10px);
+      margin: 10px; }
+    #codeDuplicationCard #duplicatesList span {
+      margin: 0;
+      overflow: hidden;
+      text-overflow: clip; }
+    #codeDuplicationCard #duplicatesList .row {
+      height: auto;
+      color: #f6f6f6;
+      padding: 0;
+      margin: 0px;
+      margin-top: -1px;
+      border-bottom: 1px solid rgba(246, 246, 246, 0.2); }
+      #codeDuplicationCard #duplicatesList .row:last-child {
+        border-bottom: 0; }
+    #codeDuplicationCard #duplicatesList .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 5px; }
+      #codeDuplicationCard #duplicatesList .card div[class*="col-"] {
+        padding-left: 5px;
+        padding-right: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-right: 1px solid rgba(246, 246, 246, 0.2);
+        margin-right: -1px; }
+        #codeDuplicationCard #duplicatesList .card div[class*="col-"]:last-child {
+          border-right: 0; }
+    #codeDuplicationCard #duplicatesList #labelRow {
+      border-bottom: 2px solid rgba(246, 246, 246, 0.2);
+      color: rgba(246, 246, 246, 0.4);
+      text-align: center; }
 
 #statsCard {
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  width: 96%;
-  height: calc(96% - 60px - 2% * 2);
-  margin: 2%;
+  width: calc(100% - 2 * 16px);
+  height: calc(calc(100% - 2 * 16px) - 60px - 16px);
+  margin: 16px;
   border-radius: 10px;
   display: none; }
 
@@ -7752,7 +7813,7 @@ body {
   height: 25px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 25px;
-  margin: 4%;
+  margin: 12px;
   cursor: default;
   white-space: nowrap;
   width: 100%;
@@ -7766,7 +7827,7 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: calc(75%); }
+    max-width: calc(100% - 27px); }
   .fileFilterPanel .btn-circle {
     cursor: pointer;
     position: absolute;

@@ -25,19 +25,974 @@
       <label>Analyzing: </label>
       <input id="pathInput" readonly placeholder="/some/Path/" type="text">
     </div>
-  <div id="treeMapCard">
-    <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">
-      &larr; UP
-    </button>
-    <div class="feature" id="treeMapChart"></div>
-    <div class="mouseHover"></div>
-  </div>
-  <div id="duplicatesCard">
+    <div id="treeMapCard">
+      <button type="button" class="btn btn-outline-secondary" id="TreemapBackButton">
+        &larr; UP
+      </button>
+      <div class="feature" id="treeMapChart"></div>
+      <div class="mouseHover"></div>
+    </div>
+    <div id="codeDuplicationCard">
+      <div id="duplicatesListDiv">
+        <div id="duplicatesList">
+          <div class="card-columns">
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
 
-  </div>
-  <div id="statsCard">
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
 
-  </div>
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+                <div id="gridContainer">
+                  <div class="row" id="labelRow">
+                    <div class="col-md-6">
+                      <span>filename</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>from</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>to</span>
+                    </div>
+  
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1234567890</span>
+                    </div>
+                    <div class="col-3">
+                      <span>123456</span>
+                    </div>
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+              <div class="card">
+                <div id="gridContainer">
+                  <div class="row" id="labelRow">
+                    <div class="col-md-6">
+                      <span>filename</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>from</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>to</span>
+                    </div>
+  
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1234567890</span>
+                    </div>
+                    <div class="col-3">
+                      <span>123456</span>
+                    </div>
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+              <div class="card">
+                <div id="gridContainer">
+                  <div class="row" id="labelRow">
+                    <div class="col-md-6">
+                      <span>filename</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>from</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>to</span>
+                    </div>
+  
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+              <div id="gridContainer">
+                <div class="row" id="labelRow">
+                  <div class="col-md-6">
+                    <span>filename</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>from</span>
+                  </div>
+                  <div class="col-md-3">
+                    <span>to</span>
+                  </div>
+
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1234567890</span>
+                  </div>
+                  <div class="col-3">
+                    <span>123456</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="row" id="filesRow">
+                  <div class="col-6">
+                    <span>a file</span>
+                  </div>
+                  <div class="col-3">
+                    <span>0</span>
+                  </div>
+                  <div class="col-3">
+                    <span>1</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card">
+                <div id="gridContainer">
+                  <div class="row" id="labelRow">
+                    <div class="col-md-6">
+                      <span>filename</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>from</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>to</span>
+                    </div>
+  
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1234567890</span>
+                    </div>
+                    <div class="col-3">
+                      <span>123456</span>
+                    </div>
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+              <div class="card">
+                <div id="gridContainer">
+                  <div class="row" id="labelRow">
+                    <div class="col-md-6">
+                      <span>filename</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>from</span>
+                    </div>
+                    <div class="col-md-3">
+                      <span>to</span>
+                    </div>
+  
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1234567890</span>
+                    </div>
+                    <div class="col-3">
+                      <span>123456</span>
+                    </div>
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+                  <div class="row" id="filesRow">
+                    <div class="col-6">
+                      <span>a file</span>
+                    </div>
+                    <div class="col-3">
+                      <span>0</span>
+                    </div>
+                    <div class="col-3">
+                      <span>1</span>
+                    </div>
+                  </div>
+  
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="statsCard">
+
+    </div>
   </div>
 
   <div id="sidebar">

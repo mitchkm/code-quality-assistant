@@ -1,7 +1,3 @@
-//@import "reset";
-//@import "variables";
-//@import "mixins";
-
 // ========================== Variables ==========================
 $my-primary: #4faaff;
 $my-secondary: #ff1b72;
@@ -18,12 +14,12 @@ $my-gradient: linear-gradient(to bottom right,
 
 $sidebar-width: 30%;
 $content-area-width: 70%;
-$content-margin: 2%;
-$margin-adjusted-percentage: 100% - 2 * $content-margin;
+$content-margin: 16px;
+$margin-adjusted-percentage: calc(100% - 2 * #{$content-margin});
 $path-card-height: 60px;
 
-$sidebar-margin: 4%;
-$sidebar-adjusted-size: 100% - 2 * $sidebar-margin;
+$sidebar-margin: 12px;
+$sidebar-adjusted-size:  calc(100% - 2 * #{$sidebar-margin});
 
 $row-height: 36px;
 $card-content-side-margin: 5px;
@@ -73,7 +69,7 @@ $theme-colors: ("primary": $my-primary,
     position: relative;
     background: $card-background;
     width: $margin-adjusted-percentage;
-    height: calc(#{$margin-adjusted-percentage} - #{$path-card-height} - #{$content-margin} * 2);
+    height: calc(#{$margin-adjusted-percentage} - #{$path-card-height} - #{$content-margin});
     margin: $content-margin;
     border-radius: 10px;
     display: none; //sets all cards to not display by default. Displaying is handled in InterfaceEventController.ts
@@ -134,7 +130,9 @@ $theme-colors: ("primary": $my-primary,
 // =========================== Style Fixes ===========================
 
 
-button:focus {
+button:focus,
+input:focus,
+select:focus {
     outline: none !important;
     box-shadow: none !important;
     border: 1px solid transparent;
@@ -197,6 +195,11 @@ option {
     background-color: $card-background;
     color: $my-text-color;
 }
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+ }
 
 // ========================= End Style Fixes =========================
 
@@ -484,10 +487,11 @@ option {
                 width: $sidebar-adjusted-size;
                 min-height: 60px;
                 max-height: 160px;
-                margin-left: $sidebar-margin * 2;
+                margin-left: $sidebar-margin;
+                margin-right: $sidebar-margin;
                 overflow-y: scroll;
                 overflow-x: hidden;
-
+                padding: 5px;
 
                 .row {
                     width: 100%;
@@ -578,7 +582,10 @@ body {
 
 // ======================== Chart Card Styles ========================
 #pathCard {
-    input{ @include input-field-styling; }
+    input {
+        @include input-field-styling;
+    }
+
     position: relative;
     background: $card-background;
     width: $margin-adjusted-percentage;
@@ -586,12 +593,20 @@ body {
     margin: $content-margin;
     border-radius: 10px;
     padding: 10px;
-    label{ 
+
+    label {
         overflow: hidden;
-        display: inline; 
+        display: inline;
+        font-size: 30px;
+        line-height: 35px;
         //width: 80px;
     }
-    input{ width: calc(100% - 80px) }
+
+    input {
+        width: calc(100% - 150px);
+        cursor: default;
+        transform: translate(0, -2.5px);
+    }
 }
 
 #treeMapCard {
@@ -603,22 +618,88 @@ body {
         cursor: zoom-out;
         position: relative;
         width: $margin-adjusted-percentage;
-        height: $margin-adjusted-percentage * 0.1 - $content-margin;
+        height: calc(#{$margin-adjusted-percentage} * 0.1 - #{$content-margin});
         margin: $content-margin;
     }
 
 
     #treeMapChart {
         position: relative;
-        height: $margin-adjusted-percentage * 0.9 - $content-margin;
+        height: calc(#{$margin-adjusted-percentage} * 0.9 - #{$content-margin});
         width: $margin-adjusted-percentage;
         margin: $content-margin;
         margin-top: 0;
     }
 }
 
-#duplicatesCard {
+#codeDuplicationCard {
     @include content-card;
+    $card-margin: 10px;
+    $card-percentage: calc(100% - 2 * #{$card-margin});
+    $grid-color: rgba($my-text-color, 0.2);
+
+    .card-columns{ column-count: 4; }
+
+    #duplicatesListDiv{
+        position: absolute;
+        width: 100%;
+        height: 80%;
+        bottom: 0;
+    }
+
+    #duplicatesList {
+        position: relative;
+        background: rgba(black, 0.2);
+        width: $margin-adjusted-percentage;
+        height: $margin-adjusted-percentage;
+        margin: $content-margin;
+        border-radius: 10px;
+        padding: $content-margin;
+        #gridContainer
+        {
+            width: $card-percentage;
+            height: $card-percentage;
+            margin: $card-margin;
+        }
+        span{
+            margin: 0;
+            overflow: hidden;
+            text-overflow: clip;
+        }
+        .row{ 
+            height: auto;
+            color: $my-text-color;
+            padding: 0;
+            margin: 0px;
+            margin-top: -1px;
+            border-bottom: 1px solid $grid-color;
+            &:last-child{
+                border-bottom: 0;
+            }
+        }
+        overflow-y: scroll;
+        .card{
+            background-color: $card-background;
+            border-radius: 5px;
+
+            div[class*="col-"]{
+                padding-left: 5px;
+                padding-right: 5px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                border-right: 1px solid $grid-color;
+                margin-right: -1px;
+                &:last-child{
+                    border-right: 0;
+                }
+            }
+        }
+        #labelRow{
+            border-bottom: 2px solid $grid-color;
+            color: rgba($my-text-color, 0.4);
+            text-align: center;
+        }
+    }
 }
 
 #statsCard {
@@ -761,7 +842,7 @@ body {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        max-width: calc(75%);
+        max-width: calc(100% - 27px);
     }
 
 
