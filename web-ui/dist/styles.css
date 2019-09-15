@@ -7179,9 +7179,21 @@ option {
   background-color: rgba(255, 255, 255, 0.1);
   color: #f6f6f6; }
 
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important; }
+@media (min-width: 1200px) {
+  .card-columns {
+    column-count: 4; } }
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card-columns {
+    column-count: 3; } }
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card-columns {
+    column-count: 2; } }
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .card-columns {
+    column-count: 1; } }
 
 #sidebar {
   position: fixed;
@@ -7229,6 +7241,10 @@ option {
         color: #f6f6f6; }
       #sidebar #treemapOptionsSidebarCard #sizeSelector::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #treemapOptionsSidebarCard #sizeSelector::-webkit-inner-spin-button, #sidebar #treemapOptionsSidebarCard #sizeSelector::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
     #sidebar #treemapOptionsSidebarCard #colorSelector {
       background: rgba(255, 255, 255, 0.1);
       color: white;
@@ -7244,6 +7260,10 @@ option {
         color: #f6f6f6; }
       #sidebar #treemapOptionsSidebarCard #colorSelector::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #treemapOptionsSidebarCard #colorSelector::-webkit-inner-spin-button, #sidebar #treemapOptionsSidebarCard #colorSelector::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
     #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs {
       overflow: hidden;
       text-overflow: clip; }
@@ -7272,6 +7292,10 @@ option {
           color: #f6f6f6; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground::-webkit-calendar-picker-indicator {
           opacity: 0.1; }
+        #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground::-webkit-inner-spin-button, #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          -moz-appearance: textfield;
+          margin: 0; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground input {
           width: 100%;
           height: 36px;
@@ -7357,6 +7381,10 @@ option {
         color: #f6f6f6; }
       #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::-webkit-inner-spin-button, #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
   #sidebar #chart2OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
@@ -7385,6 +7413,22 @@ option {
         text-align: center;
         height: 100%;
         line-height: 52px; }
+    #sidebar #chart2OptionsSidebarCard #optionsGridContainer input {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px; }
+      #sidebar #chart2OptionsSidebarCard #optionsGridContainer input::placeholder {
+        color: #f6f6f6; }
+      #sidebar #chart2OptionsSidebarCard #optionsGridContainer input::-webkit-calendar-picker-indicator {
+        opacity: 0.1; }
+      #sidebar #chart2OptionsSidebarCard #optionsGridContainer input::-webkit-inner-spin-button, #sidebar #chart2OptionsSidebarCard #optionsGridContainer input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
   #sidebar #chart3OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
@@ -7510,6 +7554,10 @@ option {
         color: #f6f6f6; }
       #sidebar #fileFilterCard #fileSelector::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #fileFilterCard #fileSelector::-webkit-inner-spin-button, #sidebar #fileFilterCard #fileSelector::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
     #sidebar #fileFilterCard #fileFilterButton {
       color: #4faaff;
       background-color: rgba(79, 170, 255, 0.2);
@@ -7594,6 +7642,10 @@ option {
         color: #f6f6f6; }
       #sidebar #urlOptionsCard input::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #urlOptionsCard input::-webkit-inner-spin-button, #sidebar #urlOptionsCard input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
   #sidebar p {
     color: #f6f6f6; }
   #sidebar #fileListRow {
@@ -7631,6 +7683,10 @@ body {
       color: #f6f6f6; }
     #pathCard input::-webkit-calendar-picker-indicator {
       opacity: 0.1; }
+    #pathCard input::-webkit-inner-spin-button, #pathCard input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      margin: 0; }
   #pathCard label {
     overflow: hidden;
     display: inline;
@@ -7683,8 +7739,6 @@ body {
   margin: 16px;
   border-radius: 10px;
   display: none; }
-  #codeDuplicationCard .card-columns {
-    column-count: 4; }
   #codeDuplicationCard #duplicatesListDiv {
     position: absolute;
     width: 100%;
