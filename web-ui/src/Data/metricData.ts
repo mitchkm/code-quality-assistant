@@ -91,6 +91,9 @@ export class MetricData {
   public get allFiles() {
     return this._allFiles;
   }
+  public get path() {
+    return this.rawData.path;
+  }
   private _allTypes = new Set<string>();
   public get allTypes() {
     return Array.from(this._allTypes);
@@ -110,7 +113,7 @@ export class MetricData {
   constructor(private rawData: AnalysisData) {
     // Preprocess data recieved
     for (const file of rawData.files) {
-      const relativeName = this.parseFileName(file.filename, rawData.path);
+      const relativeName = MetricData.parseRelativeName(file.filename, rawData.path);
       this._allFiles.push(relativeName);
       this._allTypes.add(file.filetype);
       this.processFile(file, relativeName);
@@ -293,7 +296,7 @@ export class MetricData {
    * @param file full path to file
    * @param path full path to original specified directory
    */
-  private parseFileName(file: string, path: string) {
+  public static parseRelativeName(file: string, path: string) {
     let relative = file.replace(path, "");
     if (relative === "") {
       relative = file;

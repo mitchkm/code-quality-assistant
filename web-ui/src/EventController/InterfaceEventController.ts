@@ -1,16 +1,14 @@
 import d3 = require("d3");
 import * as util from "../util";
+import { MetricData } from "../Data/metricData";
 
 class InterfaceEventController {
   public static curChartName = "treemap";
+  public static mD: MetricData;
   // static init
-  static init(initialState?: string) {
-
-    const charts = [
-      "treemap",
-      "chart2",
-      "chart3"
-    ];
+  static init(initialState: string, mD: MetricData) {
+    InterfaceEventController.mD = mD;
+    const charts = ["treemap", "duplicate", "statistics"];
 
     const chartElements = [
       document.getElementById("treeMapCard"),
@@ -36,27 +34,27 @@ class InterfaceEventController {
 
     let currentChartButton = chartSelectButtons[chart];
     let currentOptionsCard = chartOptionsCards[chart];
-    let currentChart       = chartElements[chart];
+    let currentChart = chartElements[chart];
     currentChartButton.className += " active";
     currentOptionsCard.style.display = "block";
     currentChart.style.display = "block";
 
-
     // Loop through the buttons and add the active class to the current/clicked button
     for (let i = 0; i < chartSelectButtons.length; i++) {
-      chartSelectButtons[i].addEventListener("click", function () {
-
+      chartSelectButtons[i].addEventListener("click", function() {
         currentChartButton.className = "";
         this.className = "active";
         InterfaceEventController.curChartName = charts[i];
 
         currentOptionsCard.style.display = "none";
         currentChart.style.display = "none";
-        chartOptionsCards[chartSelectButtons.indexOf(this)].style.display = "block";
+        chartOptionsCards[chartSelectButtons.indexOf(this)].style.display =
+          "block";
         chartElements[chartSelectButtons.indexOf(this)].style.display = "block";
 
-        currentOptionsCard = chartOptionsCards[chartSelectButtons.indexOf(this)];
-        currentChart =  chartElements[chartSelectButtons.indexOf(this)];
+        currentOptionsCard =
+          chartOptionsCards[chartSelectButtons.indexOf(this)];
+        currentChart = chartElements[chartSelectButtons.indexOf(this)];
         currentChartButton = this;
         util.fillURLText(undefined);
       });
@@ -70,6 +68,60 @@ class InterfaceEventController {
       });
     });
     util.fillURLText(undefined);
+  }
+  public static initDuplicates(mD: MetricData) {
+    const dupList = d3.select("#duplicatesList").select(".card-columns");
+    dupList.selectAll("div").remove();
+    console.log(dupList);
+    mD.duplicateInfo.duplicates.forEach(dups => {
+      const card = dupList
+        .append("div")
+        .attr("class", "card")
+        .append("div")
+        .attr("id", "gridContainer");
+      // add top row info
+      const labelRow = card
+        .append("div")
+        .attr("class", "row")
+        .attr("id", "labelRow");
+      labelRow
+        .append("div")
+        .attr("class", "col-md-6")
+        .append("span")
+        .text("file");
+      labelRow
+        .append("div")
+        .attr("class", "col-md-3")
+        .append("span")
+        .text("start");
+      labelRow
+        .append("div")
+        .attr("class", "col-md-3")
+        .append("span")
+        .text("end");
+      // add actual info
+      dups.forEach(dup => {
+        const filesRow = card
+          .append("div")
+          .attr("class", "row")
+          .attr("id", "filesRow");
+        filesRow
+          .append("div")
+          .attr("class", "col-6")
+          .append("span")
+          .text(MetricData.parseRelativeName(dup.filename, mD.path));
+        filesRow
+          .append("div")
+          .attr("class", "col-3")
+          .append("span")
+          .text(dup.startLine);
+        filesRow
+          .append("div")
+          .attr("class", "col-3")
+          .append("span")
+          .text(dup.endLine);
+      });
+    });
   }
 }
 
