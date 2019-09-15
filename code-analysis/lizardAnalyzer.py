@@ -5,6 +5,10 @@
 import json
 import lizard
 from lizard_ext.lizardduplicate import LizardExtension as DuplicateDetector
+from lizard_ext.lizardcpre import LizardExtension as lizardcpre
+from lizard_ext.lizardnd import LizardExtension as lizardnd
+from lizard_ext.lizardio import LizardExtension as lizardio
+from lizard_ext.lizardns import LizardExtension as lizardns
 
 #GLOBALS
 LIZARD_SUPPORTED_LANGUAGES = ["c", "cpp", "cc", "mm", "cxx", "h", "hpp", "cs", "gd",
@@ -27,7 +31,11 @@ def analyze(path, filenameList):
 # Runs lizard on each individual file designated in the given filenameList.
 def runLizard(filenameList):
     duplicates = DuplicateDetector()
-    extensions = lizard.get_extensions([duplicates, 'cpre', 'nd', 'io', 'ns'])
+    cpre = lizardcpre()
+    nd = lizardnd()
+    ns = lizardns()
+    io = lizardio()
+    extensions = lizard.get_extensions([duplicates, cpre, ns, nd, io])
     outList = list(lizard.analyze_files(filenameList, exts=extensions))
     dupCodeSnips = list(duplicates.get_duplicates(min_duplicate_tokens=MIN_DUP_TOKENS))
     dupInfo = { 'duplicates': [dupInfoToDict(d) for d in dupCodeSnips], 
