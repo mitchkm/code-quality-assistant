@@ -71,7 +71,7 @@ export enum Metrics {
   FAN_OUT = "fanOut",
   GENERAL_FAN_OUT = "generalFanOut",
   MAX_NESTING_DEPTH = "maxNestingDepth",
-  MAX_NESTED_STRUCTURES = "maxNestedStructures",
+  MAX_NESTED_STRUCTURES = "maxNestedStructures"
 }
 export const allMetrics: string[] = [
   Metrics.NLOC,
@@ -87,27 +87,36 @@ export const allMetrics: string[] = [
 ];
 
 export class MetricData {
-  private allFiles: string[] = [];
-  public get fileList() {
-    return this.allFiles;
+  private _allFiles: string[] = [];
+  public get allFiles() {
+    return this._allFiles;
   }
+  private _allTypes = new Set<string>();
+  public get allTypes() {
+    return Array.from(this._allTypes);
+  }
+
   private statistics: Map<string, Map<string, FileStatistics>> = new Map();
-  private funcLookup: Map<string, Map<string, FunctionData>> = new Map();
-  public get functionLookup() {
-    return this.funcLookup;
+  private fileLookup: Map<string, FileData> = new Map();
+  public get duplicateInfo() {
+    return this.rawData.duplicateInfo;
   }
   private filterList: string[] = [];
   private inverseFilterList: string[] = [];
   private listToggle = "black";
 
+  private fileTypeFilter: string[] = [];
+
   constructor(private rawData: AnalysisData) {
     // Preprocess data recieved
     for (const file of rawData.files) {
       const relativeName = this.parseFileName(file.filename, rawData.path);
-      this.allFiles.push(relativeName);
+      this._allFiles.push(relativeName);
+      this._allTypes.add(file.filetype);
       this.processFile(file, relativeName);
+      this.fileLookup.set(relativeName, file);
     }
-    this.inverseFilterList = this.allFiles.slice();
+    this.inverseFilterList = this._allFiles.slice();
   }
 
   private processFile(file: FileData, relativeName: string) {
@@ -115,10 +124,8 @@ export class MetricData {
     for (const m of allMetrics) {
       valuesMap.set(m, []);
     }
-    const funcMap = new Map();
     // Iterate through functions to build lookup and statistics maps
     for (const func of file.functions) {
-      funcMap.set(func.longName, func);
       // Collect values
       for (const m of allMetrics) {
         valuesMap.get(m).push(func[m]);
@@ -145,7 +152,6 @@ export class MetricData {
       statMap.set(m, metricStats);
     }
     this.statistics.set(relativeName, statMap);
-    this.funcLookup.set(relativeName, funcMap);
   }
 
   /**
@@ -161,7 +167,7 @@ export class MetricData {
    */
   public clearFilterList() {
     this.filterList = [];
-    this.inverseFilterList = this.allFiles.slice();
+    this.inverseFilterList = this._allFiles.slice();
   }
 
   /**
@@ -203,6 +209,27 @@ export class MetricData {
   }
 
   /**
+   * clear list of files that should be filter
+   */
+  public clearFileTypeFilterList() {
+    this.fileTypeFilter = [];
+  }
+
+  /**
+   * add/remove filetypes to filter when creating data
+   * @param fileType filentype to add or remove from list of files to filter.
+   * @param remove toggle whether tyoe is being added or removed
+   */
+  public addToFileTypeFilterList(fileType: string, remove = false) {
+    const index = this.fileTypeFilter.indexOf(fileType);
+    if (remove && index !== -1) {
+      this.fileTypeFilter.splice(index, 1);
+    } else if (index === -1) {
+      this.fileTypeFilter.push(fileType);
+    }
+  }
+
+  /**
    * call to use filter list as a blackList
    */
   public useBlackList() {
@@ -217,6 +244,13 @@ export class MetricData {
   }
 
   /**
+   * See if filter is set to whitelist
+   */
+  private isWhiteList() {
+    return this.listToggle === "white";
+  }
+
+  /**
    * converts raw data to a d3 treemap readable format
    * @param metricA Metric to represent the size of treemap
    * @param metricB Metric to represent normalized value for color or other visual
@@ -228,13 +262,30 @@ export class MetricData {
     if (allMetrics.indexOf(metricB) === -1) {
       metricB = Metrics.NLOC;
     }
-    let ignoreList;
-    if (this.listToggle === "white") {
-      ignoreList = this.inverseFilterList;
-    } else {
-      ignoreList = this.filterList;
+    const fileList = this.createFileList();
+    return this.createTreemapData(metricA, metricB, fileList);
+  }
+
+  private createFileList() {
+    const files = new Set<string>();
+    if (this.isWhiteList()) {
+      this.filterList.forEach(file => {
+        files.add(file);
+      });
+      this.inverseFilterList.forEach(file => {
+        if (this.fileTypeFilter.indexOf(file.split(".")[1]) !== -1) {
+          files.add(file);
+        }
+      });
     }
-    return this.createTreemapData(metricA, metricB, ignoreList);
+    else {
+      this.inverseFilterList.forEach(file => {
+        if (this.fileTypeFilter.indexOf(file.split(".")[1]) === -1) {
+          files.add(file);
+        }
+      });
+    }
+    return Array.from(files);
   }
 
   /**
@@ -261,13 +312,14 @@ export class MetricData {
    * converts raw data to a d3 treemap readable format
    * @param metricA Metric to represent the size of treemap
    * @param metricB Metric to represent normalized value for color or other visual
+   * @param fileList list of files to use to create treemap data
    * @param aggregateA potential aggregate functions for metricA (default is SUM)
    * @param aggregateB potential aggregate functions for metricB (default is SUM)
    */
   private createTreemapData(
     metricA: string,
     metricB: string,
-    ignoreList: string[],
+    fileList: string[] = [],
     aggregateA: (arr: number[]) => number = this.sumArray,
     aggregateB: (arr: number[]) => number = this.sumArray
   ): TreemapData {
@@ -277,43 +329,37 @@ export class MetricData {
       value2: 0,
       children: []
     };
-    if (!this.rawData.files[0]) {
+    if (!this.rawData.files[0] || !fileList[0]) {
       return data;
     }
-
     data.name = metricA + " x " + metricB;
     const values = [];
     const value2s = [];
-    for (const file of this.rawData.files) {
-      const filename = this.parseFileName(file.filename, this.rawData.path);
-      if (ignoreList.indexOf(filename) === -1) {
-        const fileChild: TreemapData = {
-          name: "",
-          value: 0,
-          value2: 0,
-          children: []
+    for (const filename of fileList) {
+      const file: FileData = this.fileLookup.get(filename);
+      const fileChild: TreemapData = {
+        name: "",
+        value: 0,
+        value2: 0,
+        children: []
+      };
+      fileChild.name = filename;
+      // Add function information
+      for (const func of file.functions) {
+        const funcChild: TreemapData = {
+          name: func.name,
+          value: func[metricA],
+          value2: func[metricB],
+          funcData: func,
+          children: undefined
         };
-        const cValues = [];
-        const cValue2s = [];
-        fileChild.name = filename;
-        for (const func of file.functions) {
-          const funcChild: TreemapData = {
-            name: func.name,
-            value: func[metricA],
-            value2: func[metricB],
-            funcData: func,
-            children: undefined
-          };
-          cValues.push(funcChild.value);
-          cValue2s.push(funcChild.value2);
-          fileChild.children.push(funcChild);
-        }
-        fileChild.value = aggregateA(cValues);
-        fileChild.value2 = aggregateB(cValue2s);
-        values.push(fileChild.value);
-        value2s.push(fileChild.value2);
-        data.children.push(fileChild);
+        fileChild.children.push(funcChild);
       }
+      fileChild.value = aggregateA(this.statistics.get(filename).get(metricA).allValues);
+      fileChild.value2 = aggregateB(this.statistics.get(filename).get(metricB).allValues);
+      values.push(fileChild.value);
+      value2s.push(fileChild.value2);
+      data.children.push(fileChild);
     }
     data.value = aggregateA(values);
     data.value2 = aggregateB(value2s);
@@ -331,7 +377,7 @@ export class MetricData {
     let file;
 
     if (!fileList) {
-      fileList = this.fileList;
+      fileList = this._allFiles;
     }
 
     for (file of fileList) {
@@ -355,7 +401,7 @@ export class MetricData {
     let file;
 
     if (!fileList) {
-      fileList = this.fileList;
+      fileList = this._allFiles;
     }
 
     for (file of fileList) {

@@ -9,8 +9,10 @@ interface TreemapSetting {
     sizeOption: string;
     colorOption: string;
     fileOption: {
-        list: string[];
+        files: string[];
+        types: string[];
         type: string;
+
     };
 }
 
