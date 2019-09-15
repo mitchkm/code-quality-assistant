@@ -12,7 +12,7 @@ from distutils.dir_util import copy_tree
 
 # GLOBALS
 OUT_DIR = "./code-quality-assistant"
-DATA_REPLACE_TOKEN = "{code_analysis_json}"
+DATA_REPLACE_TOKEN = "<script id=\"rawData\" type=\"application/json\">"
 
 # runs it all. This is called down below.
 def run():
@@ -58,7 +58,7 @@ def injectData(json):
     with open(file_in, "rt") as fin:
         with open(file_out, "wt") as fout:
             for line in fin:
-                fout.write(line.replace(DATA_REPLACE_TOKEN, json))
+                fout.write(line.replace(DATA_REPLACE_TOKEN, DATA_REPLACE_TOKEN + "\n" + json))
 
     os.rename(file_out, file_in)
 
