@@ -398,7 +398,8 @@ option {
 
     #chart2OptionsSidebarCard {
         @include sidebar-options-card;
-        height: 200px;
+        //height: 200px;
+        padding-bottom: $sidebar-margin;
 
         #optionsGridContainer {
 
@@ -673,11 +674,102 @@ body {
     $card-margin: 10px;
     $card-percentage: calc(100% - 2 * #{$card-margin});
     $grid-color: rgba($my-text-color, 0.2);
+    $list-height: 70%;
+
+    #topDiv{
+        position: relative;
+        width: 100%;
+        height: calc(100% - #{$list-height});
+
+        $title-font-size: 50%;
+        color: $my-text-color;
+
+        #gridContainer{ 
+            height: 100%; 
+        }
+
+        .row{
+            height: auto !important;
+            max-height: 100% !important;
+        }
+
+        .max-height-row{
+            height: 100% !important;
+        }
+        .max-width-row{
+            width: 100% !important;
+        }
+
+        #donutRow{
+            float: right;
+        }
+        h1{
+            font-size: 70px;
+        }
+
+        #doughnutDiv{
+            // styling from: https://codepen.io/sandersu/pen/gerEbM
+    
+            .donut{
+                height: 100%;
+                width: 100%;
+            }
+            @keyframes donut-chart-fill {
+                to { stroke-dasharray: 0 100; }
+              }
+              body {
+                font-size: 16px;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #000;  
+                background-color: #444;
+              }
+              
+              .svg-item {
+                  position: absolute;
+                  float: right;
+                  right: 0;
+                font-size: 16px;
+              }
+              .donut-ring {
+                stroke: rgba($my-secondary, 0.2);
+              }
+              
+              .donut-segment {
+                animation: donut-chart-fill 1s reverse ease-in;
+                transform-origin: center;
+                stroke: rgba($my-secondary, 0.4);
+              }
+              
+              .donut-text {
+                //font-family: Arial, Helvetica, sans-serif;
+                fill: $my-secondary;
+              }
+
+              .donut-label {
+                font-size: 0.20em;
+                font-weight: 500;
+                line-height: 1;
+                fill: $my-text-color;
+                transform: translateY(0.25em);    
+              }
+              
+              .donut-percent {
+                font-size: 0.5em;
+                fill: $my-secondary;
+                line-height: 1;
+                transform: translateY(0.5em);
+              }
+    
+        }
+    }
+
 
     #duplicatesListDiv{
         position: absolute;
         width: 100%;
-        height: 70%;
+        height:$list-height;
         bottom: 0;
     }
 

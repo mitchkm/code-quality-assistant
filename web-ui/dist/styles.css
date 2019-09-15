@@ -7394,7 +7394,7 @@ option {
     display: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    height: 200px; }
+    padding-bottom: 12px; }
     #sidebar #chart2OptionsSidebarCard #optionsGridContainer #headerRow {
       margin-top: -12px;
       background-color: rgba(255, 255, 255, 0.2);
@@ -7739,6 +7739,62 @@ body {
   margin: 16px;
   border-radius: 10px;
   display: none; }
+  #codeDuplicationCard #topDiv {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 70%);
+    color: #f6f6f6; }
+    #codeDuplicationCard #topDiv #gridContainer {
+      height: 100%; }
+    #codeDuplicationCard #topDiv .row {
+      height: auto !important;
+      max-height: 100% !important; }
+    #codeDuplicationCard #topDiv .max-height-row {
+      height: 100% !important; }
+    #codeDuplicationCard #topDiv .max-width-row {
+      width: 100% !important; }
+    #codeDuplicationCard #topDiv #donutRow {
+      float: right; }
+    #codeDuplicationCard #topDiv h1 {
+      font-size: 70px; }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut {
+      height: 100%;
+      width: 100%; }
+
+@keyframes donut-chart-fill {
+  to {
+    stroke-dasharray: 0 100; } }
+    #codeDuplicationCard #topDiv #doughnutDiv body {
+      font-size: 16px;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #000;
+      background-color: #444; }
+    #codeDuplicationCard #topDiv #doughnutDiv .svg-item {
+      position: absolute;
+      float: right;
+      right: 0;
+      font-size: 16px; }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-ring {
+      stroke: rgba(255, 27, 114, 0.2); }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-segment {
+      animation: donut-chart-fill 1s reverse ease-in;
+      transform-origin: center;
+      stroke: rgba(255, 27, 114, 0.4); }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-text {
+      fill: #ff1b72; }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-label {
+      font-size: 0.20em;
+      font-weight: 500;
+      line-height: 1;
+      fill: #f6f6f6;
+      transform: translateY(0.25em); }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-percent {
+      font-size: 0.5em;
+      fill: #ff1b72;
+      line-height: 1;
+      transform: translateY(0.5em); }
   #codeDuplicationCard #duplicatesListDiv {
     position: absolute;
     width: 100%;
