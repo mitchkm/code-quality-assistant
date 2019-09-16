@@ -443,23 +443,22 @@ class TreemapEventController {
   }
 
   private addToFilterListUIHelper(name: string, on) {
-    const id = name.replace(".", "");
     const item = d3
       .select("#fileList")
       .select(".row")
       .append("div")
       .attr("class", "col-md-6");
-    const fileItem = item.append("div").attr("class", "fileFilterPanel").attr("id", id);
-    fileItem
+    const fileItem = item.append("div").attr("class", "fileFilterPanel");
+    const fileCard = fileItem
       .append("div")
       .attr("class", "fileName")
-      .attr("id", "file" + id)
+      .attr("id", "file");
+    fileCard
       .append("p")
       .text(name);
-    fileItem.select("#" + "file" + id)
+    const mouseHover = fileCard
       .append("div")
-      .attr("class", "filterFileMouseHover")
-      .attr("id", id + "hover");
+      .attr("class", "filterFileMouseHover");
 
     const button = fileItem.append("button").attr("class", "btn-circle");
     button.append("i").attr("class", "fa fa-times");
@@ -469,15 +468,12 @@ class TreemapEventController {
       this.updateTreemap();
     });
 
-    // const mouseHover = d3.selectAll(".fileName").selectAll(".filterFileMouseHover");
-    const mouseHover = d3.select("#" + id).select("#" + "file" + id).select("#" + id + "hover");
-
     // hover over to see full name of file in filter list
     fileItem.on("mousemove", () => {
       mouseHover.style("left", d3.event.pageX + 10 + "px");
       mouseHover.style("top", d3.event.pageY - 20 + "px");
       mouseHover.style("display", "inline-block");
-      mouseHover.text(d3.select("#" + id).select("#" + "file" + id).select("p").text());
+      mouseHover.text(name);
     })
     .on("mouseout", () => {
       mouseHover.style("display", "none");
