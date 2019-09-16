@@ -7179,9 +7179,21 @@ option {
   background-color: rgba(255, 255, 255, 0.1);
   color: #f6f6f6; }
 
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important; }
+@media (min-width: 1200px) {
+  .card-columns {
+    column-count: 4; } }
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card-columns {
+    column-count: 3; } }
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card-columns {
+    column-count: 2; } }
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .card-columns {
+    column-count: 1; } }
 
 #sidebar {
   position: fixed;
@@ -7229,6 +7241,10 @@ option {
         color: #f6f6f6; }
       #sidebar #treemapOptionsSidebarCard #sizeSelector::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #treemapOptionsSidebarCard #sizeSelector::-webkit-inner-spin-button, #sidebar #treemapOptionsSidebarCard #sizeSelector::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
     #sidebar #treemapOptionsSidebarCard #colorSelector {
       background: rgba(255, 255, 255, 0.1);
       color: white;
@@ -7244,11 +7260,23 @@ option {
         color: #f6f6f6; }
       #sidebar #treemapOptionsSidebarCard #colorSelector::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #treemapOptionsSidebarCard #colorSelector::-webkit-inner-spin-button, #sidebar #treemapOptionsSidebarCard #colorSelector::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
     #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs {
-      overflow: hidden; }
+      overflow: hidden;
+      text-overflow: clip; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #combinedRow {
+        height: 56px; }
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs label {
         font-size: 14px;
-        color: #f6f6f6; }
+        color: #f6f6f6;
+        display: block;
+        height: 20px;
+        text-overflow: clip;
+        white-space: nowrap;
+        max-width: 100%; }
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground {
         background: rgba(255, 255, 255, 0.1);
         color: white;
@@ -7257,25 +7285,33 @@ option {
         width: 100%;
         height: 100%;
         padding-left: 8px;
-        padding-left: 0; }
+        padding-left: 0;
+        height: 36px;
+        padding: 4px; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground::placeholder {
           color: #f6f6f6; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground::-webkit-calendar-picker-indicator {
           opacity: 0.1; }
+        #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground::-webkit-inner-spin-button, #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          -moz-appearance: textfield;
+          margin: 0; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground input {
           width: 100%;
-          height: 100%;
+          height: 36px;
           visibility: hidden; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground label {
           cursor: pointer;
           height: 28px;
-          margin: 4px;
-          width: calc(100% - 8px);
-          border-radius: 5px; }
+          width: calc(100%);
+          border-radius: 5px;
+          top: 4px; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground #fakeSafePicker {
           background-color: #008000; }
         #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs #pickerBackground #fakeDangerPicker {
           background-color: #ff0000; }
+      #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .dangerThresholdInput {
+        height: 36px !important; }
       #sidebar #treemapOptionsSidebarCard .treemapColors .colorInputs .thresholdTooltip {
         position: relative;
         display: inline-block;
@@ -7345,6 +7381,10 @@ option {
         color: #f6f6f6; }
       #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::-webkit-inner-spin-button, #sidebar #treemapOptionsSidebarCard #optionsGridContainer input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
   #sidebar #chart2OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
@@ -7354,7 +7394,7 @@ option {
     display: none;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    height: 200px; }
+    padding-bottom: 12px; }
     #sidebar #chart2OptionsSidebarCard #optionsGridContainer #headerRow {
       margin-top: -12px;
       background-color: rgba(255, 255, 255, 0.2);
@@ -7373,6 +7413,22 @@ option {
         text-align: center;
         height: 100%;
         line-height: 52px; }
+    #sidebar #chart2OptionsSidebarCard #optionsGridContainer input {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 5px;
+      border: 0px;
+      width: 100%;
+      height: 100%;
+      padding-left: 8px; }
+      #sidebar #chart2OptionsSidebarCard #optionsGridContainer input::placeholder {
+        color: #f6f6f6; }
+      #sidebar #chart2OptionsSidebarCard #optionsGridContainer input::-webkit-calendar-picker-indicator {
+        opacity: 0.1; }
+      #sidebar #chart2OptionsSidebarCard #optionsGridContainer input::-webkit-inner-spin-button, #sidebar #chart2OptionsSidebarCard #optionsGridContainer input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
   #sidebar #chart3OptionsSidebarCard {
     position: relative;
     background: rgba(255, 255, 255, 0.1);
@@ -7498,6 +7554,10 @@ option {
         color: #f6f6f6; }
       #sidebar #fileFilterCard #fileSelector::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #fileFilterCard #fileSelector::-webkit-inner-spin-button, #sidebar #fileFilterCard #fileSelector::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
     #sidebar #fileFilterCard #fileFilterButton {
       color: #4faaff;
       background-color: rgba(79, 170, 255, 0.2);
@@ -7582,6 +7642,10 @@ option {
         color: #f6f6f6; }
       #sidebar #urlOptionsCard input::-webkit-calendar-picker-indicator {
         opacity: 0.1; }
+      #sidebar #urlOptionsCard input::-webkit-inner-spin-button, #sidebar #urlOptionsCard input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        margin: 0; }
   #sidebar p {
     color: #f6f6f6; }
   #sidebar #fileListRow {
@@ -7619,6 +7683,10 @@ body {
       color: #f6f6f6; }
     #pathCard input::-webkit-calendar-picker-indicator {
       opacity: 0.1; }
+    #pathCard input::-webkit-inner-spin-button, #pathCard input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      margin: 0; }
   #pathCard label {
     overflow: hidden;
     display: inline;
@@ -7671,12 +7739,66 @@ body {
   margin: 16px;
   border-radius: 10px;
   display: none; }
-  #codeDuplicationCard .card-columns {
-    column-count: 4; }
+  #codeDuplicationCard #topDiv {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 70%);
+    color: #f6f6f6; }
+    #codeDuplicationCard #topDiv #gridContainer {
+      height: 100%; }
+    #codeDuplicationCard #topDiv .row {
+      height: auto !important;
+      max-height: 100% !important; }
+    #codeDuplicationCard #topDiv .max-height-row {
+      height: 100% !important; }
+    #codeDuplicationCard #topDiv .max-width-row {
+      width: 100% !important; }
+    #codeDuplicationCard #topDiv #donutRow {
+      float: right; }
+    #codeDuplicationCard #topDiv h1 {
+      font-size: 70px; }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut {
+      height: 100%;
+      width: 100%; }
+
+@keyframes donut-chart-fill {
+  to {
+    stroke-dasharray: 0 100; } }
+    #codeDuplicationCard #topDiv #doughnutDiv body {
+      font-size: 16px;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #000;
+      background-color: #444; }
+    #codeDuplicationCard #topDiv #doughnutDiv .svg-item {
+      position: absolute;
+      float: right;
+      right: 0;
+      font-size: 16px; }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-ring {
+      stroke: rgba(255, 27, 114, 0.2); }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-segment {
+      animation: donut-chart-fill 1s reverse ease-in;
+      transform-origin: center;
+      stroke: rgba(255, 27, 114, 0.4); }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-text {
+      fill: #ff1b72; }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-label {
+      font-size: 0.20em;
+      font-weight: 500;
+      line-height: 1;
+      fill: #f6f6f6;
+      transform: translateY(0.25em); }
+    #codeDuplicationCard #topDiv #doughnutDiv .donut-percent {
+      font-size: 0.5em;
+      fill: #ff1b72;
+      line-height: 1;
+      transform: translateY(0.5em); }
   #codeDuplicationCard #duplicatesListDiv {
     position: absolute;
     width: 100%;
-    height: 80%;
+    height: 70%;
     bottom: 0; }
   #codeDuplicationCard #duplicatesList {
     position: relative;

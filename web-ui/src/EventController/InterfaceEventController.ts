@@ -69,6 +69,7 @@ class InterfaceEventController {
     });
     util.fillURLText(undefined);
   }
+
   public static initDuplicates(mD: MetricData) {
     const dupList = d3.select("#duplicatesList").select(".card-columns");
     dupList.selectAll("div").remove();
@@ -122,6 +123,20 @@ class InterfaceEventController {
           .text(dup.endLine);
       });
     });
+    InterfaceEventController.updateDonut(mD.duplicateInfo.duplicateRate);
+  }
+
+  private static updateDonut(dupRate: number) {
+    const percentRate = Math.round(dupRate * 1000) / 10;
+    const donutElement = d3.select("#donutElement");
+    const percentElement = document.getElementById("donutPercent");
+    const attrString = this.dupRateToAttributeString(percentRate);
+    donutElement.attr("stroke-dasharray", attrString);
+    percentElement.textContent = percentRate.toString() + "%";
+  }
+
+  private static dupRateToAttributeString(dupRate: number) {
+    return dupRate.toString() + " " + (100 - dupRate).toString();
   }
 }
 
