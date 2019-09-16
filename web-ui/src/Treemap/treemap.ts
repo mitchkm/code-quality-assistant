@@ -43,7 +43,7 @@ class Treemap {
       .scaleLinear<string>()
       .domain(this.treemapSetting.color.thresholds)
       .range(this.treemapSetting.color.colors)
-      .interpolate(d3.interpolateHslLong);
+      .interpolate(d3.interpolateRgb.gamma(2.2));
 
     // sets treemap layout
     const treemap = d3
