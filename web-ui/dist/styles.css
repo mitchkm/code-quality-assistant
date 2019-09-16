@@ -7179,21 +7179,20 @@ option {
   background-color: rgba(255, 255, 255, 0.1);
   color: #f6f6f6; }
 
-@media (min-width: 1200px) {
-  .card-columns {
-    column-count: 4; } }
-
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .card-columns {
-    column-count: 3; } }
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-  .card-columns {
-    column-count: 2; } }
-
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .card-columns {
-    column-count: 1; } }
+.card-columns {
+  column-count: 2; }
+  @media (min-width: 1200px) {
+    .card-columns {
+      column-count: 2; } }
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    .card-columns {
+      column-count: 2; } }
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .card-columns {
+      column-count: 1; } }
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .card-columns {
+      column-count: 1; } }
 
 #sidebar {
   position: fixed;
@@ -8011,7 +8010,8 @@ body {
   width: 100%;
   height: 36px;
   border-radius: 36px;
-  background-color: transparent; }
+  background-color: transparent;
+  font-size: 12px; }
   .switch input {
     position: absolute;
     -webkit-appearance: none;
