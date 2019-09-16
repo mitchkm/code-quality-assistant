@@ -2,6 +2,7 @@ export const DangerThresholds = {
   "nloc": 60,
   "ccn": 21,
   "params": 5,
+  "tokens": -1,
   "length": 58, // including comments
   "fanIn": -1,
   "fanOut": -1,
