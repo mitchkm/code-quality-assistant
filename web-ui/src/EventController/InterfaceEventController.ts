@@ -70,18 +70,6 @@ class InterfaceEventController {
     util.fillURLText(undefined);
   }
 
-  public static initDonut(dupRate: number){
-    this.updateDonut(dupRate);
-  }
-
-  public static updateDonut(dupRate: number){
-    const donutElement = d3.select("#donutElement");
-    const percentElement = document.getElementById("donutPercent");
-    const attrString = this.dupRateToAttributeString(dupRate);
-    donutElement.attr("stroke-dasharray", attrString);
-    percentElement.textContent = (Math.round(dupRate * 10) / 10).toString() + "%";
-  }
-
   public static initDuplicates(mD: MetricData) {
     const dupList = d3.select("#duplicatesList").select(".card-columns");
     dupList.selectAll("div").remove();
@@ -135,11 +123,20 @@ class InterfaceEventController {
           .text(dup.endLine);
       });
     });
+    InterfaceEventController.updateDonut(mD.duplicateInfo.duplicateRate);
+  }
+
+  private static updateDonut(dupRate: number) {
+    const percentRate = Math.round(dupRate * 1000) / 10;
+    const donutElement = d3.select("#donutElement");
+    const percentElement = document.getElementById("donutPercent");
+    const attrString = this.dupRateToAttributeString(percentRate);
+    donutElement.attr("stroke-dasharray", attrString);
+    percentElement.textContent = percentRate.toString() + "%";
   }
 
   private static dupRateToAttributeString(dupRate: number) {
-    const percentage = Math.round(dupRate * 10) / 10;
-    return percentage.toString() + " " + (100 - percentage).toString();
+    return dupRate.toString() + " " + (100 - dupRate).toString();
   }
 }
 

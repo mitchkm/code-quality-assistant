@@ -86,7 +86,6 @@ treemap.drawTreemap();
 // set up DOM elements
 InterfaceEventController.init(urlParams["chart"], mD);
 InterfaceEventController.initDuplicates(mD);
-InterfaceEventController.initDonut(mD.duplicateInfo.duplicateRate);
 
 const treemapController = TreemapEventController.instance;
 treemapController.setContext(mD, treemap, treemapSettings);
