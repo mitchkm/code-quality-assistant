@@ -1,8 +1,5 @@
-# apple-surp-2019
-Apple Cal Poly SURP project summer 2019
-
-## Project
-An interactive tool that allows developers to visually see metrics of the codebase they working on. Metrics such as cyclomatic complexity and number of lines of code will be displayed using size and color, nesting functions within files. Internally, we call the tool CodeQualityAssistant.
+# Code Quality Assistant
+Our intention in this project is to provide a simple-to-use tool that produces an easily accessible and usable interface for exploring high-level metrics about a specific coding project. Our final deliverable will be a standalone executable usable on Unix systems that produces a local landing page to view this analysis. This method will not only provide easy and immediate feedback at individual developer’s local workstations on a day-to-day basis but is intended to easily fit into a CI type pipeline. The executable could be kicked off on a remote machine and producing a webpage that could then be accessed by all developers remotely. Additionally, we intend to provide documentation for the tool’s use, and documentation on how to get started extending the tool.
 
 ## Dependencies List
 ### Project
