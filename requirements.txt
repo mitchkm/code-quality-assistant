@@ -1,0 +1,2 @@
+lizard==1.16.6
+pyinstaller==3.5
