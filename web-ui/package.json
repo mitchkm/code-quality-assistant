@@ -18,7 +18,7 @@
     "Jay Ahn <aju960219@gmail.com>",
     "Noah Paige <noahlandonpaige@gmail.com>"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bootstrap4-toggle": "^3.5.0",
     "color-convert": "^2.0.1",
